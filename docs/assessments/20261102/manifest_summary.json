@@ -1,0 +1,31 @@
+{
+  "DomSHA": "cbd6e1eb52e8a46f9837a750d675b877d5ac8762",
+  "MVLSHA": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1",
+  "DomTreeFiles": 9269,
+  "MVLTreeFiles": 1651,
+  "SourceTextInspected": 4999,
+  "SourceTextNotInspected": 4270,
+  "ModuleFamilies": 684,
+  "IntegrationReferenceRows": 1378,
+  "ParameterReferences": 3870,
+  "ProtectedDifferences": 1302,
+  "MVLOnlyPaths": 434,
+  "DeltaCounts": {
+    "identical": 635,
+    "modified_against_mvl": 582,
+    "dom_only": 8052
+  },
+  "DecisionCounts": {
+    "KEEP_MVL_IDENTICAL": 610,
+    "REVIEW_BUILD_TOOLING_OR_CONTENT": 200,
+    "BUNDLE_WITH_FEATURE": 418,
+    "UPSTREAM_DEPENDENCY_PIN": 3078,
+    "PROTECT_MVL_SAFETY_POLICY": 718,
+    "PORT_TEST_ONLY_IF_OWNING_FEATURE": 2206,
+    "KEEP_MVL": 25,
+    "PROTECT_MVL_MANUAL_DIFF": 294,
+    "MVL_INTEGRATION_REVIEW": 290,
+    "CANDIDATE_SELECTIVE_PORT": 1185,
+    "EXCLUDE_NON_HONDA_RUNTIME": 245
+  }
+}
