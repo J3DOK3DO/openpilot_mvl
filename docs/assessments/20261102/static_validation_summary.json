@@ -1,0 +1,16 @@
+{
+  "Interpreter": "Python 3.13 expected; verify actual invocation separately",
+  "DomPythonFiles": 2891,
+  "DomParsed": 2891,
+  "DomSyntaxErrors": 0,
+  "MVLPythonFiles": 751,
+  "MVLParsed": 750,
+  "MVLSyntaxErrors": 1,
+  "HondaFilesCrosswalk": 16,
+  "HondaContentDifferences": 7,
+  "DomOnlyHondaFiles": 8,
+  "DomLiteralParams": 1365,
+  "MVLLiteralParams": 460,
+  "SharedLiteralParams": 254,
+  "HostRuntime": "Windows source parse only, not AGNOS/panda/native build"
+}
