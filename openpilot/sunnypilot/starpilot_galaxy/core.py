@@ -18,6 +18,7 @@ from openpilot.sunnypilot.starpilot_bridge.models import (
   DeviceStatus,
   SelfdriveStatus,
 )
+from openpilot.sunnypilot.starpilot_models.catalog import DEFAULT_CATALOG, ModelCatalog, ModelEntry, parse_catalog
 
 
 _MAX_HEADER_BYTES = 4096
@@ -80,6 +81,7 @@ class GalaxyHandler:
     settings: GalaxySettings,
     snapshot_provider: Callable[[], BridgeSnapshot],
     now_ns: Callable[[], int],
+    models_provider: Callable[[], ModelCatalog] | None = None,
   ) -> None:
     if type(settings) is not GalaxySettings:
       raise SettingsError("settings must be GalaxySettings")
@@ -88,6 +90,9 @@ class GalaxyHandler:
     self._settings = settings
     self._snapshot_provider = snapshot_provider
     self._now_ns = now_ns
+    if models_provider is not None and not callable(models_provider):
+      raise TypeError("models provider must be callable")
+    self._models_provider = models_provider or (lambda: DEFAULT_CATALOG)
 
   def handle(self, request: GalaxyRequest) -> GalaxyResponse:
     """Return a generic, cache-forbidden response; never raises provider data."""
@@ -111,7 +116,10 @@ class GalaxyHandler:
     if request.path == "/api/v1/health":
       return self._json(200, {"status": "ok"})
     if request.path == "/api/v1/models":
-      return self._json(200, {"models": []})
+      try:
+        return self._json(200, _safe_models_payload(self._models_provider()))
+      except Exception:
+        return self._error(503, "models_unavailable")
     return self._status()
 
   def _valid_request_shape(self, request: GalaxyRequest) -> bool:
@@ -184,6 +192,31 @@ def _safe_status_payload(snapshot: object, now_ns: object, max_age_ns: int) -> d
     _fresh(value.timestamp_ns, now_ns, max_age_ns)
     payload["car"] = {"v_ego_mps": value.v_ego_mps, "cruise_enabled": value.cruise_enabled}
   return payload
+
+
+def _safe_models_payload(catalog: object) -> dict[str, object]:
+  """Expose bounded, non-executable metadata from an explicitly injected catalog."""
+  if type(catalog) is not ModelCatalog or len(catalog.entries) > 128:
+    raise ValueError("invalid catalog")
+  raw_entries = []
+  for entry in catalog.entries:
+    if type(entry) is not ModelEntry:
+      raise ValueError("invalid model entry")
+    strings = (entry.model_id, entry.name, entry.version, entry.sha256, entry.target_abi)
+    if any(type(value) is not str or len(value) > 128 for value in strings):
+      raise ValueError("invalid model metadata length")
+    if type(entry.size) is not int or not 0 <= entry.size <= 2 * 1024 * 1024 * 1024:
+      raise ValueError("invalid model size")
+    if type(entry.expected_runtimes) is not tuple or len(entry.expected_runtimes) > 8 or any(type(value) is not str or len(value) > 128 for value in entry.expected_runtimes):
+      raise ValueError("invalid model runtimes")
+    raw_entries.append({"id": entry.model_id, "name": entry.name, "version": entry.version, "sha256": entry.sha256,
+                        "size": entry.size, "target_abi": entry.target_abi, "expected_runtimes": entry.expected_runtimes})
+  # The immutable dataclass can be constructed directly. Reuse the catalog
+  # parser's full allowlist, size bounds, and unique-ID checks at this boundary.
+  validated = parse_catalog(json.dumps({"models": raw_entries}, allow_nan=False))
+  return {"models": [{"id": entry.model_id, "name": entry.name, "version": entry.version,
+                      "target_abi": entry.target_abi, "expected_runtimes": list(entry.expected_runtimes)}
+                     for entry in validated.entries]}
 
 
 def _finite(value: object, low: float, high: float) -> bool:

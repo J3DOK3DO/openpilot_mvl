@@ -5,7 +5,11 @@ This file is part of sunnypilot and is licensed under the MIT License.
 See the LICENSE.md file in the root directory for more details.
 """
 import pyray as rl
+from collections.abc import Callable
 from openpilot.selfdrive.ui.layouts.home import HomeLayout, HomeLayoutState, HEAD_BUTTON_FONT_SIZE, SPACING
+from openpilot.selfdrive.ui.ui_state import ui_state
+from openpilot.sunnypilot.starpilot_bridge.models import BridgeSnapshot
+from openpilot.sunnypilot.starpilot_views.offroad import build_offroad_home_presentation
 from openpilot.system.ui.lib.application import gui_app, FontWeight, TextAlignment
 from openpilot.system.ui.lib.text_measure import measure_text_cached
 from openpilot.system.ui.lib.multilang import tr, trn
@@ -16,6 +20,17 @@ BRAND_DESC_SPACING = 12
 
 
 class HomeLayoutSP(HomeLayout):
+  def __init__(self):
+    super().__init__()
+    # No Params key or subscriber enables this optional read-only view.
+    self._status_snapshot_supplier: Callable[[], BridgeSnapshot] | None = None
+
+  def set_status_snapshot_supplier(self, supplier: Callable[[], BridgeSnapshot] | None) -> None:
+    """Accept an explicitly owned read-only snapshot source; None disables it."""
+    if supplier is not None and not callable(supplier):
+      raise TypeError("supplier must be callable or None")
+    self._status_snapshot_supplier = supplier
+
   def _render_header(self):
     font = gui_app.font(FontWeight.MEDIUM)
 
@@ -66,3 +81,35 @@ class HomeLayoutSP(HomeLayout):
     brand_x = version_right - desc_width - spacing - brand_size.x
     brand_rect = rl.Rectangle(max(version_left, brand_x), self.header_rect.y, brand_size.x, self.header_rect.height)
     gui_label(brand_rect, brand, BRAND_FONT_SIZE, rl.WHITE, font_weight=FontWeight.AUDIOWIDE)
+    self._render_status_badge(brand_x)
+
+  def _render_status_badge(self, brand_x: float) -> None:
+    """Draw one optional status line only in unused header space."""
+    supplier = self._status_snapshot_supplier
+    if (supplier is None or self.current_state != HomeLayoutState.HOME or
+        self.update_available or self.alert_count > 0 or ui_state.started):
+      return
+    width = min(520.0, brand_x - self.header_rect.x - 24.0)
+    if width < 300.0 or self.header_rect.height < 64.0:
+      return
+    try:
+      snapshot = supplier()
+      presentation = build_offroad_home_presentation(
+        snapshot, width=width, height=self.header_rect.height,
+        started=ui_state.started, home_visible=self.is_visible,
+        update_present=self.update_available, alerts_present=self.alert_count > 0,
+      )
+    except Exception:
+      return
+    if presentation.defer_to_mvl or not presentation.panels:
+      return
+    # The native update/alert widgets and brand remain fully owned by MVL.
+    panel = presentation.panels[0]
+    badge = rl.Rectangle(self.header_rect.x, self.header_rect.y + 4, width, self.header_rect.height - 8)
+    try:
+      rl.draw_rectangle_rounded(badge, 0.15, 8, rl.Color(35, 47, 59, 255))
+      gui_label(rl.Rectangle(badge.x + 16, badge.y, badge.width - 32, badge.height),
+                f"{panel.title}: {panel.value}", 25, rl.WHITE)
+    except Exception:
+      # A failure in the optional badge must not interrupt MVL's header.
+      return
