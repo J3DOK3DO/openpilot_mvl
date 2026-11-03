@@ -1,0 +1,41 @@
+{
+  "gate": "g06",
+  "source_base": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
+  "scope_status": "HOST_HANDLER_PASS; LIVE_NETWORK_ADAPTER_HOLD",
+  "host_tests_passed": 22,
+  "host_tests_failed": 0,
+  "host_tests_skipped": 0,
+  "vehicle_release": "HOLD",
+  "tracked_evidence": [
+    {
+      "path": "docs/engineering/campaign_20261103/g06/CODEx_TASK.md",
+      "sha256": "21e266a09a4cba24016b64b8c2e1cbac88f764a196fabc32824685a752bd23dc",
+      "bytes": 2251
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/FINAL_HOST_TESTS.log",
+      "sha256": "2f4168c91d5fa59222eee23d952b692459ecaf1c4af01d5fa43f0cd19fb9f9d4",
+      "bytes": 99
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/GALAXY_API_CORE.md",
+      "sha256": "504dfe50421892ab7f1826a2e06face28c84943e7c4eae35fe4451f9b54ac5fc",
+      "bytes": 4782
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/GATE_FINAL_STATUS.md",
+      "sha256": "77ab9b0204856b8c35a985b171a1c15295595c9c2d98f84f50d720ee494ba445",
+      "bytes": 1531
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/INDEPENDENT_CODEX_REVIEW.md",
+      "sha256": "6f332e6698939f560fe7dc308545c6742ce6e0c98194c4250cfbc55bb0c9a463",
+      "bytes": 1121
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/TEST_OUTPUTS.md",
+      "sha256": "cf723ecc2a219fd905e93d97ae5774602dafc3dca64277cd9c84f42cb0eb5cdf",
+      "bytes": 804
+    }
+  ]
+}
