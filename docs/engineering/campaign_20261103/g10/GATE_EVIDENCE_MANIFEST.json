@@ -1,0 +1,76 @@
+{
+  "gate": "g10",
+  "source_base": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
+  "scope_status": "PASSIVE_PREPARATION_PASS; ARM64_COLD_BUILD_DEVICE_HOLD",
+  "host_tests_passed": 9,
+  "host_tests_failed": 0,
+  "host_tests_skipped": 0,
+  "vehicle_release": "HOLD",
+  "tracked_evidence": [
+    {
+      "path": "docs/engineering/campaign_20261103/g10/.pytest_cache/.gitignore",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "bytes": 37
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/.pytest_cache/CACHEDIR.TAG",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "bytes": 191
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/.pytest_cache/README.md",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "bytes": 302
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/.pytest_cache/v/cache/nodeids",
+      "sha256": "acbf9f46316e7ef9ca1241d26848b0dc73cefd4fecb65a5e07ade20bfa35435f",
+      "bytes": 688
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/.pytest_cache/v/cache/stepwise",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/FINAL_HOST_TESTS.log",
+      "sha256": "d69b6f69e04bc0a56bc320b823fe9ffa437ecb7e0a2d05a2ace978766d34d550",
+      "bytes": 98
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/G10_AGNOS_PASSIVE_EVIDENCE.json",
+      "sha256": "cf3f86c53686d5ca75be664c78e53b4d42c70e08144a8418988a24dd2f8987e7",
+      "bytes": 1688
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/G10_AGNOS_PASSIVE_EVIDENCE.log",
+      "sha256": "cf3f86c53686d5ca75be664c78e53b4d42c70e08144a8418988a24dd2f8987e7",
+      "bytes": 1688
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/G10_QUALIFICATION_PREPARATION.md",
+      "sha256": "c9085e35e486579f12402048dae51e717753b94c089d3d436afa9d9b8d2b274a",
+      "bytes": 3824
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/G10_UNIT_TESTS.log",
+      "sha256": "1af40c49f25815cc43199390723eca0ea305a38da96d85981d7ae68d66a97f6f",
+      "bytes": 98
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/GATE_FINAL_STATUS.md",
+      "sha256": "74fbd2450b6a457541bab9a6b1262d0c8ed589e9990f9fec198c13f1793f834d",
+      "bytes": 1534
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/agnos_passive_check.py",
+      "sha256": "ab5a266ce42cf6575d86ff3e26f205700fed2e6f478462d78377e7a48b68286a",
+      "bytes": 4696
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+      "sha256": "6464a9deb2271ef0ec9bf454fd42c2938a21a76a614589dceb813035441d7a71",
+      "bytes": 2159
+    }
+  ]
+}
