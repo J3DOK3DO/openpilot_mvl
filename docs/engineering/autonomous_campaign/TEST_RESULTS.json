@@ -157,6 +157,21 @@
       "n2_build": "HOLD_PREREQUISITES",
       "independent_review": "N1 and N4 PASS after exception-safety and validation remediations",
       "limits": "x86 host native renderer and local IPC only; target and vehicle release HOLD"
+    },
+    {
+      "milestone": "persisted isolated native host setup verification",
+      "commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
+      "checkpoint_parent": "56ba8140cb0f371d73233ec1615c78e5da6abfd0",
+      "verified_at_utc": "2026-11-03T17:29:44.237140Z",
+      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py; python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
+      "temporary_host_library_symlink_removed": true,
+      "outcomes": {
+        "passed": 400,
+        "failed": 0,
+        "skipped": 0
+      },
+      "g03_ipc": "PASS 8 schema paths; 254 Params DENY",
+      "limits": "host only; no target/device release"
     }
   ],
   "last_verified_commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",

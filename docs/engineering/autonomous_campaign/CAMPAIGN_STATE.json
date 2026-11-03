@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-03T17:26:41.243096Z",
+  "updated_at_utc": "2026-11-03T17:29:44.237140Z",
   "current_stage": "reviewed_offline_integration_published",
   "release_decision": "HOLD",
   "branch": "codex/mvl-starpilot-manual",
   "checkout_mode": "branch",
-  "head_commit": "17c43e9e505f193113777a7266fedd0b03bee7cc",
+  "head_commit": "56ba8140cb0f371d73233ec1615c78e5da6abfd0",
   "last_verified_result": {
     "decision": "PASS",
     "scope": "isolated x86 native renderer, local capnp/msgq IPC and offline host regression; no device evidence",
@@ -20,12 +20,12 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-starpilot-manual",
-    "head": "17c43e9e505f193113777a7266fedd0b03bee7cc",
+    "head": "56ba8140cb0f371d73233ec1615c78e5da6abfd0",
     "worktree": "/home/jdkd/.codex/worktrees/mvl-starpilot-manual-campaign",
     "owner": "manual campaign consolidation; original published worktree leased but unchanged"
   },
   "current_gate": "PUBLICATION_COMPLETE_TARGET_AND_VEHICLE_QUALIFICATION_HOLD",
-  "last_successful_milestone": "Published reviewed offline native integration branch via authenticated Windows Git helper at 17c43e9; tested source 6ea2fc997 had 400 host/native tests and local G03 IPC PASS. Vehicle release HOLD.",
+  "last_successful_milestone": "Reviewed offline branch published at 56ba8140. Persisted pinned native host setup and reran 400 combined tests plus G03 local IPC PASS; tested source remains 6ea2fc997. Vehicle release HOLD.",
   "tests_verified_at_commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
   "tests_record": "TEST_RESULTS.json",
   "next_actionable_milestone": "Provision at least 15 GiB dedicated build space and pinned AArch64/AGNOS toolchain and sysroot, then attempt full G10 cold build in isolated environment; separately collect C3/C4 device, Galaxy security, Panda, OEM and protected rollback evidence.",

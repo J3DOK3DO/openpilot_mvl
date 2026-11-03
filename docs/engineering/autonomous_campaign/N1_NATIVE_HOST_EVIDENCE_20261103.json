@@ -9,7 +9,7 @@
   ],
   "dependency_provenance": {
     "python": "CPython 3.12.14 via uv venv /tmp/mvl-n1-native-venv",
-    "environment_script": "/tmp/mvl-n1-native-env.sh",
+    "environment_script": "docs/engineering/autonomous_campaign/native_host_env.sh",
     "pycapnp": "2.1.0 cached wheel archive i7wuLLr-rrR7DuZ2",
     "raylib": "comma-deps-raylib 6.0.0.1.post106 cached wheel archive k3LRoVSvwv89_ziQ",
     "opendbc_commit": "3fec9a418a659de31d7b1f494193161697a35071",
@@ -25,7 +25,8 @@
       "passed": 34,
       "failed": 0,
       "skipped": 0,
-      "duration_seconds": 0.57
+      "duration_seconds": 0.57,
+      "reproducible_setup": "docs/engineering/autonomous_campaign/NATIVE_HOST_SETUP.md"
     },
     {
       "command": "source /tmp/mvl-n1-native-env.sh; /tmp/mvl-n1-native-venv/bin/python /tmp/mvl-n1-g03-ipc.py",
