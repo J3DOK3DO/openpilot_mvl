@@ -1,0 +1,7 @@
+FAIL — source provenance/ownership is not validated.
+
+`--params-keys` accepts any readable file, and `_native_param_metadata()` then labels matching entries as `native_mvl_params_definition`, including its supplied path and asserted flags/type, with no check that it is MVL’s `openpilot/common/params_keys.h` or belongs to the selected source tree. A fabricated file can therefore produce a false native-MVL ownership claim. See [crosswalk.py](/mnt/commadrive/MVL_CAMPAIGN_G03_G10_20261103/g03/openpilot/sunnypilot/starpilot_compat/crosswalk.py:93) and [cli.py](/mnt/commadrive/MVL_CAMPAIGN_G03_G10_20261103/g03/openpilot/sunnypilot/starpilot_compat/cli.py:22).
+
+The inventory has the same provenance weakness: any supplied `--repository-root` containing the expected relative filenames is reported `SOURCE_BACKED`; it does not establish that root as the intended MVL source or pin. Its Cap’n Proto field output is appropriately limited and explicitly avoids claiming Python IPC ABI compatibility, but its “source-backed” status is only path-shape based. See [inventory.py](/mnt/commadrive/MVL_CAMPAIGN_G03_G10_20261103/g03/openpilot/sunnypilot/starpilot_compat/inventory.py:34).
+
+The 254-key quarantine itself is unchanged: 254 unique rows, all `DENY/FALSE/FALSE`; loader enforcement is sound. I could not run pytest because this read-only environment has no usable temporary directory.

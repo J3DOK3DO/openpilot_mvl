@@ -1,0 +1,12 @@
+{
+  "checkout_pin_verified_by_separate_git_command": true,
+  "repository_head": "376c44b5731b2655e5c2f301b73c9729eb499e91",
+  "opendbc_submodule_sha": "3fec9a418a659de31d7b1f494193161697a35071",
+  "cli_source_attested": false,
+  "method": "caller preverified exact SHA and gitlink before supplying read-only source checkout",
+  "message_field_counts": {
+    "deviceState": 34,
+    "selfdriveState": 12,
+    "carState": 52
+  }
+}

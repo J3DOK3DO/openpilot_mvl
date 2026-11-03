@@ -1,0 +1,61 @@
+{
+  "gate": "g03",
+  "source_base": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
+  "scope_status": "OFFLINE_CROSSWALK_TOOL_PASS; PARAMETER_MIGRATION_HOLD",
+  "host_tests_passed": 7,
+  "host_tests_failed": 0,
+  "host_tests_skipped": 0,
+  "vehicle_release": "HOLD",
+  "tracked_evidence": [
+    {
+      "path": "docs/engineering/campaign_20261103/g03/CODEx_TASK.md",
+      "sha256": "0b0ed83c9a90bbf01a9dc1d9f7006a786749a7fb0e34b7ff302798aaf33ba81a",
+      "bytes": 2269
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/FIELD_INVENTORY.md",
+      "sha256": "006ada5bbec121d157f9fb17416df894de756eb0ace477ade185b93e4aeae760",
+      "bytes": 2401
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/FINAL_HOST_TESTS.log",
+      "sha256": "775b7aa27d0c17f48b3feff20c836f14b6ed8ebcb90ec7e0b76d2a13c579268a",
+      "bytes": 98
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/G03_254_PARAMETER_EVIDENCE.json",
+      "sha256": "87840f35bdceddc1a8a222f49a135017aaff8784ae02161a1deb57db3ae55fc8",
+      "bytes": 217879
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/G03_MESSAGE_IPC_INVENTORY.json",
+      "sha256": "a7224b590aecdfc7df8da02803a180001b3f47fc715c1b458177c226d58de0ba",
+      "bytes": 9893
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/G03_PINNED_CHECKOUT_MESSAGE_FIELDS.json",
+      "sha256": "57cb7b131e4b611f88999dc71bd2fd31e1740f7badf18404bfc79f39a487ed4d",
+      "bytes": 24375
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/G03_PINNED_SOURCE_PROVENANCE.json",
+      "sha256": "afe41c29f3a4feb8ee345e10984ca645476c8bf71142348fc2435ecbef78439e",
+      "bytes": 428
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/GATE_FINAL_STATUS.md",
+      "sha256": "1bff8800b4e433509bc8a8e970f4efa1f0551e30354cf86ae79641a3a1d6d85f",
+      "bytes": 1566
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/INDEPENDENT_CODEX_REVIEW.md",
+      "sha256": "d5e602d8e1d5a967a8ab5e9d4ae91d4a3a6110c34c177f679582c6730659d6ee",
+      "bytes": 1397
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/WORKSTREAM_REPORT.md",
+      "sha256": "66298a7e8596bd3069f29ae0e67362d9d2ed6206b63b34cb8b03f4dd078d81d1",
+      "bytes": 3943
+    }
+  ]
+}
