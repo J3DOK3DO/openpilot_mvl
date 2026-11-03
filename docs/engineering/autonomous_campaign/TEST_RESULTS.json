@@ -28,5 +28,23 @@
     "failed": 0,
     "scope": "simulated pending operation and recorded SHA drift"
   },
-  "lock_contention_test": "Second locked-run exited 3 while first held the lock; first exited 0."
+  "lock_contention_test": "Second locked-run exited 3 while first held the lock; first exited 0.",
+  "milestone_runs": [
+    {
+      "milestone": "G06 source-only transport readiness",
+      "commit": "efdc8b4f0dfcae5c3ddc1ae176bec8a6db5044ea",
+      "verified_at_utc": "2026-11-03T16:18:22Z",
+      "command": "python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_galaxy/tests",
+      "outcomes": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0
+      },
+      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
+      "recovery_outcomes": {
+        "passed": 2,
+        "failed": 0
+      }
+    }
+  ]
 }

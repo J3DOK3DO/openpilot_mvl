@@ -1,18 +1,18 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-03T16:17:35Z",
-  "current_stage": "recovery_initialized",
+  "updated_at_utc": "2026-11-03T16:18:22Z",
+  "current_stage": "g06_transport_preflight_complete",
   "release_decision": "HOLD",
   "branch": "codex/autonomous-campaign",
   "checkout_mode": "branch",
-  "head_commit": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
+  "head_commit": "efdc8b4f0dfcae5c3ddc1ae176bec8a6db5044ea",
   "last_verified_result": {
     "decision": "PASS",
-    "scope": "377 offline host tests, 2 simulated recovery tests, exclusive lock contention",
-    "passed": 379,
+    "scope": "G06 offline host core and recovery tests only",
+    "passed": 24,
     "failed": 0,
     "skipped": 0,
-    "record": "TEST_RESULTS.json"
+    "record": "TEST_RESULTS.json milestone_runs[-1]"
   },
   "next_action": "Assign owners and collect exact-commit evidence for native UI, security and hardware bench, AArch64 AGNOS build and boot, physical Panda safety, OEM collision-mitigation validation, integrated review, and protected rollback before reconsidering vehicle release.",
   "source_of_truth": "../campaign_20261103/CAMPAIGN_MASTER_REPORT.md",
@@ -20,15 +20,15 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/autonomous-campaign",
-    "head": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
+    "head": "efdc8b4f0dfcae5c3ddc1ae176bec8a6db5044ea",
     "worktree": "/home/jdkd/.codex/worktrees/autonomous-campaign/consolidated",
     "owner": "current Codex chat; exclusive locked-run required for modifying operations"
   },
-  "current_gate": "RECOVERY_INIT_PASS",
-  "last_successful_milestone": "Recovery simulation and exclusive ownership validated; consolidated offline host suite passed.",
-  "tests_verified_at_commit": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
+  "current_gate": "G06_TRANSPORT_HOLD",
+  "last_successful_milestone": "G06 source-only transport readiness assessed; 22 handler and 2 recovery tests passed.",
+  "tests_verified_at_commit": "efdc8b4f0dfcae5c3ddc1ae176bec8a6db5044ea",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Assess G06 transport and security readiness using source-only evidence; retain live adapter HOLD.",
+  "next_actionable_milestone": "Draft an offline G06 adapter contract and threat model with explicit transport assumptions; live adapter, hardware bench, and release remain HOLD.",
   "current_blockers": [
     "native C3/C4 UI and IPC",
     "security/hardware bench",

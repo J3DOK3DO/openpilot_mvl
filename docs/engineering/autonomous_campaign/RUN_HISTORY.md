@@ -8,3 +8,4 @@
 
 Append new actions in chronological order; preserve prior entries and identify whether a result was directly rerun or cited from retained evidence.
 | 2026-11-03T16:17:35Z | `362c2fb6fed527e5f7e4737473b856b5ccf5766f` | New isolated worktree and `codex/autonomous-campaign` branch; recovery simulation detected pending operation and SHA drift (2/2); exclusive lock contention passed; consolidated offline host suite 377 passed, 0 failed, 0 skipped with cache disabled. | Recovery initialization PASS; vehicle release HOLD. |
+| 2026-11-03T16:18:22Z | `efdc8b4f0dfcae5c3ddc1ae176bec8a6db5044ea` | G06 source-only transport preflight; 22 handler tests and 2 recovery tests passed. No production adapter found. | Offline core PASS; live transport HOLD. |
