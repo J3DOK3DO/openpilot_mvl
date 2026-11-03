@@ -1,0 +1,5 @@
+﻿Change,Path,Risk,URL,Disposition
+M,SConstruct,MEDIUM,https://github.com/mvl-boston/openpilot/blob/376c44b5731b2655e5c2f301b73c9729eb499e91/SConstruct,PRESERVE_UPSTREAM_MVL; fork not rebased
+A,openpilot/common/scons_cache.py,MEDIUM,https://github.com/mvl-boston/openpilot/blob/376c44b5731b2655e5c2f301b73c9729eb499e91/openpilot/common/scons_cache.py,PRESERVE_UPSTREAM_MVL; fork not rebased
+A,openpilot/common/tests/test_scons_cache.py,LOW,https://github.com/mvl-boston/openpilot/blob/376c44b5731b2655e5c2f301b73c9729eb499e91/openpilot/common/tests/test_scons_cache.py,PRESERVE_UPSTREAM_MVL; fork not rebased
+M,openpilot/system/manager/build.py,HIGH,https://github.com/mvl-boston/openpilot/blob/376c44b5731b2655e5c2f301b73c9729eb499e91/openpilot/system/manager/build.py,PRESERVE_UPSTREAM_MVL; fork not rebased

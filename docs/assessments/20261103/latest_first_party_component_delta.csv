@@ -1,0 +1,7 @@
+﻿Type,Family,Path,Risk,Decision,URL
+added,starpilot/car,openpilot/starpilot/car/tesla/coop_preferences.py,HIGH,EXCLUDE_OTHER_MAKE,https://github.com/StarPilotHQ/StarPilot/blob/3924bd2e3917731e72012e784879262ca954c7ae/openpilot/starpilot/car/tesla/coop_preferences.py
+added,starpilot/car,openpilot/starpilot/car/tesla/coop_saturation.py,HIGH,EXCLUDE_OTHER_MAKE,https://github.com/StarPilotHQ/StarPilot/blob/3924bd2e3917731e72012e784879262ca954c7ae/openpilot/starpilot/car/tesla/coop_saturation.py
+added,starpilot/ui,openpilot/starpilot/ui/native/__init__.py,MEDIUM,VISUAL_ONLY_ADAPTER,https://github.com/StarPilotHQ/StarPilot/blob/3924bd2e3917731e72012e784879262ca954c7ae/openpilot/starpilot/ui/native/__init__.py
+added,starpilot/ui,openpilot/starpilot/ui/native/raylib_extra.cc,MEDIUM,VISUAL_ONLY_ADAPTER,https://github.com/StarPilotHQ/StarPilot/blob/3924bd2e3917731e72012e784879262ca954c7ae/openpilot/starpilot/ui/native/raylib_extra.cc
+added,starpilot/ui,openpilot/starpilot/ui/raylib.py,MEDIUM,VISUAL_ONLY_ADAPTER,https://github.com/StarPilotHQ/StarPilot/blob/3924bd2e3917731e72012e784879262ca954c7ae/openpilot/starpilot/ui/raylib.py
+added,starpilot/ui,openpilot/starpilot/ui/tesla_coop_feature.py,MEDIUM,VISUAL_ONLY_ADAPTER,https://github.com/StarPilotHQ/StarPilot/blob/3924bd2e3917731e72012e784879262ca954c7ae/openpilot/starpilot/ui/tesla_coop_feature.py
