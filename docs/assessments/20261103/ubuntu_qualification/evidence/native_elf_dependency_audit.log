@@ -1,0 +1,83 @@
+KERNEL:
+Linux jdkd-Ubu2402 7.0.0-38-generic #38~24.04.4-Ubuntu SMP PREEMPT_DYNAMIC Mon Sep 14 16:37:11 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+ARTIFACT:/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so
+/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so: ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=1f46f9e78efe154cbdf5170b9e0b921b934b4ce4, with debug_info, not stripped
+e2697e7059c49213af2f3a77531c1e106095b341125b222d4d5dcb247c367ee2  /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so
+DYNAMIC_DEPENDENCIES:
+	linux-vdso.so.1 (0x000072c4cd701000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x000072c4cd200000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000072c4cd5c7000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000072c4cce00000)
+	/lib64/ld-linux-x86-64.so.2 (0x000072c4cd703000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000072c4cd4de000)
+UNRESOLVED:
+NONE
+
+ARTIFACT:/mnt/commadrive/MVL_NATIVE_LATEST_20261103/msgq_repo/msgq/ipc_pyx.so
+/mnt/commadrive/MVL_NATIVE_LATEST_20261103/msgq_repo/msgq/ipc_pyx.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=a84dd91e3a411b7208f793e902f814f8c7a70863, with debug_info, not stripped
+f8d741b89369507ec32bf55f868b469e3657c8ab422d4096b398151c01fd82ca  /mnt/commadrive/MVL_NATIVE_LATEST_20261103/msgq_repo/msgq/ipc_pyx.so
+DYNAMIC_DEPENDENCIES:
+	linux-vdso.so.1 (0x00007990d4399000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007990d4000000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007990d431a000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007990d3c00000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007990d3f17000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007990d439b000)
+UNRESOLVED:
+NONE
+
+ARTIFACT:/mnt/commadrive/MVL_NATIVE_LATEST_20261103/msgq_repo/msgq/visionipc/visionipc_pyx.so
+/mnt/commadrive/MVL_NATIVE_LATEST_20261103/msgq_repo/msgq/visionipc/visionipc_pyx.so: ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=826b927e9f18a6e2d4e4f42acfccd442cde441f8, with debug_info, not stripped
+812f65f2224074347f161704a903615faf34ad7a6fe02d5b8a40cae0dc94f751  /mnt/commadrive/MVL_NATIVE_LATEST_20261103/msgq_repo/msgq/visionipc/visionipc_pyx.so
+DYNAMIC_DEPENDENCIES:
+	linux-vdso.so.1 (0x000072d2cf572000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x000072d2cf000000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000072d2cf41a000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000072d2cec00000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000072d2cf331000)
+	/lib64/ld-linux-x86-64.so.2 (0x000072d2cf574000)
+UNRESOLVED:
+NONE
+
+ARTIFACT:/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.so
+/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=c02ce15444cb40d60d6a9f77d8fcf54f887be932, with debug_info, not stripped
+a775815c5facf6e6fdbb7dd2c88fc4c8c2baf5d8e2c0a5de7387c4898faae5ab  /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.so
+DYNAMIC_DEPENDENCIES:
+	linux-vdso.so.1 (0x000073d26600a000)
+	libacados_ocp_solver_long.so => /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libacados_ocp_solver_long.so (0x000073d265f9b000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000073d265c00000)
+	libacados.so => /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libacados.so (0x000073d265f11000)
+	/lib64/ld-linux-x86-64.so.2 (0x000073d26600c000)
+	libqpOASES_e.so.3.1 => /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libqpOASES_e.so.3.1 (0x000073d265ed3000)
+	libhpipm.so => /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libhpipm.so (0x000073d265aa7000)
+	libblasfeo.so => /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libblasfeo.so (0x000073d26591a000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000073d265831000)
+UNRESOLVED:
+NONE
+
+ARTIFACT:/mnt/commadrive/STARPILOT_DOM_SOURCEPIN_20261103/openpilot/common/libparams_c.so
+/mnt/commadrive/STARPILOT_DOM_SOURCEPIN_20261103/openpilot/common/libparams_c.so: ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=67dd2532c734f3d46867540ffd7073f3445d8a12, with debug_info, not stripped
+95da6a675084a04c577e09c32a8f3ef2b0b29d8552217478639ee0a398d35a35  /mnt/commadrive/STARPILOT_DOM_SOURCEPIN_20261103/openpilot/common/libparams_c.so
+DYNAMIC_DEPENDENCIES:
+	linux-vdso.so.1 (0x00007fa8ade65000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fa8ada00000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fa8addca000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fa8ad600000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fa8ade67000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fa8adce1000)
+UNRESOLVED:
+NONE
+
+ARTIFACT:/mnt/commadrive/STARPILOT_DOM_SOURCEPIN_20261103/msgq_repo/msgq/_ipc.so
+/mnt/commadrive/STARPILOT_DOM_SOURCEPIN_20261103/msgq_repo/msgq/_ipc.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=adf5ad035bb7f4a97effa163792243a96af034b6, with debug_info, not stripped
+3e65cc2f155dd3d4f0faf20db617e61c79757b93be3818972ece7ded2294e4a8  /mnt/commadrive/STARPILOT_DOM_SOURCEPIN_20261103/msgq_repo/msgq/_ipc.so
+DYNAMIC_DEPENDENCIES:
+	linux-vdso.so.1 (0x00007ad66e26b000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007ad66de00000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007ad66e1d7000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007ad66da00000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007ad66e26d000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007ad66e0ee000)
+UNRESOLVED:
+NONE

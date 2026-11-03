@@ -1,0 +1,29 @@
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+progress: 12.2
+progress: 24.4
+progress: 36.6
+progress: 48.8
+progress: 61.0
+Retrieved `openpilot/common/params_c.os' from cache
+Retrieved `openpilot/cereal/gen/cpp/log.capnp.c++' from cache
+progress: 73.2
+Retrieved `openpilot/common/util.o' from cache
+Retrieved `openpilot/cereal/gen/cpp/deprecated.capnp.c++' from cache
+Retrieved `openpilot/cereal/gen/cpp/custom.capnp.c++' from cache
+Retrieved `openpilot/cereal/gen/cpp/car.capnp.c++' from cache
+Retrieved `openpilot/cereal/gen/cpp/log.capnp.h' from cache
+progress: 85.4
+Retrieved `openpilot/common/ratekeeper.o' from cache
+Retrieved `openpilot/cereal/gen/cpp/deprecated.capnp.h' from cache
+Retrieved `openpilot/cereal/gen/cpp/custom.capnp.h' from cache
+Retrieved `openpilot/cereal/gen/cpp/car.capnp.h' from cache
+progress: 97.6
+Retrieved `openpilot/common/yuv.o' from cache
+progress: 100.0
+Retrieved `openpilot/common/swaglog.o' from cache
+Retrieved `openpilot/common/params.o' from cache
+Retrieved `openpilot/common/libcommon.a' from cache
+Retrieved `openpilot/common/libparams_c.so' from cache
+scons: done building targets.

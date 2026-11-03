@@ -1,0 +1,29 @@
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [  4%]
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [  8%]
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 13%]
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 17%]
+ssssssssssssss....s.........................................s......s.s.. [ 21%]
+...........s.............................................s.......s..s... [ 26%]
+..........s.........................................s......s.s.......... [ 30%]
+...s.............................................s.......s..s........... [ 34%]
+..s.........................................s......s.s............s..... [ 39%]
+.....................................s......s.s........sssssssssssssssss [ 43%]
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 47%]
+sssssssssssssssssssssssssssssss..s...................................... [ 52%]
+s......s.s...........s........................................s......s.s [ 56%]
+...........s............................................s......s..s..... [ 60%]
+.....ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss..s.... [ 65%]
+...................................s......s.s...........s............... [ 69%]
+..........................s......s.s.............s...................... [ 73%]
+....................s......s..s..............s.......................... [ 78%]
+................s......s..s..........sssssssssssssssssssssssssssssssssss [ 82%]
+sssssssssssssssssssssssssss..s........................................s. [ 86%]
+.....s..s...........s..........................................s......s. [ 91%]
+.s...........s..............................................s......s...s [ 95%]
+..............s.........................................s......s.s...... [ 99%]
+..                                                                       [100%]
+=========================== short test summary info ============================
+SKIPPED [544] ../DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/_pytest/unittest.py:385: Skipped
+SKIPPED [51] opendbc_repo/opendbc/safety/tests/common.py:65: Safety mode implements no _user_regen_msg
+SKIPPED [17] opendbc_repo/opendbc/safety/tests/common.py:1212: No second speed message for this safety mode
+1046 passed, 612 skipped in 3.47s

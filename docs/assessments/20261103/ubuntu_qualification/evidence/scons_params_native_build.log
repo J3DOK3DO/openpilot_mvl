@@ -1,0 +1,23 @@
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+progress: 12.2
+Retrieved `openpilot/common/params_c.os' from cache
+progress: 24.4
+progress: 36.6
+progress: 48.8
+progress: 61.0
+capnpc --src-prefix=openpilot/cereal --src-prefix=opendbc_repo/opendbc/car --import-path=opendbc_repo/opendbc/car openpilot/cereal/log.capnp openpilot/cereal/deprecated.capnp openpilot/cereal/custom.capnp opendbc_repo/opendbc/car/car.capnp -o c++:openpilot/cereal/gen/cpp/
+progress: 73.2
+Retrieved `openpilot/common/util.o' from cache
+progress: 85.4
+Retrieved `openpilot/common/ratekeeper.o' from cache
+progress: 97.6
+Retrieved `openpilot/common/yuv.o' from cache
+progress: 100.0
+Retrieved `openpilot/common/swaglog.o' from cache
+Retrieved `openpilot/common/params.o' from cache
+Retrieved `openpilot/common/libcommon.a' from cache
+  [LINK] openpilot/common/libparams_c.so
+prune_cache_dir(["openpilot/common/libparams_c.so"], ["openpilot/common/params_c.os"])
+scons: done building targets.

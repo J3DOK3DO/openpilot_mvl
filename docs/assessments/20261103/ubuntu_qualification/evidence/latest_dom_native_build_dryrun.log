@@ -1,0 +1,25 @@
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+Retrieved `msgq_repo/msgq/ipc_py.o' from cache
+progress: 37.5
+Retrieved `msgq_repo/msgq/nb_combined.os' from cache
+Retrieved `msgq_repo/msgq/ipc.os' from cache
+Retrieved `msgq_repo/msgq/event.os' from cache
+Retrieved `msgq_repo/msgq/msgq.os' from cache
+capnpc --src-prefix=openpilot/cereal --src-prefix=opendbc_repo/opendbc/car --import-path=opendbc_repo/opendbc/car openpilot/cereal/log.capnp openpilot/cereal/deprecated.capnp openpilot/cereal/custom.capnp opendbc_repo/opendbc/car/car.capnp -o c++:openpilot/cereal/gen/cpp/
+Retrieved `msgq_repo/libmsgq.a' from cache
+  [CXX] openpilot/common/params.o
+  [CXX] openpilot/common/swaglog.o
+Retrieved `openpilot/common/util.o' from cache
+Retrieved `openpilot/common/ratekeeper.o' from cache
+Retrieved `openpilot/common/yuv.o' from cache
+Retrieved `openpilot/common/params_c.os' from cache
+  [AR] openpilot/common/libcommon.a
+  [RANLIB] openpilot/common/libcommon.a
+progress: 100.0
+  [LINK] openpilot/common/libparams_c.so
+prune_cache_dir(["openpilot/common/libparams_c.so"], ["openpilot/common/params_c.os"])
+  [LINK] msgq_repo/msgq/_ipc.so
+prune_cache_dir(["msgq_repo/msgq/_ipc.so"], ["msgq_repo/msgq/ipc_py.o", "msgq_repo/msgq/nb_combined.os"])
+scons: done building targets.

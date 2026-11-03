@@ -1,0 +1,2 @@
+Repo,Path,Category,Error
+MVL,openpilot/third_party/copyparty/copyparty-sfx.py,python_ast,UnicodeDecodeError: 'utf-8' codec can't decode byte 0x8b in position 5558: invalid start byte

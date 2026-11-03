@@ -1,0 +1,11 @@
+..........................................s............................. [ 77%]
+.....................                                                    [100%]
+=============================== warnings summary ===============================
+openpilot/selfdrive/controls/tests/test_leads.py::TestLeads::test_radar_fault
+  /home/jdkd/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=2973425) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] openpilot/selfdrive/controls/tests/test_following_distance.py:38: parameterized base class
+92 passed, 1 skipped, 1 warning in 7.96s

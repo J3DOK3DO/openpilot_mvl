@@ -1,0 +1,31 @@
+............................................s........................... [  4%]
+.......................sssssssssssssssssssssssssssssssssssssssssssssssss [  8%]
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 12%]
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 16%]
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 20%]
+sssssssssssssssssssssssssssssssssssss....s.............................. [ 24%]
+...........s......s.s.............s..................................... [ 28%]
+........s.......s..s.............s...................................... [ 32%]
+...s......s.s.............s............................................. [ 36%]
+s.......s..s.............s.........................................s.... [ 41%]
+..s.s............s..........................................s......s.s.. [ 45%]
+......ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 49%]
+ssssssssssssssssssssssssssssssssssssssssssssssssssssss..s............... [ 53%]
+.......................s......s.s...........s........................... [ 57%]
+.............s......s.s...........s..................................... [ 61%]
+.......s......s..s..........ssssssssssssssssssssssssssssssssssssssssssss [ 65%]
+ssssssssssssssss..s.......................................s......s.s.... [ 69%]
+.......s.........................................s......s.s............. [ 73%]
+s..........................................s......s..s..............s... [ 78%]
+.......................................s......s..s..........ssssssssssss [ 82%]
+ssssssssssssssssssssssssssssssssssssssssssssssssss..s................... [ 86%]
+.....................s......s..s...........s............................ [ 90%]
+..............s......s..s...........s................................... [ 94%]
+...........s......s...s..............s.................................. [ 98%]
+.......s......s.s........                                                [100%]
+=========================== short test summary info ============================
+SKIPPED [1] openpilot/selfdrive/controls/tests/test_following_distance.py:38: parameterized base class
+SKIPPED [544] ../DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/_pytest/unittest.py:385: Skipped
+SKIPPED [51] opendbc_repo/opendbc/safety/tests/common.py:65: Safety mode implements no _user_regen_msg
+SKIPPED [17] opendbc_repo/opendbc/safety/tests/common.py:1212: No second speed message for this safety mode
+1140 passed, 613 skipped, 1 warning in 11.37s

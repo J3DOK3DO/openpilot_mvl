@@ -1,0 +1,47 @@
+{
+  "donor_latest": "10d170e799aa8d492a3f604ef8e91aafa3c11408",
+  "mvl_latest": "376c44b5731b2655e5c2f301b73c9729eb499e91",
+  "original_branch": "7607cf9aa6664f4a31ff611613152c7bc87c6218",
+  "dom_latest_delta_paths": 9,
+  "mvl_non_docs_delta_paths": 4,
+  "families_total": 32,
+  "families_representative_donor_tested": 15,
+  "mvl_latest_native_regressions": [
+    1140,
+    613
+  ],
+  "dom_selected_driving_feature_tests": [
+    149,
+    0
+  ],
+  "dom_selected_nondriving_feature_tests": [
+    157,
+    0
+  ],
+  "donor_static": {
+    "DOM": {
+      "revision": "10d170e799aa8d492a3f604ef8e91aafa3c11408",
+      "tracked_python": 5603,
+      "ast_pass": 5603,
+      "ast_exceptions": 0
+    },
+    "MVL": {
+      "revision": "376c44b5731b2655e5c2f301b73c9729eb499e91",
+      "tracked_python": 811,
+      "ast_pass": 810,
+      "ast_exceptions": 1
+    },
+    "DOM_js": {
+      "files": 200,
+      "passed": 200,
+      "errors": 0
+    }
+  },
+  "modelreview_codex": "completed, deployment HOLD; source risks identified",
+  "modelreview_qwen": "completed direct Ollama Qwen3:8b advisory only; OpenCode stalled",
+  "native_arm64_agnos": "NOT_RUN",
+  "panda_hardware": "NOT_RUN",
+  "on_vehicle_test": "NOT_RUN",
+  "car_code_modified": false,
+  "panda_code_modified": false
+}

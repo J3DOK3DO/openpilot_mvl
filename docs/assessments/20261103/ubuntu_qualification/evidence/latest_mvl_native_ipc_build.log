@@ -1,0 +1,33 @@
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+progress: 6.1
+progress: 12.2
+cythonize msgq_repo/msgq/ipc_pyx.pyx
+Retrieved `msgq_repo/msgq/event.os' from cache
+Retrieved `msgq_repo/msgq/ipc.os' from cache
+progress: 18.3
+Retrieved `msgq_repo/msgq/impl_msgq.os' from cache
+Retrieved `msgq_repo/msgq/impl_fake.os' from cache
+progress: 24.4
+Retrieved `msgq_repo/msgq/msgq.os' from cache
+progress: 30.5
+progress: 36.6
+progress: 42.7
+progress: 48.8
+progress: 54.9
+progress: 61.0
+progress: 67.1
+progress: 73.2
+progress: 79.3
+progress: 85.4
+progress: 91.5
+progress: 97.6
+Retrieved `msgq_repo/libmsgq.a' from cache
+Compiling /mnt/commadrive/MVL_NATIVE_LATEST_20261103/msgq_repo/msgq/ipc_pyx.pyx because it changed.
+[1/1] Cythonizing /mnt/commadrive/MVL_NATIVE_LATEST_20261103/msgq_repo/msgq/ipc_pyx.pyx
+progress: 100.0
+  [CXX] msgq_repo/msgq/ipc_pyx.o
+  [LINK] msgq_repo/msgq/ipc_pyx.so
+prune_cache_dir(["msgq_repo/msgq/ipc_pyx.so"], ["msgq_repo/msgq/ipc_pyx.o"])
+scons: done building targets.

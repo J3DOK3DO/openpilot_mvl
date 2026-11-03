@@ -1,0 +1,150 @@
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+progress: 1.7
+cythonize msgq_repo/msgq/visionipc/visionipc_pyx.pyx
+Retrieved `msgq_repo/msgq/visionipc/visionipc.os' from cache
+progress: 3.4
+Retrieved `msgq_repo/msgq/visionipc/visionipc_server.os' from cache
+progress: 5.0
+Retrieved `msgq_repo/msgq/visionipc/visionipc_client.os' from cache
+Retrieved `msgq_repo/msgq/visionipc/visionbuf.os' from cache
+progress: 6.7
+progress: 8.4
+progress: 10.1
+progress: 11.7
+progress: 13.4
+progress: 15.1
+progress: 16.8
+progress: 18.5
+progress: 20.1
+progress: 21.8
+progress: 23.5
+progress: 25.2
+progress: 26.8
+progress: 28.5
+progress: 30.2
+progress: 31.9
+progress: 33.6
+progress: 35.2
+progress: 36.9
+progress: 38.6
+progress: 40.3
+progress: 41.9
+progress: 43.6
+progress: 45.3
+progress: 47.0
+progress: 48.7
+progress: 50.3
+progress: 52.0
+progress: 53.7
+progress: 55.4
+progress: 57.0
+progress: 58.7
+progress: 60.4
+progress: 62.1
+progress: 63.8
+progress: 65.4
+progress: 67.1
+progress: 68.8
+progress: 70.5
+progress: 72.1
+progress: 73.8
+  [LINK] msgq_repo/msgq/ipc_pyx.so
+Retrieved `msgq_repo/libvisionipc.a' from cache
+progress: 75.5
+  [LINK] openpilot/common/libparams_c.so
+progress: 77.2
+progress: 78.9
+progress: 80.5
+progress: 82.2
+progress: 83.9
+progress: 85.6
+progress: 87.2
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libacados.so' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libblasfeo.so' from cache
+progress: 88.9
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libhpipm.so' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libqpOASES_e.so.3.1' from cache
+progress: 90.6
+progress: 92.3
+progress: 94.0
+progress: 95.6
+progress: 97.3
+cd /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib && python3 long_mpc.py
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_model.py:55: SyntaxWarning: invalid escape sequence '\d'
+  CasADi expression for the implicit dynamics :math:`f_\\text{impl}(\dot{x}, x, u, z, p) = 0`.
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_model.py:61: SyntaxWarning: invalid escape sequence '\d'
+  CasADi expression for the explicit dynamics :math:`\dot{x} = f_\\text{expl}(x, u, p)`.
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_model.py:112: SyntaxWarning: invalid escape sequence '\p'
+  CasADi expression for the outer loss function :math:`\psi(r, p)`, initial; Default: :code:`None`
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_model.py:117: SyntaxWarning: invalid escape sequence '\p'
+  CasADi expression for the outer loss function :math:`\psi(r, p)`; Default: :code:`None`
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_model.py:122: SyntaxWarning: invalid escape sequence '\p'
+  CasADi expression for the outer loss function :math:`\psi(r, p)`, terminal; Default: :code:`None`
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_model.py:127: SyntaxWarning: invalid escape sequence '\p'
+  CasADi expression for the argument :math:`r`; to the outer loss function :math:`\psi(r, p)`, initial; Default: :code:`None`
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_model.py:132: SyntaxWarning: invalid escape sequence '\p'
+  CasADi expression for the argument :math:`r`; to the outer loss function :math:`\psi(r, p)`; Default: :code:`None`
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_model.py:137: SyntaxWarning: invalid escape sequence '\p'
+  CasADi expression for the argument :math:`r`; to the outer loss function :math:`\psi(r, p)`, terminal; Default: :code:`None`
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:119: SyntaxWarning: invalid escape sequence '\p'
+  """:math:`n_{\pi}` - dimension of the image of the inner nonlinear function in positive definite constraints.
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:125: SyntaxWarning: invalid escape sequence '\p'
+  """:math:`n_{\pi}^e` - dimension of the image of the inner nonlinear function in positive definite constraints.
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:143: SyntaxWarning: invalid escape sequence '\p'
+  """:math:`n_{\phi}` - number of convex-over-nonlinear constraints.
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:149: SyntaxWarning: invalid escape sequence '\p'
+  """:math:`n_{\phi}^e` - number of convex-over-nonlinear constraints at terminal shooting node N.
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:227: SyntaxWarning: invalid escape sequence '\p'
+  """:math:`n_{{s\phi}}` - number of soft convex-over-nonlinear constraints.
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:233: SyntaxWarning: invalid escape sequence '\p'
+  """:math:`n_{{s\phi}^e}` - number of soft convex-over-nonlinear constraints at terminal shooting node N.
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:500: SyntaxWarning: invalid escape sequence '\D'
+  This means given the time steps are :math:`\Delta t_0,..., \Delta t_N`, the total cost is given by:
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:1193: SyntaxWarning: invalid escape sequence '\,'
+  """:math:`C` - C matrix in :math:`\\underline{g} \\leq D \, u + C \, x \\leq \\bar{g}`
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:1201: SyntaxWarning: invalid escape sequence '\,'
+  """:math:`D` - D matrix in :math:`\\underline{g} \\leq D \, u + C \, x \\leq \\bar{g}`
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:1285: SyntaxWarning: invalid escape sequence '\p'
+  """:math:`\\underline{\phi}` - lower bound for convex-over-nonlinear inequalities
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:1293: SyntaxWarning: invalid escape sequence '\p'
+  """:math:`\\bar{\phi}` - upper bound for convex-over-nonlinear inequalities
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:1302: SyntaxWarning: invalid escape sequence '\p'
+  """:math:`\\underline{\phi}^e` - lower bound on convex-over-nonlinear inequalities
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:1310: SyntaxWarning: invalid escape sequence '\p'
+  """:math:`\\bar{\phi}^e` - upper bound on convex-over-nonlinear inequalities
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:1485: SyntaxWarning: invalid escape sequence '\p'
+  """:math:`J_{s, \phi}` - matrix coefficient for soft bounds on convex-over-nonlinear constraints.
+/mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp.py:1572: SyntaxWarning: invalid escape sequence '\m'
+  """:math:`x_0 \\in \mathbb{R}^{n_x}` - initial state --
+Compiling /mnt/commadrive/MVL_NATIVE_LATEST_20261103/msgq_repo/msgq/visionipc/visionipc_pyx.pyx because it changed.
+[1/1] Cythonizing /mnt/commadrive/MVL_NATIVE_LATEST_20261103/msgq_repo/msgq/visionipc/visionipc_pyx.pyx
+Warning: Please note that the following versions of CasADi  are officially supported: 3.5.6 or 3.5.5 or 3.5.4 or 3.5.3 or 3.5.2 or 3.5.1 or 3.4.5 or 3.4.0.
+ If there is an incompatibility with the CasADi generated code, please consider changing your CasADi version.
+Version 3.6.7 currently in use.
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_solver_long.os' from cache
+progress: 99.0
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_0_fun_jac_ut_xt.os' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_fun.os' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_constraints/long_constr_h_fun_jac_uxt_zt.os' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_e_fun.os' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_0_fun.os' from cache
+progress: 100.0
+cython -o /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.c -I /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code -I /mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template /mnt/commadrive/DOM7_V4_AUTOMATED_20261030/work/dom7-v4-isolated/.venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp_solver_pyx.pyx
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_model/long_expl_vde_forw.os' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_constraints/long_constr_h_fun.os' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_hess.os' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_e_hess.os' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_model/long_expl_ode_fun.os' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_0_hess.os' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_fun_jac_ut_xt.os' from cache
+Retrieved `openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_e_fun_jac_ut_xt.os' from cache
+  [LINK] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libacados_ocp_solver_long.so
+  [CXX] msgq_repo/msgq/visionipc/visionipc_pyx.o
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.o
+  [LINK] msgq_repo/msgq/visionipc/visionipc_pyx.so
+prune_cache_dir(["msgq_repo/msgq/visionipc/visionipc_pyx.so"], ["msgq_repo/msgq/visionipc/visionipc_pyx.o"])
+  [LINK] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.so
+prune_cache_dir(["openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.so"], ["openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.o"])
+scons: done building targets.
