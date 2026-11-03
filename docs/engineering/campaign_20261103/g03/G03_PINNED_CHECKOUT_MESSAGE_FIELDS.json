@@ -1,0 +1,727 @@
+{
+  "abi_policy": "No Cython/nanobind compatibility claim; no mapping without local source evidence.",
+  "messages": [
+    {
+      "abi_mapping": "Cap'n Proto field ordinals/types from schema; Python IPC binding ABI is not inferred",
+      "fields": [
+        {
+          "capnp_type": "InitData.DeviceType",
+          "line": 418,
+          "name": "deviceType",
+          "ordinal": 45,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 421,
+          "name": "chestnutPresent",
+          "ordinal": 51,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UsbState",
+          "line": 422,
+          "name": "usbState",
+          "ordinal": 52,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "NetworkType",
+          "line": 424,
+          "name": "networkType",
+          "ordinal": 22,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "NetworkInfo",
+          "line": 425,
+          "name": "networkInfo",
+          "ordinal": 31,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "NetworkStrength",
+          "line": 426,
+          "name": "networkStrength",
+          "ordinal": 24,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "NetworkStats",
+          "line": 427,
+          "name": "networkStats",
+          "ordinal": 43,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 428,
+          "name": "networkMetered",
+          "ordinal": 41,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UInt64",
+          "line": 429,
+          "name": "lastAthenaPingTime",
+          "ordinal": 32,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 431,
+          "name": "started",
+          "ordinal": 11,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UInt64",
+          "line": 432,
+          "name": "startedMonoTime",
+          "ordinal": 13,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 435,
+          "name": "freeSpacePercent",
+          "ordinal": 7,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Int8",
+          "line": 436,
+          "name": "memoryUsagePercent",
+          "ordinal": 19,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Int8",
+          "line": 437,
+          "name": "gpuUsagePercent",
+          "ordinal": 33,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(Int8)",
+          "line": 438,
+          "name": "cpuUsagePercent",
+          "ordinal": 34,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UInt32",
+          "line": 441,
+          "name": "offroadPowerUsageUwh",
+          "ordinal": 23,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UInt32",
+          "line": 442,
+          "name": "carBatteryCapacityUwh",
+          "ordinal": 25,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 443,
+          "name": "powerDrawW",
+          "ordinal": 40,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 444,
+          "name": "somPowerDrawW",
+          "ordinal": 42,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(Float32)",
+          "line": 447,
+          "name": "cpuTempC",
+          "ordinal": 26,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(Float32)",
+          "line": 448,
+          "name": "gpuTempC",
+          "ordinal": 27,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 449,
+          "name": "dspTempC",
+          "ordinal": 49,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 450,
+          "name": "memoryTempC",
+          "ordinal": 28,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(Float32)",
+          "line": 451,
+          "name": "modemTempC",
+          "ordinal": 36,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(Float32)",
+          "line": 452,
+          "name": "pmicTempC",
+          "ordinal": 39,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 453,
+          "name": "intakeTempC",
+          "ordinal": 46,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 454,
+          "name": "exhaustTempC",
+          "ordinal": 47,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 455,
+          "name": "gnssTempC",
+          "ordinal": 48,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 456,
+          "name": "bottomSocTempC",
+          "ordinal": 50,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 457,
+          "name": "maxTempC",
+          "ordinal": 44,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(ThermalZone)",
+          "line": 458,
+          "name": "thermalZones",
+          "ordinal": 38,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "ThermalStatus",
+          "line": 459,
+          "name": "thermalStatus",
+          "ordinal": 14,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UInt16",
+          "line": 461,
+          "name": "fanSpeedPercentDesired",
+          "ordinal": 10,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Int8",
+          "line": 462,
+          "name": "screenBrightnessPercent",
+          "ordinal": 37,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        }
+      ],
+      "ipc_service_registered": true,
+      "ipc_source": "openpilot/cereal/services.py",
+      "schema": "openpilot/cereal/log.capnp",
+      "status": "LOCAL_SOURCE_UNATTESTED",
+      "struct": "DeviceState",
+      "topic": "deviceState"
+    },
+    {
+      "abi_mapping": "Cap'n Proto field ordinals/types from schema; Python IPC binding ABI is not inferred",
+      "fields": [
+        {
+          "capnp_type": "OpenpilotState",
+          "line": 810,
+          "name": "state",
+          "ordinal": 0,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 811,
+          "name": "enabled",
+          "ordinal": 1,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 812,
+          "name": "active",
+          "ordinal": 2,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 813,
+          "name": "engageable",
+          "ordinal": 9,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Text",
+          "line": 816,
+          "name": "alertText1",
+          "ordinal": 3,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Text",
+          "line": 817,
+          "name": "alertText2",
+          "ordinal": 4,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "AlertStatus",
+          "line": 818,
+          "name": "alertStatus",
+          "ordinal": 5,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "AlertSize",
+          "line": 819,
+          "name": "alertSize",
+          "ordinal": 6,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Text",
+          "line": 820,
+          "name": "alertType",
+          "ordinal": 7,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "AudibleAlert",
+          "line": 821,
+          "name": "alertSound",
+          "ordinal": 13,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Car.CarControl.HUDControl.VisualAlert",
+          "line": 822,
+          "name": "alertHudVisual",
+          "ordinal": 12,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "LongitudinalPersonality",
+          "line": 825,
+          "name": "personality",
+          "ordinal": 11,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/cereal/log.capnp"
+        }
+      ],
+      "ipc_service_registered": true,
+      "ipc_source": "openpilot/cereal/services.py",
+      "schema": "openpilot/cereal/log.capnp",
+      "status": "LOCAL_SOURCE_UNATTESTED",
+      "struct": "SelfdriveState",
+      "topic": "selfdriveState"
+    },
+    {
+      "abi_mapping": "Cap'n Proto field ordinals/types from schema; Python IPC binding ABI is not inferred",
+      "fields": [
+        {
+          "capnp_type": "Bool",
+          "line": 157,
+          "name": "canValid",
+          "ordinal": 26,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 158,
+          "name": "canTimeout",
+          "ordinal": 40,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "UInt32",
+          "line": 159,
+          "name": "canErrorCounter",
+          "ordinal": 48,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 162,
+          "name": "cumLagMs",
+          "ordinal": 50,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 165,
+          "name": "vEgo",
+          "ordinal": 1,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 166,
+          "name": "aEgo",
+          "ordinal": 16,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 167,
+          "name": "vEgoRaw",
+          "ordinal": 17,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 168,
+          "name": "vEgoCluster",
+          "ordinal": 44,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 170,
+          "name": "vCruise",
+          "ordinal": 53,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 171,
+          "name": "vCruiseCluster",
+          "ordinal": 54,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 173,
+          "name": "yawRate",
+          "ordinal": 22,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 174,
+          "name": "standstill",
+          "ordinal": 18,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "WheelSpeeds",
+          "line": 175,
+          "name": "wheelSpeeds",
+          "ordinal": 2,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 177,
+          "name": "gasPressed",
+          "ordinal": 4,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 179,
+          "name": "brakePressed",
+          "ordinal": 6,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 180,
+          "name": "regenBraking",
+          "ordinal": 45,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 181,
+          "name": "parkingBrake",
+          "ordinal": 39,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 182,
+          "name": "brakeHoldActive",
+          "ordinal": 38,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 185,
+          "name": "steeringAngleDeg",
+          "ordinal": 7,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 186,
+          "name": "steeringAngleOffsetDeg",
+          "ordinal": 37,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 187,
+          "name": "steeringRateDeg",
+          "ordinal": 15,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 188,
+          "name": "steeringTorque",
+          "ordinal": 8,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 189,
+          "name": "steeringTorqueEps",
+          "ordinal": 27,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 190,
+          "name": "steeringPressed",
+          "ordinal": 9,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 191,
+          "name": "steeringDisengage",
+          "ordinal": 58,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 192,
+          "name": "steerFaultTemporary",
+          "ordinal": 35,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 193,
+          "name": "steerFaultPermanent",
+          "ordinal": 36,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 195,
+          "name": "invalidLkasSetting",
+          "ordinal": 55,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 196,
+          "name": "stockAeb",
+          "ordinal": 30,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 197,
+          "name": "stockLkas",
+          "ordinal": 59,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 198,
+          "name": "stockFcw",
+          "ordinal": 31,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 199,
+          "name": "espDisabled",
+          "ordinal": 32,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 200,
+          "name": "accFaulted",
+          "ordinal": 42,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 201,
+          "name": "carFaultedNonCritical",
+          "ordinal": 47,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 202,
+          "name": "espActive",
+          "ordinal": 51,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 203,
+          "name": "vehicleSensorsInvalid",
+          "ordinal": 52,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 204,
+          "name": "lowSpeedAlert",
+          "ordinal": 56,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 205,
+          "name": "blockPcmEnable",
+          "ordinal": 60,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 206,
+          "name": "carNotReady",
+          "ordinal": 61,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "CruiseState",
+          "line": 209,
+          "name": "cruiseState",
+          "ordinal": 10,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "GearShifter",
+          "line": 212,
+          "name": "gearShifter",
+          "ordinal": 14,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "List(ButtonEvent)",
+          "line": 215,
+          "name": "buttonEvents",
+          "ordinal": 11,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 216,
+          "name": "buttonEnable",
+          "ordinal": 57,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 217,
+          "name": "leftBlinker",
+          "ordinal": 20,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 218,
+          "name": "rightBlinker",
+          "ordinal": 21,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 219,
+          "name": "genericToggle",
+          "ordinal": 23,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 222,
+          "name": "doorOpen",
+          "ordinal": 24,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 223,
+          "name": "seatbeltUnlatched",
+          "ordinal": 25,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 226,
+          "name": "leftBlindspot",
+          "ordinal": 33,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 227,
+          "name": "rightBlindspot",
+          "ordinal": 34,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 229,
+          "name": "fuelGauge",
+          "ordinal": 41,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 230,
+          "name": "charging",
+          "ordinal": 43,
+          "source": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/opendbc_repo/opendbc/car/car.capnp"
+        }
+      ],
+      "ipc_service_registered": true,
+      "ipc_source": "openpilot/cereal/services.py",
+      "schema": "opendbc_repo/opendbc/car/car.capnp",
+      "status": "LOCAL_SOURCE_UNATTESTED",
+      "struct": "CarState",
+      "topic": "carState"
+    }
+  ],
+  "mode": "READ_ONLY_LOCAL_SOURCE_UNATTESTED_INVENTORY",
+  "schema_version": 1,
+  "source_attested": false
+}

@@ -1,0 +1,358 @@
+{
+  "abi_policy": "No Cython/nanobind compatibility claim; no mapping without local source evidence.",
+  "messages": [
+    {
+      "abi_mapping": "Cap'n Proto field ordinals/types from schema; Python IPC binding ABI is not inferred",
+      "fields": [
+        {
+          "capnp_type": "InitData.DeviceType",
+          "line": 418,
+          "name": "deviceType",
+          "ordinal": 45,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 421,
+          "name": "chestnutPresent",
+          "ordinal": 51,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UsbState",
+          "line": 422,
+          "name": "usbState",
+          "ordinal": 52,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "NetworkType",
+          "line": 424,
+          "name": "networkType",
+          "ordinal": 22,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "NetworkInfo",
+          "line": 425,
+          "name": "networkInfo",
+          "ordinal": 31,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "NetworkStrength",
+          "line": 426,
+          "name": "networkStrength",
+          "ordinal": 24,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "NetworkStats",
+          "line": 427,
+          "name": "networkStats",
+          "ordinal": 43,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 428,
+          "name": "networkMetered",
+          "ordinal": 41,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UInt64",
+          "line": 429,
+          "name": "lastAthenaPingTime",
+          "ordinal": 32,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 431,
+          "name": "started",
+          "ordinal": 11,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UInt64",
+          "line": 432,
+          "name": "startedMonoTime",
+          "ordinal": 13,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 435,
+          "name": "freeSpacePercent",
+          "ordinal": 7,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Int8",
+          "line": 436,
+          "name": "memoryUsagePercent",
+          "ordinal": 19,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Int8",
+          "line": 437,
+          "name": "gpuUsagePercent",
+          "ordinal": 33,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(Int8)",
+          "line": 438,
+          "name": "cpuUsagePercent",
+          "ordinal": 34,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UInt32",
+          "line": 441,
+          "name": "offroadPowerUsageUwh",
+          "ordinal": 23,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UInt32",
+          "line": 442,
+          "name": "carBatteryCapacityUwh",
+          "ordinal": 25,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 443,
+          "name": "powerDrawW",
+          "ordinal": 40,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 444,
+          "name": "somPowerDrawW",
+          "ordinal": 42,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(Float32)",
+          "line": 447,
+          "name": "cpuTempC",
+          "ordinal": 26,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(Float32)",
+          "line": 448,
+          "name": "gpuTempC",
+          "ordinal": 27,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 449,
+          "name": "dspTempC",
+          "ordinal": 49,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 450,
+          "name": "memoryTempC",
+          "ordinal": 28,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(Float32)",
+          "line": 451,
+          "name": "modemTempC",
+          "ordinal": 36,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(Float32)",
+          "line": 452,
+          "name": "pmicTempC",
+          "ordinal": 39,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 453,
+          "name": "intakeTempC",
+          "ordinal": 46,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 454,
+          "name": "exhaustTempC",
+          "ordinal": 47,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 455,
+          "name": "gnssTempC",
+          "ordinal": 48,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 456,
+          "name": "bottomSocTempC",
+          "ordinal": 50,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Float32",
+          "line": 457,
+          "name": "maxTempC",
+          "ordinal": 44,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "List(ThermalZone)",
+          "line": 458,
+          "name": "thermalZones",
+          "ordinal": 38,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "ThermalStatus",
+          "line": 459,
+          "name": "thermalStatus",
+          "ordinal": 14,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "UInt16",
+          "line": 461,
+          "name": "fanSpeedPercentDesired",
+          "ordinal": 10,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Int8",
+          "line": 462,
+          "name": "screenBrightnessPercent",
+          "ordinal": 37,
+          "source": "openpilot/cereal/log.capnp"
+        }
+      ],
+      "ipc_service_registered": true,
+      "ipc_source": "openpilot/cereal/services.py",
+      "schema": "openpilot/cereal/log.capnp",
+      "status": "LOCAL_SOURCE_UNATTESTED",
+      "struct": "DeviceState",
+      "topic": "deviceState"
+    },
+    {
+      "abi_mapping": "Cap'n Proto field ordinals/types from schema; Python IPC binding ABI is not inferred",
+      "fields": [
+        {
+          "capnp_type": "OpenpilotState",
+          "line": 810,
+          "name": "state",
+          "ordinal": 0,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 811,
+          "name": "enabled",
+          "ordinal": 1,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 812,
+          "name": "active",
+          "ordinal": 2,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Bool",
+          "line": 813,
+          "name": "engageable",
+          "ordinal": 9,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Text",
+          "line": 816,
+          "name": "alertText1",
+          "ordinal": 3,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Text",
+          "line": 817,
+          "name": "alertText2",
+          "ordinal": 4,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "AlertStatus",
+          "line": 818,
+          "name": "alertStatus",
+          "ordinal": 5,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "AlertSize",
+          "line": 819,
+          "name": "alertSize",
+          "ordinal": 6,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Text",
+          "line": 820,
+          "name": "alertType",
+          "ordinal": 7,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "AudibleAlert",
+          "line": 821,
+          "name": "alertSound",
+          "ordinal": 13,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "Car.CarControl.HUDControl.VisualAlert",
+          "line": 822,
+          "name": "alertHudVisual",
+          "ordinal": 12,
+          "source": "openpilot/cereal/log.capnp"
+        },
+        {
+          "capnp_type": "LongitudinalPersonality",
+          "line": 825,
+          "name": "personality",
+          "ordinal": 11,
+          "source": "openpilot/cereal/log.capnp"
+        }
+      ],
+      "ipc_service_registered": true,
+      "ipc_source": "openpilot/cereal/services.py",
+      "schema": "openpilot/cereal/log.capnp",
+      "status": "LOCAL_SOURCE_UNATTESTED",
+      "struct": "SelfdriveState",
+      "topic": "selfdriveState"
+    },
+    {
+      "fields": [],
+      "reason": "required schema is absent: opendbc_repo/opendbc/car/car.capnp",
+      "status": "SOURCE_UNAVAILABLE_REJECTED",
+      "topic": "carState"
+    }
+  ],
+  "mode": "READ_ONLY_LOCAL_SOURCE_UNATTESTED_INVENTORY",
+  "schema_version": 1,
+  "source_attested": false
+}
