@@ -164,5 +164,15 @@
     "passed": 400,
     "failed": 0,
     "skipped": 0
-  }
+  },
+  "publication_events": [
+    {
+      "published_commit": "17c43e9e505f193113777a7266fedd0b03bee7cc",
+      "tested_source_commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
+      "branch": "codex/mvl-starpilot-manual",
+      "remote_ref_verified": true,
+      "pull_request": "https://github.com/J3DOK3DO/openpilot_mvl/pull/1",
+      "new_test_outcome": "not_rerun_docs_only"
+    }
+  ]
 }
