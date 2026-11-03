@@ -5,7 +5,7 @@ Updated 2026-11-03. Decisions describe the stated scope only. **Vehicle release:
 | Stage | Decision | Accepted evidence or remaining criterion |
 | --- | --- | --- |
 | M0–M3 bridge prerequisite | PASS (retained host scope) | 51 bridge tests included in consolidated run; default-OFF, read-only bridge. Physical qualification remains open. |
-| G03 parameter/message crosswalk | PASS (offline tool); HOLD (semantic migration) | 7 tests; all 254 overlapping parameter keys remain DENY. |
+| G03 parameter/message crosswalk | PASS (pinned source subset); HOLD (runtime ABI and semantic migration) | Eight status declarations independently verified; 7 original G03 tests; all 254 overlapping parameter keys remain DENY. |
 | G05 status view model and offroad guard | PASS (25 focused host tests); HOLD (native UI) | Offroad guard rejects contradictory started/active states; native raylib startup blocked during dependency collection and device behavior unverified. |
 | G06 Galaxy handler | PASS (host core); HOLD (network/device security) | 22 tests; no live transport or device resource qualification. |
 | G08 model catalog | PASS (host catalog); HOLD (runner/AGNOS execution) | 14 tests; no activation, inference, or target execution. |

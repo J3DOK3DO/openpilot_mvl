@@ -80,6 +80,20 @@
         "first_missing_dependency": "capnp",
         "cached_pycapnp_retry_missing_dependency": "opendbc"
       }
+    },
+    {
+      "milestone": "G03 status schema and Params quarantine",
+      "commit": "accfcb90a4794df2ab162ff35267fff3c0d3b0e7",
+      "verified_at_utc": "2026-11-03T16:31:31Z",
+      "command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
+      "exit_code": 0,
+      "outcome": "8 source field decisions matched pinned schema; 254 Params DENY",
+      "host_command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+      "host_outcomes": {
+        "passed": 389,
+        "failed": 0,
+        "skipped": 0
+      }
     }
   ]
 }

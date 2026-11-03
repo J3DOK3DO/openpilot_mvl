@@ -11,3 +11,7 @@ Independent reviewer inspected exact source at `5d2d2cae47ff1548e317bacb1357fbb4
 ## G05 offroad guard independent code review
 
 Initial verdict: FAIL, contradictory `device.started=True` and UI `started=False` admitted a panel. Remediation: defer on contradictory device-started or selfdrive-active evidence and reject malformed relevant fields; added adverse-state tests. Re-review verdict: PASS for host-only guard/test scope. Native caller timing, on-device alert precedence and renderer geometry remain HOLD.
+
+## G03 pinned status crosswalk review
+
+Initial verdict: NEEDS FIX. The verifier searched whole schema files and trusted aggregate Params counts. Remediation: verify direct declarations within uniquely named structs, confirm `CruiseState` is nested in `CarState`, and inspect all 254 Params entries for DENY/read-disabled/write-disabled. Re-review verdict: PASS for source-schema evidence. No IPC binding ABI or device runtime qualification is inferred.

@@ -1,6 +1,6 @@
 feature,owner,implementation,dependencies,acceptance_criteria,decision
 M0-M3 read-only bridge,Existing MVL bridge maintainers,openpilot/sunnypilot/starpilot_bridge,Original pinned MVL source; default-OFF registry,Retained host suite passes and no vehicle-facing source changes,PASS_HOST_HOLD_DEVICE
-G03 parameter and message crosswalk,Unassigned gate owner,openpilot/sunnypilot/starpilot_compat,Pinned native MVL source; source provenance,254 overlapping keys remain DENY and offline tests pass,PASS_OFFLINE_HOLD_MIGRATION
+G03 parameter and message crosswalk,Unassigned gate owner,openpilot/sunnypilot/starpilot_compat; docs/engineering/autonomous_campaign/verify_g03_status_compat.py,Pinned native MVL source; source provenance,254 overlapping keys remain DENY and offline tests pass,PASS_PINNED_SCHEMA_HOLD_ABI_PARAMS
 G05 status view model,Unassigned gate owner,openpilot/sunnypilot/starpilot_views; offroad.py admission guard,MVL UI and IPC contract,Host tests pass; native C3/C4 renderer and timing qualified,PASS_HOST_GUARD_HOLD_NATIVE
 G06 Galaxy read-only handler,Unassigned gate owner,openpilot/sunnypilot/starpilot_galaxy,Authentication; device resource security,Host tests pass; isolated transport and device security qualified,PASS_HOST_HOLD_TRANSPORT
 G08 model catalog,Unassigned gate owner,openpilot/sunnypilot/starpilot_models,Model inventory; target compatibility; AGNOS,Host validation passes; runner and target execution separately qualified,PASS_HOST_HOLD_RUNNER
