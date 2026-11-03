@@ -1,0 +1,5 @@
+GLOBAL_RUNTIME_SOURCE /mnt/commadrive/STARPILOT_DOM_LATEST_FLMTEMP_20261103/openpilot/starpilot/flm/global_runtime.py
+TRACKING_SOURCE /mnt/commadrive/STARPILOT_DOM_LATEST_FLMTEMP_20261103/openpilot/starpilot/flm/live_tracking_ingress.py
+........................................                                 [100%]
+40 passed, 3 warnings in 2.77s
+TEST_EXIT 0

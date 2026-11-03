@@ -1,0 +1,47 @@
+LATEST_FLMMODULES /mnt/commadrive/STARPILOT_DOM_LATEST_FLMTEMP_20261103/openpilot/starpilot/flm/global_runtime.py /mnt/commadrive/STARPILOT_DOM_LATEST_FLMTEMP_20261103/openpilot/starpilot/flm/live_tracking_ingress.py
+F
+=================================== FAILURES ===================================
+__________ test_actual_raw_registered_worker_report_reaches_controls ___________
+
+    def test_actual_raw_registered_worker_report_reaches_controls():
+      cp = interfaces[CAR.TOYOTA_RAV4_TSS2].get_non_essential_params(CAR.TOYOTA_RAV4_TSS2)
+      with controls_for(cp, 'standard', True) as baseline, controls_for(cp, 'standard', True) as candidate:
+        for tick in range(30):
+          now = BASE + tick * 10_000_000
+          frame(baseline, now, tick)
+          frame(candidate, now, tick)
+        runtime = candidate.global_learning
+        assert runtime.identity and runtime.eligible
+        original_cp = candidate.CP.as_builder().to_bytes()
+        original_tune = candidate.LaC.torque_params.to_dict()
+        snapshot, adapter, control, output, export_cost = raw_job(candidate.CP, runtime, candidate.params)
+        # Private causal diagnostic: expose the real child-factory exception in
+        # pytest without changing the production actor's stderr/failure boundary.
+        # The exact same payload must still pass the actual actor below.
+        direct_report = fit_snapshot(snapshot)
+        direct_decoded = decode_fit_result(direct_report)
+        assert direct_decoded is not None and direct_decoded[0].profile is not None, direct_report
+        fitter = FitProcess()
+        started = time.monotonic_ns()
+        token = (runtime.identity, runtime.baseline_revision)
+        report = None
+        try:
+          assert fitter.submit(snapshot, token=token, now_ns=started)
+          while fitter.child is not None and time.monotonic_ns() - started <= 31_000_000_000:
+            report = fitter.poll(token=token, now_ns=time.monotonic_ns())
+            if report is not None:
+              break
+            time.sleep(.01)
+>         assert report is not None, fitter.reason
+E         AssertionError: fit_failed
+E         assert None is not None
+
+openpilot/starpilot/flm/tests/test_actual_raw_worker.py:256: AssertionError
+----------------------------- Captured stderr call -----------------------------
+CANParser: bus 0 not valid (timeout or missing): 0x25 STEER_ANGLE_SENSOR, 0xaa WHEEL_SPEEDS, 0x1d2 PCM_CRUISE, 0x1d3 PCM_CRUISE_2, 0x226 BRAKE_MODULE, 0x260 STEER_TORQUE_SENSOR, 0x262 EPS_STATUS, 0x320 VSC1S07, 0x399 PCM_CRUISE_SM, 0x3b7 ESP_CONTROL, 0x3bc GEAR_PACKET, 0x610 BODY_CONTROL_STATE_2, 0x620 BODY_CONTROL_STATE, 0x622 LIGHT_STALK
+CANParser: bus 0 not valid (timeout or missing): 0x25 STEER_ANGLE_SENSOR, 0xaa WHEEL_SPEEDS, 0x1d2 PCM_CRUISE, 0x1d3 PCM_CRUISE_2, 0x226 BRAKE_MODULE, 0x260 STEER_TORQUE_SENSOR, 0x262 EPS_STATUS, 0x320 VSC1S07, 0x399 PCM_CRUISE_SM, 0x3b7 ESP_CONTROL, 0x3bc GEAR_PACKET, 0x610 BODY_CONTROL_STATE_2, 0x620 BODY_CONTROL_STATE, 0x622 LIGHT_STALK
+=========================== short test summary info ============================
+FAILED openpilot/starpilot/flm/tests/test_actual_raw_worker.py::test_actual_raw_registered_worker_report_reaches_controls
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed in 7.41s
+RESULT_EXIT 1

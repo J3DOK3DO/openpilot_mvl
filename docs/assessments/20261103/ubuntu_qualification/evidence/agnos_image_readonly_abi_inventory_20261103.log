@@ -1,0 +1,58 @@
+2026-11-03T13:45:21+04:00
+READONLY_IMAGE
+-rw-rw-r-- 1 jdkd jdkd 4.4G Oct 25 13:15 /home/jdkd/AGNOS_20261014/agnos_system.ext4.img
+-rw-rw-r-- 1 jdkd jdkd 3.7G Oct 25 13:16 /home/jdkd/AGNOS_20261014/agnos_system.img
+98e15de07c39a19b5fa17c96a67e66d4362f9ebaf7827b640f4127e3b6417da8  /home/jdkd/AGNOS_20261014/agnos_system.ext4.img
+IMAGE_MAGIC
+/home/jdkd/AGNOS_20261014/agnos_system.ext4.img: Linux rev 1.0 ext4 filesystem data, UUID=d40b046a-6bad-4cd0-ab3f-331d909517c0 (extents) (64bit) (large files) (huge files)
+/home/jdkd/AGNOS_20261014/agnos_system.img:      Android sparse image, version: 1.0, Total of 1152000 4096-byte output blocks in 8250 input chunks.
+TOOLS
+/usr/bin/readelf
+/usr/sbin/debugfs
+/usr/bin/file
+SAMPLE_HOST_NATIVE
+/mnt/commadrive/MVL_STARPILOT_UBUNTU_REASSESSMENT_20261103/openpilot/common/libcommon.a:              current ar archive
+/mnt/commadrive/MVL_STARPILOT_UBUNTU_REASSESSMENT_20261103/openpilot/common/libparams_c.so:           ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=1f46f9e78efe154cbdf5170b9e0b921b934b4ce4, with debug_info, not stripped
+/mnt/commadrive/MVL_STARPILOT_UBUNTU_REASSESSMENT_20261103/msgq_repo/msgq/ipc_pyx.so:                 ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=e08f3c708e15c77c4049dbe75b348967b8b8c27c, with debug_info, not stripped
+/mnt/commadrive/MVL_STARPILOT_UBUNTU_REASSESSMENT_20261103/msgq_repo/msgq/visionipc/visionipc_pyx.so: ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=1a58dc3ef558045565880717af521bde52524ce4, with debug_info, not stripped
+/mnt/commadrive/MVL_STARPILOT_UBUNTU_REASSESSMENT_20261103/msgq_repo/libmsgq.a:                       current ar archive
+/mnt/commadrive/MVL_STARPILOT_UBUNTU_REASSESSMENT_20261103/msgq_repo/libvisionipc.a:                  current ar archive
+AGNOS_ROOT_LIST
+debugfs 1.47.0 (5-Feb-2023)
+/2/040755/0/0/.//
+/2/040755/0/0/..//
+/11/040700/0/0/lost+found//
+/12/100644/0/0/AGNOS/0/
+/13/100644/0/0/TICI/0/
+/14/100644/0/0/VERSION/7/
+/15/120777/0/0/bin/7/
+/128001/040755/0/0/bin.usr-is-merged//
+/128002/040755/0/0/boot//
+/128003/040755/1000/1000/bt_firmware//
+/16/040755/0/0/cache//
+/17/040755/0/0/config//
+/128004/040755/1000/1000/data//
+/128005/040755/0/0/dev//
+/18/040775/1000/1000/dsp//
+/128006/040755/0/0/etc//
+/19/040755/1000/1000/firmware//
+/20/040755/0/0/home//
+/21/120777/0/0/lib/7/
+/22/040755/0/0/lib.usr-is-merged//
+/23/120777/0/0/lib64/9/
+/24/040755/1000/1000/lib64.usr-is-merged//
+/25/040755/0/0/media//
+/26/040755/0/0/mnt//
+/27/040755/0/0/opt//
+/28/040755/1000/1000/persist//
+/29/040755/0/0/proc//
+/30/040700/0/0/root//
+/60/040755/0/0/run//
+/94/040755/0/0/rwtmp//
+/95/120777/0/0/sbin/8/
+/96/040755/0/0/sbin.usr-is-merged//
+/97/040755/0/0/srv//
+/98/040755/0/0/sys//
+AGNOS_VERSION_FILE
+debugfs 1.47.0 (5-Feb-2023)
+cat: Attempt to read block from filesystem resulted in short read while reading ext2 file

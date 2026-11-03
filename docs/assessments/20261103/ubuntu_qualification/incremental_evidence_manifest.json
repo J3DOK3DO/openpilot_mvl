@@ -1,0 +1,69 @@
+{
+  "campaign": "UQ-20261103_increment",
+  "timestamp_utc": "2026-11-03T09:56:13.904789+00:00",
+  "protected_mvl_sha": "376c44b5731b2655e5c2f301b73c9729eb499e91",
+  "latest_donor_sha": "be17536f2b48fca023cc48b0e73d52a40683456b",
+  "classification": "selected_host_checks_pass_vehicle_qualification_hold",
+  "evidence": [
+    {
+      "path": "UBUNTU_FINAL_INCREMENTAL_20261103.md",
+      "status": "VERIFIED",
+      "bytes": 16272,
+      "sha256": "506b7e85b94aee6b39871f4665a41f17296ca5a4a849cd9bc723b38fe56003a4"
+    },
+    {
+      "path": "latest_flm_delta_to_be175.csv",
+      "status": "VERIFIED",
+      "bytes": 1459,
+      "sha256": "ad0f63ead937e79bf3329fac3084313de9f21c86350112f9d2a18f083a0a7057"
+    },
+    {
+      "path": "incremental_action_register.csv",
+      "status": "VERIFIED",
+      "bytes": 2963,
+      "sha256": "d7bf90f103436237aa43e3ae8873b084bac7c5979edd4fc372d9fe76d35be506"
+    },
+    {
+      "path": "evidence/mvl_current_targeted_safety_rerun_20261103.log",
+      "status": "VERIFIED",
+      "bytes": 1994,
+      "sha256": "35c8e34899bb7488f044cca75cca2a0a0d23e496bfcc9ffb50bca97e6a3364a8"
+    },
+    {
+      "path": "evidence/latest_dom_flm_timing_20261103.log",
+      "status": "VERIFIED",
+      "bytes": 360,
+      "sha256": "98e7b9ffd20bd6dc495686a8087173269d99711a81b3299e3a57963ceffa827a"
+    },
+    {
+      "path": "evidence/latest_dom_flm_full_python_suite_20261103.log",
+      "status": "VERIFIED",
+      "bytes": 3327,
+      "sha256": "8758974b54a4d57164984c1234d762e2ab3154cd42754109311fa270ca267c62"
+    },
+    {
+      "path": "evidence/pinned_donor_flm_worker_baseline_20261103.log",
+      "status": "VERIFIED",
+      "bytes": 98,
+      "sha256": "b05ba1d96ef3a99af306463341ca8614812e77d121c16af9bf69f51eca5145e2"
+    },
+    {
+      "path": "evidence/agnos_image_readonly_abi_inventory_20261103.log",
+      "status": "VERIFIED",
+      "bytes": 2963,
+      "sha256": "0c730a84ceb471d8bb78f82e43a851e26efa4b5f209c50f8eee7ccfecc8f99d8"
+    },
+    {
+      "path": "evidence/codex_targeted_current_review_20261103.md",
+      "status": "VERIFIED",
+      "bytes": 1959,
+      "sha256": "cc222d6c7f708b2a3198fc3a4b715e818d156a81db5aaef5123bcb6946251f43"
+    },
+    {
+      "path": "evidence/qwen14b_honda_review_raw_20261103.json",
+      "status": "VERIFIED",
+      "bytes": 3200,
+      "sha256": "eb44b87f031c05f35cdff85fa4789b66a31e0c1d4c03d6ef22c26c49574d31e7"
+    }
+  ]
+}

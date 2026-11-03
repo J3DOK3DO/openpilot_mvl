@@ -1,0 +1,9 @@
+**HOLD** for live driving port.
+
+Honda Bosch longitudinal control explicitly disables the radar; the file warns this **disables AEB**. On radarless Bosch, it also blocks camera ACC messages. Thus enabling openpilot longitudinal control can remove the stock ACC/AEB/CMBS path rather than coexist with it.
+
+For Bosch CAN-FD, radar silencing is deferred due to a documented cutover race: if replacement ACC messages are blocked for roughly >110 ms, VSA can latch `CRUISE_FAULT` for the whole drive. The comments also describe radar-loss DTC maturation and a next-drive fault about 0.16 s after radar silencing. The mitigation clears DTCs across powertrain/camera buses every drive and clears radar DTCs before cutover. That may suppress evidence of persistent communication/brake-system faults; this file provides no demonstrated acknowledgement, timing verification, fault-injection result, or proof that CMBS behavior remains safe after the handoff.
+
+The Honda interface also applies vehicle-dependent longitudinal delays, modified-EPS tuning, gas-interceptor behavior, and automatic stop-and-go enablement. These are calibration/control choices, not evidence that production ACC braking, AEB/CMBS arbitration, brake-module fault handling, and radar/camera transition behavior are safe on the target vehicle.
+
+`mads/state.py` is a generic supervisory state machine. Its tests can establish transitions among disabled, paused, enabled, soft-disabling, and lateral override states based on already-produced events. It neither creates nor validates Honda CAN traffic, ECU diagnostic sequencing, radar disable/restore, replacement ACC commands, VSA response, brake authority, AEB/CMBS availability, nor timing during fault/cutover conditions. Passing MADS tests is therefore not a Dom AOL integration proof: it demonstrates application-level event handling, not the vehicle-domain integration or retained collision-mitigation safety case required for live driving.
