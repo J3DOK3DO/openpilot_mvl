@@ -56,6 +56,30 @@
         "failed": 0,
         "skipped": 0
       }
+    },
+    {
+      "milestone": "G05 offroad admission guard",
+      "commit": "e65dc8aa9053e53d41fb9a7c2f721b3e819557c6",
+      "verified_at_utc": "2026-11-03T16:27:36Z",
+      "command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+      "outcomes": {
+        "passed": 389,
+        "failed": 0,
+        "skipped": 0
+      },
+      "focused_command": "python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_views/tests",
+      "focused_outcomes": {
+        "passed": 25,
+        "failed": 0,
+        "skipped": 0
+      },
+      "native_ui_attempt": {
+        "command": "timeout 30s python3 -m pytest -p no:cacheprovider -q -ra openpilot/selfdrive/ui/tests/test_raylib_ui.py",
+        "exit_code": 2,
+        "outcome": "BLOCKED_DURING_COLLECTION",
+        "first_missing_dependency": "capnp",
+        "cached_pycapnp_retry_missing_dependency": "opendbc"
+      }
     }
   ]
 }

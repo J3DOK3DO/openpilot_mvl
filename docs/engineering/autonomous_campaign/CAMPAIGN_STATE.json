@@ -1,18 +1,18 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-03T16:22:36Z",
-  "current_stage": "environment_and_g06_contract",
+  "updated_at_utc": "2026-11-03T16:27:36Z",
+  "current_stage": "g05_offroad_guard_host_qualified",
   "release_decision": "HOLD",
   "branch": "codex/mvl-starpilot-continuation",
   "checkout_mode": "branch",
-  "head_commit": "5d2d2cae47ff1548e317bacb1357fbb44b9d8388",
+  "head_commit": "e65dc8aa9053e53d41fb9a7c2f721b3e819557c6",
   "last_verified_result": {
     "decision": "PASS",
-    "scope": "consolidated offline host suite",
-    "passed": 377,
+    "scope": "G05 host-only guard and consolidated offline suite",
+    "passed": 389,
     "failed": 0,
     "skipped": 0,
-    "record": "TEST_RESULTS.json"
+    "record": "TEST_RESULTS.json milestone_runs[-1]"
   },
   "next_action": "Assign owners and collect exact-commit evidence for native UI, security and hardware bench, AArch64 AGNOS build and boot, physical Panda safety, OEM collision-mitigation validation, integrated review, and protected rollback before reconsidering vehicle release.",
   "source_of_truth": "../campaign_20261103/CAMPAIGN_MASTER_REPORT.md",
@@ -20,22 +20,23 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-starpilot-continuation",
-    "head": "5d2d2cae47ff1548e317bacb1357fbb44b9d8388",
+    "head": "e65dc8aa9053e53d41fb9a7c2f721b3e819557c6",
     "worktree": "/home/jdkd/.codex/worktrees/mvl-starpilot-background/consolidated",
     "owner": "current campaign worktree; exclusive locked-run required for modifying operations"
   },
-  "current_gate": "G06_TRANSPORT_HOLD",
-  "last_successful_milestone": "Background worktree reconciled; AGNOS image hash verified; 377 offline host tests passed; G06 local transport contract drafted.",
-  "tests_verified_at_commit": "5d2d2cae47ff1548e317bacb1357fbb44b9d8388",
+  "current_gate": "G05_NATIVE_UI_HOLD",
+  "last_successful_milestone": "G05 offroad admission guard independently reviewed and verified by 25 focused and 389 consolidated host tests.",
+  "tests_verified_at_commit": "e65dc8aa9053e53d41fb9a7c2f721b3e819557c6",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Inspect native MVL offroad UI integration seam and qualify a default-OFF read-only G05 adapter without touching control paths.",
+  "next_actionable_milestone": "Qualify exact G03 source-schema fields for an offroad read-only status adapter; preserve all 254 Params DENY decisions. Native UI startup and target build remain HOLD pending dependencies and device evidence.",
   "current_blockers": [
     "AArch64 compiler absent from PATH; target cold build unattempted",
     "native C3/C4 UI and IPC timing unverified",
     "G06 transport security/hardware bench",
     "physical Panda safety",
     "Honda OEM stock ACC/FCW/CMBS/AEB validation",
-    "exact-commit integrated review and protected rollback"
+    "exact-commit integrated review and protected rollback",
+    "Native raylib UI startup test cannot collect: system Python lacks capnp; cached pycapnp path then lacks opendbc."
   ],
   "approval_requirements": [
     "Vehicle installation or activation requires all safety and hardware gates and explicit release approval.",

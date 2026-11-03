@@ -17,3 +17,5 @@ Earlier review defects were corrected and retested, as recorded in the [master r
 G06 preflight at `efdc8b4f0dfcae5c3ddc1ae176bec8a6db5044ea` confirmed no production adapter or registration. See [transport readiness](G06_TRANSPORT_READINESS.md); live transport remains HOLD.
 
 Background host check: standard `aarch64-linux-gnu-gcc` absent from PATH; no cold ARM64 build attempted. Exact AGNOS image hash matched prior evidence. See `BUILD_EVIDENCE.json`.
+
+Native raylib UI startup test at `e65dc8aa9053e53d41fb9a7c2f721b3e819557c6` was BLOCKED during collection by missing `capnp` in system Python. A read-only cached pycapnp retry then hit missing `opendbc`; no UI process started. Do not count the 389 offline host tests as native UI startup evidence.
