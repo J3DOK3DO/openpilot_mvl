@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-11-03T16:22:36Z",
+  "source_commit": "5d2d2cae47ff1548e317bacb1357fbb44b9d8388",
+  "worktree": "/home/jdkd/.codex/worktrees/mvl-starpilot-background/consolidated",
+  "host": {
+    "cpu_logical": 4,
+    "memory_total": "15 GiB",
+    "memory_available": "13 GiB",
+    "root_volume_available": "13 GiB"
+  },
+  "agnos_reference": {
+    "path": "/home/jdkd/AGNOS_20261014/agnos_system.ext4.img",
+    "sha256": "98e15de07c39a19b5fa17c96a67e66d4362f9ebaf7827b640f4127e3b6417da8",
+    "hash_command": "sha256sum /home/jdkd/AGNOS_20261014/agnos_system.ext4.img"
+  },
+  "toolchain": {
+    "aarch64_linux_gnu_gcc_on_path": false,
+    "cold_arm64_build_attempted": false,
+    "target_artifact_generated": false
+  },
+  "decision": "HOLD",
+  "blocker": "AArch64 compiler not on PATH; target dependencies and physical device not qualified."
+}

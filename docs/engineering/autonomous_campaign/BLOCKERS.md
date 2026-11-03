@@ -15,3 +15,5 @@ Updated 2026-11-03. These are **HOLD** gates, not observed failures of the curre
 Earlier review defects were corrected and retested, as recorded in the [master report](../campaign_20261103/CAMPAIGN_MASTER_REPORT.md). The host suite currently has no failing tests.
 
 G06 preflight at `efdc8b4f0dfcae5c3ddc1ae176bec8a6db5044ea` confirmed no production adapter or registration. See [transport readiness](G06_TRANSPORT_READINESS.md); live transport remains HOLD.
+
+Background host check: standard `aarch64-linux-gnu-gcc` absent from PATH; no cold ARM64 build attempted. Exact AGNOS image hash matched prior evidence. See `BUILD_EVIDENCE.json`.

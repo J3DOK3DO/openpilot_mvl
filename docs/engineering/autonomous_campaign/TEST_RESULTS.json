@@ -45,6 +45,17 @@
         "passed": 2,
         "failed": 0
       }
+    },
+    {
+      "milestone": "background worktree baseline and environment",
+      "commit": "5d2d2cae47ff1548e317bacb1357fbb44b9d8388",
+      "verified_at_utc": "2026-11-03T16:22:36Z",
+      "command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+      "outcomes": {
+        "passed": 377,
+        "failed": 0,
+        "skipped": 0
+      }
     }
   ]
 }
