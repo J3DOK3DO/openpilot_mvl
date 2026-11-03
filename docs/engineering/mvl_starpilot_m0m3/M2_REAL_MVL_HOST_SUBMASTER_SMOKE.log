@@ -1,0 +1,5 @@
+SOURCE_PIN 376c44b5731b2655e5c2f301b73c9729eb499e91
+MVL_MESSAGING /mnt/commadrive/MVL_STARPILOT_M0M3_20261103/openpilot/cereal/messaging/__init__.py
+INSTANCE_TYPE SubMaster
+SUBSCRIBED_TOPICS ['deviceState']
+SMOKE_PASS

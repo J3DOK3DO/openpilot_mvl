@@ -1,0 +1,18 @@
+{
+  "source_head": "376c44b5731b2655e5c2f301b73c9729eb499e91",
+  "protected_mvl_baseline": "376c44b5731b2655e5c2f301b73c9729eb499e91",
+  "native_opendbc_gitlink": "3fec9a418a659de31d7b1f494193161697a35071",
+  "native_panda_gitlink": "8a16e089b88593914823743df29e1c30b7dd3e00",
+  "status": "SOURCE_BOUNDARY_PASS",
+  "all_new_paths_within_allowlist": true,
+  "compiled_python_modules": 5,
+  "privileged_source_offenses": [],
+  "settings_quarantined": 254,
+  "not_qualified": [
+    "vehicle",
+    "Panda hardware",
+    "AGNOS ARM64",
+    "OEM AEB/CMBS",
+    "release install"
+  ]
+}

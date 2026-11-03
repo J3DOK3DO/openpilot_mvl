@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-11-03T11:49:12.752337+00:00",
+  "base_mvl_sha": "376c44b5731b2655e5c2f301b73c9729eb499e91",
+  "branch": "accord11g-mvl-starpilot-readonly-integration-20261103",
+  "classification": "OFFLINE_HOST_M0_M3_PASS_VEHICLE_HOLD",
+  "mvl_native_baseline": {
+    "passed": 1140,
+    "skipped": 613,
+    "failed": 0,
+    "subtests_passed": 1190
+  },
+  "bridge_native_host": {
+    "passed": 51,
+    "skipped": 0,
+    "failed": 0
+  },
+  "real_native_submaster": "deviceState_only_SUBSCRIBER_PASS",
+  "settings_keys_quarantined": 254,
+  "verified_file_count": 27,
+  "files": [
+    {
+      "path": "openpilot/sunnypilot/starpilot_bridge/__init__.py",
+      "bytes": 624,
+      "sha256": "275834fb886851413ee9da137cad2146669d8eaec39a2a020511dcd9e9f68bf4"
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_bridge/adapter.py",
+      "bytes": 6264,
+      "sha256": "04d770c12606493dc8074e57973c6e0a78e6e7a43a8d9a3b1cbcdb35259d4e3a"
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_bridge/factory.py",
+      "bytes": 911,
+      "sha256": "32319902b8bdcc9bd06c3e747e23f8bb2413e5a69ea87503a9c8b247e9482a1e"
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_bridge/features.py",
+      "bytes": 2247,
+      "sha256": "c44f1d747aba759c3b2a12fc0e6d36b8bb21c3dbfe415fb6c5107a241303932c"
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_bridge/models.py",
+      "bytes": 1114,
+      "sha256": "c808430bb69302a0a0e562c027e98643fab5791c65d4424c2ea681ebc5b053e6"
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_bridge/tests/__init__.py",
+      "bytes": 46,
+      "sha256": "c1b09381036a70eeae230364d9b9f22890047f4600f9cf26545cd18a131356a8"
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_bridge/tests/test_readonly_bridge.py",
+      "bytes": 9226,
+      "sha256": "9f53f19020449dc5be56f90ff2be8d01998967264d9494dcf479c7928bdca0ff"
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_bridge/tests/test_subscriber_factory.py",
+      "bytes": 3541,
+      "sha256": "eed251e3fd3384be04eb0998f35dd3789f44d46a2aac0987226d2ffd5468a607"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/ARCHITECTURE.md",
+      "bytes": 4278,
+      "sha256": "c9fe91db97aeaa66b9f8341f8af036220dc2452c524ce68e411c68c95c1554db"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/CODEX_POSTFIX_VERIFICATION.md",
+      "bytes": 687,
+      "sha256": "959e52668ef9a5eb4f0697d103442652ce7b1e69fdd3f803f42b55ee7292dca4"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/IMPLEMENTATION_STATUS.md",
+      "bytes": 3398,
+      "sha256": "87f001db1f555e9800dde0db972e58ab651c7c630b0798ba97f6b17ba5a6b18e"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/M0_PINNED_MVL_NATIVE_BASELINE.log",
+      "bytes": 2529,
+      "sha256": "2ed11dc146431d3739af9828d053284c2d91a530edb7f3281ae6e7d27752fd1b"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/M0_SOURCE_AND_BOUNDARY_MANIFEST.json",
+      "bytes": 1107,
+      "sha256": "e86030b42a7ae6f8ccabcd4a82be2e93a33250bcea5776b8ce4c44cbdb2936e1"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/M2_REAL_MVL_HOST_SUBMASTER_SMOKE.log",
+      "bytes": 218,
+      "sha256": "b57c47bf16ad66ff88dc87dcbda4f9894932a0a6d247973eb2241ab72a786861"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/M3_BRIDGE_HOST_FINAL.log",
+      "bytes": 99,
+      "sha256": "f4d5033e661fd22347dccae6ca1049055f23fa243cc66f4d89cc59b43ee02604"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/M3_BRIDGE_MVL_NATIVE_VENV.log",
+      "bytes": 99,
+      "sha256": "638c68b53c5f3d0d85c3b6a9ca3d0b25c158f73b9263eb60d1eec516a6154909"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/M3_BRIDGE_PRELIMINARY_RERUN.log",
+      "bytes": 99,
+      "sha256": "e71ab22b42a234dc60d824f6ba07c4e80dff7717c6de2b30fd0b412f55a40d97"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/M3_STATIC_BOUNDARY_VERIFICATION.json",
+      "bytes": 1035,
+      "sha256": "7b6c8308320868c6a1e5bbcc2b881433c208076f36d19e501beb79da3d2af795"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/M3_STATIC_BOUNDARY_VERIFICATION.log",
+      "bytes": 579,
+      "sha256": "21254f92cbe458787c6bb0914cafff5c6bca0a0d9872eabe7228a9e7b5554b25"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/OWNER_IMPLEMENTATION_BRIEF.md",
+      "bytes": 3267,
+      "sha256": "a2c523e4edde00266ed9c5607a0a93fe318c0eb4a398f97744cfc074bd0cc858"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/REVIEW_VERDICT.md",
+      "bytes": 6068,
+      "sha256": "187bd9ccba85fe776c0ba7d880cc79d5e3a350620d0193fcbded9b6b25cf7ef6"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/SCHEMA_CONTRACT.md",
+      "bytes": 3495,
+      "sha256": "5a0983497e23280ef399118dfa5d56645168e10179f113e2835969a461f1a51f"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/SHARED_PARAMS_QUARANTINE_254.csv",
+      "bytes": 64831,
+      "sha256": "635f0dea9039591cba8fa515e9ddd5f397ebdb9fe5a2fd7b3707ab68c6722360"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/TEST_PLAN.md",
+      "bytes": 3553,
+      "sha256": "39a43f70f497a6ef001d926632c8f04c1710c06ef6c2e5dc0fb424b7c5eba166"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/build_manifest.py",
+      "bytes": 1615,
+      "sha256": "929ca6711db719714a69e796405daba4717c0158626ecf3301b342f0aaa92ecb"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/evidence/QWEN14B_BRIDGE_DIRECT_REVIEW_20261103.json",
+      "bytes": 5182,
+      "sha256": "8bf4465953d8f52949e240c537fff0bbe0fb0292639356445a0e29bed2e48ba8"
+    },
+    {
+      "path": "docs/engineering/mvl_starpilot_m0m3/verify_m0_m3.py",
+      "bytes": 3129,
+      "sha256": "1ef24abb1487fedb69ec1446be8401e4e017d500a4e1078ad5cb75c17ad62413"
+    }
+  ]
+}
