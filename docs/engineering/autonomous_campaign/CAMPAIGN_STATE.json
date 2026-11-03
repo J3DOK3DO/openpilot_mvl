@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "updated_at_utc": "2026-11-03T16:17:35Z",
+  "current_stage": "recovery_initialized",
+  "release_decision": "HOLD",
+  "branch": "codex/autonomous-campaign",
+  "checkout_mode": "branch",
+  "head_commit": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
+  "last_verified_result": {
+    "decision": "PASS",
+    "scope": "377 offline host tests, 2 simulated recovery tests, exclusive lock contention",
+    "passed": 379,
+    "failed": 0,
+    "skipped": 0,
+    "record": "TEST_RESULTS.json"
+  },
+  "next_action": "Assign owners and collect exact-commit evidence for native UI, security and hardware bench, AArch64 AGNOS build and boot, physical Panda safety, OEM collision-mitigation validation, integrated review, and protected rollback before reconsidering vehicle release.",
+  "source_of_truth": "../campaign_20261103/CAMPAIGN_MASTER_REPORT.md",
+  "authoritative_baseline_sha": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
+  "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
+  "active_engineering": {
+    "branch": "codex/autonomous-campaign",
+    "head": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
+    "worktree": "/home/jdkd/.codex/worktrees/autonomous-campaign/consolidated",
+    "owner": "current Codex chat; exclusive locked-run required for modifying operations"
+  },
+  "current_gate": "RECOVERY_INIT_PASS",
+  "last_successful_milestone": "Recovery simulation and exclusive ownership validated; consolidated offline host suite passed.",
+  "tests_verified_at_commit": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
+  "tests_record": "TEST_RESULTS.json",
+  "next_actionable_milestone": "Assess G06 transport and security readiness using source-only evidence; retain live adapter HOLD.",
+  "current_blockers": [
+    "native C3/C4 UI and IPC",
+    "security/hardware bench",
+    "AArch64 cold build and physical boot",
+    "physical Panda safety",
+    "Honda OEM stock ACC/FCW/CMBS/AEB validation",
+    "exact-commit integrated review and protected rollback"
+  ],
+  "approval_requirements": [
+    "Vehicle installation or activation requires all safety and hardware gates and explicit release approval.",
+    "No security, Panda, Honda OEM, hardware, or protected-recovery gate may be bypassed."
+  ],
+  "release_qualification": {
+    "status": "HOLD",
+    "scope": "No installable combined vehicle release approved."
+  },
+  "operation_in_progress": null,
+  "checkpoint_rule": "Recorded head is the verified source commit. One descendant commit containing only docs/engineering/autonomous_campaign files is an allowed state checkpoint; recovery must verify its parent and changed paths."
+}

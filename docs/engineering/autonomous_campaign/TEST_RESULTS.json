@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "verified_at_utc": "2026-11-03T16:17:35Z",
+  "commit": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
+  "branch": "codex/autonomous-campaign",
+  "checkout_mode": "branch",
+  "command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+  "exit_code": 0,
+  "outcomes": {
+    "passed": 377,
+    "failed": 0,
+    "skipped": 0
+  },
+  "scope": "offline host tests; no native device, Panda, OEM, or target-build verification",
+  "prior_campaign_log": "../campaign_20261103/CONSOLIDATED_HOST_REGRESSION.log",
+  "prior_campaign_counts": {
+    "retained_bridge": 51,
+    "g03": 7,
+    "g05": 13,
+    "g06": 22,
+    "g08": 14,
+    "g09": 261,
+    "g10": 9
+  },
+  "recovery_tests": {
+    "command": "python3 -m unittest -v docs/engineering/autonomous_campaign/test_campaignctl.py",
+    "passed": 2,
+    "failed": 0,
+    "scope": "simulated pending operation and recorded SHA drift"
+  },
+  "lock_contention_test": "Second locked-run exited 3 while first held the lock; first exited 0."
+}

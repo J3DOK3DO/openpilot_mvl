@@ -1,0 +1,9 @@
+feature,owner,implementation,dependencies,acceptance_criteria,decision
+M0-M3 read-only bridge,Existing MVL bridge maintainers,openpilot/sunnypilot/starpilot_bridge,Original pinned MVL source; default-OFF registry,Retained host suite passes and no vehicle-facing source changes,PASS_HOST_HOLD_DEVICE
+G03 parameter and message crosswalk,Unassigned gate owner,openpilot/sunnypilot/starpilot_compat,Pinned native MVL source; source provenance,254 overlapping keys remain DENY and offline tests pass,PASS_OFFLINE_HOLD_MIGRATION
+G05 status view model,Unassigned gate owner,openpilot/sunnypilot/starpilot_views,MVL UI and IPC contract,Host tests pass; native C3/C4 renderer and timing qualified,PASS_HOST_HOLD_NATIVE
+G06 Galaxy read-only handler,Unassigned gate owner,openpilot/sunnypilot/starpilot_galaxy,Authentication; device resource security,Host tests pass; isolated transport and device security qualified,PASS_HOST_HOLD_TRANSPORT
+G08 model catalog,Unassigned gate owner,openpilot/sunnypilot/starpilot_models,Model inventory; target compatibility; AGNOS,Host validation passes; runner and target execution separately qualified,PASS_HOST_HOLD_RUNNER
+G09 seven-family research evaluator,Unassigned gate owner,openpilot/sunnypilot/starpilot_research,Physical Panda; OEM safety; exact target evidence,Synthetic reason-only tests pass; active control requires all vehicle safety gates,PASS_SYNTHETIC_HOLD_CONTROL
+G10 passive AGNOS inspection,Unassigned gate owner,docs/engineering/campaign_20261103/g10,AGNOS image; AArch64 toolchain; target hardware,Passive audit passes; cold AArch64 build and physical boot qualified,PASS_PASSIVE_HOLD_TARGET
+Integrated vehicle release,Unassigned release owner,Not implemented as an installable branch,Native UI; security bench; target boot; Panda; OEM validation; rollback,Exact-commit integrated evidence and protected rollback approved,HOLD

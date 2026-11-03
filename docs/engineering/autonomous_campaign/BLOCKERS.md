@@ -1,0 +1,15 @@
+# Blockers and dependencies
+
+Updated 2026-11-03. These are **HOLD** gates, not observed failures of the current host suite.
+
+| Blocker | Remediation attempted or evidence gathered | Dependency to clear |
+| --- | --- | --- |
+| Parameter migration provenance and semantics | G03 marked caller metadata unattested; 254/254 overlapping keys remain DENY. | Source-attested mapping and separate semantic review. |
+| Native UI and IPC behavior | G05 host view model passed; high/critical OEM/MVL alerts suppress optional panels. | Native C3/C4 render and device timing tests. |
+| Galaxy live security | G06 authenticated GET-only handler passed host tests; default OFF. | Isolated network/auth transport and device resource security review. |
+| Model execution | G08 catalog/hash checks passed host tests; no runner enabled. | Model runner, target compatibility, and AGNOS execution qualification. |
+| Vehicle control safety | G09 synthetic reason-only evaluator passed; no CAN/control values emitted. | Physical Panda and Honda OEM stock ACC/FCW/CMBS/AEB validation across faults and modes. |
+| Target build and boot | G10 inspected AGNOS 19.8.1 image; host native libraries are x86-64; standard AArch64 compiler tools were absent in the recorded environment. | Toolchain and capacity, full AArch64 cold build, physical device boot. |
+| Release and recovery | Consolidated host regression passed; no installable combined branch was authorized. | Exact-commit integrated review and protected rollback exercise. |
+
+Earlier review defects were corrected and retested, as recorded in the [master report](../campaign_20261103/CAMPAIGN_MASTER_REPORT.md). The host suite currently has no failing tests.

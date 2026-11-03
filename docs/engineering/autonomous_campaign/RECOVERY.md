@@ -1,0 +1,16 @@
+# Recovery after interruption
+
+1. Read `CAMPAIGN_STATE.json`, `MASTER_GATE_TRACKER.md`, `BLOCKERS.md`, and the latest entry in `RUN_HISTORY.md` before changing a gate decision.
+2. Confirm `git rev-parse HEAD`, `git branch --show-current`, and the worktree status. The recorded checkout is detached at `362c2fb6fed527e5f7e4737473b856b5ccf5766f`; do not assume that remains true.
+3. Review `TEST_RESULTS.json` and the cited campaign report. Re-run its exact test command if source, tests, or relevant environment changed. Record the actual commit, command, timestamp, exit code, and counts; never carry a previous PASS to a new commit without evidence.
+4. For each gate, inspect its `GATE_FINAL_STATUS.md`, `FINAL_HOST_TESTS.log`, and `GATE_EVIDENCE_MANIFEST.json` under `../campaign_20261103/g*/` before promoting it.
+5. Keep vehicle release on HOLD until native UI, security/hardware bench, AArch64 build/boot, physical Panda, OEM validation, integrated review, and protected rollback all have exact-commit evidence.
+6. Append a dated decision to `RUN_HISTORY.md`, then update `TEST_RESULTS.json`, `MASTER_GATE_TRACKER.md`, `BLOCKERS.md`, `IMPLEMENTATION_MATRIX.csv`, and finally `CAMPAIGN_STATE.json` so its next action reflects the current gate.
+
+If a test fails, record the command and failure in `TEST_RESULTS.json`, set the affected gate to FAIL or HOLD as warranted, describe the attempt in `BLOCKERS.md`, and leave release on HOLD.
+
+## Executable startup check and ownership
+
+Run `python3 docs/engineering/autonomous_campaign/campaignctl.py recover` before work. It compares the recorded branch and verified source SHA with Git, checks dirty paths and pending operations, and reports a state-only checkpoint commit separately. Exit code 2 means reconcile before proceeding. Inspect relevant running processes with `ps -eo pid,comm` and Git operation files if anything is pending. Never infer success from a terminated session.
+
+Run modifying commands through `python3 docs/engineering/autonomous_campaign/campaignctl.py locked-run -- <command>`. The OS advisory lock stays held for the command's lifetime; a second owner exits 3. Keep each workstream in a separate worktree and branch. The lock file is local and excluded from Git. After a milestone: save implementation, run the required tests, record exact commit and outcome, update state and history, commit verified changes, then name the next eligible action. A state-only checkpoint commit may contain only this directory; recovery recognizes it as one descendant of the recorded verified source commit. Any other SHA drift is an interrupted or external change to investigate.
