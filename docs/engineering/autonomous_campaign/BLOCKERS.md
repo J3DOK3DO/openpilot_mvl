@@ -21,3 +21,5 @@ Background host check: standard `aarch64-linux-gnu-gcc` absent from PATH; no col
 Native raylib UI startup test at `e65dc8aa9053e53d41fb9a7c2f721b3e819557c6` was BLOCKED during collection by missing `capnp` in system Python. A read-only cached pycapnp retry then hit missing `opendbc`; no UI process started. Do not count the 389 offline host tests as native UI startup evidence.
 
 G03 exact-source field names, ordinals and types now have machine-readable PASS at `accfcb90a4794df2ab162ff35267fff3c0d3b0e7`; IPC binding ABI, runtime update/timing and semantic Params migration remain HOLD. The 254-key quarantine is unchanged.
+
+Publication of `codex/mvl-starpilot-continuation` to `origin` is BLOCKED by missing HTTPS GitHub credentials on this host. `git push -u origin codex/mvl-starpilot-continuation` exited 128 with `could not read Username for https://github.com`. No remote branch or PR is claimed. Configure a credential helper or authorized SSH remote, then retry a non-force push after reconciling HEAD and tests.

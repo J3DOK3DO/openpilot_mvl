@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-03T16:39:52Z",
-  "current_stage": "offline_engineering_candidate",
+  "updated_at_utc": "2026-11-03T16:41:18Z",
+  "current_stage": "offline_engineering_candidate_local",
   "release_decision": "HOLD",
   "branch": "codex/mvl-starpilot-continuation",
   "checkout_mode": "branch",
-  "head_commit": "05806a6ca81a3d99478202593b1deeb8b69fb807",
+  "head_commit": "daeffba203435502015ff037d436e3a2b89db1df",
   "last_verified_result": {
     "decision": "PASS",
-    "scope": "389 consolidated offline host tests, 4 recovery tests, G03 crosswalk and manifest reproducibility",
+    "scope": "local offline host, recovery, G03 and manifest checks",
     "passed": 393,
     "failed": 0,
     "skipped": 0,
@@ -20,15 +20,15 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-starpilot-continuation",
-    "head": "05806a6ca81a3d99478202593b1deeb8b69fb807",
+    "head": "daeffba203435502015ff037d436e3a2b89db1df",
     "worktree": "/home/jdkd/.codex/worktrees/mvl-starpilot-background/consolidated",
     "owner": "current campaign worktree; exclusive locked-run required for modifying operations"
   },
-  "current_gate": "SOFTWARE_READY_HOLD",
-  "last_successful_milestone": "Reviewed offline source boundary and persistent full-run lease; deterministic release manifest generated; 389 host and 4 recovery tests passed.",
-  "tests_verified_at_commit": "05806a6ca81a3d99478202593b1deeb8b69fb807",
+  "current_gate": "PUBLICATION_BLOCKED_GIT_AUTH",
+  "last_successful_milestone": "Offline candidate checkpoint and deterministic manifest verified locally; 389 host and 4 recovery tests passed at daeffba2034.",
+  "tests_verified_at_commit": "daeffba203435502015ff037d436e3a2b89db1df",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Resolve native dependency and target toolchain environment, then qualify default-OFF G05/G06/G08 native integrations in isolated worktrees. Keep all device, Panda, OEM and deployment gates HOLD.",
+  "next_actionable_milestone": "Configure GitHub HTTPS or SSH push authentication for origin, then publish codex/mvl-starpilot-continuation without force. Continue native dependency and target qualification only in isolated engineering worktrees.",
   "current_blockers": [
     "AArch64 compiler absent from PATH; target cold build unattempted",
     "native C3/C4 UI and IPC timing unverified",
@@ -36,7 +36,8 @@
     "physical Panda safety",
     "Honda OEM stock ACC/FCW/CMBS/AEB validation",
     "exact-commit integrated review and protected rollback",
-    "Native raylib UI startup test cannot collect: system Python lacks capnp; cached pycapnp path then lacks opendbc."
+    "Native raylib UI startup test cannot collect: system Python lacks capnp; cached pycapnp path then lacks opendbc.",
+    "GitHub publication blocked: git push could not read Username for https://github.com."
   ],
   "approval_requirements": [
     "Vehicle installation or activation requires all safety and hardware gates and explicit release approval.",
