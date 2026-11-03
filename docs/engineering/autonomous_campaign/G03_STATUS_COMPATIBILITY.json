@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "native_source_sha": "376c44b5731b2655e5c2f301b73c9729eb499e91",
+  "opendbc_sha": "3fec9a418a659de31d7b1f494193161697a35071",
+  "source_sha256": {
+    "log": "be3b81471c18ad7ffbac3890042cd93823c69832fd88130ac9400bd02f8b049b",
+    "car": "f39cc7be3216e3b692334b4c7dc7fc5f6509865e700b15e17acccc7b7cc644ab"
+  },
+  "field_decisions": [
+    {
+      "topic": "deviceState",
+      "field": "started",
+      "type": "Bool",
+      "ordinal": 11,
+      "source": "log",
+      "decision": "SCHEMA_SOURCE_PASS_RUNTIME_HOLD"
+    },
+    {
+      "topic": "deviceState",
+      "field": "freeSpacePercent",
+      "type": "Float32",
+      "ordinal": 7,
+      "source": "log",
+      "decision": "SCHEMA_SOURCE_PASS_RUNTIME_HOLD"
+    },
+    {
+      "topic": "deviceState",
+      "field": "maxTempC",
+      "type": "Float32",
+      "ordinal": 44,
+      "source": "log",
+      "decision": "SCHEMA_SOURCE_PASS_RUNTIME_HOLD"
+    },
+    {
+      "topic": "selfdriveState",
+      "field": "enabled",
+      "type": "Bool",
+      "ordinal": 1,
+      "source": "log",
+      "decision": "SCHEMA_SOURCE_PASS_RUNTIME_HOLD"
+    },
+    {
+      "topic": "selfdriveState",
+      "field": "active",
+      "type": "Bool",
+      "ordinal": 2,
+      "source": "log",
+      "decision": "SCHEMA_SOURCE_PASS_RUNTIME_HOLD"
+    },
+    {
+      "topic": "carState",
+      "field": "vEgo",
+      "type": "Float32",
+      "ordinal": 1,
+      "source": "car",
+      "decision": "SCHEMA_SOURCE_PASS_RUNTIME_HOLD"
+    },
+    {
+      "topic": "carState",
+      "field": "cruiseState",
+      "type": "CruiseState",
+      "ordinal": 10,
+      "source": "car",
+      "decision": "SCHEMA_SOURCE_PASS_RUNTIME_HOLD"
+    },
+    {
+      "topic": "carState",
+      "field": "cruiseState.enabled",
+      "type": "Bool",
+      "ordinal": 0,
+      "source": "car",
+      "decision": "SCHEMA_SOURCE_PASS_RUNTIME_HOLD"
+    }
+  ],
+  "params_decision": {
+    "denied": 254,
+    "approved": 0
+  },
+  "ipc_abi_decision": "HOLD",
+  "device_runtime_decision": "HOLD"
+}
