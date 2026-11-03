@@ -1,0 +1,5 @@
+Found 1 security flaw:
+
+- High — TOCTOU bypass of symlink/path containment checks. [`catalog.py:173`](/mnt/commadrive/MVL_CAMPAIGN_G03_G10_20261103/g08/openpilot/sunnypilot/starpilot_models/catalog.py:173) validates path components with `lstat`, then [`catalog.py:201`](/mnt/commadrive/MVL_CAMPAIGN_G03_G10_20261103/g08/openpilot/sunnypilot/starpilot_models/catalog.py:201) re-resolves and opens the pathname. An attacker able to alter the selected directory can replace the checked file, an intermediate directory, or `allowed_directory` with a symlink between validation/stat and `open()`. The file read can then be outside the trusted directory. The test only covers a stable final symlink ([`test_catalog.py:62`](/mnt/commadrive/MVL_CAMPAIGN_G03_G10_20261103/g08/openpilot/sunnypilot/starpilot_models/tests/test_catalog.py:62)); it does not test the race.
+
+All other scoped checks pass by source review: explicit relative selection; stable-path traversal and symlink rejection; bounded, duplicate-key-rejecting JSON schema; size/digest checks; no writes or modeld interaction; and an empty default catalog remains disabled.
