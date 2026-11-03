@@ -1,0 +1,36 @@
+{
+  "gate": "g05",
+  "source_base": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
+  "scope_status": "HOST_PRESENTATION_MODEL_PASS; NATIVE_RENDERER_AND_DEVICE_HOLD",
+  "host_tests_passed": 13,
+  "host_tests_failed": 0,
+  "host_tests_skipped": 0,
+  "vehicle_release": "HOLD",
+  "tracked_evidence": [
+    {
+      "path": "docs/engineering/campaign_20261103/g05/CODEX_FINAL.md",
+      "sha256": "e7c1539565c8159445e8c89446fccf3f8bc7ca91000aa38395b9a1f26c038204",
+      "bytes": 956
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g05/CODEx_TASK.md",
+      "sha256": "6db4b7253d3123fc577cca6601d33c1312866f75d504b8ae204248e866e26219",
+      "bytes": 2338
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g05/FINAL_HOST_TESTS.log",
+      "sha256": "edf3d333fef3a773826ab22829091a2348d9f8a79032da0074fd997d1b9f76d9",
+      "bytes": 99
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g05/GATE_FINAL_STATUS.md",
+      "sha256": "8034dce08919670d0fc74376f512ef37d379eadbb4ff4919fc2badff4eaaeebd",
+      "bytes": 1540
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g05/STATUS.md",
+      "sha256": "d4e40a0eeb506a1bec3510a1253ad4e4330b4b13de65456c27e50f523eb4e35e",
+      "bytes": 1680
+    }
+  ]
+}
