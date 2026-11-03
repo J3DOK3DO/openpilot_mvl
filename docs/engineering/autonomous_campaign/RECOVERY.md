@@ -22,3 +22,9 @@ After a milestone: save implementation, run required tests, record exact commit 
 ## Publication status at 2026-11-03T17:03:48Z
 
 The engineering branch was published to `J3DOK3DO/openpilot_mvl` at `40bc2805c00cd44ebcabee6830ecf96c3a1bd33c` using authorized Windows Git credentials, with remote ref verification. The Ubuntu local HTTPS remote remains unauthenticated; do not attempt repeated identical pushes there. Use the authorized Windows helper or configure legitimate credentials before subsequent non-force publication. Continue from the verified source checkpoint `daeffba203435502015ff037d436e3a2b89db1df` and keep all native/hardware safety gates HOLD. A docs-only publication checkpoint must not be mistaken for a new code-test PASS.
+
+## Manual continuation checkpoint
+
+The published `codex/mvl-starpilot-continuation` ref was independently verified at `0fb7b6a241df69ce5b6900f6f002baa2dfaab4d7`. The manual source candidate `codex/mvl-starpilot-manual` has tested code commit `6ea2fc99792a0f1a27d5e977fb6171637c5136cc`; the following docs-only commit is its state checkpoint. The original published worktree was not edited. Recover by checking the branch, HEAD, exact source ancestry, clean status, and `TEST_RESULTS.json`; rerun the 400-test isolated host/native command and G03 local IPC if dependencies or source changed. The x86 `libparams_c.so` symlink is temporary and must be removed after testing. Device, AGNOS build, Panda, OEM and protected rollback remain HOLD.
+
+Use `NATIVE_HOST_SETUP.md` and `native_host_env.sh` to recreate the isolated host dependency path; verify every pinned SHA and remove the temporary library link after tests.

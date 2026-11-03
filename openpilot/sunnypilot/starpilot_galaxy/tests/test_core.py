@@ -7,6 +7,7 @@ import pytest
 
 from openpilot.sunnypilot.starpilot_bridge.models import BridgeSnapshot, CarStatus, DeviceStatus, SelfdriveStatus
 from openpilot.sunnypilot.starpilot_galaxy import GalaxyHandler, GalaxyRequest, GalaxySettings, SettingsError
+from openpilot.sunnypilot.starpilot_models.catalog import ModelCatalog, ModelEntry
 
 
 NOW = 10_000_000_000
@@ -94,6 +95,41 @@ def test_health_and_models_are_static_and_never_call_provider():
   api = handler(lambda: (_ for _ in ()).throw(AssertionError("not needed")))
   assert api.handle(request("/api/v1/health")).json() == {"status": "ok"}
   assert api.handle(request("/api/v1/models")).json() == {"models": []}
+
+
+def test_explicit_read_only_model_metadata_and_default_off():
+  entry = ModelEntry("sample", "Sample", "1", "a" * 64, 7, "aarch64", ("tinygrad",))
+  calls = 0
+  def models():
+    nonlocal calls
+    calls += 1
+    return ModelCatalog((entry,))
+  disabled = GalaxyHandler(GalaxySettings(), lambda: snapshot(), lambda: NOW, models)
+  assert disabled.handle(request("/api/v1/models")).status == 403
+  assert calls == 0
+  api = GalaxyHandler(GalaxySettings(enabled=True, token=TOKEN), lambda: snapshot(), lambda: NOW, models)
+  assert api.handle(request("/api/v1/models", token="wrong")).status == 401
+  assert calls == 0
+  response = api.handle(request("/api/v1/models"))
+  assert response.status == 200
+  assert response.json() == {"models": [{"id": "sample", "name": "Sample", "version": "1", "target_abi": "aarch64", "expected_runtimes": ["tinygrad"]}]}
+  assert calls == 1
+  assert b"sha256" not in response.body and b"size" not in response.body
+
+
+def test_bad_model_provider_fails_closed_without_details():
+  def failed():
+    raise RuntimeError("private model path")
+  bad_entry = ModelEntry("/private/path", "name", "1", "a" * 64, 1, "unsupported-abi", ("unapproved-runtime",))
+  duplicate = ModelEntry("same", "name", "1", "a" * 64, 1, "aarch64", ("tinygrad",))
+  oversized = ModelEntry("x" * 1_000_000, "name", "1", "a" * 64, 1, "aarch64", ("tinygrad",))
+  for provider in (failed, lambda: object(), lambda: ModelCatalog((object(),)),
+                   lambda: ModelCatalog((bad_entry,)), lambda: ModelCatalog((duplicate, duplicate)),
+                   lambda: ModelCatalog((oversized,))):
+    api = GalaxyHandler(GalaxySettings(enabled=True, token=TOKEN), lambda: snapshot(), lambda: NOW, provider)
+    response = api.handle(request("/api/v1/models"))
+    assert (response.status, response.json()) == (503, {"error": "models_unavailable"})
+    assert b"private" not in response.body
 
 
 @pytest.mark.parametrize("provider", [

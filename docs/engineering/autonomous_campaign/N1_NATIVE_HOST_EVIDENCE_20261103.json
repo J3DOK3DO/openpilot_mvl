@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "milestone": "N1_G05_NATIVE_HOST_AND_G03_LOCAL_IPC",
+  "source_branch": "codex/mvl-n1-native-ui",
+  "base_commit": "0fb7b6a241df69ce5b6900f6f002baa2dfaab4d7",
+  "source_files": [
+    "openpilot/selfdrive/ui/sunnypilot/layouts/home.py",
+    "openpilot/selfdrive/ui/tests/test_starpilot_native_status.py"
+  ],
+  "dependency_provenance": {
+    "python": "CPython 3.12.14 via uv venv /tmp/mvl-n1-native-venv",
+    "environment_script": "docs/engineering/autonomous_campaign/native_host_env.sh",
+    "pycapnp": "2.1.0 cached wheel archive i7wuLLr-rrR7DuZ2",
+    "raylib": "comma-deps-raylib 6.0.0.1.post106 cached wheel archive k3LRoVSvwv89_ziQ",
+    "opendbc_commit": "3fec9a418a659de31d7b1f494193161697a35071",
+    "msgq_commit": "e7396e76dadbb49e374d4b664ff6bbb43a39bcb0",
+    "host_params_library": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so",
+    "host_params_library_sha256": "e2697e7059c49213af2f3a77531c1e106095b341125b222d4d5dcb247c367ee2",
+    "params_source_hash_match": true
+  },
+  "tests": [
+    {
+      "command": "source /tmp/mvl-n1-native-env.sh; /tmp/mvl-n1-native-venv/bin/python -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_views/tests",
+      "outcome": "PASS",
+      "passed": 34,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 0.57,
+      "reproducible_setup": "docs/engineering/autonomous_campaign/NATIVE_HOST_SETUP.md"
+    },
+    {
+      "command": "source /tmp/mvl-n1-native-env.sh; /tmp/mvl-n1-native-venv/bin/python /tmp/mvl-n1-g03-ipc.py",
+      "outcome": "PASS",
+      "topics": [
+        "deviceState",
+        "selfdriveState",
+        "carState"
+      ],
+      "primitive_fields": 7,
+      "schema_paths": 8,
+      "transport": "local unique msgq endpoints",
+      "roundtrip": "capnp and local IPC"
+    }
+  ],
+  "params_quarantine": {
+    "denied": 254,
+    "approved": 0
+  },
+  "qualification": "HOST_ONLY; device ABI, C3/C4 rendering, Honda OEM and Panda remain HOLD",
+  "working_tree_commit": "consolidated source committed; exact combined tests and IPC rerun PASS",
+  "consolidated_commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
+  "combined_exact_commit_tests": {
+    "passed": 400,
+    "failed": 0,
+    "skipped": 0
+  }
+}

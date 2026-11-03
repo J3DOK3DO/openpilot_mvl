@@ -138,6 +138,56 @@
         "exit_code": 128,
         "error": "could not read Username for https://github.com: No such device or address"
       }
+    },
+    {
+      "milestone": "N1 G05 native host and G03 local IPC; N4 G06/G08 metadata integration; N2 G10 preflight",
+      "commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
+      "verified_at_utc": "2026-11-03T17:20:04.981433Z",
+      "command": "source /tmp/mvl-n1-native-env.sh; export PYTHONPATH=\"$PWD:${PYTHONPATH}\"; /tmp/mvl-n1-native-venv/bin/python -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+      "setup": "Temporary symlink openpilot/common/libparams_c.so to pinned matching x86 library; removed after test; isolated cached Python dependencies, pinned opendbc/msgq. Exact consolidated command used equivalent PYTHONPATH with /tmp clone first.",
+      "outcomes": {
+        "passed": 400,
+        "failed": 0,
+        "skipped": 0
+      },
+      "g03_ipc_command": "source /tmp/mvl-n1-native-env.sh; export PYTHONPATH=\"$PWD:${PYTHONPATH}\"; /tmp/mvl-n1-native-venv/bin/python docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
+      "g03_ipc_exit_code": 0,
+      "g03_ipc_paths": 8,
+      "params_denied": 254,
+      "n2_build": "HOLD_PREREQUISITES",
+      "independent_review": "N1 and N4 PASS after exception-safety and validation remediations",
+      "limits": "x86 host native renderer and local IPC only; target and vehicle release HOLD"
+    },
+    {
+      "milestone": "persisted isolated native host setup verification",
+      "commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
+      "checkpoint_parent": "56ba8140cb0f371d73233ec1615c78e5da6abfd0",
+      "verified_at_utc": "2026-11-03T17:29:44.237140Z",
+      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py; python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
+      "temporary_host_library_symlink_removed": true,
+      "outcomes": {
+        "passed": 400,
+        "failed": 0,
+        "skipped": 0
+      },
+      "g03_ipc": "PASS 8 schema paths; 254 Params DENY",
+      "limits": "host only; no target/device release"
+    }
+  ],
+  "last_verified_commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
+  "last_verified_outcomes": {
+    "passed": 400,
+    "failed": 0,
+    "skipped": 0
+  },
+  "publication_events": [
+    {
+      "published_commit": "17c43e9e505f193113777a7266fedd0b03bee7cc",
+      "tested_source_commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
+      "branch": "codex/mvl-starpilot-manual",
+      "remote_ref_verified": true,
+      "pull_request": "https://github.com/J3DOK3DO/openpilot_mvl/pull/1",
+      "new_test_outcome": "not_rerun_docs_only"
     }
   ]
 }

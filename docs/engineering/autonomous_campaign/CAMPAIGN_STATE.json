@@ -1,42 +1,41 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-03T17:03:48Z",
-  "current_stage": "offline_engineering_candidate_published",
+  "updated_at_utc": "2026-11-03T17:29:44.237140Z",
+  "current_stage": "reviewed_offline_integration_published",
   "release_decision": "HOLD",
-  "branch": "codex/mvl-starpilot-continuation",
+  "branch": "codex/mvl-starpilot-manual",
   "checkout_mode": "branch",
-  "head_commit": "40bc2805c00cd44ebcabee6830ecf96c3a1bd33c",
+  "head_commit": "56ba8140cb0f371d73233ec1615c78e5da6abfd0",
   "last_verified_result": {
     "decision": "PASS",
-    "scope": "local offline host, recovery, G03 and manifest checks",
-    "passed": 393,
+    "scope": "isolated x86 native renderer, local capnp/msgq IPC and offline host regression; no device evidence",
+    "passed": 400,
     "failed": 0,
     "skipped": 0,
     "record": "TEST_RESULTS.json milestone_runs[-1]"
   },
-  "next_action": "Assign owners and collect exact-commit evidence for native UI, security and hardware bench, AArch64 AGNOS build and boot, physical Panda safety, OEM collision-mitigation validation, integrated review, and protected rollback before reconsidering vehicle release.",
+  "next_action": "Preserve G10 and physical safety HOLDs; publish reviewed source branch and gather target/device evidence.",
   "source_of_truth": "../campaign_20261103/CAMPAIGN_MASTER_REPORT.md",
   "authoritative_baseline_sha": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
-    "branch": "codex/mvl-starpilot-continuation",
-    "head": "40bc2805c00cd44ebcabee6830ecf96c3a1bd33c",
-    "worktree": "/home/jdkd/.codex/worktrees/mvl-starpilot-background/consolidated",
-    "owner": "current campaign worktree; exclusive locked-run required for modifying operations"
+    "branch": "codex/mvl-starpilot-manual",
+    "head": "56ba8140cb0f371d73233ec1615c78e5da6abfd0",
+    "worktree": "/home/jdkd/.codex/worktrees/mvl-starpilot-manual-campaign",
+    "owner": "manual campaign consolidation; original published worktree leased but unchanged"
   },
-  "current_gate": "PUBLICATION_COMPLETE_NATIVE_QUALIFICATION_HOLD",
-  "last_successful_milestone": "Published exact local engineering candidate 40bc2805 via authenticated Windows Git helper; separately verified remote ref. Previously tested source daeffba2034: 389 offline host + 4 recovery tests PASS; native and vehicle release HOLD.",
-  "tests_verified_at_commit": "daeffba203435502015ff037d436e3a2b89db1df",
+  "current_gate": "PUBLICATION_COMPLETE_TARGET_AND_VEHICLE_QUALIFICATION_HOLD",
+  "last_successful_milestone": "Reviewed offline branch published at 56ba8140. Persisted pinned native host setup and reran 400 combined tests plus G03 local IPC PASS; tested source remains 6ea2fc997. Vehicle release HOLD.",
+  "tests_verified_at_commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Resume independently scoped native G05 UI dependency resolution and G10 ARM64 build-environment qualification; preserve G06 transport and G09 research isolation. Do not assume comma deployment readiness.",
+  "next_actionable_milestone": "Provision at least 15 GiB dedicated build space and pinned AArch64/AGNOS toolchain and sysroot, then attempt full G10 cold build in isolated environment; separately collect C3/C4 device, Galaxy security, Panda, OEM and protected rollback evidence.",
   "current_blockers": [
-    "AArch64 compiler absent from PATH; target cold build unattempted",
-    "native C3/C4 UI and IPC timing unverified",
-    "G06 transport security/hardware bench",
-    "physical Panda safety",
-    "Honda OEM stock ACC/FCW/CMBS/AEB validation",
-    "exact-commit integrated review and protected rollback",
-    "Native raylib UI startup test cannot collect: system Python lacks capnp; cached pycapnp path then lacks opendbc."
+    "G10 cold native build: 13.55 GB free below 15 GiB threshold; target toolchain/sysroot/container unavailable",
+    "Native C3/C4 device rendering and IPC timing unverified",
+    "G06 live transport/security bench and G08 model runner/target execution unverified",
+    "Physical Panda and Honda OEM stock ACC/FCW/CMBS/AEB qualification unverified",
+    "Protected rollback and deployment approval unverified",
+    "Prior scheduled invocation failure cause unresolved in available Codex logs"
   ],
   "approval_requirements": [
     "Vehicle installation or activation requires all safety and hardware gates and explicit release approval.",
@@ -44,21 +43,27 @@
   ],
   "release_qualification": {
     "status": "HOLD",
-    "scope": "Offline engineering candidate only; SOFTWARE_READY, TARGET_BUILD_READY, DEVICE_QUALIFIED, VEHICLE_QUALIFIED and DEPLOYMENT_APPROVED all HOLD."
+    "scope": "Offline host native integration candidate only; TARGET_BUILD_READY, DEVICE_QUALIFIED, VEHICLE_QUALIFIED and DEPLOYMENT_APPROVED HOLD."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded head is the verified source commit. One descendant commit containing only docs/engineering/autonomous_campaign files is an allowed state checkpoint; recovery must verify its parent and changed paths.",
+  "checkpoint_rule": "Recorded head is prior docs-only checkpoint; one descendant commit limited to docs/engineering/autonomous_campaign is an allowed state update. tests_verified_at_commit remains the last exact source test SHA.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
-    "branch": "codex/mvl-starpilot-continuation",
-    "published_sha": "40bc2805c00cd44ebcabee6830ecf96c3a1bd33c",
-    "verified_source_sha": "daeffba203435502015ff037d436e3a2b89db1df",
-    "method": "Authorized Windows Git helper fetched exact Ubuntu commit and non-force pushed owner remote",
-    "remote_verified": "Windows git ls-remote after successful non-force push",
+    "branch": "codex/mvl-starpilot-manual",
+    "published_sha": "17c43e9e505f193113777a7266fedd0b03bee7cc",
+    "verified_source_sha": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
+    "method": "Authorized Windows Git helper fetched exact Git bundle from Ubuntu and non-force pushed new branch",
+    "remote_verified": "GitHub compare ref identical to 17c43e9",
     "remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-starpilot-continuation",
     "ubuntu_local_https_push_auth_configured": false,
-    "note": "Original failed Ubuntu HTTPS push remains recorded historically; future pushes should use authorized Windows helper or separately configured credentials.",
-    "recorded_at_utc": "2026-11-03T17:03:48Z"
+    "note": "Draft PR is reviewable offline engineering candidate. No deployment approval.",
+    "recorded_at_utc": "2026-11-03T17:26:41.243096Z",
+    "latest_verified_published_sha": "0fb7b6a241df69ce5b6900f6f002baa2dfaab4d7",
+    "latest_verified_published_branch": "codex/mvl-starpilot-continuation",
+    "current_candidate_branch": "codex/mvl-starpilot-manual",
+    "current_candidate_sha": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
+    "current_candidate_status": "PUBLISHED_REVIEWED",
+    "pull_request_url": "https://github.com/J3DOK3DO/openpilot_mvl/pull/1"
   }
 }
