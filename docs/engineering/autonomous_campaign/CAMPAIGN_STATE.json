@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-03T16:41:18Z",
-  "current_stage": "offline_engineering_candidate_local",
+  "updated_at_utc": "2026-11-03T17:03:48Z",
+  "current_stage": "offline_engineering_candidate_published",
   "release_decision": "HOLD",
   "branch": "codex/mvl-starpilot-continuation",
   "checkout_mode": "branch",
-  "head_commit": "daeffba203435502015ff037d436e3a2b89db1df",
+  "head_commit": "40bc2805c00cd44ebcabee6830ecf96c3a1bd33c",
   "last_verified_result": {
     "decision": "PASS",
     "scope": "local offline host, recovery, G03 and manifest checks",
@@ -20,15 +20,15 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-starpilot-continuation",
-    "head": "daeffba203435502015ff037d436e3a2b89db1df",
+    "head": "40bc2805c00cd44ebcabee6830ecf96c3a1bd33c",
     "worktree": "/home/jdkd/.codex/worktrees/mvl-starpilot-background/consolidated",
     "owner": "current campaign worktree; exclusive locked-run required for modifying operations"
   },
-  "current_gate": "PUBLICATION_BLOCKED_GIT_AUTH",
-  "last_successful_milestone": "Offline candidate checkpoint and deterministic manifest verified locally; 389 host and 4 recovery tests passed at daeffba2034.",
+  "current_gate": "PUBLICATION_COMPLETE_NATIVE_QUALIFICATION_HOLD",
+  "last_successful_milestone": "Published exact local engineering candidate 40bc2805 via authenticated Windows Git helper; separately verified remote ref. Previously tested source daeffba2034: 389 offline host + 4 recovery tests PASS; native and vehicle release HOLD.",
   "tests_verified_at_commit": "daeffba203435502015ff037d436e3a2b89db1df",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Configure GitHub HTTPS or SSH push authentication for origin, then publish codex/mvl-starpilot-continuation without force. Continue native dependency and target qualification only in isolated engineering worktrees.",
+  "next_actionable_milestone": "Resume independently scoped native G05 UI dependency resolution and G10 ARM64 build-environment qualification; preserve G06 transport and G09 research isolation. Do not assume comma deployment readiness.",
   "current_blockers": [
     "AArch64 compiler absent from PATH; target cold build unattempted",
     "native C3/C4 UI and IPC timing unverified",
@@ -36,8 +36,7 @@
     "physical Panda safety",
     "Honda OEM stock ACC/FCW/CMBS/AEB validation",
     "exact-commit integrated review and protected rollback",
-    "Native raylib UI startup test cannot collect: system Python lacks capnp; cached pycapnp path then lacks opendbc.",
-    "GitHub publication blocked: git push could not read Username for https://github.com."
+    "Native raylib UI startup test cannot collect: system Python lacks capnp; cached pycapnp path then lacks opendbc."
   ],
   "approval_requirements": [
     "Vehicle installation or activation requires all safety and hardware gates and explicit release approval.",
@@ -48,5 +47,18 @@
     "scope": "Offline engineering candidate only; SOFTWARE_READY, TARGET_BUILD_READY, DEVICE_QUALIFIED, VEHICLE_QUALIFIED and DEPLOYMENT_APPROVED all HOLD."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded head is the verified source commit. One descendant commit containing only docs/engineering/autonomous_campaign files is an allowed state checkpoint; recovery must verify its parent and changed paths."
+  "checkpoint_rule": "Recorded head is the verified source commit. One descendant commit containing only docs/engineering/autonomous_campaign files is an allowed state checkpoint; recovery must verify its parent and changed paths.",
+  "publication": {
+    "decision": "PUBLISHED_VERIFIED",
+    "repository": "J3DOK3DO/openpilot_mvl",
+    "branch": "codex/mvl-starpilot-continuation",
+    "published_sha": "40bc2805c00cd44ebcabee6830ecf96c3a1bd33c",
+    "verified_source_sha": "daeffba203435502015ff037d436e3a2b89db1df",
+    "method": "Authorized Windows Git helper fetched exact Ubuntu commit and non-force pushed owner remote",
+    "remote_verified": "Windows git ls-remote after successful non-force push",
+    "remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-starpilot-continuation",
+    "ubuntu_local_https_push_auth_configured": false,
+    "note": "Original failed Ubuntu HTTPS push remains recorded historically; future pushes should use authorized Windows helper or separately configured credentials.",
+    "recorded_at_utc": "2026-11-03T17:03:48Z"
+  }
 }

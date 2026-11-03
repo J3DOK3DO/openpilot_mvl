@@ -14,4 +14,4 @@ No installable release is approved. This branch is offline engineering only.
 
 `RELEASE_MANIFEST.json` records the pinned baseline, exact verified engineering commit, source/evidence SHA-256s and all open gates. The source diff adds only a renderer-neutral offroad guard and its tests; no existing vehicle-facing file changed. No binary package or installable artifact was produced. The branch can be published for engineering review with release HOLD.
 
-Publication status: **local branch only**. Non-force push to `origin` failed because the host has no GitHub HTTPS credentials. All release classifications remain HOLD.
+Publication status: **published offline engineering candidate** at `40bc2805c00cd44ebcabee6830ecf96c3a1bd33c` on `J3DOK3DO/openpilot_mvl:codex/mvl-starpilot-continuation`. The Windows-authenticated non-force push and remote-ref verification succeeded. Ubuntu HTTPS credentials remain unconfigured. All release classifications remain HOLD.

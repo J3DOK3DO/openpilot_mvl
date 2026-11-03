@@ -1,0 +1,13 @@
+{
+  "decision": "PUBLISHED_VERIFIED",
+  "repository": "J3DOK3DO/openpilot_mvl",
+  "branch": "codex/mvl-starpilot-continuation",
+  "published_sha": "40bc2805c00cd44ebcabee6830ecf96c3a1bd33c",
+  "verified_source_sha": "daeffba203435502015ff037d436e3a2b89db1df",
+  "method": "Authorized Windows Git helper fetched exact Ubuntu commit and non-force pushed owner remote",
+  "remote_verified": "Windows git ls-remote after successful non-force push",
+  "remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-starpilot-continuation",
+  "ubuntu_local_https_push_auth_configured": false,
+  "note": "Original failed Ubuntu HTTPS push remains recorded historically; future pushes should use authorized Windows helper or separately configured credentials.",
+  "recorded_at_utc": "2026-11-03T17:03:48Z"
+}
