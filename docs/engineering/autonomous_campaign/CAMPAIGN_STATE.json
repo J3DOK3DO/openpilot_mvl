@@ -1,15 +1,15 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-03T16:31:31Z",
-  "current_stage": "g03_status_schema_source_qualified",
+  "updated_at_utc": "2026-11-03T16:39:52Z",
+  "current_stage": "offline_engineering_candidate",
   "release_decision": "HOLD",
   "branch": "codex/mvl-starpilot-continuation",
   "checkout_mode": "branch",
-  "head_commit": "accfcb90a4794df2ab162ff35267fff3c0d3b0e7",
+  "head_commit": "05806a6ca81a3d99478202593b1deeb8b69fb807",
   "last_verified_result": {
     "decision": "PASS",
-    "scope": "G03 exact-source verifier and consolidated offline host suite",
-    "passed": 389,
+    "scope": "389 consolidated offline host tests, 4 recovery tests, G03 crosswalk and manifest reproducibility",
+    "passed": 393,
     "failed": 0,
     "skipped": 0,
     "record": "TEST_RESULTS.json milestone_runs[-1]"
@@ -20,15 +20,15 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-starpilot-continuation",
-    "head": "accfcb90a4794df2ab162ff35267fff3c0d3b0e7",
+    "head": "05806a6ca81a3d99478202593b1deeb8b69fb807",
     "worktree": "/home/jdkd/.codex/worktrees/mvl-starpilot-background/consolidated",
     "owner": "current campaign worktree; exclusive locked-run required for modifying operations"
   },
-  "current_gate": "G03_RUNTIME_ABI_HOLD",
-  "last_successful_milestone": "Eight read-only status field declarations verified against pinned source; all 254 Params DENY; independent review PASS.",
-  "tests_verified_at_commit": "accfcb90a4794df2ab162ff35267fff3c0d3b0e7",
+  "current_gate": "SOFTWARE_READY_HOLD",
+  "last_successful_milestone": "Reviewed offline source boundary and persistent full-run lease; deterministic release manifest generated; 389 host and 4 recovery tests passed.",
+  "tests_verified_at_commit": "05806a6ca81a3d99478202593b1deeb8b69fb807",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Qualify G08 model catalog against pinned source and inventory, then assess optional read-only native seams; target build and device gates remain HOLD.",
+  "next_actionable_milestone": "Resolve native dependency and target toolchain environment, then qualify default-OFF G05/G06/G08 native integrations in isolated worktrees. Keep all device, Panda, OEM and deployment gates HOLD.",
   "current_blockers": [
     "AArch64 compiler absent from PATH; target cold build unattempted",
     "native C3/C4 UI and IPC timing unverified",
@@ -44,7 +44,7 @@
   ],
   "release_qualification": {
     "status": "HOLD",
-    "scope": "No installable combined vehicle release approved."
+    "scope": "Offline engineering candidate only; SOFTWARE_READY, TARGET_BUILD_READY, DEVICE_QUALIFIED, VEHICLE_QUALIFIED and DEPLOYMENT_APPROVED all HOLD."
   },
   "operation_in_progress": null,
   "checkpoint_rule": "Recorded head is the verified source commit. One descendant commit containing only docs/engineering/autonomous_campaign files is an allowed state checkpoint; recovery must verify its parent and changed paths."

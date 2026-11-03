@@ -94,6 +94,27 @@
         "failed": 0,
         "skipped": 0
       }
+    },
+    {
+      "milestone": "offline engineering candidate and run lease",
+      "commit": "05806a6ca81a3d99478202593b1deeb8b69fb807",
+      "verified_at_utc": "2026-11-03T16:39:52Z",
+      "host_command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+      "host_outcomes": {
+        "passed": 389,
+        "failed": 0,
+        "skipped": 0
+      },
+      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
+      "recovery_outcomes": {
+        "passed": 4,
+        "failed": 0
+      },
+      "g03_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
+      "g03_exit_code": 0,
+      "manifest_command": "python3 docs/engineering/autonomous_campaign/build_offline_release_manifest.py --commit 05806a6ca81a3d99478202593b1deeb8b69fb807 | cmp - docs/engineering/autonomous_campaign/RELEASE_MANIFEST.json",
+      "manifest_exit_code": 0,
+      "native_ui_startup": "BLOCKED_DURING_COLLECTION"
     }
   ]
 }

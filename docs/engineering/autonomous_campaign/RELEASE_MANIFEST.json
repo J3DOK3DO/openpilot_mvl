@@ -1,0 +1,33 @@
+{
+  "baseline_commit": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
+  "binary_artifacts": [],
+  "branch": "codex/mvl-starpilot-continuation",
+  "classification": "OFFLINE_ENGINEERING_CANDIDATE",
+  "evidence_files": {
+    "docs/engineering/autonomous_campaign/BUILD_EVIDENCE.json": "713012a06e1bffc39629731d4bccc244253d70efc332ec2672f3e3f28a713d43",
+    "docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json": "c98004429e99a87e6c821cef3a1c8ea6003a35bc3dc7358289256a961ed66877"
+  },
+  "holds": [
+    "native MVL raylib UI startup and C3/C4 timing",
+    "G06 live transport security",
+    "AArch64 cold build and physical boot",
+    "Panda safety",
+    "Honda OEM ACC/FCW/CMBS/AEB",
+    "protected rollback and release approval"
+  ],
+  "installation_approved": false,
+  "pre_existing_vehicle_facing_files_changed": 0,
+  "schema_version": 1,
+  "source_files": {
+    "openpilot/sunnypilot/starpilot_views/offroad.py": "784f04486040a1154dc2dd027d743931560626f7fc5cad72d99a028e901cebeb",
+    "openpilot/sunnypilot/starpilot_views/tests/test_offroad.py": "c9ad34bb1827217b4d42cd0ad5482c49177d4adb456d4cfc5e58c74061e4581d"
+  },
+  "verification": {
+    "g03_source_crosswalk": "PASS",
+    "offline_host_failed": 0,
+    "offline_host_passed": 389,
+    "offline_host_skipped": 0,
+    "recovery_tests_passed": 4
+  },
+  "verified_engineering_commit": "05806a6ca81a3d99478202593b1deeb8b69fb807"
+}

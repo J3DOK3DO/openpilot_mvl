@@ -9,3 +9,7 @@
 | DEPLOYMENT_APPROVED | HOLD | All preceding gates and release-owner approval required. |
 
 No installable release is approved. This branch is offline engineering only.
+
+## Offline engineering candidate
+
+`RELEASE_MANIFEST.json` records the pinned baseline, exact verified engineering commit, source/evidence SHA-256s and all open gates. The source diff adds only a renderer-neutral offroad guard and its tests; no existing vehicle-facing file changed. No binary package or installable artifact was produced. The branch can be published for engineering review with release HOLD.

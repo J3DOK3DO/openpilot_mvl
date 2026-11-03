@@ -15,3 +15,7 @@ Initial verdict: FAIL, contradictory `device.started=True` and UI `started=False
 ## G03 pinned status crosswalk review
 
 Initial verdict: NEEDS FIX. The verifier searched whole schema files and trusted aggregate Params counts. Remediation: verify direct declarations within uniquely named structs, confirm `CruiseState` is nested in `CarState`, and inspect all 254 Params entries for DENY/read-disabled/write-disabled. Re-review verdict: PASS for source-schema evidence. No IPC binding ABI or device runtime qualification is inferred.
+
+## Final source and recovery boundary review
+
+Independent reviewer confirmed the branch diff adds only the offline G05 guard and tests; no Honda/Panda/control/manager/native UI registration changes. It found a per-command lock gap and stale release/recovery prose. The lock was replaced by a persistent token lease with atomic claim/command/finish serialization, heartbeat, stale-token replacement and interrupted-run tests; recovery prose and test count were corrected. The current source boundary is acceptable for offline engineering review. This is not native UI, target, device, OEM safety or deployment approval.
