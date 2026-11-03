@@ -23,3 +23,13 @@ Native raylib UI startup test at `e65dc8aa9053e53d41fb9a7c2f721b3e819557c6` was 
 G03 exact-source field names, ordinals and types now have machine-readable PASS at `accfcb90a4794df2ab162ff35267fff3c0d3b0e7`; IPC binding ABI, runtime update/timing and semantic Params migration remain HOLD. The 254-key quarantine is unchanged.
 
 **Publication resolved:** `codex/mvl-starpilot-continuation` was published to `J3DOK3DO/openpilot_mvl` at `40bc2805c00cd44ebcabee6830ecf96c3a1bd33c` via the already authenticated Windows Git helper. The remote branch SHA was independently checked after a non-force push. The earlier local Ubuntu HTTPS push failure remains historically valid but is no longer a publication blocker. Ubuntu's own HTTPS Git credentials are still unconfigured; use the authenticated helper or configure authorized SSH/credential management for later pushes. **All physical and release-qualification HOLDs remain.**
+
+## Manual continuation at 6ea2fc997
+
+N1 isolated x86 native renderer and G03 local capnp/msgq roundtrip PASS; 34 focused tests and 400 combined exact-commit tests passed. This clears the host dependency-collection obstacle only. Device ABI, C3/C4 rendering and timing remain HOLD. All 254 Params keys remain DENY.
+
+N2 G10 preflight: AGNOS 19.8.1 reference hash matched; extracted libc is AArch64 and Clang emitted a toy AArch64 object. Free root disk was 13,554,855,936 bytes, below the campaign 15 GiB build threshold; AArch64 sysroot, usable SCons environment and container execution unavailable. Product build was not attempted. See `N2_ARM64_PREFLIGHT_20261103.json`.
+
+N4 opt-in read-only Galaxy model metadata passed independent review after direct-catalog validation and bounded-serialization fixes. Live Galaxy transport and model execution remain HOLD.
+
+Previous scheduled invocation failure: available Codex app-server and SQLite logs did not expose a scheduler execution record or attributable failure cause. Treat cause as unresolved; manual campaign continued. Ubuntu HTTPS DNS/credentials remain unavailable in this sandbox; publication requires authorized helper or connected GitHub path.

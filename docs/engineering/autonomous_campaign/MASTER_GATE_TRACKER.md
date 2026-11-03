@@ -5,14 +5,14 @@ Updated 2026-11-03. Decisions describe the stated scope only. **Vehicle release:
 | Stage | Decision | Accepted evidence or remaining criterion |
 | --- | --- | --- |
 | M0–M3 bridge prerequisite | PASS (retained host scope) | 51 bridge tests included in consolidated run; default-OFF, read-only bridge. Physical qualification remains open. |
-| G03 parameter/message crosswalk | PASS (pinned source subset); HOLD (runtime ABI and semantic migration) | Eight status declarations independently verified; 7 original G03 tests; all 254 overlapping parameter keys remain DENY. |
-| G05 status view model and offroad guard | PASS (25 focused host tests); HOLD (native UI) | Offroad guard rejects contradictory started/active states; native raylib startup blocked during dependency collection and device behavior unverified. |
-| G06 Galaxy handler | PASS (host core); HOLD (network/device security) | 22 tests; no live transport or device resource qualification. |
+| G03 parameter/message crosswalk | PASS (pinned source and local host IPC); HOLD (device ABI and semantic migration) | Eight status paths passed pinned schema and local capnp/msgq roundtrip at 6ea2fc997; all 254 overlapping parameter keys remain DENY. |
+| G05 status view model and offroad guard | PASS (34 focused native host tests); HOLD (C3/C4 device UI) | Actual MVL HomeLayoutSP header path exercised in isolated x86 raylib environment; default OFF and original fallback verified. C3/C4 behavior unverified. |
+| G06 Galaxy handler | PASS (host core and metadata); HOLD (network/device security) | Opt-in read-only model metadata from validated injected catalog; 24 core tests; no live transport or device resource qualification. |
 | G08 model catalog | PASS (host catalog); HOLD (runner/AGNOS execution) | 14 tests; no activation, inference, or target execution. |
 | G09 control research | PASS (synthetic offline); HOLD (active control) | 261 tests; reason-only output, no CAN or control target. |
-| G10 AGNOS inspection | PASS (passive preparation); HOLD (target build/device) | 9 tests; image audit does not establish a booted target. |
-| Consolidated offline host regression | PASS | 389 passed, 0 failed, 0 skipped at code commit `e65dc8aa`; see TEST_RESULTS.json. |
-| Native C3/C4 UI rendering and IPC timing | HOLD | Exact-commit native renderer/device evidence required. |
+| G10 AGNOS inspection | PASS (passive preparation and ABI probe); HOLD (target build/device) | 9 passive tests, AGNOS libc ABI and Clang AArch64 toy-object probe; build preconditions unmet and no booted target. |
+| Consolidated offline host regression | PASS | 400 passed, 0 failed, 0 skipped at code commit `6ea2fc997`; see TEST_RESULTS.json. |
+| Native C3/C4 UI rendering and IPC timing | HOLD | Host native renderer PASS; C3/C4 target renderer and device timing required. |
 | Isolated security and hardware bench | HOLD | Auth/transport and hardware evidence required. |
 | Full AArch64 AGNOS build and physical boot | HOLD | Cold target build and boot evidence required. |
 | Physical Panda safety | HOLD | Firmware/safety identity and bench validation required. |
