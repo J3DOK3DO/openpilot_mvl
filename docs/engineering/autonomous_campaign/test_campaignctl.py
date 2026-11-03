@@ -49,6 +49,8 @@ class RecoveryTest(unittest.TestCase):
             old_token = first.stdout.strip()
             self.assertEqual(subprocess.run(['python3', str(SCRIPT), 'claim-run'], env=env, capture_output=True).returncode, 3)
             time.sleep(0.01)
+            recovery = subprocess.run(['python3', str(SCRIPT), 'recover'], env=env, text=True, capture_output=True)
+            self.assertTrue(json.loads(recovery.stdout)['run_lease']['stale'])
             second = subprocess.run(['python3', str(SCRIPT), 'claim-run', '--reclaim-stale'], env=env, text=True, capture_output=True)
             self.assertEqual(second.returncode, 0)
             new_token = second.stdout.strip()

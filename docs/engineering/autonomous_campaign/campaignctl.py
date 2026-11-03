@@ -47,7 +47,7 @@ def inspect(state_path=STATE):
     lease = None
     if LEASE.exists():
         owner = LEASE / 'owner.json'
-        lease = {'status': 'active'} if owner.exists() else {'status': 'incomplete_claim'}
+        lease = {'status': 'active' if owner.exists() else 'incomplete_claim', 'stale': _stale()}
         problems.append('campaign run lease is active; reconcile ownership before a new run')
     return {'run_lease': lease, 'actual_head': head, 'recorded_head': recorded, 'branch': branch, 'recorded_branch': state['active_engineering']['branch'], 'checkpoint_commit': checkpoint_commit, 'pending_operation': pending, 'dirty_paths': status, 'problems': problems, 'release_status': state['release_qualification']['status']}
 
