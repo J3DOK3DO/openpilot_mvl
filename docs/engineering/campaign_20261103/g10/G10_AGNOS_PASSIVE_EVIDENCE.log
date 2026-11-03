@@ -1,0 +1,49 @@
+{
+  "classification": "PASSIVE_PREPARATION_ONLY",
+  "status": "HOLD_FOR_ARM64_BUILD_AND_DEVICE",
+  "source_pin": "376c44b5731b2655e5c2f301b73c9729eb499e91",
+  "agnos_image": "/home/jdkd/AGNOS_20261014/agnos_system.ext4.img",
+  "agnos_sha256": "98e15de07c39a19b5fa17c96a67e66d4362f9ebaf7827b640f4127e3b6417da8",
+  "agnos_version_raw": "19.8.1\ndebugfs 1.47.0 (5-Feb-2023)",
+  "agnos_issue_raw": "Ubuntu 24.04.5 LTS \\n \\l\n\ndebugfs 1.47.0 (5-Feb-2023)",
+  "host_machine": "x86_64",
+  "native_binary_elfs": [
+    {
+      "path": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so",
+      "status": "INSPECTED",
+      "elf_machine": 62,
+      "architecture": "x86_64"
+    },
+    {
+      "path": "/mnt/commadrive/MVL_NATIVE_LATEST_20261103/msgq_repo/msgq/ipc_pyx.so",
+      "status": "INSPECTED",
+      "elf_machine": 62,
+      "architecture": "x86_64"
+    }
+  ],
+  "toolchain": {
+    "aarch64-linux-gnu-gcc": null,
+    "aarch64-linux-gnu-g++": null,
+    "clang": "/usr/bin/clang",
+    "qemu-aarch64-static": "/usr/bin/qemu-aarch64-static",
+    "readelf": "/usr/bin/readelf",
+    "debugfs": "/usr/sbin/debugfs"
+  },
+  "build_drive_bytes_free": 8148623360,
+  "build_drive_bytes_total": 105089261568,
+  "open_gates": [
+    "INSUFFICIENT_DEDICATED_BUILD_DISK",
+    "NO_TARGET_CROSS_GCC",
+    "HOST_X86_BINARIES_NOT_TARGET"
+  ],
+  "no_device_contact": true,
+  "no_firmware_flash": true,
+  "no_uds_can": true,
+  "next_evidence": [
+    "full clean AArch64 build",
+    "dependency/RUNPATH closure on exact sysroot",
+    "verified device AGNOS and Panda identities",
+    "isolated bench boot, resource and recovery",
+    "OEM Honda collision-mitigation verification"
+  ]
+}
