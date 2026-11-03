@@ -1,0 +1,9 @@
+{
+  "model": "qwen3:8b",
+  "duration_s": 25.99,
+  "success": true,
+  "input_chars": 37452,
+  "eval_count": 1100,
+  "done_reason": "length",
+  "response": ""
+}

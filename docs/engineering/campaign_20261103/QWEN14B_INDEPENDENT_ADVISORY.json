@@ -1,0 +1,9 @@
+{
+  "model": "qwen2.5-coder:14b",
+  "duration_s": 30.43,
+  "success": true,
+  "input_chars": 22722,
+  "eval_count": 410,
+  "done_reason": "stop",
+  "response": "### G03 g03/openpilot/sunnypilot/starpilot_compat/crosswalk.py (first 150 lines):\n1. **Unexpected writes**: No demonstrable defects.\n2. **Unsafe file access**: No demonstrable defects.\n3. **Unauthorized Galaxy reads**: No demonstrable defects.\n4. **High-warning suppression**: No demonstrable defects.\n5. **Unvalidated safety evidence**: No demonstrable defects.\n6. **False source attestations**: No demonstrable defects.\n\n### G05 g05/openpilot/sunnypilot/starpilot_views/presentation.py (first 101 lines):\n1. **Unexpected writes**: No demonstrable defects.\n2. **Unsafe file access**: No demonstrable defects.\n3. **Unauthorized Galaxy reads**: No demonstrable defects.\n4. **High-warning suppression**: No demonstrable defects.\n5. **Unvalidated safety evidence**: No demonstrable defects.\n6. **False source attestations**: No demonstrable defects.\n\n### G06 g06/openpilot/sunnypilot/starpilot_galaxy/core.py (first 180 lines):\n1. **Unexpected writes**: No demonstrable defects.\n2. **Unsafe file access**: No demonstrable defects.\n3. **Unauthorized Galaxy reads**: No demonstrable defects.\n4. **High-warning suppression**: No demonstrable defects.\n5. **Unvalidated safety evidence**: No demonstrable defects.\n6. **False source attestations**: No demonstrable defects.\n\n### G08 g08/openpilot/sunnypilot/starpilot_models/catalog.py (first 226 lines):\n1. **Unexpected writes**: No demonstrable defects.\n2. **Unsafe file access**: No demonstrable defects.\n3. **Unauthorized Galaxy reads**: No demonstrable defects.\n4. **High-warning suppression**: No demonstrable defects.\n5. **Unvalidated safety evidence**: No demonstrable defects.\n6. **False source attestations**: No demonstrable defects."
+}

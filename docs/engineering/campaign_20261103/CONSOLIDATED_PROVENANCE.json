@@ -1,0 +1,432 @@
+{
+  "schema_version": 1,
+  "source_base": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
+  "mvl_upstream": "376c44b5731b2655e5c2f301b73c9729eb499e91",
+  "consolidated_pre_report_head": "0b6bedd4d1d52224f62c40113a8252394549a887",
+  "source_changes_allowlisted": true,
+  "pre_existing_vehicle_facing_changes": 0,
+  "status": "OFFLINE_HOST_ENGINEERING_PASS_VEHICLE_RELEASE_HOLD",
+  "new_gate_tests": {
+    "g03": {
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    },
+    "g05": {
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0
+    },
+    "g06": {
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0
+    },
+    "g08": {
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    "g09": {
+      "passed": 261,
+      "failed": 0,
+      "skipped": 0
+    },
+    "g10": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "retained_bridge_tests": 51,
+  "combined_tests_passed": 377,
+  "combined_tests_failed": 0,
+  "combined_tests_skipped": 0,
+  "files": [
+    {
+      "path": "docs/engineering/campaign_20261103/CAMPAIGN_MASTER_REPORT.md",
+      "sha256": "523ade4295a206d7f9bc83aba9b5bbb060a8f8691908be7ad59a590b955fd3d9",
+      "bytes": 7403
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/CONSOLIDATED_HOST_REGRESSION.log",
+      "sha256": "313bb6669b172778f5f2945d8127c7d3c6ce00c61f39dbf2aa283ae10ec1c185",
+      "bytes": 500
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/QWEN14B_INDEPENDENT_ADVISORY.json",
+      "sha256": "4fc943e1c5213c289adfdb28580267361bcaf82146ed0ffe43478f665e27d666",
+      "bytes": 1887
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/QWEN3_8B_EMPTY_REVIEW.json",
+      "sha256": "7bfeb853cd500fc0b95f8b2cfd938a1acfdf7cbef9213fb1fe7d31967a21116c",
+      "bytes": 166
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/CODEx_TASK.md",
+      "sha256": "0b0ed83c9a90bbf01a9dc1d9f7006a786749a7fb0e34b7ff302798aaf33ba81a",
+      "bytes": 2269
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/FIELD_INVENTORY.md",
+      "sha256": "006ada5bbec121d157f9fb17416df894de756eb0ace477ade185b93e4aeae760",
+      "bytes": 2401
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/FINAL_HOST_TESTS.log",
+      "sha256": "775b7aa27d0c17f48b3feff20c836f14b6ed8ebcb90ec7e0b76d2a13c579268a",
+      "bytes": 98
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/G03_254_PARAMETER_EVIDENCE.json",
+      "sha256": "87840f35bdceddc1a8a222f49a135017aaff8784ae02161a1deb57db3ae55fc8",
+      "bytes": 217879
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/G03_MESSAGE_IPC_INVENTORY.json",
+      "sha256": "a7224b590aecdfc7df8da02803a180001b3f47fc715c1b458177c226d58de0ba",
+      "bytes": 9893
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/G03_PINNED_CHECKOUT_MESSAGE_FIELDS.json",
+      "sha256": "57cb7b131e4b611f88999dc71bd2fd31e1740f7badf18404bfc79f39a487ed4d",
+      "bytes": 24375
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/G03_PINNED_SOURCE_PROVENANCE.json",
+      "sha256": "afe41c29f3a4feb8ee345e10984ca645476c8bf71142348fc2435ecbef78439e",
+      "bytes": 428
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/GATE_EVIDENCE_MANIFEST.json",
+      "sha256": "d09c1c0282dbc96d87e08dc375703aca3f8026c68365175afc9f5d547726116a",
+      "bytes": 2283
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/GATE_FINAL_STATUS.md",
+      "sha256": "1bff8800b4e433509bc8a8e970f4efa1f0551e30354cf86ae79641a3a1d6d85f",
+      "bytes": 1566
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/INDEPENDENT_CODEX_REVIEW.md",
+      "sha256": "d5e602d8e1d5a967a8ab5e9d4ae91d4a3a6110c34c177f679582c6730659d6ee",
+      "bytes": 1397
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g03/WORKSTREAM_REPORT.md",
+      "sha256": "66298a7e8596bd3069f29ae0e67362d9d2ed6206b63b34cb8b03f4dd078d81d1",
+      "bytes": 3943
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g05/CODEX_FINAL.md",
+      "sha256": "e7c1539565c8159445e8c89446fccf3f8bc7ca91000aa38395b9a1f26c038204",
+      "bytes": 956
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g05/CODEx_TASK.md",
+      "sha256": "6db4b7253d3123fc577cca6601d33c1312866f75d504b8ae204248e866e26219",
+      "bytes": 2338
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g05/FINAL_HOST_TESTS.log",
+      "sha256": "edf3d333fef3a773826ab22829091a2348d9f8a79032da0074fd997d1b9f76d9",
+      "bytes": 99
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g05/GATE_EVIDENCE_MANIFEST.json",
+      "sha256": "228dc87bea8c13d355323fdfd0d79de6d1923214eddb31d536bfb0b4d7e83932",
+      "bytes": 1244
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g05/GATE_FINAL_STATUS.md",
+      "sha256": "8034dce08919670d0fc74376f512ef37d379eadbb4ff4919fc2badff4eaaeebd",
+      "bytes": 1540
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g05/STATUS.md",
+      "sha256": "d4e40a0eeb506a1bec3510a1253ad4e4330b4b13de65456c27e50f523eb4e35e",
+      "bytes": 1680
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/CODEx_TASK.md",
+      "sha256": "21e266a09a4cba24016b64b8c2e1cbac88f764a196fabc32824685a752bd23dc",
+      "bytes": 2251
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/FINAL_HOST_TESTS.log",
+      "sha256": "2f4168c91d5fa59222eee23d952b692459ecaf1c4af01d5fa43f0cd19fb9f9d4",
+      "bytes": 99
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/GALAXY_API_CORE.md",
+      "sha256": "504dfe50421892ab7f1826a2e06face28c84943e7c4eae35fe4451f9b54ac5fc",
+      "bytes": 4782
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/GATE_EVIDENCE_MANIFEST.json",
+      "sha256": "d889a947dc2c3e7097a5b6c16fef1a01c0ea423d7ad74d19f207767bf0e6dffe",
+      "bytes": 1438
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/GATE_FINAL_STATUS.md",
+      "sha256": "77ab9b0204856b8c35a985b171a1c15295595c9c2d98f84f50d720ee494ba445",
+      "bytes": 1531
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/INDEPENDENT_CODEX_REVIEW.md",
+      "sha256": "6f332e6698939f560fe7dc308545c6742ce6e0c98194c4250cfbc55bb0c9a463",
+      "bytes": 1121
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g06/TEST_OUTPUTS.md",
+      "sha256": "cf723ecc2a219fd905e93d97ae5774602dafc3dca64277cd9c84f42cb0eb5cdf",
+      "bytes": 804
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g08/CODEx_TASK.md",
+      "sha256": "c202794a9adfc56f421cf48f7defb31eef05d813c577ea51e16d9f3fbe4fe142",
+      "bytes": 2131
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g08/FINAL_HOST_TESTS.log",
+      "sha256": "0a7e6392c4b22877266f80b2942ad459dbc6bd68012f1441676f5c3771248c4d",
+      "bytes": 99
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g08/GATE_EVIDENCE_MANIFEST.json",
+      "sha256": "f0e57536d2e9a7423283330186405a1b1fd8e34415af91e21e391bd302482253",
+      "bytes": 1261
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g08/GATE_FINAL_STATUS.md",
+      "sha256": "2c6a3165fe8d61090b420ff2e6906aa36172dd6d4d01c6234e99ea7240b2cdf4",
+      "bytes": 1531
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g08/INDEPENDENT_CODEX_REVIEW.md",
+      "sha256": "0d908413fb3a04605279aa7722de9fd65c268e0aeea67c3c4579524084ae85e9",
+      "bytes": 1129
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g08/MODEL_CATALOG_BOUNDARIES.md",
+      "sha256": "17bbe72fb79e052b3435577ffac75a0cada102cae3cef1c80c57fb18db21c4af",
+      "bytes": 3779
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/CODEx_TASK.md",
+      "sha256": "4c222d90c835dfd20083f20bb9b55531ba15233adaaeddb2b5cb231ed63e347b",
+      "bytes": 2187
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/CONTRACT.md",
+      "sha256": "58a39e9e53c3c56ebe316fad5015bc8022b4b5a038be447754fe620ad2dcece6",
+      "bytes": 1630
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/FINAL_HOST_TESTS.log",
+      "sha256": "7b7b4bcdadcb44e73be74598bdde7e52afe251b50269e4e534e0779ea50d6c0a",
+      "bytes": 340
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/G09_FINAL_TESTS.log",
+      "sha256": "a1896e34b3d26e62c7dbfee5198de43d9249a0f99a4ad8fb2cf5569262024c56",
+      "bytes": 340
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/GATE_EVIDENCE_MANIFEST.json",
+      "sha256": "71a981e980b2acc96b5ca06d3f605346460198b7b17124e0e15d98f6ff2ff25d",
+      "bytes": 1814
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/GATE_FINAL_STATUS.md",
+      "sha256": "069a5b856551e1282b0d72983c911ad6184a71dae0b8c1d96215bc1ab6e67606",
+      "bytes": 1556
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/INDEPENDENT_CODEX_REVIEW.md",
+      "sha256": "a8ee8f872d1db0b7f47a41bbed1fb1c22eb659f13c2ccb940278c87a9f1276c9",
+      "bytes": 1288
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/PROOF_BOUNDARIES.md",
+      "sha256": "5838308ae43126e0257295817831299e02b2b859402a750682dfa2b7f4f19ed5",
+      "bytes": 1742
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/README.md",
+      "sha256": "64cac7c8cbf1254ee7fe8eb4ac47d847bb885b9d28e389687c7f2841d9933e06",
+      "bytes": 1892
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/FINAL_HOST_TESTS.log",
+      "sha256": "d69b6f69e04bc0a56bc320b823fe9ffa437ecb7e0a2d05a2ace978766d34d550",
+      "bytes": 98
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/G10_AGNOS_PASSIVE_EVIDENCE.json",
+      "sha256": "cf3f86c53686d5ca75be664c78e53b4d42c70e08144a8418988a24dd2f8987e7",
+      "bytes": 1688
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/G10_AGNOS_PASSIVE_EVIDENCE.log",
+      "sha256": "cf3f86c53686d5ca75be664c78e53b4d42c70e08144a8418988a24dd2f8987e7",
+      "bytes": 1688
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/G10_QUALIFICATION_PREPARATION.md",
+      "sha256": "c9085e35e486579f12402048dae51e717753b94c089d3d436afa9d9b8d2b274a",
+      "bytes": 3824
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/G10_UNIT_TESTS.log",
+      "sha256": "1af40c49f25815cc43199390723eca0ea305a38da96d85981d7ae68d66a97f6f",
+      "bytes": 98
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/GATE_EVIDENCE_MANIFEST.json",
+      "sha256": "c5286ac3b92e48625eae5926e667aa5bc56cb41f8200e47e6547ef7d99f7b654",
+      "bytes": 2875
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/GATE_FINAL_STATUS.md",
+      "sha256": "74fbd2450b6a457541bab9a6b1262d0c8ed589e9990f9fec198c13f1793f834d",
+      "bytes": 1534
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/agnos_passive_check.py",
+      "sha256": "ab5a266ce42cf6575d86ff3e26f205700fed2e6f478462d78377e7a48b68286a",
+      "bytes": 4696
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+      "sha256": "6464a9deb2271ef0ec9bf454fd42c2938a21a76a614589dceb813035441d7a71",
+      "bytes": 2159
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_compat/__init__.py",
+      "sha256": "749f5e44a43f261092c3a042e7347f6783a339f4f87613a0a624ed8ac7a1068b",
+      "bytes": 353
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_compat/__main__.py",
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "bytes": 48
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_compat/cli.py",
+      "sha256": "dac7858677c7dad39a206175e0bd4518a851b300d47a34ca0ebb4ccfffe05336",
+      "bytes": 2410
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_compat/crosswalk.py",
+      "sha256": "c975b8933433a28961fd595d98a6a0667c375db0c54635dc3b20ba65c773a076",
+      "bytes": 7938
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_compat/inventory.py",
+      "sha256": "33d6659f2fc90a0621fbf5d091b0b8c5007a9143e829c53d849a65b278284321",
+      "bytes": 2559
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_compat/tests/test_crosswalk.py",
+      "sha256": "794bdfdc290bfa8eb9245baf812e280b8fdfd14e0d1395cd4abe66bf65f67e0b",
+      "bytes": 4106
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_galaxy/__init__.py",
+      "sha256": "e92d47103f66960bbaa63cabd52b1b28924ba092b2528b8f8b7b560fd0e6e461",
+      "bytes": 407
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_galaxy/core.py",
+      "sha256": "a490a1800977e3c57e162d969bfa35173463e78fc4635779bc6f7a7590fe0a50",
+      "bytes": 7679
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_galaxy/tests/__init__.py",
+      "sha256": "4728c6f9470458e1832ef1472d39327e3ffe7f2fb652dec7f721bcb83c11bca1",
+      "bytes": 42
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_galaxy/tests/test_core.py",
+      "sha256": "3488cdd0f1d3ba6087b65adbede2867a64963d2084b911918ae659a74ba768d4",
+      "bytes": 5415
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_models/__init__.py",
+      "sha256": "bcc42c05c687349fcbca885ac0f3dcadbf21e628d42d25964e68d07993f15310",
+      "bytes": 621
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_models/catalog.py",
+      "sha256": "016d303f0e8c183d1cc11a378bc5a1cc7b10f48360c5573da4327df57f7e5611",
+      "bytes": 8658
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_models/tests/__init__.py",
+      "sha256": "97fd6c663a0a53601b0ff6ba0a44c9ef250061f900cd4ab61cd2a97de3414537",
+      "bytes": 60
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_models/tests/test_catalog.py",
+      "sha256": "286c19d19cb3719b98a57e76b58302e07c92d746d6d900f4336ed1ed95949a89",
+      "bytes": 5399
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_research/__init__.py",
+      "sha256": "f60b11a7269f10dd295f0ef3b47c8da44d0d4fccd9a6b07bea84638f0fa62013",
+      "bytes": 262
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_research/contracts.py",
+      "sha256": "ce6ddf2e55dbe4535c75ca4fa46ead4da1aee53071247ca9d8115a3a778549ca",
+      "bytes": 1367
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_research/engine.py",
+      "sha256": "c8f09b40197e64a21ed4761f903633b7d2aa1382f66f533f94ef7a62e905e5b9",
+      "bytes": 3162
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_research/models.py",
+      "sha256": "b11466c4003c82559811e8696533507137d8b758c8d661f2b8aa44db12de4d1a",
+      "bytes": 4432
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_research/tests/__init__.py",
+      "sha256": "78562f34b2d004d44ac6de80231ab49f8ecf84872543cac1aa4c17a79e8c3818",
+      "bytes": 35
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_research/tests/test_engine.py",
+      "sha256": "9a31e8c65da50ec7c597c46f37311abdb88795a1b307b1e5494eee920dbdfc18",
+      "bytes": 6293
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_views/__init__.py",
+      "sha256": "5ae07cdcf469c3fff31a0a6fd08340bfd20204d0c556e8cc1a7c4be638566784",
+      "bytes": 314
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_views/models.py",
+      "sha256": "0e0c5074219fca22d963355277d0593f8974e3fa99e137fc0d9fd666176a28c1",
+      "bytes": 1308
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_views/presentation.py",
+      "sha256": "f517009ddce0ebf92878f9a46a0717ee545aa15cfe1a195eb54ec80dab00d8f6",
+      "bytes": 5049
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_views/tests/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "openpilot/sunnypilot/starpilot_views/tests/test_presentation.py",
+      "sha256": "c3f65c9a6e9359293cfa43bdd090b8fe30b3eae8fd5dffd93be89b8a203f0e82",
+      "bytes": 3603
+    }
+  ]
+}
