@@ -1,7 +1,9 @@
 import json
+import os
 from pathlib import Path
 import subprocess
 import tempfile
+import time
 import unittest
 
 SCRIPT = Path(__file__).with_name('campaignctl.py')
@@ -23,6 +25,37 @@ class RecoveryTest(unittest.TestCase):
         self.assertEqual(code, 2)
         self.assertEqual(result['pending_operation']['milestone'], 'simulated-unfinished')
         self.assertIn('operation was interrupted or remains in progress', result['problems'])
+
+    def test_run_lease_prevents_overlap_and_unowned_modification(self):
+        with tempfile.TemporaryDirectory() as directory:
+            env = dict(os.environ, CAMPAIGN_LEASE_DIR=str(Path(directory) / 'lease'),
+                       CAMPAIGN_LOCK_FILE=str(Path(directory) / 'command.lock'))
+            first = subprocess.run(['python3', str(SCRIPT), 'claim-run'], env=env, text=True, capture_output=True)
+            self.assertEqual(first.returncode, 0)
+            token = first.stdout.strip()
+            self.assertEqual(subprocess.run(['python3', str(SCRIPT), 'claim-run'], env=env, capture_output=True).returncode, 3)
+            self.assertNotEqual(subprocess.run(['python3', str(SCRIPT), 'locked-run', '--', 'true'], env=env, capture_output=True).returncode, 0)
+            self.assertEqual(subprocess.run(['python3', str(SCRIPT), 'locked-run', '--token', token, '--', 'true'], env=env, capture_output=True).returncode, 0)
+            self.assertEqual(subprocess.run(['python3', str(SCRIPT), 'finish-run', 'wrong'], env=env, capture_output=True).returncode, 3)
+            self.assertEqual(subprocess.run(['python3', str(SCRIPT), 'finish-run', token], env=env, capture_output=True).returncode, 0)
+
+    def test_interrupted_lease_can_be_reclaimed_only_after_expiry(self):
+        with tempfile.TemporaryDirectory() as directory:
+            env = dict(os.environ, CAMPAIGN_LEASE_DIR=str(Path(directory) / 'lease'),
+                       CAMPAIGN_LOCK_FILE=str(Path(directory) / 'command.lock'),
+                       CAMPAIGN_LEASE_TTL_SECONDS='0')
+            first = subprocess.run(['python3', str(SCRIPT), 'claim-run'], env=env, text=True, capture_output=True)
+            self.assertEqual(first.returncode, 0)
+            old_token = first.stdout.strip()
+            self.assertEqual(subprocess.run(['python3', str(SCRIPT), 'claim-run'], env=env, capture_output=True).returncode, 3)
+            time.sleep(0.01)
+            second = subprocess.run(['python3', str(SCRIPT), 'claim-run', '--reclaim-stale'], env=env, text=True, capture_output=True)
+            self.assertEqual(second.returncode, 0)
+            new_token = second.stdout.strip()
+            self.assertNotEqual(old_token, new_token)
+            self.assertEqual(subprocess.run(['python3', str(SCRIPT), 'locked-run', '--token', old_token, '--', 'true'], env=env, capture_output=True).returncode, 3)
+            self.assertEqual(subprocess.run(['python3', str(SCRIPT), 'locked-run', '--token', new_token, '--', 'true'], env=env, capture_output=True).returncode, 0)
+            self.assertEqual(subprocess.run(['python3', str(SCRIPT), 'finish-run', new_token], env=env, capture_output=True).returncode, 0)
 
     def test_checkpoint_drift_is_detected(self):
         state = json.loads(STATE.read_text())
