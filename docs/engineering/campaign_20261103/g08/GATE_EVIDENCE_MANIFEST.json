@@ -1,0 +1,36 @@
+{
+  "gate": "g08",
+  "source_base": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
+  "scope_status": "HOST_CATALOG_VALIDATOR_PASS; MODEL_RUNNER_HOLD",
+  "host_tests_passed": 14,
+  "host_tests_failed": 0,
+  "host_tests_skipped": 0,
+  "vehicle_release": "HOLD",
+  "tracked_evidence": [
+    {
+      "path": "docs/engineering/campaign_20261103/g08/CODEx_TASK.md",
+      "sha256": "c202794a9adfc56f421cf48f7defb31eef05d813c577ea51e16d9f3fbe4fe142",
+      "bytes": 2131
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g08/FINAL_HOST_TESTS.log",
+      "sha256": "0a7e6392c4b22877266f80b2942ad459dbc6bd68012f1441676f5c3771248c4d",
+      "bytes": 99
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g08/GATE_FINAL_STATUS.md",
+      "sha256": "2c6a3165fe8d61090b420ff2e6906aa36172dd6d4d01c6234e99ea7240b2cdf4",
+      "bytes": 1531
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g08/INDEPENDENT_CODEX_REVIEW.md",
+      "sha256": "0d908413fb3a04605279aa7722de9fd65c268e0aeea67c3c4579524084ae85e9",
+      "bytes": 1129
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g08/MODEL_CATALOG_BOUNDARIES.md",
+      "sha256": "17bbe72fb79e052b3435577ffac75a0cada102cae3cef1c80c57fb18db21c4af",
+      "bytes": 3779
+    }
+  ]
+}
