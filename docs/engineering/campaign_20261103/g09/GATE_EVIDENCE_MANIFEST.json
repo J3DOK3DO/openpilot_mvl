@@ -1,0 +1,51 @@
+{
+  "gate": "g09",
+  "source_base": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
+  "scope_status": "SYNTHETIC_RESEARCH_PASS; VEHICLE_CONTROL_HOLD",
+  "host_tests_passed": 261,
+  "host_tests_failed": 0,
+  "host_tests_skipped": 0,
+  "vehicle_release": "HOLD",
+  "tracked_evidence": [
+    {
+      "path": "docs/engineering/campaign_20261103/g09/CODEx_TASK.md",
+      "sha256": "4c222d90c835dfd20083f20bb9b55531ba15233adaaeddb2b5cb231ed63e347b",
+      "bytes": 2187
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/CONTRACT.md",
+      "sha256": "58a39e9e53c3c56ebe316fad5015bc8022b4b5a038be447754fe620ad2dcece6",
+      "bytes": 1630
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/FINAL_HOST_TESTS.log",
+      "sha256": "7b7b4bcdadcb44e73be74598bdde7e52afe251b50269e4e534e0779ea50d6c0a",
+      "bytes": 340
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/G09_FINAL_TESTS.log",
+      "sha256": "a1896e34b3d26e62c7dbfee5198de43d9249a0f99a4ad8fb2cf5569262024c56",
+      "bytes": 340
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/GATE_FINAL_STATUS.md",
+      "sha256": "069a5b856551e1282b0d72983c911ad6184a71dae0b8c1d96215bc1ab6e67606",
+      "bytes": 1556
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/INDEPENDENT_CODEX_REVIEW.md",
+      "sha256": "a8ee8f872d1db0b7f47a41bbed1fb1c22eb659f13c2ccb940278c87a9f1276c9",
+      "bytes": 1288
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/PROOF_BOUNDARIES.md",
+      "sha256": "5838308ae43126e0257295817831299e02b2b859402a750682dfa2b7f4f19ed5",
+      "bytes": 1742
+    },
+    {
+      "path": "docs/engineering/campaign_20261103/g09/README.md",
+      "sha256": "64cac7c8cbf1254ee7fe8eb4ac47d847bb885b9d28e389687c7f2841d9933e06",
+      "bytes": 1892
+    }
+  ]
+}
