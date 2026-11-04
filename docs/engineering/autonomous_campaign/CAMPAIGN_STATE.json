@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-04T07:09:33.423135+00:00",
-  "current_stage": "G10_partial_native_build_and_bench_readiness",
+  "updated_at_utc": "2026-11-04T16:11:19.362998+00:00",
+  "current_stage": "COMMA4_NON_ACTUATING_MVL_tool_inventory_and_release_preparation",
   "release_decision": "HOLD",
-  "branch": "codex/mvl-g10-continuation",
+  "branch": "codex/mvl-comma4-release-rc-20261104",
   "checkout_mode": "branch",
-  "head_commit": "7bcb88f69c4cb7a0ea817545216c6783e5fa7520",
+  "head_commit": "e5909a36765105ad4a3bfe6407ffb3ed71ea1d5e",
   "last_verified_result": {
     "decision": "PASS",
     "scope": "isolated x86 native renderer, G03 local capnp/msgq IPC, offline host regression and G08 NUL fail-closed fix; representative AGNOS 19.8.1 AArch64 libparams build only",
@@ -14,40 +14,39 @@
     "skipped": 0,
     "record": "TEST_RESULTS.json milestone_runs[-1]"
   },
-  "next_action": "Obtain isolated Qualcomm-capable full-product build and physical C3/C4 bench evidence; keep target, Panda, Honda OEM, protected recovery and deployment gates HOLD.",
+  "next_action": "Audit MVL and Dom tools, stock model artifact provenance and G05/G06 integration; build safe release tooling; preserve physical comma4 test as pending.",
   "source_of_truth": "docs/engineering/autonomous_campaign/CAMPAIGN_STATE.json, TEST_RESULTS.json, MASTER_GATE_TRACKER.md and G10_BUILD_EVIDENCE_20261104.json; ../campaign_20261103 is historical baseline only",
   "authoritative_baseline_sha": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
-    "branch": "codex/mvl-g10-continuation",
-    "head": "7bcb88f69c4cb7a0ea817545216c6783e5fa7520",
-    "worktree": "/home/jdkd/.codex/worktrees/mvl-g10-continuation",
-    "owner": "manual isolated continuation; exclusive lease; PR #1 remains draft and unmerged"
+    "branch": "codex/mvl-comma4-release-rc-20261104",
+    "head": "e5909a36765105ad4a3bfe6407ffb3ed71ea1d5e",
+    "worktree": "/home/jdkd/.codex/worktrees/mvl-comma4-release-rc-20261104",
+    "owner": "manual isolated comma4 release campaign; exclusive campaign lease"
   },
-  "current_gate": "G10_NATIVE_LIBRARY_PASS_FULL_PRODUCT_HOLD",
-  "last_successful_milestone": "At exact source 162391f: 401 combined host tests, eight G03 IPC paths, four recovery tests and pinned schema verifier PASS; AGNOS comma_arm64 libparams ELF built, dependencies resolved and dlopen PASS. Independent exact-commit offline review PASS. Full cold product/device/release HOLD.",
+  "current_gate": "PRODUCT_BUILD_INCOMPLETE",
+  "last_successful_milestone": "Inherited exact tested source 162391f: 401 host/native, eight G03 IPC, four recovery tests PASS; AGNOS AArch64 libparams library only. New release-profile worktree is clean at e5909a3; no new source test PASS claimed.",
   "tests_verified_at_commit": "162391f22567774166a6bd02024a65d969f63b59",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "External prerequisite: qualified Qualcomm model-build runtime or isolated C3/C4 bench with protected recovery. No vehicle installation or activation.",
+  "next_actionable_milestone": "Complete source/tool compatibility inventory and bounded G05 freshness fix, then full host regressions and exact-commit review. Continue model build route and passive diagnostics independently.",
   "current_blockers": [
-    "Full cold product build requires Qualcomm model/warp compilation runtime or qualified target hardware; source-supported partial build does not promote TARGET_BUILD_READY",
-    "C3/C4 native UI startup, timing, warning priority, fault fallback and protected recovery have no device evidence",
-    "G06 live transport/auth and device resource security have no target evidence",
-    "G08 model runner/AGNOS execution has no target evidence",
-    "All 254 quarantined Params keys remain DENY pending source-backed review",
-    "Panda/Honda OEM physical safety and deployment approval remain unverified",
-    "Prior scheduled invocation failure cause remains unresolved in available Codex logs"
+    "Full product build incomplete: Qualcomm stock model compilation/artifact contract and complete package unresolved",
+    "Comma 4 native UI, resource, IPC, network and protected recovery tests not executed on a device",
+    "G05 production status supplier absent; G06 production transport absent",
+    "All 254 quarantined Params keys remain DENY",
+    "Installation/activation requires separate authorization and known-good backup/restore readiness"
   ],
   "approval_requirements": [
-    "Vehicle installation or activation requires all safety and hardware gates and explicit release approval.",
-    "No security, Panda, Honda OEM, hardware, or protected-recovery gate may be bypassed."
+    "Candidate installation or activation on comma 4 requires all applicable software/build prerequisites, protected backup/restore readiness, and separate user authorization.",
+    "G11 external CAN-FD/HIL and G12 Honda dynamic OEM tests are excluded from this non-actuating profile only while no new active control, Panda, ECU or CAN-transmit behavior is included."
   ],
   "release_qualification": {
-    "status": "HOLD",
-    "scope": "Offline host/native candidate plus representative AGNOS ARM64 library only. Full cold product, TARGET_BUILD_READY, DEVICE_QUALIFIED, VEHICLE_QUALIFIED and DEPLOYMENT_APPROVED HOLD."
+    "status": "PRODUCT_BUILD_INCOMPLETE",
+    "profile": "COMMA4_NON_ACTUATING_MVL",
+    "scope": "Offline engineering candidate; full installable product missing and physical comma4 tests not executed. No vehicle-control or OEM safety qualification claimed."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded head is reviewed docs checkpoint 7bcb88f; one docs-only publication record child is permitted. Exact tests remain at source 162391f; no source change inherits them.",
+  "checkpoint_rule": "Recorded head is exact published parent e5909a3; one docs-only initialization descendant is permitted. Exact prior tests remain at 162391f until source changes and reruns.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -71,6 +70,15 @@
     "new_engineering_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-g10-continuation",
     "new_engineering_remote_verified_at_utc": "2026-11-04T07:09:33.423135+00:00",
     "new_engineering_verified_source_sha": "162391f22567774166a6bd02024a65d969f63b59",
-    "new_engineering_method": "Authorized Windows Git helper fetched SHA-verified bundle and non-force pushed new branch; GitHub compare and authenticated ls-remote verified 7bcb88f."
+    "new_engineering_method": "Authorized Windows Git helper fetched SHA-verified bundle and non-force pushed new branch; GitHub compare and authenticated ls-remote verified 7bcb88f.",
+    "new_release_branch": "codex/mvl-comma4-release-rc-20261104",
+    "new_release_status": "LOCAL_UNPUBLISHED"
+  },
+  "release_profile": "COMMA4_NON_ACTUATING_MVL",
+  "release_classification": "PRODUCT_BUILD_INCOMPLETE",
+  "profile_exclusions": {
+    "G11_external_CAN_FD_HIL": "NOT_APPLICABLE_TO_COMMA4_PROFILE",
+    "G12_Honda_dynamic_OEM": "NOT_APPLICABLE_TO_COMMA4_PROFILE",
+    "condition": "No new active vehicle-control, Panda safety, ECU or CAN transmit behavior enters the profile; exclusion is not a safety PASS."
   }
 }
