@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-03T17:29:44.237140Z",
-  "current_stage": "reviewed_offline_integration_published",
+  "updated_at_utc": "2026-11-04T06:31:19.053488Z",
+  "current_stage": "G10_environment_reconstruction",
   "release_decision": "HOLD",
-  "branch": "codex/mvl-starpilot-manual",
+  "branch": "codex/mvl-g10-continuation",
   "checkout_mode": "branch",
-  "head_commit": "56ba8140cb0f371d73233ec1615c78e5da6abfd0",
+  "head_commit": "b070247da792f216a558e250078caf62d201d97e",
   "last_verified_result": {
     "decision": "PASS",
     "scope": "isolated x86 native renderer, local capnp/msgq IPC and offline host regression; no device evidence",
@@ -14,21 +14,21 @@
     "skipped": 0,
     "record": "TEST_RESULTS.json milestone_runs[-1]"
   },
-  "next_action": "Preserve G10 and physical safety HOLDs; publish reviewed source branch and gather target/device evidence.",
+  "next_action": "Inspect disk and cached ARM64 environment; use separate build storage without removing pinned sources or evidence.",
   "source_of_truth": "../campaign_20261103/CAMPAIGN_MASTER_REPORT.md",
   "authoritative_baseline_sha": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
-    "branch": "codex/mvl-starpilot-manual",
-    "head": "56ba8140cb0f371d73233ec1615c78e5da6abfd0",
-    "worktree": "/home/jdkd/.codex/worktrees/mvl-starpilot-manual-campaign",
-    "owner": "manual campaign consolidation; original published worktree leased but unchanged"
+    "branch": "codex/mvl-g10-continuation",
+    "head": "b070247da792f216a558e250078caf62d201d97e",
+    "worktree": "/home/jdkd/.codex/worktrees/mvl-g10-continuation",
+    "owner": "isolated manual continuation; PR #1 remains draft; campaign lease held on source checkout"
   },
-  "current_gate": "PUBLICATION_COMPLETE_TARGET_AND_VEHICLE_QUALIFICATION_HOLD",
+  "current_gate": "G10_BUILD_PREREQUISITES_HOLD_PENDING_VERIFICATION",
   "last_successful_milestone": "Reviewed offline branch published at 56ba8140. Persisted pinned native host setup and reran 400 combined tests plus G03 local IPC PASS; tested source remains 6ea2fc997. Vehicle release HOLD.",
   "tests_verified_at_commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Provision at least 15 GiB dedicated build space and pinned AArch64/AGNOS toolchain and sysroot, then attempt full G10 cold build in isolated environment; separately collect C3/C4 device, Galaxy security, Panda, OEM and protected rollback evidence.",
+  "next_actionable_milestone": "Verify pinned AGNOS 19.8.1 and cached AArch64 builder ABI, reconstruct isolated dependencies, then run cold product build only if prerequisites pass; continue G05/G06/G08 bench readiness independently.",
   "current_blockers": [
     "G10 cold native build: 13.55 GB free below 15 GiB threshold; target toolchain/sysroot/container unavailable",
     "Native C3/C4 device rendering and IPC timing unverified",
@@ -46,7 +46,7 @@
     "scope": "Offline host native integration candidate only; TARGET_BUILD_READY, DEVICE_QUALIFIED, VEHICLE_QUALIFIED and DEPLOYMENT_APPROVED HOLD."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded head is prior docs-only checkpoint; one descendant commit limited to docs/engineering/autonomous_campaign is an allowed state update. tests_verified_at_commit remains the last exact source test SHA.",
+  "checkpoint_rule": "Recorded head is the exact PR #1 parent; one docs-only descendant commit is an allowed new-branch recovery checkpoint. tests_verified_at_commit remains last exact tested source SHA until rerun.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
