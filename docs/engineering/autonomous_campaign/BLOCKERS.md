@@ -1,6 +1,6 @@
 # Blockers and dependencies
 
-Updated 2026-11-03. These are **HOLD** gates, not observed failures of the current host suite.
+Updated 2026-11-04. These are **HOLD** gates, not observed failures of the current host suite.
 
 | Blocker | Remediation attempted or evidence gathered | Dependency to clear |
 | --- | --- | --- |
@@ -33,3 +33,9 @@ N2 G10 preflight: AGNOS 19.8.1 reference hash matched; extracted libc is AArch64
 N4 opt-in read-only Galaxy model metadata passed independent review after direct-catalog validation and bounded-serialization fixes. Live Galaxy transport and model execution remain HOLD.
 
 Previous scheduled invocation failure: available Codex app-server and SQLite logs did not expose a scheduler execution record or attributable failure cause. Treat cause as unresolved; manual campaign continued. Ubuntu HTTPS DNS/credentials remain unavailable in this sandbox; publication requires authorized helper or connected GitHub path.
+
+## 2026-11-04 G10 continuation
+
+Disk capacity rose above the 15 GiB preflight threshold (root 18,244,243,456 bytes; separate build volume 41,109,618,688 bytes before extraction). No pinned source, historical evidence, AGNOS reference or backup was deleted. The AGNOS 19.8.1 rootfs copy and its own AArch64 Python/Clang/capnpc dependencies ran under network-disabled emulation; the full SCons graph dry-run passed. Initial native library build failed only because `capnpc` was omitted from PATH, then passed using the image venv. A representative `libparams_c.so` is ARM64, resolves on AGNOS and loads; see `G10_BUILD_EVIDENCE_20261104.json`. Full cold product build remains HOLD because modeld selects Qualcomm GPU model/warp compilation and this isolated builder has no target GPU/runtime. Clean PR checkout ONNX blobs are LFS pointers; audited blobs match both pointer hashes but are external to the checkout.
+
+A copied build submodule made the first 162391f host regression report 400 PASS/1 FAIL because the host crosswalk test expects no local car schema. A clean exact-commit host checkout resolved this setup mismatch: 401 PASS, 0 FAIL, 8 G03 IPC paths, 4 recovery tests. The G08 NUL-path exception was reproduced, fixed and covered by a regression. G05 physical bench plan is ready but C3/C4 UI, G06 live security, G08 runner, protected rollback, Panda, Honda OEM and deployment approval have no physical evidence.

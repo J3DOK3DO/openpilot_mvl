@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-04T07:03:45.948709+00:00",
+  "classification": "OFFLINE_ENGINEERING_ONLY",
+  "installable": false,
+  "deployment_approved": false,
+  "pr_parent": "b070247da792f216a558e250078caf62d201d97e",
+  "tested_source_commit": "162391f22567774166a6bd02024a65d969f63b59",
+  "branch": "codex/mvl-g10-continuation",
+  "new_source_paths": {
+    "openpilot/sunnypilot/starpilot_models/catalog.py": "4ec70a2a3fdf55559cb5162ceb7417eaa8c19db2f2ab47af5bac9e87f3cf26bc",
+    "openpilot/sunnypilot/starpilot_models/tests/test_catalog.py": "6c605ba5f9a5ccee31bebd6b5298de97d7c79e34be2326d9d630715b03e596fb"
+  },
+  "evidence_files": {
+    "G10_BUILD_EVIDENCE_20261104.json": "3dc6fe0c3b72aac131a637a48ef6459f9a4bcd26be54c52781e1f2f440ef9539",
+    "G06_G08_READONLY_EVIDENCE.json": "2bdba1cf8283fd954946106002264661bb3266f0327041e6395ee573fd3500c2",
+    "G05_COMMA_BENCH_PLAN.md": "9bf89c583188b1179e2502bc141981ff2fa4a98f6e60ea16664ed4631cc510ca"
+  },
+  "binary_artifact": {
+    "path": "/mnt/commadrive/MVL_G10_BUILD_ARTIFACTS/libparams_c_162391f.so",
+    "sha256": "2594c615b0c97bd610ccc32606077d3fef9b8dc1e273662df9df28ee3ce0da8c",
+    "scope": "representative AGNOS AArch64 library; no product package"
+  },
+  "verified_host_tests": {
+    "passed": 401,
+    "failed": 0,
+    "skipped": 0,
+    "commit": "162391f22567774166a6bd02024a65d969f63b59"
+  },
+  "holds": [
+    "full cold product Qualcomm model build",
+    "C3/C4 bench startup/timing/warnings/fallback",
+    "G06 live transport security",
+    "G08 target runner",
+    "Panda safety",
+    "Honda OEM stock ACC and FCW/CMBS/AEB",
+    "protected recovery",
+    "device and deployment approval"
+  ]
+}

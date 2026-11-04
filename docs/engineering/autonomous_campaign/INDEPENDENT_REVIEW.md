@@ -2,7 +2,7 @@
 
 The prior G03/G05/G06/G08/G09/G10 source reviews are retained under `../campaign_20261103/g*/INDEPENDENT_CODEX_REVIEW.md`. They do not certify native device behavior.
 
-Current background branch: no new material source implementation has yet been submitted for independent review. The G06 transport contract is a design artifact; any adapter implementation requires independent security review before gate promotion.
+The G06 transport contract remains a design artifact; any adapter implementation requires independent security review before gate promotion. The latest exact-source review is recorded below.
 
 ## G05 read-only architecture assessment, 2026-11-03
 
@@ -19,3 +19,10 @@ Initial verdict: NEEDS FIX. The verifier searched whole schema files and trusted
 ## Final source and recovery boundary review
 
 Independent reviewer confirmed the branch diff adds only the offline G05 guard and tests; no Honda/Panda/control/manager/native UI registration changes. It found a per-command lock gap and stale release/recovery prose. The lock was replaced by a persistent token lease with atomic claim/command/finish serialization, heartbeat, stale-token replacement and interrupted-run tests; recovery prose and test count were corrected. The current source boundary is acceptable for offline engineering review. This is not native UI, target, device, OEM safety or deployment approval.
+
+## G10 continuation exact-source review, 2026-11-04
+
+An independent agent inspected exact commit `162391f22567774166a6bd02024a65d969f63b59` against PR #1 head `b070247da792f216a558e250078caf62d201d97e`. Verdict: **PASS for narrow offline scope**. The source diff fixes only the G08 actual-NUL path guard and its regression. The committed G05 bench plan and G10 environment document retain full-product, device, Panda, Honda OEM, protected-recovery and deployment HOLD decisions. No control, Panda, Honda OEM, startup or live transport source changed. The reviewer ran 15 model catalog tests, all PASS, and confirmed no production `GalaxyHandler` registration or model runner. Later documentation evidence in the following checkpoint is outside this exact-source verdict; it records the 401-test and native ABI results separately. No actionable defect was reported.
+
+Final docs-checkpoint review found a G06/G08 count mismatch: 38 was retained from the pre-fix run while the exact 162391f suite has 39. A clean exact-commit focused rerun passed 39/39; the evidence count and manifest hash were corrected before publication. The G10 document status was also updated from in-progress to completed representative library. The reviewer otherwise found source/recovery coherence and unchanged release HOLDs.
+The reviewer also identified an outdated `source_of_truth` link to the historical 377-test report. Recovery now explicitly treats this autonomous-campaign directory as current and the older report as historical. The G06/G08 39-test focused count is recorded in a separate combined-test object, avoiding attribution to G06 alone.

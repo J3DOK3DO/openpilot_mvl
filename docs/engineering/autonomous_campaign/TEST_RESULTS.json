@@ -172,11 +172,43 @@
       },
       "g03_ipc": "PASS 8 schema paths; 254 Params DENY",
       "limits": "host only; no target/device release"
+    },
+    {
+      "milestone": "G10 isolated AGNOS 19.8.1 ARM64 native library and G08 NUL-path fail-closed fix; G05 bench and G06/G08 read-only qualification",
+      "commit": "162391f22567774166a6bd02024a65d969f63b59",
+      "verified_at_utc": "2026-11-04T07:01:57.237828+00:00",
+      "host_checkout": "/tmp/mvl-g10-host-check (clean exact-commit detached checkout; no copied build submodules)",
+      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+      "outcomes": {
+        "passed": 401,
+        "failed": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "g03_ipc_command": "python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
+      "g03_ipc_exit_code": 0,
+      "g03_ipc_paths": 8,
+      "params_denied": 254,
+      "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
+      "schema_exit_code": 0,
+      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
+      "recovery_passed": 4,
+      "temporary_host_library_symlink_removed": true,
+      "initial_build_worktree_host_attempt": {
+        "outcomes": {
+          "passed": 400,
+          "failed": 1
+        },
+        "cause": "Copied opendbc submodule made local car schema available; crosswalk test intentionally expects absent local schema in this host scope. Clean exact-commit checkout passed 401."
+      },
+      "native_build_evidence": "G10_BUILD_EVIDENCE_20261104.json",
+      "independent_exact_commit_review": "PASS for narrow offline scope at 162391f; full product, device and release HOLD",
+      "limits": "No full cold product build, target GPU, device boot, live transport, Panda, OEM or protected rollback qualification"
     }
   ],
-  "last_verified_commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
+  "last_verified_commit": "162391f22567774166a6bd02024a65d969f63b59",
   "last_verified_outcomes": {
-    "passed": 400,
+    "passed": 401,
     "failed": 0,
     "skipped": 0
   },

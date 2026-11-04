@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-04T07:00:40.332137+00:00",
+  "repository": "J3DOK3DO/openpilot_mvl",
+  "branch": "codex/mvl-g10-continuation",
+  "pr_parent": "b070247da792f216a558e250078caf62d201d97e",
+  "source_commit": "162391f22567774166a6bd02024a65d969f63b59",
+  "agnos": {
+    "version": "19.8.1",
+    "reference_image": "/home/jdkd/AGNOS_20261014/agnos_system.ext4.img",
+    "reference_sha256": "98e15de07c39a19b5fa17c96a67e66d4362f9ebaf7827b640f4127e3b6417da8",
+    "extracted_copy": "/mnt/commadrive/MVL_G10_AGNOS_19_8_1_ROOTFS",
+    "reference_modified": false,
+    "libc_sha256": "0f1905dc27dbc6715875c70527bc8da846a10084c9c483e9d8ff76dce8d69d0e"
+  },
+  "builder": {
+    "image": "starpilot-larch64-builder:latest",
+    "image_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+    "platform": "linux/arm64",
+    "network": "none",
+    "rootfs_mount": "read-only",
+    "python": "AGNOS /usr/local/venv Python 3.12.3",
+    "compiler": "AGNOS Ubuntu clang 18.1.3",
+    "capnp": "AGNOS capnpc 1.0.1",
+    "sconstruct_arch": "comma_arm64 via aarch64 uname and /AGNOS marker",
+    "flags": [
+      "-D__COMMA_HARDWARE__",
+      "-mcpu=cortex-a57"
+    ]
+  },
+  "disk": {
+    "root_available_before_bytes": 18244243456,
+    "build_volume_available_before_bytes": 41109618688,
+    "cleanup": "No pinned source, historical evidence, AGNOS reference, or backup deleted; separate /mnt build cache and extracted rootfs."
+  },
+  "preflight": {
+    "command": "chroot /agnos /usr/bin/env PATH=/usr/local/venv/bin:/usr/bin:/bin /bin/sh -c \"cd /src && python3 -m SCons -n --minimal cache_dir=/build_cache\"",
+    "exit_code": 0,
+    "result": "full minimal product graph evaluated; not a compiled product"
+  },
+  "initial_target_build": {
+    "target": "openpilot/common/libparams_c.so",
+    "command": "/usr/local/venv/bin/python3 -m SCons -j4 --minimal cache_dir=/build_cache openpilot/common/libparams_c.so",
+    "exit_code": 0,
+    "result": "native AArch64 library built",
+    "initial_checkout_head": "2a89e4c4c3507f3dc0af973831d32556c94721ac",
+    "initial_dirty_paths": "G08 NUL fix/test and campaign docs; no C++ build inputs changed",
+    "first_failure": "capnpc not found with PATH=/usr/bin:/bin; resolved by using AGNOS own /usr/local/venv/bin"
+  },
+  "exact_commit_recheck": {
+    "commit": "162391f22567774166a6bd02024a65d969f63b59",
+    "command": "git rev-parse HEAD && /usr/local/venv/bin/python3 -m SCons -j4 --minimal cache_dir=/build_cache openpilot/common/libparams_c.so",
+    "exit_code": 0,
+    "result": "up to date; no Git provenance warnings with read-only Git metadata and alternate mounts",
+    "log": "/tmp/mvl_g10_exact_build_clean.log"
+  },
+  "binary": {
+    "path": "openpilot/common/libparams_c.so",
+    "preserved_path": "/mnt/commadrive/MVL_G10_BUILD_ARTIFACTS/libparams_c_162391f.so",
+    "sha256": "2594c615b0c97bd610ccc32606077d3fef9b8dc1e273662df9df28ee3ce0da8c",
+    "size_bytes": 3484104,
+    "elf_class": "ELF64",
+    "elf_type": "DYN",
+    "machine": "AArch64",
+    "build_id": "c1e03bfe2068ccf9d5960b248e01a299b0a59f38",
+    "needed": [
+      "libstdc++.so.6",
+      "libgcc_s.so.1",
+      "libc.so.6"
+    ],
+    "runpath": "/usr/local/venv/lib/python3.12/site-packages/ffmpeg/install/lib",
+    "agnos_ldd_resolved": [
+      "libstdc++.so.6",
+      "libgcc_s.so.1",
+      "libc.so.6",
+      "libm.so.6",
+      "ld-linux-aarch64.so.1"
+    ],
+    "agnos_ctypes_dlopen": "PASS"
+  },
+  "full_cold_product_build": {
+    "decision": "HOLD_PREREQUISITES",
+    "attempted": false,
+    "reasons": [
+      "model SConscript selects DEV=QCOM model and warp compilation",
+      "isolated builder has no Qualcomm GPU/runtime",
+      "LFS ONNX pointers in clean checkout require verified external blobs before full build"
+    ],
+    "skip_tinygrad_compile": "Partial build switch exists but cannot qualify a full cold product build"
+  },
+  "target_build_ready": "HOLD",
+  "device_qualified": "HOLD",
+  "deployment_approved": "HOLD"
+}

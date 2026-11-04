@@ -20,5 +20,7 @@
     "target_artifact_generated": false
   },
   "decision": "HOLD",
-  "blocker": "AArch64 compiler not on PATH; target dependencies and physical device not qualified."
+  "blocker": "AArch64 compiler not on PATH; target dependencies and physical device not qualified.",
+  "latest_target_probe": "G10_BUILD_EVIDENCE_20261104.json",
+  "historical_record_note": "Original 2026-11-03 preflight retained unchanged; see latest_target_probe for subsequent isolated AGNOS build result."
 }
