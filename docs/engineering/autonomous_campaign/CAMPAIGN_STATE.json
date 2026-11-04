@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-04T16:23:12.443198+00:00",
+  "updated_at_utc": "2026-11-04T16:25:09.173065+00:00",
   "current_stage": "COMMA4_NON_ACTUATING_MVL_offline_integration_verified",
   "release_decision": "HOLD",
   "branch": "codex/mvl-comma4-release-rc-20261104",
   "checkout_mode": "branch",
-  "head_commit": "feee77a81dbefe4655c5d60c459362005e8e588d",
+  "head_commit": "c2330174cde34ad1a5d1bd776839864eedd3de83",
   "last_verified_result": {
     "decision": "PASS_HOST_ONLY",
     "scope": "isolated native host renderer, G03 local IPC, G05 freshness, G06 opt-in local transport, G08 catalog, G09 synthetic, model/source preflight tools and passive diagnostics",
@@ -20,7 +20,7 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-comma4-release-rc-20261104",
-    "head": "feee77a81dbefe4655c5d60c459362005e8e588d",
+    "head": "c2330174cde34ad1a5d1bd776839864eedd3de83",
     "worktree": "/home/jdkd/.codex/worktrees/mvl-comma4-release-rc-20261104",
     "owner": "manual isolated comma4 release campaign; exclusive campaign lease"
   },
@@ -46,7 +46,7 @@
     "scope": "Offline source candidate only; full installable product and physical comma 4 tests absent. No vehicle-control or OEM safety qualification."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded source commit feee77a passed exact tests; one docs-only campaign checkpoint descendant is permitted. Reconcile any further SHA drift.",
+  "checkpoint_rule": "Recorded published docs checkpoint c233017 is one descendant of exact tested source feee77a; one following docs-only publication record is permitted. Further drift needs reconciliation.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -72,7 +72,12 @@
     "new_engineering_verified_source_sha": "162391f22567774166a6bd02024a65d969f63b59",
     "new_engineering_method": "Authorized Windows Git helper fetched SHA-verified bundle and non-force pushed new branch; GitHub compare and authenticated ls-remote verified 7bcb88f.",
     "new_release_branch": "codex/mvl-comma4-release-rc-20261104",
-    "new_release_status": "LOCAL_REVIEWED_UNPUBLISHED"
+    "new_release_status": "PUBLISHED_VERIFIED",
+    "new_release_head": "c2330174cde34ad1a5d1bd776839864eedd3de83",
+    "new_release_verified_source_sha": "feee77a81dbefe4655c5d60c459362005e8e588d",
+    "new_release_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-comma4-release-rc-20261104",
+    "new_release_verified_at_utc": "2026-11-04T16:25:09.173065+00:00",
+    "new_release_method": "SHA-verified Git bundle transferred to authorized Windows Git helper; non-force push and authenticated ls-remote verified exact ref. PR #1 unchanged."
   },
   "release_profile": "COMMA4_NON_ACTUATING_MVL",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE",

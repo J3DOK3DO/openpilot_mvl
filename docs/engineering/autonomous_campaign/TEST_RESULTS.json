@@ -252,6 +252,15 @@
       "remote_ref_verified": true,
       "method": "Windows helper non-force push; GitHub compare and authenticated ls-remote",
       "new_test_outcome": "not_rerun_docs_only"
+    },
+    {
+      "published_commit": "c2330174cde34ad1a5d1bd776839864eedd3de83",
+      "tested_source_commit": "feee77a81dbefe4655c5d60c459362005e8e588d",
+      "branch": "codex/mvl-comma4-release-rc-20261104",
+      "remote_ref_verified": true,
+      "method": "SHA-verified bundle via authorized Windows helper; non-force push; authenticated ls-remote",
+      "new_test_outcome": "not_rerun_docs_only",
+      "classification": "PRODUCT_BUILD_INCOMPLETE"
     }
   ]
 }
