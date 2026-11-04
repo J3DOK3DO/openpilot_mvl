@@ -33,3 +33,22 @@ No stage is marked FAIL in the current campaign evidence. An unverified stage re
 | Comma 4 device qualification | NOT_TESTED | No physical candidate install, startup, thermal, IPC, security or protected rollback result. |
 
 The earlier general vehicle-release HOLD rows in the historical tracker apply to an actuating profile, not as G11/G12 acceptance criteria for this restricted non-actuating profile. See `COMMA4_RELEASE_PROFILE.md`.
+
+## Isolated comma 4 release continuation at `feee77a81dbefe4655c5d60c459362005e8e588d`
+
+| Stage | Decision | Exact evidence and remaining criterion |
+| --- | --- | --- |
+| G03 local IPC and Params | PASS_HOST; HOLD_DEVICE | Eight pinned capnp/msgq paths and crosswalk byte comparison passed. All 254 quarantined Params keys remain DENY. |
+| G05 native UI | PASS_HOST; HOLD_DEVICE | Monotonic stale/future supplier snapshot fix integrated. Combined native host suite passed; comma 4 renderer/timing/fallback remains NOT_TESTED. |
+| G06 local transport | PASS_HOST_PROTOTYPE; HOLD_DEVICE_SECURITY | Explicit opt-in, owner-private Unix socket, same-UID check and negative request tests passed. Independent review found a socket cleanup race; fixed with inode ownership check and regression. No production registration or target qualification. |
+| G08 stock metadata | PASS_HOST; HOLD_TARGET | Read-only catalog and hashes retained. No model selection or inference. |
+| G09 offline research | PASS_SYNTHETIC; HOLD_CONTROL | No active actuation admitted to this release profile. |
+| G10 complete product | HOLD_PREREQUISITES | Seven submodules absent and 286 LFS pointers unhydrated in isolated checkout; six exact-source QCOM outputs absent. Existing representative ARM64 library evidence is inherited, not a full product. |
+| Passive Honda diagnostics | PASS_HOST_TOOL; SUPPLEMENTAL_ONLY | Five bounded collector tests passed. No ACC/OEM safety inference or release gate promotion. |
+| Combined software regressions | PASS_HOST | Exact results recorded in TEST_RESULTS.json for this source commit. |
+| Comma 4 physical/recovery | NOT_TESTED | Twelve manual checks documented in `COMMA4_DEVICE_TEST_PLAN.md`; no device or installation used. |
+| G11/G12 | NOT_APPLICABLE_TO_COMMA4_PROFILE | Conditional on no new control/Panda/ECU/CAN-transmit changes. This is not a safety PASS. |
+
+Release classification remains **PRODUCT_BUILD_INCOMPLETE** and decision **HOLD**.
+
+Independent re-review at `feee77a` found the G06 failed-bind cleanup defect fixed and no additional concrete host-scope security defect. The separate reviewer environment denied Unix socket binding (`EPERM`), so its one passing simulated-race regression supplements the complete 442-test normal-host run; it is not device evidence.

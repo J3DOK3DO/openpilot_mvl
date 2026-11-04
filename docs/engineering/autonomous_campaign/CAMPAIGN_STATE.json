@@ -1,40 +1,40 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-04T16:11:19.362998+00:00",
-  "current_stage": "COMMA4_NON_ACTUATING_MVL_tool_inventory_and_release_preparation",
+  "updated_at_utc": "2026-11-04T16:23:12.443198+00:00",
+  "current_stage": "COMMA4_NON_ACTUATING_MVL_offline_integration_verified",
   "release_decision": "HOLD",
   "branch": "codex/mvl-comma4-release-rc-20261104",
   "checkout_mode": "branch",
-  "head_commit": "e5909a36765105ad4a3bfe6407ffb3ed71ea1d5e",
+  "head_commit": "feee77a81dbefe4655c5d60c459362005e8e588d",
   "last_verified_result": {
-    "decision": "PASS",
-    "scope": "isolated x86 native renderer, G03 local capnp/msgq IPC, offline host regression and G08 NUL fail-closed fix; representative AGNOS 19.8.1 AArch64 libparams build only",
-    "passed": 401,
+    "decision": "PASS_HOST_ONLY",
+    "scope": "isolated native host renderer, G03 local IPC, G05 freshness, G06 opt-in local transport, G08 catalog, G09 synthetic, model/source preflight tools and passive diagnostics",
+    "passed": 442,
     "failed": 0,
     "skipped": 0,
     "record": "TEST_RESULTS.json milestone_runs[-1]"
   },
-  "next_action": "Audit MVL and Dom tools, stock model artifact provenance and G05/G06 integration; build safe release tooling; preserve physical comma4 test as pending.",
+  "next_action": "Obtain six exact-source QCOM model/warp outputs and hydrate pinned submodules/LFS in an isolated builder; rerun preflight and cold product build. Then seek separate authorization for a protected comma 4 bench session.",
   "source_of_truth": "docs/engineering/autonomous_campaign/CAMPAIGN_STATE.json, TEST_RESULTS.json, MASTER_GATE_TRACKER.md and G10_BUILD_EVIDENCE_20261104.json; ../campaign_20261103 is historical baseline only",
   "authoritative_baseline_sha": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-comma4-release-rc-20261104",
-    "head": "e5909a36765105ad4a3bfe6407ffb3ed71ea1d5e",
+    "head": "feee77a81dbefe4655c5d60c459362005e8e588d",
     "worktree": "/home/jdkd/.codex/worktrees/mvl-comma4-release-rc-20261104",
     "owner": "manual isolated comma4 release campaign; exclusive campaign lease"
   },
   "current_gate": "PRODUCT_BUILD_INCOMPLETE",
-  "last_successful_milestone": "Inherited exact tested source 162391f: 401 host/native, eight G03 IPC, four recovery tests PASS; AGNOS AArch64 libparams library only. New release-profile worktree is clean at e5909a3; no new source test PASS claimed.",
-  "tests_verified_at_commit": "162391f22567774166a6bd02024a65d969f63b59",
+  "last_successful_milestone": "Exact source feee77a: 442 combined host tests, eight G03 IPC paths, four recovery tests and G03 source crosswalk PASS; independent G06 cleanup race fixed. No full product or device evidence.",
+  "tests_verified_at_commit": "feee77a81dbefe4655c5d60c459362005e8e588d",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Complete source/tool compatibility inventory and bounded G05 freshness fix, then full host regressions and exact-commit review. Continue model build route and passive diagnostics independently.",
+  "next_actionable_milestone": "Obtain six exact-source QCOM model/warp outputs and hydrate pinned submodules/LFS in an isolated builder; rerun preflight and cold product build. Then seek separate authorization for a protected comma 4 bench session.",
   "current_blockers": [
-    "Full product build incomplete: Qualcomm stock model compilation/artifact contract and complete package unresolved",
-    "Comma 4 native UI, resource, IPC, network and protected recovery tests not executed on a device",
-    "G05 production status supplier absent; G06 production transport absent",
-    "All 254 quarantined Params keys remain DENY",
-    "Installation/activation requires separate authorization and known-good backup/restore readiness"
+    "Full product build incomplete: six source-matched Qualcomm model/warp outputs absent",
+    "Isolated release checkout has seven missing submodule checkouts and 286 unhydrated LFS assets",
+    "Comma 4 device checks and protected restore NOT_TESTED",
+    "G06 prototype has no production registration or target resource/security qualification",
+    "All 254 Params keys remain DENY; installation/activation requires separate authorization"
   ],
   "approval_requirements": [
     "Candidate installation or activation on comma 4 requires all applicable software/build prerequisites, protected backup/restore readiness, and separate user authorization.",
@@ -43,10 +43,10 @@
   "release_qualification": {
     "status": "PRODUCT_BUILD_INCOMPLETE",
     "profile": "COMMA4_NON_ACTUATING_MVL",
-    "scope": "Offline engineering candidate; full installable product missing and physical comma4 tests not executed. No vehicle-control or OEM safety qualification claimed."
+    "scope": "Offline source candidate only; full installable product and physical comma 4 tests absent. No vehicle-control or OEM safety qualification."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded head is exact published parent e5909a3; one docs-only initialization descendant is permitted. Exact prior tests remain at 162391f until source changes and reruns.",
+  "checkpoint_rule": "Recorded source commit feee77a passed exact tests; one docs-only campaign checkpoint descendant is permitted. Reconcile any further SHA drift.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -72,7 +72,7 @@
     "new_engineering_verified_source_sha": "162391f22567774166a6bd02024a65d969f63b59",
     "new_engineering_method": "Authorized Windows Git helper fetched SHA-verified bundle and non-force pushed new branch; GitHub compare and authenticated ls-remote verified 7bcb88f.",
     "new_release_branch": "codex/mvl-comma4-release-rc-20261104",
-    "new_release_status": "LOCAL_UNPUBLISHED"
+    "new_release_status": "LOCAL_REVIEWED_UNPUBLISHED"
   },
   "release_profile": "COMMA4_NON_ACTUATING_MVL",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE",

@@ -204,11 +204,35 @@
       "native_build_evidence": "G10_BUILD_EVIDENCE_20261104.json",
       "independent_exact_commit_review": "PASS for narrow offline scope at 162391f; full product, device and release HOLD",
       "limits": "No full cold product build, target GPU, device boot, live transport, Panda, OEM or protected rollback qualification"
+    },
+    {
+      "milestone": "comma 4 restricted release offline integration and independent G06 cleanup remediation",
+      "commit": "feee77a81dbefe4655c5d60c459362005e8e588d",
+      "verified_at_utc": "2026-11-04T16:23:12.443198+00:00",
+      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py tools/honda11g_health/tests tools/release/test_preflight_readonly.py tools/release/tests/test_mvl_model_artifacts.py; rm -f openpilot/common/libparams_c.so",
+      "outcomes": {
+        "passed": 442,
+        "failed": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "g03_ipc_command": "python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
+      "g03_ipc_paths": 8,
+      "g03_ipc_exit_code": 0,
+      "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
+      "schema_exit_code": 0,
+      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
+      "recovery_passed": 4,
+      "temporary_host_library_symlink_removed": true,
+      "independent_review": "PASS for feee77a host-only G06 fix and source boundary; reviewer sandbox denied AF_UNIX bind EPERM, but simulated race regression passed. Full normal-host suite separately passed. Device security remains HOLD.",
+      "build_decision": "HOLD_PREREQUISITES: 7 submodules absent, 286 LFS unhydrated, 6 MVL QCOM outputs absent; no full cold build attempted",
+      "device_status": "NOT_TESTED",
+      "release_classification": "PRODUCT_BUILD_INCOMPLETE"
     }
   ],
-  "last_verified_commit": "162391f22567774166a6bd02024a65d969f63b59",
+  "last_verified_commit": "feee77a81dbefe4655c5d60c459362005e8e588d",
   "last_verified_outcomes": {
-    "passed": 401,
+    "passed": 442,
     "failed": 0,
     "skipped": 0
   },

@@ -43,3 +43,15 @@ A copied build submodule made the first 162391f host regression report 400 PASS/
 ## Restricted comma 4 profile interpretation (2026-11-04)
 
 For `COMMA4_NON_ACTUATING_MVL`, external CAN-FD/HIL hardware and Honda dynamic OEM maneuvers are not acceptance blockers, provided the release contains no new active control, Panda, ECU or CAN/UDS transmit behavior. They are NOT_APPLICABLE_TO_COMMA4_PROFILE, not PASS. The real blockers are full product/model artifact provenance, safe packaging, G05/G06 device integration and physical comma 4 evidence including protected recovery. The older Panda/Honda rows remain historical requirements for any future actuating vehicle profile.
+
+## Isolated comma 4 continuation at `feee77a81dbefe4655c5d60c459362005e8e588d`
+
+| HOLD | Remediation and exact remaining dependency |
+| --- | --- |
+| Complete product package | Read-only preflight found 7 missing submodule checkouts and 286 unhydrated LFS assets; no oversized committed blobs or restricted source changes. Hydrate pinned source assets in an isolated build checkout and provide six source-matched QCOM model/warp artifacts. No cold full build was attempted because these prerequisites failed. |
+| MVL QCOM model provenance | Both ONNX audit blobs match LFS hashes. Preserved six tinygrad captures are CPU/LLVM; Dom's QCOM package lacks MVL `driving_tinygrad.pkl` and binds a different compiler source inventory. Static exact-source manifest validator added; obtain genuine MVL QCOM outputs and target execution evidence. |
+| G05 on-device native UI | Monotonic stale snapshot bug fixed and host tests passed. Execute the twelve-check comma 4 plan for actual rendering, timing, warning priority, fault fallback and protected restore. |
+| G06 device security | Opt-in same-UID Unix prototype passed negative host tests. Independent review's failed-bind cleanup race was fixed and regression tested. Production registration is absent. Bound callback behavior and qualify target access, resource use, shutdown and network isolation before device enablement. |
+| Physical release | No comma 4 device session, full package, restoration exercise or installation authorization. Classification remains PRODUCT_BUILD_INCOMPLETE; comma 4 device NOT_TESTED. |
+
+G11 external HIL and G12 Honda dynamic OEM are conditionally NOT_APPLICABLE_TO_COMMA4_PROFILE for this non-actuating diff. Passive Honda observations cannot establish Panda or OEM safety.
