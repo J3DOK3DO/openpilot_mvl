@@ -24,6 +24,7 @@ def _layout(monkeypatch):
   layout.alert_count = 0
   layout._status_snapshot_supplier = None
   monkeypatch.setattr(native_home.ui_state, "started", False)
+  monkeypatch.setattr(native_home.time, "monotonic_ns", lambda: NOW)
   drawn = []
   labels = []
   monkeypatch.setattr(native_home.rl, "draw_rectangle_rounded", lambda *args: drawn.append(args))
@@ -104,3 +105,32 @@ def test_native_small_header_and_source_failure_restore_original_header(monkeypa
   layout.set_status_snapshot_supplier(lambda: BridgeSnapshot(NOW, car=object()))
   layout._render_status_badge(800)
   assert drawn == labels == []
+
+
+@pytest.mark.parametrize("snapshot_time_ns", [NOW - 2_000_000_001, NOW + 1, True, "old"])
+def test_cached_or_invalid_snapshot_time_restores_original_header(monkeypatch, snapshot_time_ns):
+  layout, drawn, labels = _layout(monkeypatch)
+  layout.set_status_snapshot_supplier(lambda: BridgeSnapshot(snapshot_time_ns,
+    device=DeviceStatus(False, 50.0, 42.0, snapshot_time_ns - 1 if type(snapshot_time_ns) is int else NOW - 1)))
+  layout._render_status_badge(800)
+  assert drawn == labels == []
+
+
+def test_snapshot_age_boundary_is_admitted(monkeypatch):
+  layout, drawn, labels = _layout(monkeypatch)
+  layout.set_status_snapshot_supplier(lambda: BridgeSnapshot(NOW - 2_000_000_000,
+    device=DeviceStatus(False, 50.0, 42.0, NOW - 2_000_000_000)))
+  layout._render_status_badge(800)
+  assert len(drawn) == len(labels) == 1
+
+
+def test_cached_topic_inside_recent_snapshot_restores_original_header(monkeypatch):
+  layout, drawn, labels = _layout(monkeypatch)
+  layout.params = SimpleNamespace(get=lambda _: None)
+  layout.set_status_snapshot_supplier(lambda: BridgeSnapshot(NOW - 1,
+    device=DeviceStatus(False, 50.0, 42.0, NOW - 2_000_000_001)))
+  monkeypatch.setattr(native_home.gui_app, "font", lambda _: object())
+  monkeypatch.setattr(native_home, "measure_text_cached", lambda *args: rl.Vector2(200, 40))
+  layout._render_header()
+  assert drawn == []
+  assert [call[0][1] for call in labels] == ["sunnypilot"]

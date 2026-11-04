@@ -5,6 +5,7 @@ This file is part of sunnypilot and is licensed under the MIT License.
 See the LICENSE.md file in the root directory for more details.
 """
 import pyray as rl
+import time
 from collections.abc import Callable
 from openpilot.selfdrive.ui.layouts.home import HomeLayout, HomeLayoutState, HEAD_BUTTON_FONT_SIZE, SPACING
 from openpilot.selfdrive.ui.ui_state import ui_state
@@ -17,6 +18,7 @@ from openpilot.system.ui.widgets.label import gui_label
 
 BRAND_FONT_SIZE = 48
 BRAND_DESC_SPACING = 12
+MAX_STATUS_SNAPSHOT_AGE_NS = 2_000_000_000
 
 
 class HomeLayoutSP(HomeLayout):
@@ -94,6 +96,16 @@ class HomeLayoutSP(HomeLayout):
       return
     try:
       snapshot = supplier()
+      # The view model checks topic age against snapshot time. Also check the
+      # snapshot against the UI clock so a cached result cannot stay visible.
+      now_ns = time.monotonic_ns()
+      if (type(snapshot) is not BridgeSnapshot or type(snapshot.now_ns) is not int or
+          not 0 <= now_ns - snapshot.now_ns <= MAX_STATUS_SNAPSHOT_AGE_NS):
+        return
+      for status in (snapshot.device, snapshot.selfdrive, snapshot.car):
+        if status is not None and (type(status.timestamp_ns) is not int or
+                                   not 0 <= now_ns - status.timestamp_ns <= MAX_STATUS_SNAPSHOT_AGE_NS):
+          return
       presentation = build_offroad_home_presentation(
         snapshot, width=width, height=self.header_rect.height,
         started=ui_state.started, home_visible=self.is_visible,
