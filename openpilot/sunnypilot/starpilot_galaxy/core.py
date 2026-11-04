@@ -94,6 +94,11 @@ class GalaxyHandler:
       raise TypeError("models provider must be callable")
     self._models_provider = models_provider or (lambda: DEFAULT_CATALOG)
 
+  @property
+  def enabled(self) -> bool:
+    """Allow an explicit transport to reject a disabled handler before bind."""
+    return self._settings.enabled
+
   def handle(self, request: GalaxyRequest) -> GalaxyResponse:
     """Return a generic, cache-forbidden response; never raises provider data."""
     if type(request) is not GalaxyRequest:
