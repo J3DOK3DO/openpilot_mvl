@@ -59,7 +59,8 @@ def inspect(repo, commit, baseline, max_blob_bytes):
     checkout = root / path
     actual = None
     state = 'missing'
-    if checkout.is_dir():
+    # Empty gitlink directories otherwise resolve to the parent repository.
+    if checkout.is_dir() and (checkout / '.git').exists():
       try:
         actual = git(checkout, 'rev-parse', 'HEAD')
         state = 'pinned' if actual == oid else 'wrong_commit'

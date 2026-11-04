@@ -57,6 +57,8 @@ class ReadOnlyPreflightTest(unittest.TestCase):
   def test_missing_gitlink_and_release_selector_mismatch_hold(self):
     self.git('update-index', '--add', '--cacheinfo', '160000,' + 'a' * 40 + ',panda')
     self.git('commit', '-qm', 'pinned gitlink')
+    # Git may leave an empty submodule directory; it is not a checkout.
+    (self.repo / 'panda').mkdir(exist_ok=True)
     code, report = self.preflight()
     self.assertEqual(code, 1)
     self.assertEqual(report['submodules'][0]['state'], 'missing')
