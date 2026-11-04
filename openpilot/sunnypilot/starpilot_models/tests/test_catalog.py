@@ -53,7 +53,7 @@ def test_valid_explicit_file_passes_and_metadata_compatibility_is_not_qualificat
   assert check_compatibility(entry, "aarch64", "19.8.1") is Compatibility.COMPATIBLE_METADATA_ONLY
 
 
-@pytest.mark.parametrize("path", ["../model.bin", "/tmp/model.bin", "nested/../model.bin", "./model.bin"])
+@pytest.mark.parametrize("path", ["../model.bin", "/tmp/model.bin", "nested/../model.bin", "./model.bin", "model" + chr(0) + ".bin"])
 def test_malicious_paths_are_held(tmp_path: Path, path: str) -> None:
   entry = parse_catalog(inventory([metadata()])).entries[0]
   assert verify_selected_file(entry, tmp_path, path).status is Verification.HOLD

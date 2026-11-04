@@ -172,7 +172,7 @@ def verify_selected_file(entry: ModelEntry, allowed_directory: Path, relative_pa
   """
   if not isinstance(allowed_directory, Path):
     return _hold("allowed directory must be a Path")
-  if not isinstance(relative_path, str) or not relative_path or "\\0" in relative_path:
+  if not isinstance(relative_path, str) or not relative_path or "\x00" in relative_path:
     return _hold("selected path must be a non-empty relative string")
   selected = Path(relative_path)
   if selected.is_absolute() or any(part in ("", ".", "..") for part in selected.parts):
