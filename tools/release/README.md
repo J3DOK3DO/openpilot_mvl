@@ -1,5 +1,26 @@
 # openpilot releases
 
+## Offline source preflight
+
+`preflight_readonly.py` checks an exact committed source tree without building,
+packaging, fetching, cleaning, or changing device state. It reuses the existing
+`release_files.py` selector only to inspect its file list. A `PASS` means this
+limited source preflight passed; it is not a product build or release decision.
+
+Run from a clean, isolated engineering worktree:
+
+```sh
+python3 tools/release/preflight_readonly.py --repo . --commit "$(git rev-parse HEAD)" --baseline <approved-source-boundary-commit> > preflight.json
+```
+
+The JSON reports exact HEAD, modified paths, committed blob sizes, Git LFS
+hydration, pinned submodule checkouts, selected file count, and restricted
+control/Panda/manager changes. Exit status is 0 for `PASS`, 1 for `HOLD`, and
+2 for an inspection error. Keep the generated report outside the source tree
+or rerun after committing it, since untracked output causes `HOLD`. Review
+the complete changed-path list as well as the restricted-path flag: the flag
+is a conservative quick check, not a complete safety analysis.
+
 ```
 ## release checklist
 
