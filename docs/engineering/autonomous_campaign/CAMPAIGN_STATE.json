@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-04T07:01:57.237828+00:00",
+  "updated_at_utc": "2026-11-04T07:09:33.423135+00:00",
   "current_stage": "G10_partial_native_build_and_bench_readiness",
   "release_decision": "HOLD",
   "branch": "codex/mvl-g10-continuation",
   "checkout_mode": "branch",
-  "head_commit": "162391f22567774166a6bd02024a65d969f63b59",
+  "head_commit": "7bcb88f69c4cb7a0ea817545216c6783e5fa7520",
   "last_verified_result": {
     "decision": "PASS",
     "scope": "isolated x86 native renderer, G03 local capnp/msgq IPC, offline host regression and G08 NUL fail-closed fix; representative AGNOS 19.8.1 AArch64 libparams build only",
@@ -14,13 +14,13 @@
     "skipped": 0,
     "record": "TEST_RESULTS.json milestone_runs[-1]"
   },
-  "next_action": "Keep physical and release gates HOLD; obtain isolated Qualcomm-capable target build/bench evidence and execute G05/G06/G08 device plans only after separate authorization. Publish reviewed engineering branch without merging PR #1.",
+  "next_action": "Obtain isolated Qualcomm-capable full-product build and physical C3/C4 bench evidence; keep target, Panda, Honda OEM, protected recovery and deployment gates HOLD.",
   "source_of_truth": "docs/engineering/autonomous_campaign/CAMPAIGN_STATE.json, TEST_RESULTS.json, MASTER_GATE_TRACKER.md and G10_BUILD_EVIDENCE_20261104.json; ../campaign_20261103 is historical baseline only",
   "authoritative_baseline_sha": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-g10-continuation",
-    "head": "162391f22567774166a6bd02024a65d969f63b59",
+    "head": "7bcb88f69c4cb7a0ea817545216c6783e5fa7520",
     "worktree": "/home/jdkd/.codex/worktrees/mvl-g10-continuation",
     "owner": "manual isolated continuation; exclusive lease; PR #1 remains draft and unmerged"
   },
@@ -28,7 +28,7 @@
   "last_successful_milestone": "At exact source 162391f: 401 combined host tests, eight G03 IPC paths, four recovery tests and pinned schema verifier PASS; AGNOS comma_arm64 libparams ELF built, dependencies resolved and dlopen PASS. Independent exact-commit offline review PASS. Full cold product/device/release HOLD.",
   "tests_verified_at_commit": "162391f22567774166a6bd02024a65d969f63b59",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Publish reviewed offline engineering branch; then obtain Qualcomm model-build prerequisite and isolated comma C3/C4 bench with protected recovery. No vehicle installation.",
+  "next_actionable_milestone": "External prerequisite: qualified Qualcomm model-build runtime or isolated C3/C4 bench with protected recovery. No vehicle installation or activation.",
   "current_blockers": [
     "Full cold product build requires Qualcomm model/warp compilation runtime or qualified target hardware; source-supported partial build does not promote TARGET_BUILD_READY",
     "C3/C4 native UI startup, timing, warning priority, fault fallback and protected recovery have no device evidence",
@@ -47,9 +47,9 @@
     "scope": "Offline host/native candidate plus representative AGNOS ARM64 library only. Full cold product, TARGET_BUILD_READY, DEVICE_QUALIFIED, VEHICLE_QUALIFIED and DEPLOYMENT_APPROVED HOLD."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded head is exact tested source 162391f; one following docs-only campaign checkpoint commit is permitted. No source change may inherit its tests.",
+  "checkpoint_rule": "Recorded head is reviewed docs checkpoint 7bcb88f; one docs-only publication record child is permitted. Exact tests remain at source 162391f; no source change inherits them.",
   "publication": {
-    "decision": "PR1_PUBLISHED_NEW_BRANCH_PENDING",
+    "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
     "branch": "codex/mvl-starpilot-manual",
     "published_sha": "17c43e9e505f193113777a7266fedd0b03bee7cc",
@@ -67,6 +67,10 @@
     "current_candidate_status": "PUBLISHED_REVIEWED",
     "pull_request_url": "https://github.com/J3DOK3DO/openpilot_mvl/pull/1",
     "new_engineering_branch": "codex/mvl-g10-continuation",
-    "new_engineering_head": "PENDING_DOCS_CHECKPOINT_AND_PUSH"
+    "new_engineering_head": "7bcb88f69c4cb7a0ea817545216c6783e5fa7520",
+    "new_engineering_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-g10-continuation",
+    "new_engineering_remote_verified_at_utc": "2026-11-04T07:09:33.423135+00:00",
+    "new_engineering_verified_source_sha": "162391f22567774166a6bd02024a65d969f63b59",
+    "new_engineering_method": "Authorized Windows Git helper fetched SHA-verified bundle and non-force pushed new branch; GitHub compare and authenticated ls-remote verified 7bcb88f."
   }
 }

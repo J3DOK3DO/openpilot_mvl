@@ -9,5 +9,18 @@
   "remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-starpilot-continuation",
   "ubuntu_local_https_push_auth_configured": false,
   "note": "Original failed Ubuntu HTTPS push remains recorded historically; future pushes should use authorized Windows helper or separately configured credentials.",
-  "recorded_at_utc": "2026-11-03T17:03:48Z"
+  "recorded_at_utc": "2026-11-03T17:03:48Z",
+  "continuation_publication": {
+    "decision": "PUBLISHED_VERIFIED",
+    "repository": "J3DOK3DO/openpilot_mvl",
+    "branch": "codex/mvl-g10-continuation",
+    "remote_verified_checkpoint": "7bcb88f69c4cb7a0ea817545216c6783e5fa7520",
+    "tested_source_sha": "162391f22567774166a6bd02024a65d969f63b59",
+    "recorded_at_utc": "2026-11-04T07:09:33.423135+00:00",
+    "method": "SHA-verified Git bundle via already authorized Windows Git helper; non-force push; GitHub compare and authenticated ls-remote",
+    "pull_request_1": "https://github.com/J3DOK3DO/openpilot_mvl/pull/1",
+    "pull_request_1_merged": false,
+    "release_decision": "HOLD",
+    "note": "This publication-status record is a following docs-only commit; its test provenance remains the source SHA."
+  }
 }

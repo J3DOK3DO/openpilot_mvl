@@ -220,6 +220,14 @@
       "remote_ref_verified": true,
       "pull_request": "https://github.com/J3DOK3DO/openpilot_mvl/pull/1",
       "new_test_outcome": "not_rerun_docs_only"
+    },
+    {
+      "published_commit": "7bcb88f69c4cb7a0ea817545216c6783e5fa7520",
+      "tested_source_commit": "162391f22567774166a6bd02024a65d969f63b59",
+      "branch": "codex/mvl-g10-continuation",
+      "remote_ref_verified": true,
+      "method": "Windows helper non-force push; GitHub compare and authenticated ls-remote",
+      "new_test_outcome": "not_rerun_docs_only"
     }
   ]
 }
