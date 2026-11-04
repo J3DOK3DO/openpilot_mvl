@@ -131,22 +131,24 @@ class LocalGalaxySocket:
     if len(os.fsencode(path)) > 100 or path.exists() or path.is_symlink():
       raise LocalTransportError("socket path unavailable")
     listener = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+    bound_inode: int | None = None
     try:
       listener.bind(str(path))
+      bound_inode = path.lstat().st_ino
       os.chmod(path, 0o600)
       listener.listen(1)
       listener.settimeout(ACCEPT_POLL_SECONDS)
-      inode = path.lstat().st_ino
     except Exception:
       listener.close()
       try:
-        path.unlink(missing_ok=True)
+        if bound_inode is not None and path.lstat().st_ino == bound_inode:
+          path.unlink()
       except OSError:
         pass
       raise
     self.path = path
     self._listener = listener
-    self._inode = inode
+    self._inode = bound_inode
     self._allowed_uid = allowed_uid
     self._handler = handler
     self._serve_lock = threading.Lock()

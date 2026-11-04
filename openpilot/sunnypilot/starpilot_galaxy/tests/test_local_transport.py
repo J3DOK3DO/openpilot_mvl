@@ -160,3 +160,20 @@ def test_no_production_registration_or_vehicle_control_imports():
   source = (Path(__file__).parents[1] / "local_transport.py").read_text()
   for forbidden in ("Params", "sendcan", "PubMaster", "pandad", "modeld", "selfdrived", "AF_INET", "SOCK_DGRAM"):
     assert forbidden not in source
+
+
+def test_failed_bind_never_removes_existing_socket_path(private_directory, monkeypatch):
+  import openpilot.sunnypilot.starpilot_galaxy.local_transport as transport
+  existing = private_directory / 'galaxy.sock'
+  class RacingSocket:
+    def bind(self, address):
+      existing.write_bytes(b'other-owner')
+      raise OSError('simulated competing creator')
+
+    def close(self):
+      pass
+
+  monkeypatch.setattr(transport.socket, 'socket', lambda *_: RacingSocket())
+  with pytest.raises(OSError, match='competing creator'):
+    LocalGalaxySocket(_handler(), private_directory, enable=True)
+  assert existing.read_bytes() == b'other-owner'
