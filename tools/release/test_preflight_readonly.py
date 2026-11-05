@@ -76,6 +76,16 @@ class ReadOnlyPreflightTest(unittest.TestCase):
     self.assertEqual(report['restricted_changes'], ['openpilot/selfdrive/controls/unsafe.txt'])
     self.assertEqual(report['lfs_assets'][0]['state'], 'pointer_or_mismatch')
 
+  def test_optional_large_model_pointer_is_reported_but_not_required(self):
+    target = self.repo / 'openpilot/selfdrive/modeld/models/big_driving_tinygrad.pkl'
+    target.parent.mkdir(parents=True)
+    target.write_text('version https://git-lfs.github.com/spec/v1\noid sha256:' + 'b' * 64 + '\nsize 12\n')
+    self.commit()
+    code, report = self.preflight()
+    self.assertEqual(code, 0, report)
+    self.assertFalse(report['lfs_assets'][0]['release_selected'])
+    self.assertEqual(report['lfs_assets'][0]['state'], 'pointer_or_mismatch')
+
 
 if __name__ == '__main__':
   unittest.main()

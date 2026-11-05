@@ -72,6 +72,21 @@ def inspect(repo, commit, baseline, max_blob_bytes):
       issues.append(f'submodule {path}: {state}')
     submodules.append({'path': path, 'pinned': oid, 'actual': actual, 'state': state})
 
+  # The selector intentionally excludes the optional large model. Check only
+  # assets that would enter this release, while retaining all pointer states.
+  selector = root / 'tools/release/release_files.py'
+  selected = []
+  if selector.is_file():
+    result = subprocess.run([sys.executable, str(selector)], cwd=root, check=True,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    selected = [p.decode('utf-8', 'surrogateescape') for p in result.stdout.split(b'\0') if p]
+    for item in submodules:
+      if item['path'] in selected:
+        issues.append(f'release selector includes unexpanded gitlink {item["path"]}')
+  else:
+    issues.append('MVL release_files.py selector missing')
+  selected_set = set(selected)
+
   lfs = []
   for oid, path in blobs:
     if sizes[path] > 1024:
@@ -84,9 +99,10 @@ def inspect(repo, commit, baseline, max_blob_bytes):
     checkout = root / path
     actual = hashlib.sha256(checkout.read_bytes()).hexdigest() if checkout.is_file() else None
     state = 'hydrated' if actual == expected else 'pointer_or_mismatch'
-    if state != 'hydrated':
+    if path in selected_set and state != 'hydrated':
       issues.append(f'LFS asset {path}: {state}')
-    lfs.append({'path': path, 'sha256': expected, 'state': state})
+    lfs.append({'path': path, 'sha256': expected, 'state': state,
+                'release_selected': path in selected_set})
 
   changed = []
   denied = []
@@ -99,19 +115,6 @@ def inspect(repo, commit, baseline, max_blob_bytes):
     denied = [path for path in changed if path.startswith(DENIED_PREFIXES)]
     if denied:
       issues.append('restricted control/Panda/manager source changed')
-
-  # Reuse the existing MVL release-file selector, but only to inspect its output.
-  selector = root / 'tools/release/release_files.py'
-  selected = []
-  if selector.is_file():
-    result = subprocess.run([sys.executable, str(selector)], cwd=root, check=True,
-                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    selected = [p.decode('utf-8', 'surrogateescape') for p in result.stdout.split(b'\0') if p]
-    for item in submodules:
-      if item['path'] in selected:
-        issues.append(f'release selector includes unexpanded gitlink {item["path"]}')
-  else:
-    issues.append('MVL release_files.py selector missing')
 
   return {
     'result': 'PASS' if not issues else 'HOLD', 'head': head, 'source_commit': source,
