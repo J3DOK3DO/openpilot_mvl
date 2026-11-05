@@ -76,18 +76,21 @@ def create(source, out, expected):
           rows.append({'path':rel,'kind':'file','size':size,'sha256':digest(path)})
         else:raise ValueError(f'unsupported file kind {rel}')
     manifest={'schema_version':1,'package_kind':'SOURCE_ONLY_QCOM_HANDOFF_NOT_INSTALLABLE','source_commit':head,'prior_tested_source':'b39410908b15a27ff29f07b451ade468764bb148','gitlinks':gitlinks,'onnx_sha256':ONNX,'agnos_19_8_1_image_sha256':AGNOS_SHA256,'required_qcom_outputs':SIX,'files':rows,'source_tar_sha256':digest(tar_path),'no_qcom_outputs_included':True}
-    (out/'manifest.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n')
     shutil.copy2(Path(__file__),out/'verify_handoff.py')
     shutil.copy2(Path(__file__).with_name('monitor_qcom_handoff.sh'),out/'monitor_qcom_handoff.sh')
-    (out/'README.md').write_text('''# MVL QCOM source-only handoff — NOT INSTALLABLE\n\nThis archive contains the exact source files, seven pinned submodule trees, hydrated selected LFS assets and both verified ONNX model inputs. It contains no valid QCOM outputs, complete product build or installation approval. Verify with `python3 verify_handoff.py verify --package .`. The manifest records every archived path and SHA-256. Preserve the external SHA-256 of `manifest.json` when transferring.\n\nDevice-side source copying or compilation requires separate owner authorization. The known-good installation, `/data/openpilot`, AGNOS reference and vehicle must remain untouched. Before any separately authorized action, use an isolated empty source checkout at the manifest source commit with its seven pinned submodules; overlay this verified archive there, then verify Git HEAD, gitlinks, all file hashes, AGNOS 19.8.1, `uname -m=aarch64`, `/AGNOS`, `/dev/kgsl-3d0`, disk/power/thermal limits and absence of vehicle connection. Do not use this tar alone as a Git checkout: SCons and Panda versioning require Git metadata. Do not set `SKIP_TINYGRAD_COMPILE`.\n\nNative six-target command (only after authorization and preflight):\n\n`python3 -m SCons -j4 --minimal cache_dir=<new-isolated-cache> openpilot/selfdrive/modeld/models/dmonitoring_model_tinygrad.pkl openpilot/selfdrive/modeld/models/driving_tinygrad.pkl openpilot/selfdrive/modeld/models/driving_warp_1344x760_tinygrad.pkl openpilot/selfdrive/modeld/models/driving_warp_1928x1208_tinygrad.pkl openpilot/selfdrive/modeld/models/dm_warp_1344x760_tinygrad.pkl openpilot/selfdrive/modeld/models/dm_warp_1928x1208_tinygrad.pkl`\n\nBound the command with an operator-approved timeout and run `sh monitor_qcom_handoff.sh 180` in a separate terminal and record supported GPU/power telemetry; stop on low space, thermal fault or GPU error. Preserve stdout, stderr, exit status, device/AGNOS identity and all six output hashes. Copy outputs to a separate private artifact directory, then run `tools/release/mvl_model_artifacts.py record` and `verify` with the exact source, ONNX, pinned AGNOS image/root and artifact directory. A static PASS remains insufficient for full product/device qualification. Do not install or activate.\n''')
-    verify(out)
+    (out/'README.md').write_text(f'''# MVL QCOM source-only handoff — NOT INSTALLABLE\n\nThis archive contains the exact source files, seven pinned submodule trees, hydrated selected LFS assets and both verified ONNX model inputs. It contains no valid QCOM outputs, complete product build or installation approval. Verify with `python3 verify_handoff.py verify --package . --expected-source-commit {head} --expected-manifest-sha256 <trusted-manifest-sha256>`. Get the expected digest from the independently retained campaign evidence, not the package itself. The manifest records every archived path and SHA-256; the verification script and monitor are also hashed.\n\nDevice-side source copying or compilation requires separate owner authorization. The known-good installation, `/data/openpilot`, AGNOS reference and vehicle must remain untouched. Before any separately authorized action, use an isolated empty source checkout at the manifest source commit with its seven pinned submodules; overlay this verified archive there, then verify Git HEAD, gitlinks, all file hashes, AGNOS 19.8.1, `uname -m=aarch64`, `/AGNOS`, `/dev/kgsl-3d0`, disk/power/thermal limits and absence of vehicle connection. Do not use this tar alone as a Git checkout: SCons and Panda versioning require Git metadata. Do not set `SKIP_TINYGRAD_COMPILE`.\n\nNative six-target command (only after authorization and preflight):\n\n`python3 -m SCons -j4 --minimal cache_dir=<new-isolated-cache> openpilot/selfdrive/modeld/models/dmonitoring_model_tinygrad.pkl openpilot/selfdrive/modeld/models/driving_tinygrad.pkl openpilot/selfdrive/modeld/models/driving_warp_1344x760_tinygrad.pkl openpilot/selfdrive/modeld/models/driving_warp_1928x1208_tinygrad.pkl openpilot/selfdrive/modeld/models/dm_warp_1344x760_tinygrad.pkl openpilot/selfdrive/modeld/models/dm_warp_1928x1208_tinygrad.pkl`\n\nBound the command with an operator-approved timeout and run `sh monitor_qcom_handoff.sh 180` in a separate terminal and record supported GPU/power telemetry; stop on low space, thermal fault or GPU error. Preserve stdout, stderr, exit status, device/AGNOS identity and all six output hashes. Copy outputs to a separate private artifact directory, then run `tools/release/mvl_model_artifacts.py record` and `verify` with the exact source, ONNX, pinned AGNOS image/root and artifact directory. A static PASS remains insufficient for full product/device qualification. Do not install or activate.\n''')
+    manifest['helper_sha256']={name:digest(out/name) for name in ('verify_handoff.py','monitor_qcom_handoff.sh','README.md')}
+    (out/'manifest.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n')
+    verify(out,digest(out/'manifest.json'),head)
     print(json.dumps({'package':str(out),'source_commit':head,'file_count':len(rows),'tar_sha256':manifest['source_tar_sha256'],'manifest_sha256':digest(out/'manifest.json'),'gitlinks':len(gitlinks)}))
   except Exception:
     shutil.rmtree(out)
     raise
 
-def verify(package):
+def verify(package, expected_manifest_sha256, expected_source_commit):
   package=package.resolve()
+  if digest(package/'manifest.json')!=expected_manifest_sha256:
+    raise ValueError('trusted manifest SHA256 mismatch')
   def unique_pairs(pairs):
     result={}
     for key,value in pairs:
@@ -95,6 +98,9 @@ def verify(package):
       result[key]=value
     return result
   manifest=json.loads((package/'manifest.json').read_text(),object_pairs_hook=unique_pairs)
+  if manifest['source_commit']!=expected_source_commit:raise ValueError('trusted source commit mismatch')
+  for name in ('verify_handoff.py','monitor_qcom_handoff.sh','README.md'):
+    if manifest['helper_sha256'][name]!=digest(package/name):raise ValueError(f'helper hash mismatch: {name}')
   if manifest['package_kind']!='SOURCE_ONLY_QCOM_HANDOFF_NOT_INSTALLABLE' or manifest['source_tar_sha256']!=digest(package/'source.tar'):
     raise ValueError('package kind or tar hash mismatch')
   expected=manifest['files']; actual=[]
@@ -108,13 +114,15 @@ def verify(package):
         actual.append({'path':member.name,'kind':'file','size':member.size,'sha256':h.hexdigest()})
       else:raise ValueError('unsupported tar member')
   if actual!=expected:raise ValueError('archived path/contents differ from manifest')
+  if manifest.get('no_qcom_outputs_included') is not True or any(row['path']=='openpilot/selfdrive/modeld/models/'+name for row in actual for name in SIX):
+    raise ValueError('stock QCOM output included in source-only handoff')
   if len(manifest['gitlinks'])!=7 or manifest['onnx_sha256']!=ONNX or manifest['agnos_19_8_1_image_sha256']!=AGNOS_SHA256 or tuple(manifest['required_qcom_outputs'])!=SIX:raise ValueError('build contract mismatch')
   print(json.dumps({'verification':'PASS','files':len(actual),'source_commit':manifest['source_commit'],'tar_sha256':manifest['source_tar_sha256']}))
 
 if __name__=='__main__':
   p=argparse.ArgumentParser();s=p.add_subparsers(dest='command',required=True)
   c=s.add_parser('create');c.add_argument('--source',type=Path,required=True);c.add_argument('--out',type=Path,required=True);c.add_argument('--expected-commit',required=True)
-  v=s.add_parser('verify');v.add_argument('--package',type=Path,required=True)
+  v=s.add_parser('verify');v.add_argument('--package',type=Path,required=True);v.add_argument('--expected-manifest-sha256',required=True);v.add_argument('--expected-source-commit',required=True)
   a=p.parse_args()
   if a.command=='create':create(a.source,a.out,a.expected_commit)
-  else:verify(a.package)
+  else:verify(a.package,a.expected_manifest_sha256,a.expected_source_commit)

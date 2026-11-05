@@ -4,7 +4,7 @@ Status at the final offline source checkpoint. Historical PASS evidence is scope
 
 | ID | Requirement | Current decision |
 | --- | --- | --- |
-| S01 | Exact published source provenance | PASS |
+| S01 | Exact published parent source provenance (`23f516d`) | PASS |
 | S02 | Seven pinned submodules | PASS_SOURCE |
 | S03 | 283 selected LFS assets hydrated and hashed | PASS_SOURCE |
 | S04 | AGNOS 19.8.1 ARM64 SCons graph | PASS_DRY_RUN_ONLY |
@@ -13,7 +13,7 @@ Status at the final offline source checkpoint. Historical PASS evidence is scope
 | S07 | G06 live registration excluded; local prototype OFF | PASS_HOST_BOUNDARY |
 | S08 | G08 read-only catalog and path/hash controls | PASS_HOST |
 | S09 | G09 research disconnected from actuation | PASS_SOURCE |
-| S10 | Combined exact-commit host regression | PASS_HOST |
+| S10 | Combined host regression at `a92ae4a` (rerun after source fix) | PASS_HOST_PARENT_CHECKPOINT |
 | S11 | Source-only QCOM handoff manifest and archive | PASS_SOURCE_ONLY |
 | S12 | Six exact-source QCOM outputs | HOLD |
 | S13 | Full cold native ARM64 product build | HOLD |
