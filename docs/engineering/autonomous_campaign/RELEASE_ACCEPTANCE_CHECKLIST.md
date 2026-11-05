@@ -1,0 +1,28 @@
+# Comma 4 non-actuating release acceptance checklist
+
+Status at the final offline source checkpoint. Historical PASS evidence is scoped to the exact commits in `TEST_RESULTS.json`; any final branch source change requires new exact-commit tests.
+
+| ID | Requirement | Current decision |
+| --- | --- | --- |
+| S01 | Exact published source provenance | PASS |
+| S02 | Seven pinned submodules | PASS_SOURCE |
+| S03 | 283 selected LFS assets hydrated and hashed | PASS_SOURCE |
+| S04 | AGNOS 19.8.1 ARM64 SCons graph | PASS_DRY_RUN_ONLY |
+| S05 | G03 eight host IPC paths and 254 Params DENY | PASS_HOST |
+| S06 | G05 default-OFF native host UI and fallback | PASS_HOST |
+| S07 | G06 live registration excluded; local prototype OFF | PASS_HOST_BOUNDARY |
+| S08 | G08 read-only catalog and path/hash controls | PASS_HOST |
+| S09 | G09 research disconnected from actuation | PASS_SOURCE |
+| S10 | Combined exact-commit host regression | PASS_HOST |
+| S11 | Source-only QCOM handoff manifest and archive | PASS_SOURCE_ONLY |
+| S12 | Six exact-source QCOM outputs | HOLD |
+| S13 | Full cold native ARM64 product build | HOLD |
+| S14 | Complete source-to-binary package and ABI manifest | HOLD |
+| S15 | Independent exact-commit final branch review | PENDING |
+| C4-01–C4-07 | Cold boot, UI, IPC, warning, timing and fallback | NOT_TESTED (7 checks) |
+| C4-08 | G06 live service security | NOT_APPLICABLE_TO_COMMA4_PROFILE while unregistered |
+| C4-09–C4-11 | Model identity, resource soak, passive Panda/stock identity | NOT_TESTED (3 checks) |
+| C4-12 | Physical restoration demonstration | WAIVED_BY_OWNER / NOT_EXECUTED |
+| G11/G12 | External HIL and dynamic Honda OEM | NOT_APPLICABLE_TO_COMMA4_PROFILE while no new active control/Panda/ECU/CAN-transmit change |
+
+Checklist denominator is 25 applicable items: S01–S15 plus ten applicable device checks. At this checkpoint, 11/25 = **44%** have accepted scoped PASS evidence; S15 awaits independent exact-commit review. Waived and conditional N/A items are excluded. Host PASS does not satisfy physical qualification. Formal release approval is **0% / HOLD** until all applicable criteria and separate installation authorization are met.

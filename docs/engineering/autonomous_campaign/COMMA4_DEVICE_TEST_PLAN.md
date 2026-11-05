@@ -1,13 +1,13 @@
 # Isolated comma 4 bench qualification — NOT_TESTED
 
-Profile: `COMMA4_NON_ACTUATING_MVL`. This is a manual procedure for a later authorized, parked, isolated device session. It is not permission to install or activate this candidate. The full product build is incomplete, so execution remains blocked. Record the exact candidate commit, package SHA256, AGNOS version, device identifier, operator, UTC times, commands, raw logs, PASS/FAIL and restoration evidence in a new device report. Never copy VIN, route, location or account secrets into the campaign.
+Profile: `COMMA4_NON_ACTUATING_MVL`. This is a manual procedure for a later authorized, parked, isolated device session. It is not permission to install or activate this candidate. The full product build is incomplete, so execution remains blocked. Record the exact candidate commit, package SHA256, AGNOS version, device identifier, operator, UTC times, commands, raw logs, PASS/FAIL and waiver evidence in a new device report. Never copy VIN, route, location or account secrets into the campaign.
 
 ## Entry and protection
 
 1. Confirm exact source/package hashes and signed or otherwise trusted provenance against the release manifest. Refuse an incomplete package, wrong AGNOS, missing model artifact, or modified control/Panda/ECU boundary.
-2. With the device disconnected from the vehicle, preserve the current known-good installation, user data and recovery image using the approved comma 4 recovery procedure. Verify backup hashes and perform a dry restoration path on separate media. Keep a known-good boot route available.
+2. With the device disconnected from the vehicle, record the current known-good branch and approved owner-managed reset/reinstallation reference. The owner controls any future recovery. No restoration demonstration or stress test is required for this release profile.
 3. Only after separate user authorization for device installation, install the candidate in an isolated bench environment using the device's supported installation path. Do not connect CAN/Panda to a vehicle, flash firmware, write ECU configuration, or enable experimental control.
-4. Run tests with a monotonic timestamped logger and capture process status, resource sampling and UI video. Start from the candidate's default configuration; record every opt-in action. Stop immediately on unexpected vehicle-control publication, security exposure, boot loop, persistent UI failure, thermal shutdown or inability to restore the known-good installation.
+4. Run tests with a monotonic timestamped logger and capture process status, resource sampling and UI video. Start from the candidate's default configuration; record every opt-in action. Stop immediately on unexpected vehicle-control publication, security exposure, boot loop, persistent UI failure, thermal shutdown or loss of a viable owner-managed recovery route.
 
 ## Twelve bench checks
 
@@ -24,7 +24,7 @@ Profile: `COMMA4_NON_ACTUATING_MVL`. This is a manual procedure for a later auth
 | C4-09 | G08 stock model metadata and artifact identity. | Catalog is read-only; manifest hashes match loaded artifacts; no model switching/download. | NOT_TESTED |
 | C4-10 | Resource soak on isolated power: CPU, memory, thermal, disk and power over a documented duration. | No thermal shutdown, starvation, storage exhaustion or process leak; attach raw series. | NOT_TESTED |
 | C4-11 | Observe Panda identity and stock-process state passively, disconnected from vehicle. | Record identity and firmware evidence if available; no firmware write or safety-policy change. Observation is not OEM/Panda safety qualification. | NOT_TESTED |
-| C4-12 | Restore known-good installation and verify boot, process status and hashes. | Restoration succeeds and known-good state matches pretest evidence. | NOT_TESTED |
+| C4-12 | Physical restoration demonstration. | Owner-approved waiver; no execution or PASS claim. | WAIVED_BY_OWNER / NOT_EXECUTED |
 
 ## Supplemental parked observation
 
@@ -32,11 +32,11 @@ Profile: `COMMA4_NON_ACTUATING_MVL`. This is a manual procedure for a later auth
 
 ## Decision
 
-Any missing entry condition or unexecuted check is `HOLD`/`NOT_TESTED`. Device tests require real comma 4 evidence. G11/G12 remain `NOT_APPLICABLE_TO_COMMA4_PROFILE` only while no new active control, Panda, ECU or CAN-transmit behavior enters the candidate; this is no safety PASS.
+Any missing required entry condition or unexecuted applicable check is `HOLD`/`NOT_TESTED`. C4-12 is excluded from the acceptance denominator as `WAIVED_BY_OWNER / NOT_EXECUTED`; automated rollback and rollback stress testing are `NOT_REQUIRED`. Device tests require real comma 4 evidence. G11/G12 remain `NOT_APPLICABLE_TO_COMMA4_PROFILE` only while no new active control, Panda, ECU or CAN-transmit behavior enters the candidate; this is no safety PASS.
 
 ## Bounded execution sheet for an authorized session
 
-All commands below are **prepared only**. The product package does not exist yet, so none may run as a candidate qualification now. Before a session, `export CANDIDATE_ROOT` for the separately authorized isolated install and `export EVIDENCE_DIR` for a private output directory; write the exact source/package hashes and device identifier in the session header. Use `timeout` on each observer, tee raw stdout/stderr into `EVIDENCE_DIR`, and record the command's exit code. Do not run any command if the device is vehicle-connected, moving, enabled for control, or lacking verified recovery media.
+All commands below are **prepared only**. The product package does not exist yet, so none may run as a candidate qualification now. Before a session, `export CANDIDATE_ROOT` for the separately authorized isolated install and `export EVIDENCE_DIR` for a private output directory; write the exact source/package hashes and device identifier in the session header. Use `timeout` on each observer, tee raw stdout/stderr into `EVIDENCE_DIR`, and record the command's exit code. Do not run any command if the device is vehicle-connected, moving, enabled for control, or lacking the recorded owner-managed recovery reference.
 
 | Check | Bounded command or manual evidence action | Stop/expected result |
 | --- | --- | --- |
@@ -51,6 +51,6 @@ All commands below are **prepared only**. The product package does not exist yet
 | C4-09 | On the isolated host, run `timeout 60s python3 tools/release/mvl_model_artifacts.py verify --source "$SOURCE_ROOT" --onnx-assets "$SOURCE_ROOT/openpilot/selfdrive/modeld/models" --artifacts "$EVIDENCE_DIR/qcom-artifacts" --agnos-image /home/jdkd/AGNOS_20261014/agnos_system.ext4.img --agnos-root /mnt/commadrive/MVL_G10_AGNOS_19_8_1_ROOTFS --manifest "$EVIDENCE_DIR/qcom-manifest.json"`. On the device, run `timeout 15s sha256sum "$CANDIDATE_ROOT"/openpilot/selfdrive/modeld/models/*tinygrad.pkl` and compare exact six hashes. | All six exact-source QCOM outputs match and actual candidate files have the same bytes; no model selection or download. Static validation alone is not inference qualification. |
 | C4-10 | `timeout 900s sh -c 'while :; do date -u +%FT%TZ; cat /proc/loadavg; cat /proc/meminfo | head -5; df -B1 /data; sleep 5; done'` in the isolated session, with separate temperature/power telemetry from supported device tooling. | No thermal, memory, disk or process fault; retain series and explicit thresholds. |
 | C4-11 | `timeout 15s python3 "$CANDIDATE_ROOT/tools/honda11g_health/collect_health.py" --device --ack-parked --seconds 5 --output-dir "$EVIDENCE_DIR/passive-health"` only when the operator has confirmed parked and disconnected bench conditions. | Supplemental allowlisted observation only; no firmware query or OEM safety PASS. |
-| C4-12 | Follow the separately approved supported restoration procedure; after restart run `timeout 10s sh -c 'uname -m; cat /VERSION; ps -eo pid,comm'` and compare the known-good installation and backup hashes. | Exact known-good identity restored. Stop and escalate if any hash or boot check fails. |
+| C4-12 | No command. Do not execute reset, restoration or rollback stress. Record owner waiver. | WAIVED_BY_OWNER / NOT_EXECUTED; never PASS. |
 
-Items requiring video, fixture replay, supported UI restart or restoration need an operator and cannot be reduced to a successful shell exit code. C4-04, C4-05 and C4-08 require new reviewed device harnesses before execution. The command sheet does not authorize installation, activation, vehicle connection, Panda flashing or any ECU/CAN transmission. Every check starts `NOT_TESTED` and stays so until its physical evidence is reviewed.
+Items requiring video, fixture replay or supported UI restart need an operator and cannot be reduced to a successful shell exit code. C4-04, C4-05 and C4-08 require new reviewed device harnesses before execution. The command sheet does not authorize installation, activation, vehicle connection, Panda flashing or any ECU/CAN transmission. Applicable checks C4-01 through C4-11 start `NOT_TESTED` and stay so until physical evidence is reviewed. C4-12 remains `WAIVED_BY_OWNER / NOT_EXECUTED`.

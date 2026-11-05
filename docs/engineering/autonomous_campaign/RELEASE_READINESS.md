@@ -4,7 +4,7 @@
 | --- | --- | --- |
 | SOFTWARE_READY | HOLD | 401 exact-commit host/native tests pass; C3/C4 device UI, G06 live transport and G08 runner qualification remain open. |
 | TARGET_BUILD_READY | HOLD | Representative AGNOS 19.8.1 AArch64 native library, ABI and dependencies passed; full cold product build and physical boot remain open. |
-| DEVICE_QUALIFIED | HOLD | No exact-device boot, resource, Panda, or protected-recovery evidence. |
+| DEVICE_QUALIFIED | HOLD | No exact-device boot, resource, Panda identity, UI, IPC or security evidence. C4-12 restoration demonstration is WAIVED_BY_OWNER / NOT_EXECUTED. |
 | VEHICLE_QUALIFIED | HOLD | Honda OEM stock ACC, FCW/CMBS/AEB, override and Panda safety evidence incomplete. |
 | DEPLOYMENT_APPROVED | HOLD | All preceding gates and release-owner approval required. |
 
@@ -18,4 +18,8 @@ Publication status: **published offline engineering candidate** at `40bc2805c00c
 
 ## 2026-11-04 continuation
 
-Tested source `162391f22567774166a6bd02024a65d969f63b59`: 401 combined host/native tests, eight G03 local IPC paths and four recovery tests PASS. The AGNOS `comma_arm64` SCons graph and native `libparams_c.so` build passed; ELF AArch64 identity, dependencies, RUNPATH, hash and AGNOS `dlopen` are recorded in `G10_BUILD_EVIDENCE_20261104.json`. This is a representative library, not a full cold product. Device, Panda, Honda OEM, protected rollback, target build readiness and deployment approval remain HOLD. See `G05_COMMA_BENCH_PLAN.md` for the isolated physical test procedure.
+Tested source `162391f22567774166a6bd02024a65d969f63b59`: 401 combined host/native tests, eight G03 local IPC paths and four recovery tests PASS. The AGNOS `comma_arm64` SCons graph and native `libparams_c.so` build passed; ELF AArch64 identity, dependencies, RUNPATH, hash and AGNOS `dlopen` are recorded in `G10_BUILD_EVIDENCE_20261104.json`. This is a representative library, not a full cold product. Device, Panda identity observation, target build readiness and deployment approval remain HOLD for this non-actuating profile. G11/G12 external HIL and Honda dynamic OEM testing are conditionally NOT_APPLICABLE_TO_COMMA4_PROFILE; C4-12 is WAIVED_BY_OWNER / NOT_EXECUTED. See `G05_COMMA_BENCH_PLAN.md` for the isolated physical test procedure.
+
+## Final-release owner waiver and build status — 2026-11-05
+
+Full native product build, package integrity, applicable software regression, independent exact-commit review, and actual comma 4 cold boot/UI/IPC/runtime/security checks remain required. The six exact-source QCOM outputs are unavailable, so classification is **PRODUCT_BUILD_INCOMPLETE / HOLD**. This branch is not installable. C4-12 physical restoration demonstration is **WAIVED_BY_OWNER / NOT_EXECUTED**, with no PASS claim. Automated rollback and rollback stress are **NOT_REQUIRED**. Owner-managed factory reset and known-good branch reinstall are outside this campaign and require separate action. The known-good branch identity must be recorded before any separately authorized installation.

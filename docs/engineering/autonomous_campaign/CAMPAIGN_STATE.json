@@ -1,52 +1,53 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-05T16:55:54.956999+00:00",
-  "current_stage": "G10_exact_source_restored_product_build_prerequisite_hold",
+  "updated_at_utc": "2026-11-05T17:59:11.682962+00:00",
+  "current_stage": "G10_QCOM_handoff_preparation_and_G14_waiver",
   "release_decision": "HOLD",
-  "branch": "codex/mvl-g10-closure-20261105",
+  "branch": "codex/mvl-comma4-final-release-20261105",
   "checkout_mode": "branch",
-  "head_commit": "529253cbb8fc4bc05a5848af189d825091609f63",
+  "head_commit": "23f516d5f48118bc680d78c6b5dc2813d485d80f",
   "last_verified_result": {
-    "decision": "PASS_HOST_AND_SOURCE_PREFLIGHT",
-    "scope": "444 host tests, eight G03 local IPC paths, four recovery tests, 7/7 pinned submodules, 283/283 release-selected LFS assets and warning-free AGNOS ARM64 SCons dry-run; no complete build",
+    "decision": "PASS_HOST_AND_SOURCE_ONLY_HANDOFF",
+    "scope": "444 current-branch host tests; 4365-member exact 23f source archive; 7 gitlinks, two ONNX inputs; no QCOM outputs or full product",
     "passed": 444,
     "failed": 0,
     "skipped": 0,
-    "record": "TEST_RESULTS.json milestone_runs[-1] and G10_FINAL_BUILD_CLOSURE_20261105.md"
+    "record": "TEST_RESULTS.json and QCOM_HANDOFF_EVIDENCE_20261105.json"
   },
-  "next_action": "Obtain separate authorization and a safely isolated comma 4 QCOM build environment; compile six exact-source model/warp outputs, validate their manifest, then attempt full cold product build in isolated staging.",
+  "next_action": "Commit current source, rerun exact-commit G03/recovery/host/handoff tests, obtain independent review, then publish new branch. QCOM product build awaits separately authorized matching Qualcomm host.",
   "source_of_truth": "CAMPAIGN_STATE.json, TEST_RESULTS.json, MASTER_GATE_TRACKER.md, G10_FINAL_BUILD_CLOSURE_20261105.md and persisted G10 source/graph logs; prior campaign reports are historical.",
   "authoritative_baseline_sha": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
-    "branch": "codex/mvl-g10-closure-20261105",
-    "head": "529253cbb8fc4bc05a5848af189d825091609f63",
-    "worktree": "/tmp/mvl-g10-closure-20261105",
-    "owner": "manual G10 closure; exclusive campaign lease"
+    "branch": "codex/mvl-comma4-final-release-20261105",
+    "head": "23f516d5f48118bc680d78c6b5dc2813d485d80f",
+    "worktree": "/tmp/mvl-comma4-final-release-20261105",
+    "owner": "manual final-release campaign; exclusive lease"
   },
   "current_gate": "PRODUCT_BUILD_INCOMPLETE",
-  "last_successful_milestone": "Exact source b394109: 444 combined host tests, eight G03 IPC paths, four recovery tests, 254 Params DENY, source preflight PASS and full ARM64 graph dry-run PASS with zero warnings. Independent review accepted preflight fix and source boundary. Full product was not built.",
+  "last_successful_milestone": "Exact published source 23f516d source-only QCOM handoff package verified: 4365 archive members, seven pinned gitlinks, two ONNX hashes; current branch host regression 444 PASS after sandbox socket access. Full product not built.",
   "tests_verified_at_commit": "b39410908b15a27ff29f07b451ade468764bb148",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Obtain separate authorization and a safely isolated comma 4 QCOM build environment; compile six exact-source model/warp outputs, validate their manifest, then attempt full cold product build in isolated staging.",
+  "next_actionable_milestone": "Commit current source, rerun exact-commit G03/recovery/host/handoff tests, obtain independent review, then publish new branch. QCOM product build awaits separately authorized matching Qualcomm host.",
   "current_blockers": [
-    "Six exact-MVL-source Qualcomm model/warp outputs are unavailable; host has no /dev/kgsl-3d0. Preserved CPU/LLVM and Dom outputs fail exact-source contract.",
+    "Six exact-MVL-source Qualcomm model/warp outputs remain unavailable; source-only handoff package prepared and verified, no /dev/kgsl-3d0 on Ubuntu.",
     "Full cold product build and complete release package are not attempted until QCOM prerequisite passes.",
-    "Comma 4 device checks and protected restoration remain NOT_TESTED; copying/compiling/installing on device requires separate authorization.",
+    "Comma 4 applicable device checks remain NOT_TESTED; C4-12 is WAIVED_BY_OWNER / NOT_EXECUTED; copying/compiling/installing on device requires separate authorization.",
     "G06 prototype has no production registration or target security/resource qualification.",
     "All 254 quarantined Params keys remain DENY."
   ],
   "approval_requirements": [
-    "Candidate installation or activation on comma 4 requires all applicable software/build prerequisites, protected backup/restore readiness, and separate user authorization.",
-    "G11 external CAN-FD/HIL and G12 Honda dynamic OEM tests are excluded from this non-actuating profile only while no new active control, Panda, ECU or CAN-transmit behavior is included."
+    "Candidate installation or activation on comma 4 requires all applicable software/build prerequisites, and separate user authorization.",
+    "G11 external CAN-FD/HIL and G12 Honda dynamic OEM tests are excluded from this non-actuating profile only while no new active control, Panda, ECU or CAN-transmit behavior is included.",
+    "Device-side compilation, source copying, installation and activation each require separate authorization; owner manages possible reset and known-good reinstall."
   ],
   "release_qualification": {
     "status": "PRODUCT_BUILD_INCOMPLETE",
     "profile": "COMMA4_NON_ACTUATING_MVL",
-    "scope": "Isolated source and build graph ready; six QCOM outputs and complete cold package absent; comma 4 physical and protected restoration NOT_TESTED."
+    "scope": "Full product QCOM outputs and cold package absent; C4-01\u2013C4-11 applicable device checks NOT_TESTED; C4-12 WAIVED_BY_OWNER / NOT_EXECUTED."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded published docs checkpoint 529253c is one descendant of exact tested source b394109; one following docs-only publication record is permitted. Further drift needs reconciliation.",
+  "checkpoint_rule": "New branch starts at published 23f516d; update head after verified milestone commit. Historical exact tested source b394109 remains baseline until a new exact-source suite runs.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -92,5 +93,11 @@
     "G11_external_CAN_FD_HIL": "NOT_APPLICABLE_TO_COMMA4_PROFILE",
     "G12_Honda_dynamic_OEM": "NOT_APPLICABLE_TO_COMMA4_PROFILE",
     "condition": "No new active vehicle-control, Panda safety, ECU or CAN transmit behavior enters the profile; exclusion is not a safety PASS."
+  },
+  "release_waiver": {
+    "C4-12": "WAIVED_BY_OWNER / NOT_EXECUTED",
+    "automated_rollback": "NOT_REQUIRED",
+    "rollback_stress": "NOT_REQUIRED",
+    "manual_reinstall": "OWNER_MANAGED"
   }
 }

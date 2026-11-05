@@ -66,3 +66,7 @@ Independent re-review at `feee77a` found the G06 failed-bind cleanup defect fixe
 | Comma 4 physical/recovery | NOT_TESTED | No device modification; twelve checks remain pending. |
 
 Release decision **PRODUCT_BUILD_INCOMPLETE / HOLD**. G11/G12 remain conditionally NOT_APPLICABLE_TO_COMMA4_PROFILE, not safety PASS.
+
+## Final-release scope amendment — 2026-11-05
+
+The owner waiver supersedes historical protected-restoration and rollback rows above for `COMMA4_NON_ACTUATING_MVL`; those rows remain as prior decisions only. C4-12 = **WAIVED_BY_OWNER / NOT_EXECUTED**, automated rollback and stress = **NOT_REQUIRED**, owner-managed previous-version reinstall. G11 external HIL and G12 dynamic Honda OEM remain conditionally **NOT_APPLICABLE_TO_COMMA4_PROFILE** while no active control/Panda/ECU/CAN-transmit change enters source. Full product build, integrity, independent review, C4-01–C4-11 applicable device tests, and separate installation approval remain **HOLD**. Current classification: **PRODUCT_BUILD_INCOMPLETE**.
