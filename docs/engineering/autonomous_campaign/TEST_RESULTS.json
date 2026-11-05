@@ -363,6 +363,15 @@
       "method": "SHA-verified bundle via authorized Windows helper; non-force push; authenticated ls-remote",
       "new_test_outcome": "not_rerun_docs_only",
       "classification": "PRODUCT_BUILD_INCOMPLETE"
+    },
+    {
+      "published_commit": "529253cbb8fc4bc05a5848af189d825091609f63",
+      "tested_source_commit": "b39410908b15a27ff29f07b451ade468764bb148",
+      "branch": "codex/mvl-g10-closure-20261105",
+      "remote_ref_verified": true,
+      "method": "SHA-verified Git bundle via authorized Windows helper; non-force push and authenticated ls-remote",
+      "new_test_outcome": "not_rerun_docs_only",
+      "classification": "PRODUCT_BUILD_INCOMPLETE"
     }
   ]
 }

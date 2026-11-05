@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-05T16:53:53.501471+00:00",
+  "updated_at_utc": "2026-11-05T16:55:54.956999+00:00",
   "current_stage": "G10_exact_source_restored_product_build_prerequisite_hold",
   "release_decision": "HOLD",
   "branch": "codex/mvl-g10-closure-20261105",
   "checkout_mode": "branch",
-  "head_commit": "b39410908b15a27ff29f07b451ade468764bb148",
+  "head_commit": "529253cbb8fc4bc05a5848af189d825091609f63",
   "last_verified_result": {
     "decision": "PASS_HOST_AND_SOURCE_PREFLIGHT",
     "scope": "444 host tests, eight G03 local IPC paths, four recovery tests, 7/7 pinned submodules, 283/283 release-selected LFS assets and warning-free AGNOS ARM64 SCons dry-run; no complete build",
@@ -20,7 +20,7 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-g10-closure-20261105",
-    "head": "b39410908b15a27ff29f07b451ade468764bb148",
+    "head": "529253cbb8fc4bc05a5848af189d825091609f63",
     "worktree": "/tmp/mvl-g10-closure-20261105",
     "owner": "manual G10 closure; exclusive campaign lease"
   },
@@ -46,7 +46,7 @@
     "scope": "Isolated source and build graph ready; six QCOM outputs and complete cold package absent; comma 4 physical and protected restoration NOT_TESTED."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded source commit b394109 passed exact tests; one docs-only campaign checkpoint descendant is permitted. Reconcile any further SHA drift.",
+  "checkpoint_rule": "Recorded published docs checkpoint 529253c is one descendant of exact tested source b394109; one following docs-only publication record is permitted. Further drift needs reconciliation.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -79,7 +79,12 @@
     "new_release_verified_at_utc": "2026-11-04T16:25:09.173065+00:00",
     "new_release_method": "SHA-verified Git bundle transferred to authorized Windows Git helper; non-force push and authenticated ls-remote verified exact ref. PR #1 unchanged.",
     "g10_closure_branch": "codex/mvl-g10-closure-20261105",
-    "g10_closure_status": "LOCAL_UNPUBLISHED"
+    "g10_closure_status": "PUBLISHED_VERIFIED",
+    "g10_closure_head": "529253cbb8fc4bc05a5848af189d825091609f63",
+    "g10_closure_verified_source_sha": "b39410908b15a27ff29f07b451ade468764bb148",
+    "g10_closure_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-g10-closure-20261105",
+    "g10_closure_verified_at_utc": "2026-11-05T16:55:54.956999+00:00",
+    "g10_closure_method": "SHA-verified Git bundle transferred to authenticated Windows helper; non-force push and authenticated ls-remote verified exact branch. Prior branches and PR #1 unchanged."
   },
   "release_profile": "COMMA4_NON_ACTUATING_MVL",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE",
