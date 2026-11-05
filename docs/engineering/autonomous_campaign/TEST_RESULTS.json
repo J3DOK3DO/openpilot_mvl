@@ -432,6 +432,14 @@
       "method": "SHA-verified Git bundle via authorized Windows helper; non-force push and authenticated ls-remote",
       "new_test_outcome": "not_rerun_docs_only",
       "classification": "PRODUCT_BUILD_INCOMPLETE"
+    },
+    {
+      "branch": "codex/mvl-comma4-final-release-20261105",
+      "verified_remote_sha": "627e9171f209d2457706cb694d5169d4de264654",
+      "tested_source_sha": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+      "verified_at_utc": "2026-11-05T18:13:10.068098+00:00",
+      "method": "Windows authenticated non-force push; ls-remote exact SHA",
+      "release_status": "PRODUCT_BUILD_INCOMPLETE"
     }
   ]
 }

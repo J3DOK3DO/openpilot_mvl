@@ -22,5 +22,20 @@
     "pull_request_1_merged": false,
     "release_decision": "HOLD",
     "note": "This publication-status record is a following docs-only commit; its test provenance remains the source SHA."
+  },
+  "final_release_publication": {
+    "decision": "PUBLISHED_VERIFIED_ENGINEERING_HOLD",
+    "repository": "J3DOK3DO/openpilot_mvl",
+    "branch": "codex/mvl-comma4-final-release-20261105",
+    "remote_verified_checkpoint": "627e9171f209d2457706cb694d5169d4de264654",
+    "tested_source_sha": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+    "recorded_at_utc": "2026-11-05T18:13:10.068098+00:00",
+    "method": "SHA-verified bundle; authorized Windows helper; non-force push; authenticated git ls-remote exact SHA",
+    "remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-comma4-final-release-20261105",
+    "pull_request_1_merged": false,
+    "product_build": "INCOMPLETE",
+    "device_qualification": "NOT_TESTED",
+    "owner_waiver_C4_12": "WAIVED_BY_OWNER / NOT_EXECUTED",
+    "note": "Following docs-only publication record may be a descendant of this verified remote checkpoint."
   }
 }

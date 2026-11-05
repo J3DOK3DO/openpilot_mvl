@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-05T18:10:39.297825+00:00",
+  "updated_at_utc": "2026-11-05T18:13:10.068098+00:00",
   "current_stage": "G10_exact_source_handoff_complete_product_build_hold",
   "release_decision": "HOLD",
   "branch": "codex/mvl-comma4-final-release-20261105",
   "checkout_mode": "branch",
-  "head_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "head_commit": "627e9171f209d2457706cb694d5169d4de264654",
   "last_verified_result": {
     "decision": "PASS_HOST_AND_SOURCE_ONLY_HANDOFF",
     "scope": "444 exact-commit host tests, 13 handoff/recovery units, eight G03 IPC paths, 7/7 pinned submodules, 283/283 selected LFS assets, exact-source handoff with 4372 members and independent review; no full product or device result",
@@ -20,7 +20,7 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-comma4-final-release-20261105",
-    "head": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+    "head": "627e9171f209d2457706cb694d5169d4de264654",
     "worktree": "/tmp/mvl-comma4-final-release-20261105",
     "owner": "manual final-release campaign; exclusive lease"
   },
@@ -47,7 +47,7 @@
     "scope": "Exact source and host handoff verified; six QCOM outputs/full product absent; ten applicable comma 4 checks NOT_TESTED; C4-12 WAIVED_BY_OWNER / NOT_EXECUTED."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded exact tested source 4b25263; following campaign-only documentation commit is permitted as one docs-only descendant. Further drift requires reconciliation.",
+  "checkpoint_rule": "Recorded published checkpoint 627e917 is one docs-only descendant of exact tested source 4b25263; following publication record may be one docs-only descendant. Further drift needs reconciliation.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -85,7 +85,14 @@
     "g10_closure_verified_source_sha": "b39410908b15a27ff29f07b451ade468764bb148",
     "g10_closure_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-g10-closure-20261105",
     "g10_closure_verified_at_utc": "2026-11-05T16:55:54.956999+00:00",
-    "g10_closure_method": "SHA-verified Git bundle transferred to authenticated Windows helper; non-force push and authenticated ls-remote verified exact branch. Prior branches and PR #1 unchanged."
+    "g10_closure_method": "SHA-verified Git bundle transferred to authenticated Windows helper; non-force push and authenticated ls-remote verified exact branch. Prior branches and PR #1 unchanged.",
+    "final_release_branch": "codex/mvl-comma4-final-release-20261105",
+    "final_release_status": "PUBLISHED_VERIFIED_ENGINEERING_HOLD",
+    "final_release_head": "627e9171f209d2457706cb694d5169d4de264654",
+    "final_release_verified_source_sha": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+    "final_release_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-comma4-final-release-20261105",
+    "final_release_verified_at_utc": "2026-11-05T18:13:10.068098+00:00",
+    "final_release_method": "SHA-verified Git bundle via authorized Windows Git helper; non-force push and authenticated ls-remote exact SHA verification. PR #1 unchanged."
   },
   "release_profile": "COMMA4_NON_ACTUATING_MVL",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE",
