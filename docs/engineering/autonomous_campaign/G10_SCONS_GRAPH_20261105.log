@@ -1,0 +1,786 @@
+7e0015b5b74e2b6372cd7dae0122815cbd491e43
+8a16e089b88593914823743df29e1c30b7dd3e00
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+progress: 0.2
+progress: 0.3
+progress: 0.5
+progress: 0.6
+progress: 0.8
+progress: 1.0
+progress: 1.1
+progress: 1.3
+progress: 1.5
+progress: 1.6
+progress: 1.8
+progress: 1.9
+progress: 2.1
+progress: 2.3
+progress: 2.4
+progress: 2.6
+progress: 2.7
+progress: 2.9
+progress: 3.1
+progress: 3.2
+Building compilation database compile_commands.json
+progress: 3.4
+progress: 3.6
+progress: 3.7
+progress: 3.9
+progress: 4.0
+progress: 4.2
+  [CXX] msgq_repo/msgq/ipc.os
+  [CXX] msgq_repo/msgq/event.os
+  [CXX] msgq_repo/msgq/impl_msgq.os
+progress: 4.4
+  [CXX] msgq_repo/msgq/impl_fake.os
+  [CXX] msgq_repo/msgq/msgq.os
+progress: 4.5
+  [AR] msgq_repo/libmsgq.a
+  [RANLIB] msgq_repo/libmsgq.a
+  [CXX] msgq_repo/msgq/visionipc/visionipc.os
+progress: 4.7
+  [CXX] msgq_repo/msgq/visionipc/visionipc_server.os
+progress: 4.9
+  [CXX] msgq_repo/msgq/visionipc/visionipc_client.os
+  [CXX] msgq_repo/msgq/visionipc/visionbuf.os
+progress: 5.0
+  [AR] msgq_repo/libvisionipc.a
+  [RANLIB] msgq_repo/libvisionipc.a
+progress: 5.2
+progress: 5.3
+progress: 5.5
+cythonize msgq_repo/msgq/ipc_pyx.pyx
+progress: 5.7
+progress: 5.8
+Retrieved `openpilot/cereal/gen/cpp/log.capnp.c++' from cache
+Retrieved `openpilot/cereal/gen/cpp/deprecated.capnp.c++' from cache
+Retrieved `openpilot/cereal/gen/cpp/custom.capnp.c++' from cache
+Retrieved `openpilot/cereal/gen/cpp/car.capnp.c++' from cache
+Retrieved `openpilot/cereal/gen/cpp/log.capnp.h' from cache
+Retrieved `openpilot/cereal/gen/cpp/deprecated.capnp.h' from cache
+Retrieved `openpilot/cereal/gen/cpp/custom.capnp.h' from cache
+Retrieved `openpilot/cereal/gen/cpp/car.capnp.h' from cache
+  [CXX] msgq_repo/msgq/ipc_pyx.o
+progress: 6.0
+progress: 6.1
+  [CXX] openpilot/common/params.o
+  [CXX] openpilot/common/swaglog.o
+Retrieved `openpilot/common/util.o' from cache
+progress: 6.3
+Retrieved `openpilot/common/ratekeeper.o' from cache
+progress: 6.5
+Retrieved `openpilot/common/yuv.o' from cache
+progress: 6.6
+cythonize msgq_repo/msgq/visionipc/visionipc_pyx.pyx
+  [AR] openpilot/common/libcommon.a
+  [RANLIB] openpilot/common/libcommon.a
+progress: 6.8
+  [CXX] msgq_repo/msgq/visionipc/visionipc_pyx.o
+  [LINK] msgq_repo/msgq/ipc_pyx.so
+  [LINK] msgq_repo/msgq/visionipc/visionipc_pyx.so
+progress: 7.0
+progress: 7.1
+progress: 7.3
+progress: 7.4
+progress: 7.6
+progress: 7.8
+progress: 7.9
+progress: 8.1
+progress: 8.2
+progress: 8.4
+  [CXX] openpilot/cereal/gen/cpp/car.capnp.o
+progress: 8.6
+  [CXX] openpilot/cereal/gen/cpp/custom.capnp.o
+  [CXX] openpilot/cereal/gen/cpp/deprecated.capnp.o
+  [CXX] openpilot/cereal/gen/cpp/log.capnp.o
+progress: 8.7
+python3 openpilot/cereal/services.py > openpilot/cereal/services.h
+  [AR] openpilot/cereal/libcereal.a
+  [RANLIB] openpilot/cereal/libcereal.a
+progress: 8.9
+progress: 9.1
+progress: 9.2
+progress: 9.4
+progress: 9.5
+progress: 9.7
+  [CXX] openpilot/cereal/messaging/socketmaster.o
+  [AR] openpilot/cereal/libsocketmaster.a
+  [RANLIB] openpilot/cereal/libsocketmaster.a
+progress: 9.9
+  [CXX] openpilot/cereal/messaging/bridge.o
+  [CXX] openpilot/cereal/messaging/msgq_to_zmq.o
+progress: 10.0
+  [CXX] openpilot/cereal/messaging/bridge_zmq.o
+  [LINK] openpilot/cereal/messaging/bridge
+progress: 10.2
+progress: 10.3
+Retrieved `openpilot/common/params_c.os' from cache
+progress: 10.5
+  [LINK] openpilot/common/libparams_c.so
+progress: 10.7
+progress: 10.8
+progress: 11.0
+progress: 11.2
+progress: 11.3
+progress: 11.5
+progress: 11.6
+progress: 11.8
+Mkdir("openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code")
+Copy("openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libacados.so", "/usr/local/venv/lib/python3.12/site-packages/acados/install/lib/libacados.so")
+progress: 12.0
+progress: 12.1
+progress: 12.3
+progress: 12.5
+progress: 12.6
+cd /src/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib && python3 long_mpc.py
+progress: 12.8
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_e_hess.os
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_model/long_expl_ode_fun.os
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_0_hess.os
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_fun_jac_ut_xt.os
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_constraints/long_constr_h_fun_jac_uxt_zt.os
+progress: 12.9
+cython -o /src/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.c -I /src/openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code -I /usr/local/venv/lib/python3.12/site-packages/acados/acados_template /usr/local/venv/lib/python3.12/site-packages/acados/acados_template/acados_ocp_solver_pyx.pyx
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_e_fun_jac_ut_xt.os
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.o
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_solver_long.os
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_0_fun_jac_ut_xt.os
+progress: 13.1
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_fun.os
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_e_fun.os
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_0_fun.os
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_model/long_expl_vde_forw.os
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_constraints/long_constr_h_fun.os
+progress: 13.3
+  [CC] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/long_cost/long_cost_y_hess.os
+  [LINK] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libacados_ocp_solver_long.so
+Mkdir("openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code")
+Copy("openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libblasfeo.so", "/usr/local/venv/lib/python3.12/site-packages/acados/install/lib/libblasfeo.so")
+Mkdir("openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code")
+Copy("openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libhpipm.so", "/usr/local/venv/lib/python3.12/site-packages/acados/install/lib/libhpipm.so")
+progress: 13.4
+Mkdir("openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code")
+Copy("openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/libqpOASES_e.so.3.1", "/usr/local/venv/lib/python3.12/site-packages/acados/install/lib/libqpOASES_e.so.3.1")
+  [LINK] openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.so
+progress: 13.6
+progress: 13.7
+progress: 13.9
+progress: 14.1
+progress: 14.2
+progress: 14.4
+progress: 14.6
+progress: 14.7
+progress: 14.9
+progress: 15.0
+progress: 15.2
+progress: 15.4
+progress: 15.5
+progress: 15.7
+progress: 15.8
+progress: 16.0
+progress: 16.2
+progress: 16.3
+progress: 16.5
+progress: 16.7
+progress: 16.8
+progress: 17.0
+progress: 17.1
+progress: 17.3
+progress: 17.5
+progress: 17.6
+progress: 17.8
+progress: 17.9
+progress: 18.1
+progress: 18.3
+progress: 18.4
+progress: 18.6
+progress: 18.8
+progress: 18.9
+progress: 19.1
+progress: 19.2
+progress: 19.4
+progress: 19.6
+progress: 19.7
+progress: 19.9
+progress: 20.1
+progress: 20.2
+progress: 20.4
+progress: 20.5
+progress: 20.7
+progress: 20.9
+progress: 21.0
+progress: 21.2
+progress: 21.3
+progress: 21.5
+progress: 21.7
+progress: 21.8
+openpilot/selfdrive/locationd/models/car_kf.py car openpilot/selfdrive/locationd/models/generated
+openpilot/selfdrive/locationd/models/pose_kf.py pose openpilot/selfdrive/locationd/models/generated
+  [CXX] openpilot/selfdrive/locationd/models/generated/car.os
+  [CXX] openpilot/selfdrive/locationd/models/generated/pose.os
+progress: 22.0
+  [LINK] openpilot/selfdrive/locationd/models/generated/libcar.so
+  [LINK] openpilot/selfdrive/locationd/models/generated/libpose.so
+progress: 22.2
+progress: 22.3
+progress: 22.5
+progress: 22.6
+progress: 22.8
+progress: 23.0
+progress: 23.1
+progress: 23.3
+progress: 23.4
+progress: 23.6
+progress: 23.8
+progress: 23.9
+progress: 24.1
+progress: 24.3
+progress: 24.4
+progress: 24.6
+progress: 24.7
+progress: 24.9
+progress: 25.1
+progress: 25.2
+progress: 25.4
+progress: 25.5
+progress: 25.7
+progress: 25.9
+progress: 26.0
+progress: 26.2
+progress: 26.4
+progress: 26.5
+progress: 26.7
+progress: 26.8
+progress: 27.0
+progress: 27.2
+progress: 27.3
+progress: 27.5
+progress: 27.7
+progress: 27.8
+progress: 28.0
+progress: 28.1
+progress: 28.3
+progress: 28.5
+progress: 28.6
+progress: 28.8
+progress: 28.9
+progress: 29.1
+progress: 29.3
+progress: 29.4
+progress: 29.6
+progress: 29.8
+progress: 29.9
+progress: 30.1
+progress: 30.2
+progress: 30.4
+progress: 30.6
+progress: 30.7
+progress: 30.9
+progress: 31.0
+progress: 31.2
+progress: 31.4
+progress: 31.5
+progress: 31.7
+progress: 31.9
+progress: 32.0
+progress: 32.2
+progress: 32.3
+progress: 32.5
+progress: 32.7
+progress: 32.8
+progress: 33.0
+progress: 33.2
+progress: 33.3
+progress: 33.5
+progress: 33.6
+progress: 33.8
+progress: 34.0
+progress: 34.1
+progress: 34.3
+progress: 34.4
+progress: 34.6
+progress: 34.8
+progress: 34.9
+progress: 35.1
+progress: 35.3
+progress: 35.4
+progress: 35.6
+progress: 35.7
+progress: 35.9
+progress: 36.1
+progress: 36.2
+progress: 36.4
+progress: 36.5
+progress: 36.7
+progress: 36.9
+progress: 37.0
+progress: 37.2
+progress: 37.4
+progress: 37.5
+progress: 37.7
+progress: 37.8
+progress: 38.0
+progress: 38.2
+progress: 38.3
+progress: 38.5
+progress: 38.6
+progress: 38.8
+progress: 39.0
+progress: 39.1
+progress: 39.3
+progress: 39.5
+progress: 39.6
+progress: 39.8
+progress: 39.9
+progress: 40.1
+progress: 40.3
+progress: 40.4
+progress: 40.6
+progress: 40.8
+progress: 40.9
+progress: 41.1
+progress: 41.2
+progress: 41.4
+progress: 41.6
+progress: 41.7
+progress: 41.9
+progress: 42.0
+progress: 42.2
+progress: 42.4
+progress: 42.5
+progress: 42.7
+progress: 42.9
+progress: 43.0
+progress: 43.2
+progress: 43.3
+progress: 43.5
+progress: 43.7
+progress: 43.8
+progress: 44.0
+progress: 44.1
+progress: 44.3
+progress: 44.5
+progress: 44.6
+progress: 44.8
+progress: 45.0
+progress: 45.1
+progress: 45.3
+progress: 45.4
+progress: 45.6
+progress: 45.8
+progress: 45.9
+progress: 46.1
+progress: 46.2
+progress: 46.4
+progress: 46.6
+progress: 46.7
+progress: 46.9
+progress: 47.1
+progress: 47.2
+progress: 47.4
+progress: 47.5
+progress: 47.7
+progress: 47.9
+progress: 48.0
+progress: 48.2
+progress: 48.4
+progress: 48.5
+progress: 48.7
+progress: 48.8
+progress: 49.0
+progress: 49.2
+progress: 49.3
+progress: 49.5
+progress: 49.6
+progress: 49.8
+progress: 50.0
+progress: 50.1
+progress: 50.3
+progress: 50.5
+progress: 50.6
+progress: 50.8
+progress: 50.9
+progress: 51.1
+progress: 51.3
+progress: 51.4
+progress: 51.6
+progress: 51.7
+progress: 51.9
+progress: 52.1
+progress: 52.2
+progress: 52.4
+progress: 52.6
+progress: 52.7
+progress: 52.9
+progress: 53.0
+progress: 53.2
+progress: 53.4
+progress: 53.5
+progress: 53.7
+progress: 53.8
+progress: 54.0
+progress: 54.2
+progress: 54.3
+progress: 54.5
+progress: 54.7
+progress: 54.8
+progress: 55.0
+progress: 55.1
+progress: 55.3
+progress: 55.5
+progress: 55.6
+progress: 55.8
+progress: 56.0
+progress: 56.1
+progress: 56.3
+progress: 56.4
+progress: 56.6
+progress: 56.8
+progress: 56.9
+progress: 57.1
+progress: 57.2
+progress: 57.4
+progress: 57.6
+progress: 57.7
+progress: 57.9
+progress: 58.1
+progress: 58.2
+progress: 58.4
+progress: 58.5
+progress: 58.7
+progress: 58.9
+progress: 59.0
+progress: 59.2
+progress: 59.3
+progress: 59.5
+progress: 59.7
+progress: 59.8
+progress: 60.0
+progress: 60.2
+progress: 60.3
+progress: 60.5
+progress: 60.6
+progress: 60.8
+progress: 61.0
+progress: 61.1
+progress: 61.3
+progress: 61.4
+progress: 61.6
+progress: 61.8
+progress: 61.9
+progress: 62.1
+progress: 62.3
+progress: 62.4
+progress: 62.6
+progress: 62.7
+progress: 62.9
+progress: 63.1
+progress: 63.2
+progress: 63.4
+progress: 63.6
+progress: 63.7
+progress: 63.9
+progress: 64.0
+progress: 64.2
+progress: 64.4
+progress: 64.5
+progress: 64.7
+progress: 64.8
+progress: 65.0
+progress: 65.2
+progress: 65.3
+progress: 65.5
+progress: 65.7
+progress: 65.8
+progress: 66.0
+progress: 66.1
+progress: 66.3
+progress: 66.5
+progress: 66.6
+progress: 66.8
+progress: 66.9
+progress: 67.1
+progress: 67.3
+progress: 67.4
+progress: 67.6
+progress: 67.8
+progress: 67.9
+progress: 68.1
+progress: 68.2
+progress: 68.4
+progress: 68.6
+progress: 68.7
+progress: 68.9
+progress: 69.0
+progress: 69.2
+progress: 69.4
+progress: 69.5
+progress: 69.7
+progress: 69.9
+progress: 70.0
+progress: 70.2
+progress: 70.3
+progress: 70.5
+progress: 70.7
+progress: 70.8
+progress: 71.0
+progress: 71.2
+progress: 71.3
+progress: 71.5
+progress: 71.6
+progress: 71.8
+progress: 72.0
+progress: 72.1
+progress: 72.3
+progress: 72.4
+progress: 72.6
+progress: 72.8
+progress: 72.9
+progress: 73.1
+progress: 73.3
+progress: 73.4
+progress: 73.6
+progress: 73.7
+progress: 73.9
+progress: 74.1
+progress: 74.2
+progress: 74.4
+progress: 74.5
+progress: 74.7
+progress: 74.9
+progress: 75.0
+progress: 75.2
+progress: 75.4
+DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1 python3 "/src/tinygrad_repo/examples/openpilot/compile_warp.py" --frame 1344,760,1408,768,384,2428928 --warp-to 1440x960 --layout luma --border-fill 16 --transform-device NPY --output /src/openpilot/selfdrive/modeld/models/dm_warp_1344x760_tinygrad.pkl
+DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1 python3 "/src/tinygrad_repo/examples/openpilot/compile_warp.py" --frame 1928,1208,2048,1216,608,4804608 --warp-to 1440x960 --layout luma --border-fill 16 --transform-device NPY --output /src/openpilot/selfdrive/modeld/models/dm_warp_1928x1208_tinygrad.pkl
+progress: 75.5
+  [ONNX] openpilot/selfdrive/modeld/models/dmonitoring_model_tinygrad.pkl
+  [ONNX] openpilot/selfdrive/modeld/models/driving_tinygrad.pkl
+progress: 75.7
+DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1 taskset -c 0-7 python3 "/src/tinygrad_repo/examples/openpilot/compile_warp.py" --frame 1344,760,1408,768,384,1622016 --warp-to 512x256 --layout yuv420 --frames 2 --output /src/openpilot/selfdrive/modeld/models/driving_warp_1344x760_tinygrad.pkl
+DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1 taskset -c 0-7 python3 "/src/tinygrad_repo/examples/openpilot/compile_warp.py" --frame 1928,1208,2048,1216,608,3735552 --warp-to 512x256 --layout yuv420 --frames 2 --output /src/openpilot/selfdrive/modeld/models/driving_warp_1928x1208_tinygrad.pkl
+progress: 75.8
+  [CXX] openpilot/selfdrive/pandad/panda.o
+progress: 76.0
+progress: 76.2
+  [CXX] openpilot/selfdrive/pandad/spi.o
+  [CXX] openpilot/selfdrive/pandad/main.o
+  [AR] openpilot/selfdrive/pandad/libpanda.a
+  [RANLIB] openpilot/selfdrive/pandad/libpanda.a
+progress: 76.3
+  [CXX] openpilot/selfdrive/pandad/panda_safety.o
+  [CXX] openpilot/selfdrive/pandad/pandad.o
+progress: 76.5
+  [LINK] openpilot/selfdrive/pandad/pandad
+progress: 76.6
+  [CXX] openpilot/sunnypilot/common/transformations/coordinates.o
+progress: 76.8
+  [CXX] openpilot/sunnypilot/common/transformations/orientation.o
+progress: 77.0
+progress: 77.1
+openpilot/sunnypilot/selfdrive/locationd/models/live_kf.py live openpilot/sunnypilot/selfdrive/locationd/models/generated
+  [AR] openpilot/sunnypilot/common/transformations/libtransformations.a
+  [RANLIB] openpilot/sunnypilot/common/transformations/libtransformations.a
+progress: 77.3
+progress: 77.5
+  [CXX] openpilot/sunnypilot/selfdrive/locationd/locationd.o
+  [CXX] openpilot/sunnypilot/selfdrive/locationd/models/live_kf.o
+progress: 77.6
+  [CXX] rednose_repo/rednose/helpers/ekf_load.os
+  [CXX] rednose_repo/rednose/helpers/ekf_sym.os
+  [CXX] openpilot/sunnypilot/selfdrive/locationd/models/generated/live.os
+  [AR] rednose_repo/rednose/helpers/libekf_sym.a
+  [RANLIB] rednose_repo/rednose/helpers/libekf_sym.a
+  [LINK] openpilot/sunnypilot/selfdrive/locationd/models/generated/liblive.so
+progress: 77.8
+  [LINK] openpilot/sunnypilot/selfdrive/locationd/locationd
+progress: 77.9
+progress: 78.1
+  [CXX] openpilot/system/camerad/main.o
+progress: 78.3
+progress: 78.4
+  [CXX] openpilot/system/camerad/cameras/camera_qcom2.o
+  [CXX] openpilot/system/camerad/cameras/camera_common.o
+progress: 78.6
+  [CXX] openpilot/system/camerad/cameras/spectra.o
+progress: 78.8
+  [CXX] openpilot/system/camerad/cameras/cdm.o
+  [CXX] openpilot/system/camerad/sensors/ox03c10.o
+  [CXX] openpilot/system/camerad/sensors/os04c10.o
+progress: 78.9
+  [LINK] openpilot/system/camerad/camerad
+progress: 79.1
+  [CXX] openpilot/system/loggerd/bootlog.o
+progress: 79.2
+  [CXX] openpilot/system/loggerd/logger.o
+  [CXX] openpilot/system/loggerd/zstd_writer.o
+progress: 79.4
+progress: 79.6
+progress: 79.7
+progress: 79.9
+progress: 80.0
+progress: 80.2
+progress: 80.4
+  [CXX] openpilot/system/loggerd/video_writer.o
+progress: 80.5
+  [CXX] openpilot/system/loggerd/encoder/encoder.o
+progress: 80.7
+  [CXX] openpilot/system/loggerd/encoder/jpeg_encoder.o
+progress: 80.9
+  [CXX] openpilot/system/loggerd/clip_encoder.o
+  [CXX] openpilot/system/loggerd/encoder/v4l_encoder.o
+  [CXX] openpilot/system/loggerd/encoder/v4l_decoder.o
+progress: 81.0
+progress: 81.2
+progress: 81.3
+  [AR] openpilot/system/loggerd/liblogger.a
+  [RANLIB] openpilot/system/loggerd/liblogger.a
+  [CXX] openpilot/system/loggerd/encoderd.o
+  [LINK] openpilot/system/loggerd/encoderd
+  [LINK] openpilot/system/loggerd/bootlog
+progress: 81.5
+  [CXX] openpilot/system/loggerd/loggerd.o
+  [LINK] openpilot/system/loggerd/loggerd
+progress: 81.7
+progress: 81.8
+progress: 82.0
+progress: 82.1
+progress: 82.3
+progress: 82.5
+progress: 82.6
+progress: 82.8
+progress: 83.0
+progress: 83.1
+progress: 83.3
+progress: 83.4
+progress: 83.6
+progress: 83.8
+progress: 83.9
+progress: 84.1
+arm-none-eabi-gcc -o panda/board/board/obj/body_h7bootstub.o -c -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DPANDA_BODY -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -DBOOTSTUB -Ipanda -Ipanda/board/stm32h7/inc -Iopendbc_repo panda/board/bootstub.c
+arm-none-eabi-gcc -o panda/board/board/obj/panda_h7bootstub.o -c -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -DBOOTSTUB -Ipanda -Ipanda/board/stm32h7/inc -Iopendbc_repo panda/board/bootstub.c
+progress: 84.2
+progress: 84.4
+progress: 84.6
+progress: 84.7
+arm-none-eabi-gcc -o panda/board/board/obj/panda_h7main.o -c -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -Ipanda -Ipanda/board/stm32h7/inc -Iopendbc_repo panda/board/main.c
+arm-none-eabi-gcc -o panda/board/body/board/obj/body_h7main.o -c -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DPANDA_BODY -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -Ipanda -Ipanda/board/stm32h7/inc -Iopendbc_repo panda/board/body/main.c
+progress: 84.9
+progress: 85.1
+arm-none-eabi-gcc -o panda/board/crypto/board/obj/body_h7rsa.o -c -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DPANDA_BODY -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -DBOOTSTUB -Ipanda -Ipanda/board/stm32h7/inc -Iopendbc_repo panda/board/crypto/rsa.c
+arm-none-eabi-gcc -o panda/board/crypto/board/obj/body_h7sha.o -c -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DPANDA_BODY -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -DBOOTSTUB -Ipanda -Ipanda/board/stm32h7/inc -Iopendbc_repo panda/board/crypto/sha.c
+arm-none-eabi-gcc -o panda/board/crypto/board/obj/panda_h7rsa.o -c -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -DBOOTSTUB -Ipanda -Ipanda/board/stm32h7/inc -Iopendbc_repo panda/board/crypto/rsa.c
+arm-none-eabi-gcc -o panda/board/crypto/board/obj/panda_h7sha.o -c -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -DBOOTSTUB -Ipanda -Ipanda/board/stm32h7/inc -Iopendbc_repo panda/board/crypto/sha.c
+progress: 85.2
+progress: 85.4
+arm-none-eabi-gcc -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DPANDA_BODY -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -o panda/board/stm32h7/board/obj/body_h7startup_stm32h7x5xx.o -c panda/board/stm32h7/startup_stm32h7x5xx.s
+progress: 85.5
+arm-none-eabi-gcc -o panda/board/obj/body_h7/bootstub.elf -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DPANDA_BODY -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -DBOOTSTUB panda/board/stm32h7/board/obj/body_h7startup_stm32h7x5xx.o panda/board/crypto/board/obj/body_h7rsa.o panda/board/crypto/board/obj/body_h7sha.o panda/board/board/obj/body_h7bootstub.o
+arm-none-eabi-gcc -o panda/board/obj/body_h7/main.elf -Wl,--section-start,.isr_vector=0x8020000 -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DPANDA_BODY -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g panda/board/stm32h7/board/obj/body_h7startup_stm32h7x5xx.o panda/board/body/board/obj/body_h7main.o
+progress: 85.7
+arm-none-eabi-objcopy -O binary panda/board/obj/body_h7/bootstub.elf panda/board/obj/bootstub.body_h7.bin
+arm-none-eabi-objcopy -O binary panda/board/obj/body_h7/main.elf panda/board/obj/body_h7/main.bin
+SETLEN=1 panda/board/crypto/sign.py panda/board/obj/body_h7/main.bin panda/board/obj/body_h7.bin.signed panda/board/crypto/certs/debug
+arm-none-eabi-gcc -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -o panda/board/stm32h7/board/obj/panda_h7startup_stm32h7x5xx.o -c panda/board/stm32h7/startup_stm32h7x5xx.s
+progress: 85.9
+progress: 86.0
+gcc -o panda/tests/libpanda/panda.os -c -nostdlib -fno-builtin -std=gnu11 -Wfatal-errors -Wno-pointer-to-int-cast -fPIC -Ipanda/tests/libpanda -Ipanda -Ipanda/board -Iopendbc_repo panda/tests/libpanda/panda.c
+progress: 86.2
+gcc -o panda/tests/libpanda/libpanda.so -shared panda/tests/libpanda/panda.os
+arm-none-eabi-gcc -o panda/board/obj/panda_h7/bootstub.elf -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -DBOOTSTUB panda/board/stm32h7/board/obj/panda_h7startup_stm32h7x5xx.o panda/board/crypto/board/obj/panda_h7rsa.o panda/board/crypto/board/obj/panda_h7sha.o panda/board/board/obj/panda_h7bootstub.o
+arm-none-eabi-objcopy -O binary panda/board/obj/panda_h7/bootstub.elf panda/board/obj/bootstub.panda_h7.bin
+progress: 86.4
+progress: 86.5
+arm-none-eabi-gcc -o panda/board/obj/panda_h7/main.elf -Wl,--section-start,.isr_vector=0x8020000 -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g panda/board/stm32h7/board/obj/panda_h7startup_stm32h7x5xx.o panda/board/board/obj/panda_h7main.o
+cythonize rednose_repo/rednose/helpers/ekf_sym_pyx.pyx
+arm-none-eabi-objcopy -O binary panda/board/obj/panda_h7/main.elf panda/board/obj/panda_h7/main.bin
+SETLEN=1 panda/board/crypto/sign.py panda/board/obj/panda_h7/main.bin panda/board/obj/panda_h7.bin.signed panda/board/crypto/certs/debug
+progress: 86.7
+  [CXX] rednose_repo/rednose/helpers/ekf_sym_pyx.o
+progress: 86.8
+progress: 87.0
+progress: 87.2
+progress: 87.3
+progress: 87.5
+progress: 87.6
+progress: 87.8
+progress: 88.0
+progress: 88.1
+progress: 88.3
+progress: 88.5
+progress: 88.6
+progress: 88.8
+progress: 88.9
+progress: 89.1
+progress: 89.3
+progress: 89.4
+progress: 89.6
+progress: 89.7
+progress: 89.9
+progress: 90.1
+progress: 90.2
+progress: 90.4
+progress: 90.6
+progress: 90.7
+progress: 90.9
+progress: 91.0
+progress: 91.2
+progress: 91.4
+progress: 91.5
+progress: 91.7
+progress: 91.8
+progress: 92.0
+progress: 92.2
+progress: 92.3
+progress: 92.5
+progress: 92.7
+progress: 92.8
+progress: 93.0
+progress: 93.1
+progress: 93.3
+progress: 93.5
+progress: 93.6
+progress: 93.8
+progress: 94.0
+progress: 94.1
+progress: 94.3
+progress: 94.4
+progress: 94.6
+progress: 94.8
+progress: 94.9
+progress: 95.1
+progress: 95.2
+progress: 95.4
+progress: 95.6
+progress: 95.7
+progress: 95.9
+progress: 96.1
+progress: 96.2
+progress: 96.4
+progress: 96.5
+progress: 96.7
+progress: 96.9
+progress: 97.0
+progress: 97.2
+progress: 97.3
+progress: 97.5
+progress: 97.7
+progress: 97.8
+progress: 98.0
+progress: 98.2
+progress: 98.3
+progress: 98.5
+progress: 98.6
+progress: 98.8
+progress: 99.0
+progress: 99.1
+progress: 99.3
+progress: 99.5
+progress: 99.6
+progress: 99.8
+progress: 99.9
+progress: 100.0
+  [LINK] rednose_repo/rednose/helpers/ekf_sym_pyx.so
+scons: done building targets.

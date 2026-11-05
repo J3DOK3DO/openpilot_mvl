@@ -1,40 +1,40 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-04T16:25:09.173065+00:00",
-  "current_stage": "COMMA4_NON_ACTUATING_MVL_offline_integration_verified",
+  "updated_at_utc": "2026-11-05T16:47:08.322270+00:00",
+  "current_stage": "G10_exact_source_restored_product_build_prerequisite_hold",
   "release_decision": "HOLD",
-  "branch": "codex/mvl-comma4-release-rc-20261104",
+  "branch": "codex/mvl-g10-closure-20261105",
   "checkout_mode": "branch",
-  "head_commit": "c2330174cde34ad1a5d1bd776839864eedd3de83",
+  "head_commit": "7e0015b5b74e2b6372cd7dae0122815cbd491e43",
   "last_verified_result": {
-    "decision": "PASS_HOST_ONLY",
-    "scope": "isolated native host renderer, G03 local IPC, G05 freshness, G06 opt-in local transport, G08 catalog, G09 synthetic, model/source preflight tools and passive diagnostics",
-    "passed": 442,
+    "decision": "PASS_HOST_AND_SOURCE_PREFLIGHT",
+    "scope": "443 host tests, eight G03 local IPC paths, four recovery tests, 7/7 pinned submodules, 283/283 release-selected LFS assets and warning-free AGNOS ARM64 SCons dry-run; no complete build",
+    "passed": 443,
     "failed": 0,
     "skipped": 0,
-    "record": "TEST_RESULTS.json milestone_runs[-1]"
+    "record": "TEST_RESULTS.json milestone_runs[-1] and G10_FINAL_BUILD_CLOSURE_20261105.md"
   },
-  "next_action": "Obtain six exact-source QCOM model/warp outputs and hydrate pinned submodules/LFS in an isolated builder; rerun preflight and cold product build. Then seek separate authorization for a protected comma 4 bench session.",
-  "source_of_truth": "docs/engineering/autonomous_campaign/CAMPAIGN_STATE.json, TEST_RESULTS.json, MASTER_GATE_TRACKER.md and G10_BUILD_EVIDENCE_20261104.json; ../campaign_20261103 is historical baseline only",
+  "next_action": "Obtain separate authorization and a safely isolated comma 4 QCOM build environment; compile six exact-source model/warp outputs, validate their manifest, then attempt full cold product build in isolated staging.",
+  "source_of_truth": "CAMPAIGN_STATE.json, TEST_RESULTS.json, MASTER_GATE_TRACKER.md, G10_FINAL_BUILD_CLOSURE_20261105.md and persisted G10 source/graph logs; prior campaign reports are historical.",
   "authoritative_baseline_sha": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
-    "branch": "codex/mvl-comma4-release-rc-20261104",
-    "head": "c2330174cde34ad1a5d1bd776839864eedd3de83",
-    "worktree": "/home/jdkd/.codex/worktrees/mvl-comma4-release-rc-20261104",
-    "owner": "manual isolated comma4 release campaign; exclusive campaign lease"
+    "branch": "codex/mvl-g10-closure-20261105",
+    "head": "7e0015b5b74e2b6372cd7dae0122815cbd491e43",
+    "worktree": "/tmp/mvl-g10-closure-20261105",
+    "owner": "manual G10 closure; exclusive campaign lease"
   },
   "current_gate": "PRODUCT_BUILD_INCOMPLETE",
-  "last_successful_milestone": "Exact source feee77a: 442 combined host tests, eight G03 IPC paths, four recovery tests and G03 source crosswalk PASS; independent G06 cleanup race fixed. No full product or device evidence.",
-  "tests_verified_at_commit": "feee77a81dbefe4655c5d60c459362005e8e588d",
+  "last_successful_milestone": "Exact source 7e0015b: 443 combined host tests, eight G03 IPC paths, four recovery tests, 254 Params DENY, source preflight PASS and full ARM64 graph dry-run PASS with zero warnings. Full product was not built.",
+  "tests_verified_at_commit": "7e0015b5b74e2b6372cd7dae0122815cbd491e43",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Obtain six exact-source QCOM model/warp outputs and hydrate pinned submodules/LFS in an isolated builder; rerun preflight and cold product build. Then seek separate authorization for a protected comma 4 bench session.",
+  "next_actionable_milestone": "Obtain separate authorization and a safely isolated comma 4 QCOM build environment; compile six exact-source model/warp outputs, validate their manifest, then attempt full cold product build in isolated staging.",
   "current_blockers": [
-    "Full product build incomplete: six source-matched Qualcomm model/warp outputs absent",
-    "Isolated release checkout has seven missing submodule checkouts and 286 unhydrated LFS assets",
-    "Comma 4 device checks and protected restore NOT_TESTED",
-    "G06 prototype has no production registration or target resource/security qualification",
-    "All 254 Params keys remain DENY; installation/activation requires separate authorization"
+    "Six exact-MVL-source Qualcomm model/warp outputs are unavailable; host has no /dev/kgsl-3d0. Preserved CPU/LLVM and Dom outputs fail exact-source contract.",
+    "Full cold product build and complete release package are not attempted until QCOM prerequisite passes.",
+    "Comma 4 device checks and protected restoration remain NOT_TESTED; copying/compiling/installing on device requires separate authorization.",
+    "G06 prototype has no production registration or target security/resource qualification.",
+    "All 254 quarantined Params keys remain DENY."
   ],
   "approval_requirements": [
     "Candidate installation or activation on comma 4 requires all applicable software/build prerequisites, protected backup/restore readiness, and separate user authorization.",
@@ -43,10 +43,10 @@
   "release_qualification": {
     "status": "PRODUCT_BUILD_INCOMPLETE",
     "profile": "COMMA4_NON_ACTUATING_MVL",
-    "scope": "Offline source candidate only; full installable product and physical comma 4 tests absent. No vehicle-control or OEM safety qualification."
+    "scope": "Isolated source and build graph ready; six QCOM outputs and complete cold package absent; comma 4 physical and protected restoration NOT_TESTED."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded published docs checkpoint c233017 is one descendant of exact tested source feee77a; one following docs-only publication record is permitted. Further drift needs reconciliation.",
+  "checkpoint_rule": "Recorded source commit 7e0015b passed exact tests; one docs-only campaign checkpoint descendant is permitted. Reconcile any further SHA drift.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -77,7 +77,9 @@
     "new_release_verified_source_sha": "feee77a81dbefe4655c5d60c459362005e8e588d",
     "new_release_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-comma4-release-rc-20261104",
     "new_release_verified_at_utc": "2026-11-04T16:25:09.173065+00:00",
-    "new_release_method": "SHA-verified Git bundle transferred to authorized Windows Git helper; non-force push and authenticated ls-remote verified exact ref. PR #1 unchanged."
+    "new_release_method": "SHA-verified Git bundle transferred to authorized Windows Git helper; non-force push and authenticated ls-remote verified exact ref. PR #1 unchanged.",
+    "g10_closure_branch": "codex/mvl-g10-closure-20261105",
+    "g10_closure_status": "LOCAL_UNPUBLISHED"
   },
   "release_profile": "COMMA4_NON_ACTUATING_MVL",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE",

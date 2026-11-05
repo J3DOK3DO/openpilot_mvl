@@ -52,3 +52,17 @@ The earlier general vehicle-release HOLD rows in the historical tracker apply to
 Release classification remains **PRODUCT_BUILD_INCOMPLETE** and decision **HOLD**.
 
 Independent re-review at `feee77a` found the G06 failed-bind cleanup defect fixed and no additional concrete host-scope security defect. The separate reviewer environment denied Unix socket binding (`EPERM`), so its one passing simulated-race regression supplements the complete 442-test normal-host run; it is not device evidence.
+
+## G10 final product closure attempt — 2026-11-05
+
+| Stage | Decision | Exact evidence / limit |
+| --- | --- | --- |
+| Seven submodules | PASS_SOURCE | 7/7 exact gitlink checkouts in isolated worktree; no newer substitution. |
+| Release-selected LFS | PASS_SOURCE | 283/283 selected assets hydrated and SHA/size verified; three optional large-model pointers intentionally excluded. |
+| AGNOS ARM64 SCons graph | PASS_DRY_RUN | Network-disabled AGNOS 19.8.1 builder, exact source `7e0015b5b74e2b6372cd7dae0122815cbd491e43`, full graph with zero warnings; no binary output. |
+| Six MVL QCOM outputs | HOLD_PREREQUISITES | CPU captures rejected by exact-source validator; Dom package incomplete/incompatible; host has no Qualcomm GPU. |
+| Full cold product/package | NOT_ATTEMPTED_HOLD | No `SKIP_TINYGRAD_COMPILE`, no substitute outputs, no package or installable binary identity. |
+| Combined host software | PASS_HOST | 443 pytest, eight G03 IPC paths, four recovery tests, 254 Params DENY at exact source `7e0015b5b74e2b6372cd7dae0122815cbd491e43`. |
+| Comma 4 physical/recovery | NOT_TESTED | No device modification; twelve checks remain pending. |
+
+Release decision **PRODUCT_BUILD_INCOMPLETE / HOLD**. G11/G12 remain conditionally NOT_APPLICABLE_TO_COMMA4_PROFILE, not safety PASS.

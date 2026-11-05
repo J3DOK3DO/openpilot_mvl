@@ -86,6 +86,24 @@ class ReadOnlyPreflightTest(unittest.TestCase):
     self.assertFalse(report['lfs_assets'][0]['release_selected'])
     self.assertEqual(report['lfs_assets'][0]['state'], 'pointer_or_mismatch')
 
+  def test_selected_submodule_lfs_pointer_holds(self):
+    upstream_temp = tempfile.TemporaryDirectory()
+    self.addCleanup(upstream_temp.cleanup)
+    upstream = Path(upstream_temp.name)
+    subprocess.run(['git', '-C', str(upstream), 'init', '-q'], check=True)
+    subprocess.run(['git', '-C', str(upstream), 'config', 'user.name', 'Offline Test'], check=True)
+    subprocess.run(['git', '-C', str(upstream), 'config', 'user.email', 'offline@example.invalid'], check=True)
+    (upstream / 'asset.bin').write_text('version https://git-lfs.github.com/spec/v1\noid sha256:' + 'c' * 64 + '\nsize 12\n')
+    subprocess.run(['git', '-C', str(upstream), 'add', 'asset.bin'], check=True)
+    subprocess.run(['git', '-C', str(upstream), 'commit', '-qm', 'pointer'], check=True)
+    self.git('-c', 'protocol.file.allow=always', 'submodule', 'add', '-q', str(upstream), 'panda')
+    self.commit()
+    code, report = self.preflight()
+    self.assertEqual(code, 1, report)
+    self.assertTrue(any(item['path'] == 'panda/asset.bin' and item['state'] == 'pointer_or_mismatch'
+                        for item in report['lfs_assets']))
+    self.assertTrue(any('LFS asset panda/asset.bin' in issue for issue in report['issues']))
+
 
 if __name__ == '__main__':
   unittest.main()

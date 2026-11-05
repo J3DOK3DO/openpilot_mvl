@@ -104,6 +104,36 @@ def inspect(repo, commit, baseline, max_blob_bytes):
     lfs.append({'path': path, 'sha256': expected, 'state': state,
                 'release_selected': path in selected_set})
 
+  # release_files.py expands tracked submodules. Their selected LFS pointers
+  # must be verified too; a clean Git link alone does not hydrate an asset.
+  for item in submodules:
+    if item['state'] != 'pinned':
+      continue
+    checkout = root / item['path']
+    for record in git(checkout, 'ls-tree', '-rlz', 'HEAD', binary=True).split(b'\0'):
+      if not record:
+        continue
+      metadata, raw_path = record.split(b'\t', 1)
+      mode, kind, oid, size = metadata.decode().split()
+      if kind != 'blob' or int(size) > 1024:
+        continue
+      relative = raw_path.decode('utf-8', 'surrogateescape')
+      path = f'{item["path"]}/{relative}'
+      if path not in selected_set:
+        continue
+      blob = git(checkout, 'cat-file', 'blob', oid, binary=True)
+      if not blob.startswith(LFS_PREFIX):
+        continue
+      pointer = dict(line.split(' ', 1) for line in blob.decode().splitlines() if ' ' in line)
+      expected = pointer.get('oid', '').removeprefix('sha256:')
+      candidate = checkout / relative
+      actual = hashlib.sha256(candidate.read_bytes()).hexdigest() if candidate.is_file() and not candidate.is_symlink() else None
+      state = 'hydrated' if actual == expected else 'pointer_or_mismatch'
+      if state != 'hydrated':
+        issues.append(f'LFS asset {path}: {state}')
+      lfs.append({'path': path, 'sha256': expected, 'state': state,
+                  'release_selected': True, 'submodule': item['path']})
+
   changed = []
   denied = []
   if baseline:

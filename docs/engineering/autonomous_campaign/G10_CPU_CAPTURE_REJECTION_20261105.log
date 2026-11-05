@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/tmp/mvl-g10-closure-20261105/tools/release/mvl_model_artifacts.py", line 207, in <module>
+    main()
+  File "/tmp/mvl-g10-closure-20261105/tools/release/mvl_model_artifacts.py", line 193, in main
+    actual = inventory(args.source, args.onnx_assets, args.artifacts, args.agnos_image, args.agnos_root)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/mvl-g10-closure-20261105/tools/release/mvl_model_artifacts.py", line 167, in inventory
+    'artifacts': {name: qcom_capture(artifacts / name) for name in ARTIFACTS},
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/mvl-g10-closure-20261105/tools/release/mvl_model_artifacts.py", line 121, in qcom_capture
+    raise ValueError(f'missing QCOM capture structure: {path}')
+ValueError: missing QCOM capture structure: /home/jdkd/MVL_ARM64_STARPILOT_AUDIT_20261103/openpilot/selfdrive/modeld/models/dmonitoring_model_tinygrad.pkl

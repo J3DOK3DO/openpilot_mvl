@@ -55,3 +55,7 @@ For `COMMA4_NON_ACTUATING_MVL`, external CAN-FD/HIL hardware and Honda dynamic O
 | Physical release | No comma 4 device session, full package, restoration exercise or installation authorization. Classification remains PRODUCT_BUILD_INCOMPLETE; comma 4 device NOT_TESTED. |
 
 G11 external HIL and G12 Honda dynamic OEM are conditionally NOT_APPLICABLE_TO_COMMA4_PROFILE for this non-actuating diff. Passive Honda observations cannot establish Panda or OEM safety.
+
+## G10 closure attempt 2026-11-05
+
+Seven pinned submodules and all 283 release-selected LFS objects are now restored and verified in the new isolated build worktree; they are no longer blockers there. The single primary product dependency is six MVL-exact QCOM model/warp outputs. The host has no `/dev/kgsl-3d0`; preserved CPU captures fail the QCOM validator, and Dom artifacts are source-incompatible and incomplete. No full cold build was attempted. A separately authorized, isolated comma 4 build route or other matching Qualcomm build host is required. The known-good installation, AGNOS reference, previous branches and PR #1 remain unchanged. Device checks and protected restoration remain NOT_TESTED.
