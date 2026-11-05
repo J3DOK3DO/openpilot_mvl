@@ -278,11 +278,63 @@
       "device_status": "NOT_TESTED",
       "release_classification": "PRODUCT_BUILD_INCOMPLETE",
       "independent_review": "pending exact-source review"
+    },
+    {
+      "milestone": "G10 corrected selected-submodule LFS preflight and final exact-source review",
+      "commit": "b39410908b15a27ff29f07b451ade468764bb148",
+      "verified_at_utc": "2026-11-05T16:53:53.501471+00:00",
+      "host_checkout": "/tmp/mvl-g10-hostcheck-20261105 clean exact commit; temporary pinned x86 libparams symlink removed",
+      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py tools/honda11g_health/tests tools/release/test_preflight_readonly.py tools/release/tests/test_mvl_model_artifacts.py",
+      "outcomes": {
+        "passed": 444,
+        "failed": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "g03_ipc_command": "python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
+      "g03_ipc_paths": 8,
+      "g03_ipc_exit_code": 0,
+      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
+      "recovery_passed": 4,
+      "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
+      "schema_exit_code": 0,
+      "params_denied": 254,
+      "source_preflight": {
+        "command": "python3 tools/release/preflight_readonly.py --repo . --commit HEAD --baseline 2ce036d21fd53e2dfabf9c8468da9b954ebedb4d",
+        "result": "PASS",
+        "pinned_submodules": 7,
+        "selected_lfs_hydrated": 283,
+        "selected_submodule_lfs_pointers": 0,
+        "optional_unhydrated_lfs": 3,
+        "record": "G10_SOURCE_PREFLIGHT_20261105.json",
+        "sha256": "ae78eba025d9dcc1f319a32230e6a5d2c02f0a111f8be810de98b348c933315a"
+      },
+      "arm64_graph": {
+        "result": "PASS_DRY_RUN_ONLY",
+        "command": "network-disabled AGNOS 19.8.1 AArch64 builder; python3 -m SCons -n --minimal cache_dir=/build_cache with explicit 8 safe.directory entries",
+        "exit_code": 0,
+        "warnings": 0,
+        "record": "G10_SCONS_GRAPH_20261105.log",
+        "sha256": "46e70c2295eb72d55590f1e2c1029db5b5ed63f8cb9f0565d2fdac4e2730c028"
+      },
+      "qcom_artifact_validation": {
+        "result": "REJECTED_CPU_CAPTURE",
+        "exit_code": 1,
+        "record": "G10_CPU_CAPTURE_REJECTION_20261105.log"
+      },
+      "full_cold_product_build": {
+        "attempted": false,
+        "decision": "HOLD_PREREQUISITES",
+        "missing": "six exact-source QCOM outputs and host Qualcomm GPU"
+      },
+      "device_status": "NOT_TESTED",
+      "release_classification": "PRODUCT_BUILD_INCOMPLETE",
+      "independent_review": "PASS for corrected preflight, bench-plan limitations and unchanged control/Panda boundary at exact code commit"
     }
   ],
-  "last_verified_commit": "7e0015b5b74e2b6372cd7dae0122815cbd491e43",
+  "last_verified_commit": "b39410908b15a27ff29f07b451ade468764bb148",
   "last_verified_outcomes": {
-    "passed": 443,
+    "passed": 444,
     "failed": 0,
     "skipped": 0
   },

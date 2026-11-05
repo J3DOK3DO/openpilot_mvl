@@ -1,4 +1,4 @@
-7e0015b5b74e2b6372cd7dae0122815cbd491e43
+b39410908b15a27ff29f07b451ade468764bb148
 8a16e089b88593914823743df29e1c30b7dd3e00
 scons: Reading SConscript files ...
 scons: done reading SConscript files.
@@ -22,8 +22,8 @@ progress: 2.6
 progress: 2.7
 progress: 2.9
 progress: 3.1
-progress: 3.2
 Building compilation database compile_commands.json
+progress: 3.2
 progress: 3.4
 progress: 3.6
 progress: 3.7
@@ -64,8 +64,8 @@ Retrieved `openpilot/cereal/gen/cpp/custom.capnp.h' from cache
 Retrieved `openpilot/cereal/gen/cpp/car.capnp.h' from cache
   [CXX] msgq_repo/msgq/ipc_pyx.o
 progress: 6.0
-progress: 6.1
   [CXX] openpilot/common/params.o
+progress: 6.1
   [CXX] openpilot/common/swaglog.o
 Retrieved `openpilot/common/util.o' from cache
 progress: 6.3
@@ -221,8 +221,8 @@ openpilot/selfdrive/locationd/models/pose_kf.py pose openpilot/selfdrive/locatio
   [CXX] openpilot/selfdrive/locationd/models/generated/car.os
   [CXX] openpilot/selfdrive/locationd/models/generated/pose.os
 progress: 22.0
-  [LINK] openpilot/selfdrive/locationd/models/generated/libcar.so
   [LINK] openpilot/selfdrive/locationd/models/generated/libpose.so
+  [LINK] openpilot/selfdrive/locationd/models/generated/libcar.so
 progress: 22.2
 progress: 22.3
 progress: 22.5
@@ -553,8 +553,8 @@ progress: 74.9
 progress: 75.0
 progress: 75.2
 progress: 75.4
-DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1 python3 "/src/tinygrad_repo/examples/openpilot/compile_warp.py" --frame 1344,760,1408,768,384,2428928 --warp-to 1440x960 --layout luma --border-fill 16 --transform-device NPY --output /src/openpilot/selfdrive/modeld/models/dm_warp_1344x760_tinygrad.pkl
 DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1 python3 "/src/tinygrad_repo/examples/openpilot/compile_warp.py" --frame 1928,1208,2048,1216,608,4804608 --warp-to 1440x960 --layout luma --border-fill 16 --transform-device NPY --output /src/openpilot/selfdrive/modeld/models/dm_warp_1928x1208_tinygrad.pkl
+DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1 python3 "/src/tinygrad_repo/examples/openpilot/compile_warp.py" --frame 1344,760,1408,768,384,2428928 --warp-to 1440x960 --layout luma --border-fill 16 --transform-device NPY --output /src/openpilot/selfdrive/modeld/models/dm_warp_1344x760_tinygrad.pkl
 progress: 75.5
   [ONNX] openpilot/selfdrive/modeld/models/dmonitoring_model_tinygrad.pkl
   [ONNX] openpilot/selfdrive/modeld/models/driving_tinygrad.pkl
@@ -564,11 +564,11 @@ DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1 taskset
 progress: 75.8
   [CXX] openpilot/selfdrive/pandad/panda.o
 progress: 76.0
-progress: 76.2
   [CXX] openpilot/selfdrive/pandad/spi.o
-  [CXX] openpilot/selfdrive/pandad/main.o
+progress: 76.2
   [AR] openpilot/selfdrive/pandad/libpanda.a
   [RANLIB] openpilot/selfdrive/pandad/libpanda.a
+  [CXX] openpilot/selfdrive/pandad/main.o
 progress: 76.3
   [CXX] openpilot/selfdrive/pandad/panda_safety.o
   [CXX] openpilot/selfdrive/pandad/pandad.o
@@ -578,21 +578,21 @@ progress: 76.6
   [CXX] openpilot/sunnypilot/common/transformations/coordinates.o
 progress: 76.8
   [CXX] openpilot/sunnypilot/common/transformations/orientation.o
-progress: 77.0
-progress: 77.1
-openpilot/sunnypilot/selfdrive/locationd/models/live_kf.py live openpilot/sunnypilot/selfdrive/locationd/models/generated
   [AR] openpilot/sunnypilot/common/transformations/libtransformations.a
   [RANLIB] openpilot/sunnypilot/common/transformations/libtransformations.a
+progress: 77.0
+progress: 77.1
 progress: 77.3
 progress: 77.5
+openpilot/sunnypilot/selfdrive/locationd/models/live_kf.py live openpilot/sunnypilot/selfdrive/locationd/models/generated
+  [CXX] rednose_repo/rednose/helpers/ekf_load.os
   [CXX] openpilot/sunnypilot/selfdrive/locationd/locationd.o
   [CXX] openpilot/sunnypilot/selfdrive/locationd/models/live_kf.o
 progress: 77.6
-  [CXX] rednose_repo/rednose/helpers/ekf_load.os
   [CXX] rednose_repo/rednose/helpers/ekf_sym.os
-  [CXX] openpilot/sunnypilot/selfdrive/locationd/models/generated/live.os
   [AR] rednose_repo/rednose/helpers/libekf_sym.a
   [RANLIB] rednose_repo/rednose/helpers/libekf_sym.a
+  [CXX] openpilot/sunnypilot/selfdrive/locationd/models/generated/live.os
   [LINK] openpilot/sunnypilot/selfdrive/locationd/models/generated/liblive.so
 progress: 77.8
   [LINK] openpilot/sunnypilot/selfdrive/locationd/locationd
@@ -633,13 +633,13 @@ progress: 80.9
   [CXX] openpilot/system/loggerd/encoder/v4l_encoder.o
   [CXX] openpilot/system/loggerd/encoder/v4l_decoder.o
 progress: 81.0
-progress: 81.2
-progress: 81.3
   [AR] openpilot/system/loggerd/liblogger.a
   [RANLIB] openpilot/system/loggerd/liblogger.a
+progress: 81.2
+  [LINK] openpilot/system/loggerd/bootlog
+progress: 81.3
   [CXX] openpilot/system/loggerd/encoderd.o
   [LINK] openpilot/system/loggerd/encoderd
-  [LINK] openpilot/system/loggerd/bootlog
 progress: 81.5
   [CXX] openpilot/system/loggerd/loggerd.o
   [LINK] openpilot/system/loggerd/loggerd
@@ -664,8 +664,8 @@ arm-none-eabi-gcc -o panda/board/board/obj/panda_h7bootstub.o -c -mcpu=cortex-m7
 progress: 84.2
 progress: 84.4
 progress: 84.6
-progress: 84.7
 arm-none-eabi-gcc -o panda/board/board/obj/panda_h7main.o -c -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -Ipanda -Ipanda/board/stm32h7/inc -Iopendbc_repo panda/board/main.c
+progress: 84.7
 arm-none-eabi-gcc -o panda/board/body/board/obj/body_h7main.o -c -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DPANDA_BODY -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -Ipanda -Ipanda/board/stm32h7/inc -Iopendbc_repo panda/board/body/main.c
 progress: 84.9
 progress: 85.1
@@ -683,22 +683,23 @@ progress: 85.7
 arm-none-eabi-objcopy -O binary panda/board/obj/body_h7/bootstub.elf panda/board/obj/bootstub.body_h7.bin
 arm-none-eabi-objcopy -O binary panda/board/obj/body_h7/main.elf panda/board/obj/body_h7/main.bin
 SETLEN=1 panda/board/crypto/sign.py panda/board/obj/body_h7/main.bin panda/board/obj/body_h7.bin.signed panda/board/crypto/certs/debug
-arm-none-eabi-gcc -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -o panda/board/stm32h7/board/obj/panda_h7startup_stm32h7x5xx.o -c panda/board/stm32h7/startup_stm32h7x5xx.s
 progress: 85.9
+arm-none-eabi-gcc -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -o panda/board/stm32h7/board/obj/panda_h7startup_stm32h7x5xx.o -c panda/board/stm32h7/startup_stm32h7x5xx.s
 progress: 86.0
 gcc -o panda/tests/libpanda/panda.os -c -nostdlib -fno-builtin -std=gnu11 -Wfatal-errors -Wno-pointer-to-int-cast -fPIC -Ipanda/tests/libpanda -Ipanda -Ipanda/board -Iopendbc_repo panda/tests/libpanda/panda.c
 progress: 86.2
-gcc -o panda/tests/libpanda/libpanda.so -shared panda/tests/libpanda/panda.os
 arm-none-eabi-gcc -o panda/board/obj/panda_h7/bootstub.elf -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g -DBOOTSTUB panda/board/stm32h7/board/obj/panda_h7startup_stm32h7x5xx.o panda/board/crypto/board/obj/panda_h7rsa.o panda/board/crypto/board/obj/panda_h7sha.o panda/board/board/obj/panda_h7bootstub.o
+gcc -o panda/tests/libpanda/libpanda.so -shared panda/tests/libpanda/panda.os
 arm-none-eabi-objcopy -O binary panda/board/obj/panda_h7/bootstub.elf panda/board/obj/bootstub.panda_h7.bin
 progress: 86.4
-progress: 86.5
 arm-none-eabi-gcc -o panda/board/obj/panda_h7/main.elf -Wl,--section-start,.isr_vector=0x8020000 -mcpu=cortex-m7 -mhard-float -DSTM32H7 -DSTM32H725xx -Iboard/stm32h7/inc -mfpu=fpv5-d16 -DALLOW_DEBUG -DHEALTH_PACKET_VERSION=0xCA8F9EAFU -DCAN_PACKET_VERSION_HASH=0x75ABF276U -Wall -Wextra -Wstrict-prototypes -Werror -mlittle-endian -mthumb -nostdlib -fno-builtin -std=gnu11 -fmax-errors=1 -Tpanda/board/stm32h7/stm32h7x5_flash.ld -fsingle-precision-constant -Os -g panda/board/stm32h7/board/obj/panda_h7startup_stm32h7x5xx.o panda/board/board/obj/panda_h7main.o
+progress: 86.5
 cythonize rednose_repo/rednose/helpers/ekf_sym_pyx.pyx
 arm-none-eabi-objcopy -O binary panda/board/obj/panda_h7/main.elf panda/board/obj/panda_h7/main.bin
 SETLEN=1 panda/board/crypto/sign.py panda/board/obj/panda_h7/main.bin panda/board/obj/panda_h7.bin.signed panda/board/crypto/certs/debug
 progress: 86.7
   [CXX] rednose_repo/rednose/helpers/ekf_sym_pyx.o
+  [LINK] rednose_repo/rednose/helpers/ekf_sym_pyx.so
 progress: 86.8
 progress: 87.0
 progress: 87.2
@@ -782,5 +783,4 @@ progress: 99.6
 progress: 99.8
 progress: 99.9
 progress: 100.0
-  [LINK] rednose_repo/rednose/helpers/ekf_sym_pyx.so
 scons: done building targets.

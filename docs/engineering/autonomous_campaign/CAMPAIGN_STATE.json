@@ -1,15 +1,15 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-05T16:47:08.322270+00:00",
+  "updated_at_utc": "2026-11-05T16:53:53.501471+00:00",
   "current_stage": "G10_exact_source_restored_product_build_prerequisite_hold",
   "release_decision": "HOLD",
   "branch": "codex/mvl-g10-closure-20261105",
   "checkout_mode": "branch",
-  "head_commit": "7e0015b5b74e2b6372cd7dae0122815cbd491e43",
+  "head_commit": "b39410908b15a27ff29f07b451ade468764bb148",
   "last_verified_result": {
     "decision": "PASS_HOST_AND_SOURCE_PREFLIGHT",
-    "scope": "443 host tests, eight G03 local IPC paths, four recovery tests, 7/7 pinned submodules, 283/283 release-selected LFS assets and warning-free AGNOS ARM64 SCons dry-run; no complete build",
-    "passed": 443,
+    "scope": "444 host tests, eight G03 local IPC paths, four recovery tests, 7/7 pinned submodules, 283/283 release-selected LFS assets and warning-free AGNOS ARM64 SCons dry-run; no complete build",
+    "passed": 444,
     "failed": 0,
     "skipped": 0,
     "record": "TEST_RESULTS.json milestone_runs[-1] and G10_FINAL_BUILD_CLOSURE_20261105.md"
@@ -20,13 +20,13 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-g10-closure-20261105",
-    "head": "7e0015b5b74e2b6372cd7dae0122815cbd491e43",
+    "head": "b39410908b15a27ff29f07b451ade468764bb148",
     "worktree": "/tmp/mvl-g10-closure-20261105",
     "owner": "manual G10 closure; exclusive campaign lease"
   },
   "current_gate": "PRODUCT_BUILD_INCOMPLETE",
-  "last_successful_milestone": "Exact source 7e0015b: 443 combined host tests, eight G03 IPC paths, four recovery tests, 254 Params DENY, source preflight PASS and full ARM64 graph dry-run PASS with zero warnings. Full product was not built.",
-  "tests_verified_at_commit": "7e0015b5b74e2b6372cd7dae0122815cbd491e43",
+  "last_successful_milestone": "Exact source b394109: 444 combined host tests, eight G03 IPC paths, four recovery tests, 254 Params DENY, source preflight PASS and full ARM64 graph dry-run PASS with zero warnings. Independent review accepted preflight fix and source boundary. Full product was not built.",
+  "tests_verified_at_commit": "b39410908b15a27ff29f07b451ade468764bb148",
   "tests_record": "TEST_RESULTS.json",
   "next_actionable_milestone": "Obtain separate authorization and a safely isolated comma 4 QCOM build environment; compile six exact-source model/warp outputs, validate their manifest, then attempt full cold product build in isolated staging.",
   "current_blockers": [
@@ -46,7 +46,7 @@
     "scope": "Isolated source and build graph ready; six QCOM outputs and complete cold package absent; comma 4 physical and protected restoration NOT_TESTED."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded source commit 7e0015b passed exact tests; one docs-only campaign checkpoint descendant is permitted. Reconcile any further SHA drift.",
+  "checkpoint_rule": "Recorded source commit b394109 passed exact tests; one docs-only campaign checkpoint descendant is permitted. Reconcile any further SHA drift.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
