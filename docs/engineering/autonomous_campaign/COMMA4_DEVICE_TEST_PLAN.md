@@ -5,7 +5,7 @@ Profile: `COMMA4_NON_ACTUATING_MVL`. This is a manual procedure for a later auth
 ## Entry and protection
 
 1. Confirm exact source/package hashes and signed or otherwise trusted provenance against the release manifest. Refuse an incomplete package, wrong AGNOS, missing model artifact, or modified control/Panda/ECU boundary.
-2. With the device disconnected from the vehicle, record the current known-good branch and approved owner-managed reset/reinstallation reference. The owner controls any future recovery. No restoration demonstration or stress test is required for this release profile.
+2. With the device disconnected from the vehicle, record the current known-good branch/SHA and the [official comma factory-reset reference](https://comma.ai/support/flash-your-comma) for owner-managed recovery. The owner controls any future recovery. No restoration demonstration or stress test is required for this release profile.
 3. Only after separate user authorization for device installation, install the candidate in an isolated bench environment using the device's supported installation path. Do not connect CAN/Panda to a vehicle, flash firmware, write ECU configuration, or enable experimental control.
 4. Run tests with a monotonic timestamped logger and capture process status, resource sampling and UI video. Start from the candidate's default configuration; record every opt-in action. Stop immediately on unexpected vehicle-control publication, security exposure, boot loop, persistent UI failure, thermal shutdown or loss of a viable owner-managed recovery route.
 
