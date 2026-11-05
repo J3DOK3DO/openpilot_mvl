@@ -330,13 +330,73 @@
       "device_status": "NOT_TESTED",
       "release_classification": "PRODUCT_BUILD_INCOMPLETE",
       "independent_review": "PASS for corrected preflight, bench-plan limitations and unchanged control/Panda boundary at exact code commit"
+    },
+    {
+      "milestone": "Final non-actuating source-only QCOM handoff and owner C4-12 waiver",
+      "commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+      "verified_at_utc": "2026-11-05T18:10:39.297825+00:00",
+      "branch": "codex/mvl-comma4-final-release-20261105",
+      "host_command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py tools/honda11g_health/tests tools/release/test_preflight_readonly.py tools/release/tests/test_mvl_model_artifacts.py; rm -f openpilot/common/libparams_c.so",
+      "host_outcomes": {
+        "passed": 444,
+        "failed": 0,
+        "skipped": 0,
+        "exit_code": 0
+      },
+      "environment": "Ubuntu x86_64; Python 3.12; pinned native_host_env.sh; approved unsandboxed Unix-domain socket access; temporary x86 library symlink removed after test",
+      "first_sandbox_attempt": {
+        "passed": 428,
+        "failed": 16,
+        "cause": "sandbox denied AF_UNIX bind with EPERM; no product-code defect inferred",
+        "remediation": "reran unchanged tests with approved socket access",
+        "final_exit_code": 0
+      },
+      "handoff_recovery_unit_command": "python3 -m unittest -q tools/release/tests/test_build_qcom_handoff.py docs/engineering/autonomous_campaign/test_campaignctl.py",
+      "handoff_recovery_unit_outcomes": {
+        "passed": 13,
+        "failed": 0,
+        "exit_code": 0
+      },
+      "g03_ipc_command": "source docs/engineering/autonomous_campaign/native_host_env.sh; python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
+      "g03_ipc_paths": 8,
+      "g03_ipc_exit_code": 0,
+      "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
+      "schema_exit_code": 0,
+      "params_quarantined_denied": 254,
+      "source_preflight": {
+        "result": "PASS",
+        "record": "FINAL_SOURCE_PREFLIGHT_20261105.json",
+        "sha256": "9850e2f6c61c3c46d1f2074d4b974b4a3291025b8b53d8fd061fdb8f627bd07b",
+        "submodules": 7,
+        "selected_lfs_hydrated": 283,
+        "release_selected_paths": 4371
+      },
+      "handoff": {
+        "result": "PASS_SOURCE_ONLY",
+        "record": "QCOM_HANDOFF_EVIDENCE_20261105.json",
+        "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+        "archive_members": 4372,
+        "manifest_sha256": "998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4",
+        "tar_sha256": "37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d60fe"
+      },
+      "full_cold_product_build": {
+        "attempted": false,
+        "decision": "HOLD_PREREQUISITES",
+        "missing": "six exact-source QCOM outputs and Qualcomm GPU host"
+      },
+      "device_status": "NOT_TESTED",
+      "waiver_C4_12": "WAIVED_BY_OWNER / NOT_EXECUTED",
+      "release_classification": "PRODUCT_BUILD_INCOMPLETE",
+      "independent_review": "PASS source-only scope and unchanged control/Panda boundary at exact source commit"
     }
   ],
-  "last_verified_commit": "b39410908b15a27ff29f07b451ade468764bb148",
+  "last_verified_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
   "last_verified_outcomes": {
     "passed": 444,
     "failed": 0,
-    "skipped": 0
+    "skipped": 0,
+    "handoff_recovery_units_passed": 13,
+    "g03_ipc_paths": 8
   },
   "publication_events": [
     {

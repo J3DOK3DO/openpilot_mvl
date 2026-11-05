@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "recorded_at_utc": "2026-11-05T17:59:11.682962+00:00",
+  "recorded_at_utc": "2026-11-05T18:10:39.297825+00:00",
   "result": "PASS_SOURCE_ONLY_HANDOFF",
-  "source_commit": "23f516d5f48118bc680d78c6b5dc2813d485d80f",
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
   "previously_tested_source": "b39410908b15a27ff29f07b451ade468764bb148",
-  "package_directory": "/mnt/commadrive/MVL_QCOM_HANDOFF_FINAL_ANCHORED_23f516d_20261105",
+  "package_directory": "/mnt/commadrive/MVL_QCOM_HANDOFF_4b25263_20261105",
   "package_kind": "SOURCE_ONLY_QCOM_HANDOFF_NOT_INSTALLABLE",
-  "source_tar_bytes": 222976000,
-  "source_tar_sha256": "5373536b8cc7bda0027c664e584bb962ca18d532abca2075cb3be0420bf0232a",
-  "manifest_sha256": "ac9ac02b4eec831886ed2c1d250af3ca1d708b63645920e281ecff20d61a40f1",
-  "archived_paths": 4365,
+  "source_tar_bytes": 223006720,
+  "source_tar_sha256": "37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d60fe",
+  "manifest_sha256": "998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4",
+  "archived_paths": 4372,
   "gitlinks": {
     "msgq_repo": "e7396e76dadbb49e374d4b664ff6bbb43a39bcb0",
     "opendbc_repo": "3fec9a418a659de31d7b1f494193161697a35071",
@@ -27,11 +27,11 @@
   "qcom_outputs_included": false,
   "full_product_build_attempted": false,
   "device_action": false,
-  "verification_command": "python3 tools/release/build_qcom_handoff.py verify --package /mnt/commadrive/MVL_QCOM_HANDOFF_FINAL_ANCHORED_23f516d_20261105 --expected-manifest-sha256 ac9ac02b4eec831886ed2c1d250af3ca1d708b63645920e281ecff20d61a40f1 --expected-source-commit 23f516d5f48118bc680d78c6b5dc2813d485d80f",
-  "verification_result": "PASS: external manifest SHA, exact source SHA, helper and README hashes, 4365 archive entries and tar SHA256",
+  "verification_command": "python3 tools/release/build_qcom_handoff.py verify --package /mnt/commadrive/MVL_QCOM_HANDOFF_4b25263_20261105 --expected-manifest-sha256 998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4 --expected-source-commit 4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "verification_result": "PASS: trusted manifest/source SHA, helper and README hashes, 4372 archive members, seven pinned submodules, two ONNX identities and tar SHA256",
   "limitations": [
-    "Source tar requires an exact-commit Git checkout and seven pinned gitlinks before SCons; archive alone is not a Git repository.",
-    "No six exact-source stock QCOM outputs, full product binary, device test, or installation approval.",
-    "Package is preserved on the engineering evidence volume but is not a GitHub release or installable product."
+    "Source tar requires an exact-commit Git checkout with seven pinned gitlinks before SCons; archive alone is not a Git repository.",
+    "No six exact-source stock QCOM outputs, full product binary, device test or installation approval.",
+    "Package is preserved on the engineering evidence volume, not published as a GitHub release or installable product."
   ]
 }

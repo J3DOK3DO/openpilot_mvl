@@ -13,16 +13,16 @@ Status at the final offline source checkpoint. Historical PASS evidence is scope
 | S07 | G06 live registration excluded; local prototype OFF | PASS_HOST_BOUNDARY |
 | S08 | G08 read-only catalog and path/hash controls | PASS_HOST |
 | S09 | G09 research disconnected from actuation | PASS_SOURCE |
-| S10 | Combined host regression at `a92ae4a` (rerun after source fix) | PASS_HOST_PARENT_CHECKPOINT |
+| S10 | Combined host regression at exact `4b25263e8` | PASS_HOST |
 | S11 | Source-only QCOM handoff manifest and archive | PASS_SOURCE_ONLY |
 | S12 | Six exact-source QCOM outputs | HOLD |
 | S13 | Full cold native ARM64 product build | HOLD |
 | S14 | Complete source-to-binary package and ABI manifest | HOLD |
-| S15 | Independent exact-commit final branch review | PENDING |
+| S15 | Independent exact-commit final branch review | PASS_SOURCE_ONLY |
 | C4-01–C4-07 | Cold boot, UI, IPC, warning, timing and fallback | NOT_TESTED (7 checks) |
 | C4-08 | G06 live service security | NOT_APPLICABLE_TO_COMMA4_PROFILE while unregistered |
 | C4-09–C4-11 | Model identity, resource soak, passive Panda/stock identity | NOT_TESTED (3 checks) |
 | C4-12 | Physical restoration demonstration | WAIVED_BY_OWNER / NOT_EXECUTED |
 | G11/G12 | External HIL and dynamic Honda OEM | NOT_APPLICABLE_TO_COMMA4_PROFILE while no new active control/Panda/ECU/CAN-transmit change |
 
-Checklist denominator is 25 applicable items: S01–S15 plus ten applicable device checks. At this checkpoint, 11/25 = **44%** have accepted scoped PASS evidence; S15 awaits independent exact-commit review. Waived and conditional N/A items are excluded. Host PASS does not satisfy physical qualification. Formal release approval is **0% / HOLD** until all applicable criteria and separate installation authorization are met.
+Checklist denominator is 25 applicable items: S01–S15 plus ten applicable device checks. At this checkpoint, 12/25 = **48%** have accepted scoped PASS evidence; S15 passed independent exact-commit source-only review. Waived and conditional N/A items are excluded. Host PASS does not satisfy physical qualification. Formal release approval is **0% / HOLD** until all applicable criteria and separate installation authorization are met.

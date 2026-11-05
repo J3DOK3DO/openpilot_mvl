@@ -1,40 +1,40 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-05T17:59:11.682962+00:00",
-  "current_stage": "G10_QCOM_handoff_preparation_and_G14_waiver",
+  "updated_at_utc": "2026-11-05T18:10:39.297825+00:00",
+  "current_stage": "G10_exact_source_handoff_complete_product_build_hold",
   "release_decision": "HOLD",
   "branch": "codex/mvl-comma4-final-release-20261105",
   "checkout_mode": "branch",
-  "head_commit": "23f516d5f48118bc680d78c6b5dc2813d485d80f",
+  "head_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
   "last_verified_result": {
     "decision": "PASS_HOST_AND_SOURCE_ONLY_HANDOFF",
-    "scope": "444 current-branch host tests; 4365-member exact 23f source archive; 7 gitlinks, two ONNX inputs; no QCOM outputs or full product",
+    "scope": "444 exact-commit host tests, 13 handoff/recovery units, eight G03 IPC paths, 7/7 pinned submodules, 283/283 selected LFS assets, exact-source handoff with 4372 members and independent review; no full product or device result",
     "passed": 444,
     "failed": 0,
     "skipped": 0,
-    "record": "TEST_RESULTS.json and QCOM_HANDOFF_EVIDENCE_20261105.json"
+    "record": "TEST_RESULTS.json milestone_runs[-1], FINAL_SOURCE_PREFLIGHT_20261105.json and QCOM_HANDOFF_EVIDENCE_20261105.json"
   },
-  "next_action": "Commit current source, rerun exact-commit G03/recovery/host/handoff tests, obtain independent review, then publish new branch. QCOM product build awaits separately authorized matching Qualcomm host.",
+  "next_action": "After separate authorization on an isolated Qualcomm-capable comma 4 or matching host, compile six exact-source outputs at 4b25263, validate provenance, then attempt full cold ARM64 product build; continue C4 device tests only after complete package and separate installation authorization.",
   "source_of_truth": "CAMPAIGN_STATE.json, TEST_RESULTS.json, MASTER_GATE_TRACKER.md, G10_FINAL_BUILD_CLOSURE_20261105.md and persisted G10 source/graph logs; prior campaign reports are historical.",
   "authoritative_baseline_sha": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-comma4-final-release-20261105",
-    "head": "23f516d5f48118bc680d78c6b5dc2813d485d80f",
+    "head": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
     "worktree": "/tmp/mvl-comma4-final-release-20261105",
     "owner": "manual final-release campaign; exclusive lease"
   },
   "current_gate": "PRODUCT_BUILD_INCOMPLETE",
-  "last_successful_milestone": "Exact published source 23f516d source-only QCOM handoff package verified: 4365 archive members, seven pinned gitlinks, two ONNX hashes; current branch host regression 444 PASS after sandbox socket access. Full product not built.",
-  "tests_verified_at_commit": "b39410908b15a27ff29f07b451ade468764bb148",
+  "last_successful_milestone": "Exact 4b25263 source PASS: 444 combined host tests, 13 handoff/recovery units, eight G03 IPC paths, 254 Params DENY, 7/7 submodules, 283/283 LFS, 4372-member trusted handoff and independent source-only review. No complete product build.",
+  "tests_verified_at_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
   "tests_record": "TEST_RESULTS.json",
-  "next_actionable_milestone": "Commit current source, rerun exact-commit G03/recovery/host/handoff tests, obtain independent review, then publish new branch. QCOM product build awaits separately authorized matching Qualcomm host.",
+  "next_actionable_milestone": "After separate authorization on an isolated Qualcomm-capable comma 4 or matching host, compile six exact-source outputs at 4b25263, validate provenance, then attempt full cold ARM64 product build; continue C4 device tests only after complete package and separate installation authorization.",
   "current_blockers": [
-    "Six exact-MVL-source Qualcomm model/warp outputs remain unavailable; source-only handoff package prepared and verified, no /dev/kgsl-3d0 on Ubuntu.",
-    "Full cold product build and complete release package are not attempted until QCOM prerequisite passes.",
-    "Comma 4 applicable device checks remain NOT_TESTED; C4-12 is WAIVED_BY_OWNER / NOT_EXECUTED; copying/compiling/installing on device requires separate authorization.",
-    "G06 prototype has no production registration or target security/resource qualification.",
-    "All 254 quarantined Params keys remain DENY."
+    "Six exact-source Qualcomm model/warp outputs remain unavailable; Ubuntu host has no /dev/kgsl-3d0.",
+    "Full cold native product build, binary ABI manifest and installable package remain NOT_ATTEMPTED/HOLD.",
+    "C4-01\u2013C4-07 and C4-09\u2013C4-11 require actual comma 4 evidence; C4-12 WAIVED_BY_OWNER / NOT_EXECUTED.",
+    "Actual installed known-good branch/SHA remains unrecorded; confirm before any separately authorized installation.",
+    "G06 live transport remains OFF/unregistered; C4-08 not applicable while excluded. All 254 Params keys remain DENY."
   ],
   "approval_requirements": [
     "Candidate installation or activation on comma 4 requires all applicable software/build prerequisites, and separate user authorization.",
@@ -44,10 +44,10 @@
   "release_qualification": {
     "status": "PRODUCT_BUILD_INCOMPLETE",
     "profile": "COMMA4_NON_ACTUATING_MVL",
-    "scope": "Full product QCOM outputs and cold package absent; C4-01\u2013C4-11 applicable device checks NOT_TESTED; C4-12 WAIVED_BY_OWNER / NOT_EXECUTED."
+    "scope": "Exact source and host handoff verified; six QCOM outputs/full product absent; ten applicable comma 4 checks NOT_TESTED; C4-12 WAIVED_BY_OWNER / NOT_EXECUTED."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "New branch starts at published 23f516d; update head after verified milestone commit. Historical exact tested source b394109 remains baseline until a new exact-source suite runs.",
+  "checkpoint_rule": "Recorded exact tested source 4b25263; following campaign-only documentation commit is permitted as one docs-only descendant. Further drift requires reconciliation.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
