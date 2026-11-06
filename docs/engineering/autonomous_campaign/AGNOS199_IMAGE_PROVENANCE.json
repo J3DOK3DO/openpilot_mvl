@@ -1,0 +1,42 @@
+{
+  "decision": "PASS_VERIFIED_HOST_IMAGE_ONLY",
+  "download": {
+    "bytes": 1008740592,
+    "date_utc": "2026-11-06",
+    "host_path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/downloads/system-80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7.img.xz",
+    "sha256": "159415b0158623dfb8f7278b023d8d85fedfce7448a8fdf31079f50b2971d09d",
+    "xz_test": "PASS"
+  },
+  "limits": [
+    "The system partition alone does not prove device firmware, GPU driver or all partitions match the host image.",
+    "No device file was copied or modified.",
+    "Extraction emitted ownership-change warnings; file content and selected tool hashes were checked separately."
+  ],
+  "method": {
+    "extraction": "debugfs rdump / from verified raw ext4 to isolated host directory",
+    "original_compressed_artifact_unchanged": true,
+    "reconstruction": "tools/release/agnos_image.py; bounded Android sparse parser, no mount"
+  },
+  "release_version": "19.9",
+  "schema_version": 1,
+  "source": {
+    "component_manifest_path": "openpilot/common/hardware/comma/agnos.json",
+    "component_manifest_sha256": "c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693",
+    "immutable_manifest_url": "https://raw.githubusercontent.com/commaai/openpilot/f7db927c728bab57bb1263e05465766a8f28fc9d/openpilot/common/hardware/comma/agnos.json",
+    "immutable_release_mici_commit": "f7db927c728bab57bb1263e05465766a8f28fc9d",
+    "manifest_matches_local_checkout": true,
+    "repository": "https://github.com/commaai/openpilot",
+    "system_url": "https://commadist.azureedge.net/agnosupdate/system-80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7.img.xz"
+  },
+  "system_component": {
+    "architecture": "aarch64",
+    "extracted_rootfs_host_path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs",
+    "format": "xz-compressed Android sparse image; reconstructed raw ext4",
+    "raw_image_bytes": 4718592000,
+    "raw_image_host_path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/system-19.9.ext4.img",
+    "raw_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+    "sparse_stream_sha256": "9aebca09b9d142718e71efbfe44b723010eec6e70067c043c63186067291739d",
+    "validation": "Android sparse hash and reconstructed raw ext4 SHA-256 equal pinned component manifest; /VERSION read with debugfs and from extracted rootfs",
+    "version_file": "19.9"
+  }
+}

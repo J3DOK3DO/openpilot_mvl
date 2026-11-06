@@ -86,3 +86,18 @@ At `4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb`: source preflight **PASS** (7/7 pi
 | C4 bench qualification | NOT_TESTED | C4-01–07 and C4-09–11 applicable pending complete product and authorized install. C4-08 excluded while G06 unregistered; C4-12 WAIVED_BY_OWNER / NOT_EXECUTED. |
 
 Release classification remains **PRODUCT_BUILD_INCOMPLETE / HOLD**. G11/G12 conditional profile exclusions and the 254 Params DENY remain unchanged.
+
+## AGNOS 19.9 native host readiness — 2026-11-06, tooling source `035f10a9cd652a29f1c737a0c9cd7418a3e50db6`
+
+| Gate | Decision | Exact evidence / limit |
+| --- | --- | --- |
+| Verified AGNOS 19.9 system image | PASS_HOST_IMAGE | Official immutable `release-mici` component manifest SHA `c581f89e...`; sparse and raw hashes match; raw ext4 SHA `80d93733...`, `/VERSION=19.9`. Other partitions and installed device bytes not compared. |
+| Reproducible native AArch64 environment | PASS_BOUNDED_HOST | Network-disabled 19.9 rootfs, pinned runner, actual Python/SCons/capnpc/Clang, `comma_arm64` graph and AArch64 toy compile passed at frozen 4b source. Representative library result is separately recorded. |
+| Representative 19.9 native library | PASS_NATIVE_BINARY_BUILT_WITH_LOG / HOLD_RUNTIME | Frozen 4b source produced 3,484,104-byte ELF64 AArch64 `libparams_c.so` (SHA-256 `2594c615...`); SCons log ends successfully. Subprocess exit code and 19.9 runtime load not captured. No full product claim. |
+| ABI and dependencies | PASS_SELECTED_FILES / HOLD_FULL_RUNTIME | Selected libc/linker/libstdc++/ZeroMQ/zstd/OpenSSL/tool files byte-identical to retained 19.8.1 rootfs; GPU userspace, FFmpeg/camera and complete product runtime not verified. |
+| Isolated Qualcomm capacity | HOLD_REQUIRED_CAPACITY_UNKNOWN | Last `/data` free 8.83 GiB; hypothetical budget 4.75/8.0/11.5 GiB includes 2 GiB reserve, but actual QCOM peak unknown. |
+| Six exact-source QCOM outputs | NOT_ATTEMPTED_HOLD | No device-side compilation authorized; Ubuntu host lacks Qualcomm GPU. CPU/LLVM and Dom captures remain ineligible. |
+| G10 full cold product/package | NOT_ATTEMPTED_HOLD | Six outputs and justified capacity are prerequisites; no installable product or full binary manifest. |
+| G13/G14 physical/release | NOT_TESTED / HOLD | C4-01–07 and C4-09–11 pending, C4-08 N/A with G06 OFF, C4-12 WAIVED_BY_OWNER / NOT_EXECUTED. G11/G12 conditional non-actuating N/A. |
+
+**Release classification: PRODUCT_BUILD_INCOMPLETE / HOLD.** The previous 444 product-source tests and 32 readiness tool tests remain historical at their exact recorded commits. The new 46 release-tool and 4 recovery tests passed at `035f10a9...`.

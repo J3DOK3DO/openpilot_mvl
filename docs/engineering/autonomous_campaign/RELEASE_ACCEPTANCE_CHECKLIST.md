@@ -26,3 +26,5 @@ Status at the final offline source checkpoint. Historical PASS evidence is scope
 | G11/G12 | External HIL and dynamic Honda OEM | NOT_APPLICABLE_TO_COMMA4_PROFILE while no new active control/Panda/ECU/CAN-transmit change |
 
 Checklist denominator is 25 applicable items: S01–S15 plus ten applicable device checks. At this checkpoint, 12/25 = **48%** have accepted scoped PASS evidence; S15 passed independent exact-commit source-only review. Waived and conditional N/A items are excluded. Host PASS does not satisfy physical qualification. Formal release approval is **0% / HOLD** until all applicable criteria and separate installation authorization are met.
+
+AGNOS 19.9 host update (2026-11-06): the official 19.9 image, isolated native graph and selected ABI checks improve G10 prerequisite evidence but do not close the checklist's complete product, binary package or physical items. The formal count remains **12/25 = 48% scoped PASS**, with release approval **0% / HOLD**. C4-12 remains WAIVED_BY_OWNER / NOT_EXECUTED and is excluded from the denominator.

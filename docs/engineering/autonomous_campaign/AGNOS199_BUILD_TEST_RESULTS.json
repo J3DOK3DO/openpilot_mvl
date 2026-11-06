@@ -1,0 +1,109 @@
+{
+  "agnos199_raw_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+  "device_tests": "NOT_TESTED",
+  "finalization_recheck": {
+    "campaign_recovery_units": "4/4 PASS in clean 035f10 checkout",
+    "release_tool_units": "46/46 PASS in clean 035f10 checkout",
+    "selected_rootfs_hashes": "13/13 match recorded AGNOS 19.9 inventory",
+    "source_handoff": "manifest 998b4173... and tar 37a82b74... SHA-256 verified; 4372 manifest members",
+    "source_preflight": "PASS at frozen 4b25263 source, 7 pinned submodules and 283 hydrated selected LFS assets, no dirty or restricted paths"
+  },
+  "frozen_product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "full_cold_product": "NOT_ATTEMPTED_PREREQUISITES_MISSING",
+  "prior_accepted_only": {
+    "combined_host_tests": {
+      "commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+      "passed": 444
+    },
+    "readiness_recovery_tests": {
+      "commit": "bace68ce273d66e42ce872d54e03a59d9c43c7bb",
+      "passed": 4
+    },
+    "readiness_release_tests": {
+      "commit": "bace68ce273d66e42ce872d54e03a59d9c43c7bb",
+      "passed": 32
+    }
+  },
+  "release_decision": "PRODUCT_BUILD_INCOMPLETE_HOLD",
+  "schema_version": 1,
+  "selected_abi_scope": "13 selected rootfs paths byte-identical to retained 19.8.1 copies; full ABI and device runtime NOT_VERIFIED",
+  "six_qcom_outputs": "NONE_VALIDATED",
+  "source_handoff_manifest_sha256": "998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4",
+  "starting_parent_commit": "169f46c9edb902977cd6183c6673dcb3cddf9c76",
+  "tests": [
+    {
+      "command": "python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -v",
+      "exit_code": 0,
+      "failed": 0,
+      "name": "release_tool_units",
+      "passed": 46,
+      "run_worktree": "/tmp/mvl-agnos199-test-035f10",
+      "skipped": 0,
+      "source_commit": "035f10a9cd652a29f1c737a0c9cd7418a3e50db6"
+    },
+    {
+      "command": "python3 -m unittest discover -s docs/engineering/autonomous_campaign -p 'test*.py' -v",
+      "exit_code": 0,
+      "failed": 0,
+      "name": "campaign_recovery_units",
+      "passed": 4,
+      "run_worktree": "/tmp/mvl-agnos199-test-035f10",
+      "skipped": 0,
+      "source_commit": "035f10a9cd652a29f1c737a0c9cd7418a3e50db6"
+    },
+    {
+      "command": "agnos_identity(raw_image, extracted_rootfs, 19.9, frozen_source_agnos.json); reject 19.8.1 substitution",
+      "exit_code": 0,
+      "name": "actual_agnos199_artifact_identity",
+      "result": "PASS exact raw SHA and manifest anchor; cross-version rejected",
+      "source_commit": "035f10a9cd652a29f1c737a0c9cd7418a3e50db6"
+    },
+    {
+      "command": "bash tools/release/agnos199_native_probe.sh graph",
+      "limit": "No product binaries or QCOM outputs produced by dry run",
+      "log": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/agnos199_scons_graph.log",
+      "log_sha256": "15b18e03bf0aac74df65a723a63538918526b622ceadbe684d038b7997de25fa",
+      "name": "agnos199_scons_graph",
+      "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+      "result": "PASS_GRAPH_DRY_RUN",
+      "runner_image_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95"
+    },
+    {
+      "binary_bytes": 3484104,
+      "binary_elf": {
+        "build_id_sha1": "c1e03bfe2068ccf9d5960b248e01a299b0a59f38",
+        "class": "ELF64",
+        "machine": "AArch64",
+        "needed": [
+          "libstdc++.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6"
+        ],
+        "runpath": [
+          "/usr/local/venv/lib/python3.12/site-packages/ffmpeg/install/lib"
+        ],
+        "type": "DYN shared object"
+      },
+      "binary_file": "ELF 64-bit LSB shared object, ARM aarch64, dynamically linked, with debug_info, not stripped",
+      "binary_host_path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/source_4b25263/openpilot/common/libparams_c.so",
+      "binary_sha256": "2594c615b0c97bd610ccc32606077d3fef9b8dc1e273662df9df28ee3ce0da8c",
+      "command": "bash tools/release/agnos199_native_probe.sh lib",
+      "limit": "Build-produced file and terminal SCons log verified on host; no captured subprocess exit status, AGNOS 19.9 dlopen, device load, six QCOM outputs or full product build.",
+      "log": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/agnos199_libparams_build.log",
+      "log_final_line": "scons: done building targets.",
+      "log_sha256": "6698f9813700b7a63612b65c58d60c27d0bee083a190411a71b61057b9733beb",
+      "name": "agnos199_representative_native_library",
+      "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+      "result": "PASS_NATIVE_BINARY_BUILT_WITH_LOG",
+      "runtime_load": "NOT_TESTED",
+      "subprocess_exit_code": "NOT_CAPTURED"
+    },
+    {
+      "name": "toy_clang_arm64_compile",
+      "object_sha256": "ba44c8cb56a8eb97d5ba06b913f97cfdc264ffb2e88e5b60cb2abdcadf2d7bc4",
+      "result": "PASS_ELF64_AARCH64",
+      "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb"
+    }
+  ],
+  "tooling_source_commit": "035f10a9cd652a29f1c737a0c9cd7418a3e50db6"
+}

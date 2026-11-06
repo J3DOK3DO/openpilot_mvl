@@ -1,0 +1,22 @@
+# Conditional exact-source AGNOS 19.9 QCOM handoff
+
+**Procedure only. Do not execute on the comma under the current offline authorization.** Separately authorize source transfer, device-side compilation and artifact export before any such step. Installation and activation require their own later approval. No device file was written in this campaign.
+
+## Immutable inputs and gates
+
+- Product source `4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb`, tinygrad gitlink `92b742f711c7d216fd3ed7a46a30a959e3c43bd4`, seven pinned submodules, 283 release-selected LFS assets.
+- Handoff manifest SHA-256 `998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4`; archive SHA-256 `37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d60fe`. Verify both before any later transfer, then verify every manifest file on the destination.
+- 19.9 raw image SHA-256 `80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7`; pinned component manifest SHA-256 `c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693`. Check actual device `/VERSION=19.9`, architecture AArch64, `/AGNOS`, GPU node and userspace compatibility; a host image alone cannot certify installed partitions.
+- Read `QCOM_ISOLATED_BUILD_CAPACITY.md`; fresh available storage must exceed measured peak allocation plus reserve. Keep installed known-good `/data/openpilot` and its caches untouched.
+
+## Later authorized execution outline
+
+1. Re-run bounded, strict-host-key read-only preflight; record exact known-good branch/SHA, source destination, AGNOS/tool versions, GPU driver/runtime, storage, memory and actual CPU/GPU sensors. Abort on mismatch or unknown GPU sensor under load.
+2. Create a uniquely named isolated `/data` build directory only after approval. Transfer the SHA-verified source handoff to it; verify manifest and reconstruct exact Git/source identity. Do not use a tooling branch HEAD for model compilation. Keep archive verification streaming to avoid duplicate staging where possible.
+3. Resolve `/usr/local/venv/bin/python3`, SCons, capnpc, Clang and pinned tinygrad inside actual AGNOS 19.9. Set `TMPDIR`, `HOME` and `cache_dir` under the isolated directory. Never use default `/data/scons_cache` or the installed tree. Set `SKIP_TINYGRAD_COMPILE` unset.
+4. Source recipe `openpilot/selfdrive/modeld/SConscript` specifies `DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1`, `compile_onnx.py --out-of-band --benchmark-runs 1` and `compile_warp.py`. Its current `taskset -c 0-7` requires verifying that actual CPU numbering supports it. Start SCons with `-j1`, bounded timeout and isolated cache; do not hand-run substituted CPU/LLVM or Dom outputs. Record a separate exit code/log for each generated target.
+5. Required six files: `dmonitoring_model_tinygrad.pkl`, `driving_tinygrad.pkl`, `driving_warp_1344x760_tinygrad.pkl`, `driving_warp_1928x1208_tinygrad.pkl`, `dm_warp_1344x760_tinygrad.pkl`, `dm_warp_1928x1208_tinygrad.pkl`. After each, record SHA-256, bytes, elapsed time, peak RSS, disk/cache/TMPDIR and actual CPU/GPU temperatures. Abort on free `/data` under 2 GiB, OOM, GPU/compiler fault, overheating, missing output or provenance mismatch.
+6. Export outputs and logs only through an approved route; verify hashes again on host. Run `tools/release/mvl_model_artifacts.py record --agnos-version 19.9 --agnos-component-manifest <pinned-agnos.json>` with exact source, ONNX assets, six outputs, verified raw image and extracted rootfs arguments. The verifier performs static bounded pickle inspection and rejects foreign backends; it does **not** execute pickles or establish inference correctness. Preserve the immutable manifest and verify it independently. `inspect_native_product.py --agnos-version 19.9` then checks any later staged product separately.
+7. Only after six outputs PASS, evaluate a cold full product build with isolated staging, 19.9 toolchain and complete ELF/package inventory. Device startup, physical C4 tests and installation approval remain later gates. Cleanup may remove only the specifically authorized isolated temporary directory after evidence export and explicit identity checks; never remove installed source, caches, backups or user data.
+
+There are currently **zero** valid exact-source QCOM outputs, no cold complete ARM64 product and no installable package. C4-01–07 and C4-09–11 remain NOT_TESTED; C4-08 is N/A while G06 stays unregistered, C4-12 is WAIVED_BY_OWNER / NOT_EXECUTED. G11/G12 conditional profile exclusions remain unchanged.
