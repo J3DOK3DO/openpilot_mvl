@@ -1,9 +1,12 @@
 {
   "campaign_recovery_units": {
+    "command": "python3 -m unittest discover -s docs/engineering/autonomous_campaign -p test*.py -q",
+    "exit_code": 0,
     "failed": 0,
     "passed": 4,
     "skipped": 0,
-    "status": "PASS_IN_DIRTY_TOOLING_WORKTREE"
+    "status": "PASS_CLEAN_COMMIT",
+    "tested_commit": "5ec8f6ebaa4aad8575fb0565583d7916cb3f32d5"
   },
   "device_tests": {
     "applicable": 10,
@@ -13,7 +16,8 @@
     "failed": 0,
     "passed": 13,
     "skipped": 0,
-    "status": "PASS_IN_DIRTY_TOOLING_WORKTREE"
+    "status": "PASS_CLEAN_COMMIT_IN_FULL_SUITE",
+    "tested_commit": "5ec8f6ebaa4aad8575fb0565583d7916cb3f32d5"
   },
   "frozen_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
   "frozen_source_preflight": {
@@ -44,13 +48,26 @@
     "six_missing": 6
   },
   "release_tool_suite": {
-    "note": "Initial dirty checkout run: 55/57 pass, 2 inspector fixture errors due to its clean-source requirement; rerun after commit.",
-    "status": "PENDING_CLEAN_CHECKOUT_RERUN"
+    "command": "python3 -m unittest discover -s tools/release/tests -p test_*.py -q",
+    "exit_code": 0,
+    "failed": 0,
+    "note": "Initial dirty-worktree run had two inspector fixture clean-checkout errors; clean-commit rerun passed all 59.",
+    "passed": 59,
+    "skipped": 0,
+    "status": "PASS_CLEAN_COMMIT",
+    "tested_commit": "5ec8f6ebaa4aad8575fb0565583d7916cb3f32d5"
   },
   "retained_graph": {
     "new_graph_execution": false,
     "status": "PASS_RETAINED_DRY_RUN"
   },
+  "review": {
+    "followup": "Independent read-only check of final test-results, review note, campaign status and RUN_HISTORY found no factual mismatch before docs-only final commit.",
+    "limitations": "Reviewer examined scripts, readiness/resources/build graph/follow-on docs and tracker changes; test-results and review document authored after verdict, not independently reviewed at that time.",
+    "reviewer": "distinct Codex review agent",
+    "status": "PASS_INDEPENDENT_HOST_SCOPE"
+  },
   "schema_version": 1,
+  "tested_tooling_commit": "5ec8f6ebaa4aad8575fb0565583d7916cb3f32d5",
   "tooling_starting_head": "0b3b68763325a4bb5b63a6891dd9a23efc42b76a"
 }
