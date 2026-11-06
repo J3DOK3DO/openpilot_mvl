@@ -59,3 +59,21 @@ The handoff manifest SHA256 is `998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0
 | C4-12 | WAIVED_BY_OWNER / NOT_EXECUTED | No restoration exercise or PASS claim |
 
 No route, VIN, private key, token or personal data is in these reports. The known-good installation was only read, never treated as replacement approval. Device-side source copy, QCOM compilation and installation are separate future authorizations. Exact later commands and stop criteria are in `QCOM_DEVICE_BUILD_HANDOFF_20261106.md`; its six-target command is conditional on verified 19.9 tooling/capacity and must use an isolated `TMPDIR` and cache. No full product build PASS or device qualification is claimed.
+
+## Offline verification and publication checkpoint
+
+At code/documentation commit `bace68ce273d66e42ce872d54e03a59d9c43c7bb`, the clean worktree passed `python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q` (**32/32**) and `python3 -m unittest -q docs.engineering.autonomous_campaign.test_campaignctl` (**4/4**). The focused preflight/model artifact run passed **17/17**; the 13 handoff/recovery units passed separately. The source-only package verifier checked **4,372/4,372** archived files against the externally retained manifest hash and tar hash. `git diff --check` and JSON parsing passed. The inherited 444 host tests at `4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb` were **not rerun** in this checkpoint. The first inspector test attempt failed only because its fixture requires a clean source tree while this checkpoint was still uncommitted; its clean-tree rerun passed within the 32-test suite. No target build or device test was run.
+
+A distinct read-only reviewer inspected the pre-commit diff, independently reran the nine preflight tests, found four documentation issues, and confirmed all four were fixed before commit: explicit `-j1`, supersession of archived 19.8.1 instructions, accurate thermal wording, and exact Python interpreter resolution for SConscript child commands. No actionable issue remained in that review. This is independent source review, not AGNOS 19.9 target qualification.
+
+GitHub `HEAD` was reachable, and the proposed new branch was absent. A non-force HTTPS push of this branch failed with `could not read Username for 'https://github.com'` because the Ubuntu environment lacks usable credentials. The local commit remains intact and **remote publication is NOT_DONE**. Do not use Ubuntu SSH. A Windows helper with authenticated GitHub access can publish the same local branch after mapping this isolated worktree:
+
+```powershell
+$worktree = '<Windows path to this isolated worktree>'
+git -C $worktree status --short
+git -C $worktree rev-parse HEAD
+git -C $worktree push https://github.com/J3DOK3DO/openpilot_mvl.git HEAD:refs/heads/codex/mvl-agnos199-qcom-readiness-20261106
+git ls-remote --heads https://github.com/J3DOK3DO/openpilot_mvl.git refs/heads/codex/mvl-agnos199-qcom-readiness-20261106
+```
+
+Require a clean status and compare the final `rev-parse HEAD` to the expected checkpoint SHA shown by the host before pushing. This publishes only the new branch; it does not modify PR #1 or any protected branch.
