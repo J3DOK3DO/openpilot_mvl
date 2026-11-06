@@ -388,15 +388,37 @@
       "waiver_C4_12": "WAIVED_BY_OWNER / NOT_EXECUTED",
       "release_classification": "PRODUCT_BUILD_INCOMPLETE",
       "independent_review": "PASS source-only scope and unchanged control/Panda boundary at exact source commit"
+    },
+    {
+      "milestone": "QCOM continuation bounded read-only preflight and static product inspector",
+      "commit": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
+      "verified_at_utc": "2026-11-06T10:10:50.979037+00:00",
+      "command": "python3 -m unittest -q tools.release.tests.test_readonly_comma4_preflight tools.release.tests.test_inspect_native_product",
+      "exit_code": 0,
+      "outcomes": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      },
+      "scope": "offline tool unit tests only; no device contact or product build qualification",
+      "preflight_command": "python3 tools/release/readonly_comma4_preflight.py --host comma --timeout-seconds 12",
+      "preflight_record": "COMMA4_READONLY_PREFLIGHT_20261106.json",
+      "preflight_result": "UNREACHABLE / NO_ROUTE_TO_HOST; device NOT_TESTED",
+      "prior_accepted_source": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+      "prior_accepted_host_passed": 444,
+      "qcom_compilation": "NOT_ATTEMPTED; separate authorization and compatible reachable runtime required",
+      "full_product_build": "NOT_ATTEMPTED / HOLD",
+      "independent_review": "PASS exact source c5c2cb367a451dd8f6476e3bd365649938ba16e4: offline tools/tests only; no UI/control/Panda/Honda/manager change; 12 focused tests confirmed",
+      "preflight_command_exit_code": 0,
+      "preflight_observation": "SSH error classified; no remote response or device fact"
     }
   ],
-  "last_verified_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "last_verified_commit": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
   "last_verified_outcomes": {
-    "passed": 444,
+    "passed": 12,
     "failed": 0,
     "skipped": 0,
-    "handoff_recovery_units_passed": 13,
-    "g03_ipc_paths": 8
+    "scope": "offline observer and inspector units only; prior 444 host suite at 4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb"
   },
   "publication_events": [
     {

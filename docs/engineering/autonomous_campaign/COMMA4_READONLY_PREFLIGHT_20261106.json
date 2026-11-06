@@ -1,0 +1,12 @@
+{
+  "exact_source_handoff_commit_for_future_isolated_build": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "expected_pinned_tinygrad_gitlink": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4",
+  "failure_class": "NO_ROUTE_TO_HOST",
+  "host_alias": "comma",
+  "known_good_confirmed_by_owner": false,
+  "observed_at_utc": "2026-11-06T10:08:44.566752+00:00",
+  "probe_mode": "READ_ONLY_SSH_NO_DEVICE_WRITES",
+  "qualification_decision": "NOT_TESTED",
+  "schema_version": 1,
+  "status": "UNREACHABLE"
+}
