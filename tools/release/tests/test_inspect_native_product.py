@@ -34,6 +34,15 @@ class NativeProductInspectorTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'source checkout differs'):
             inspector.inspect(self.source, self.stage, self.manifest, '0' * 40)
 
+    def test_dirty_source_rejected(self):
+        marker = self.source / 'mvl-inspector-dirty-source-test.py'
+        try:
+            marker.write_text('dirty')
+            with self.assertRaisesRegex(ValueError, 'not clean'):
+                inspector.inspect(self.source, self.stage, self.manifest, self.head)
+        finally:
+            marker.unlink(missing_ok=True)
+
     def test_duplicate_manifest_keys_rejected(self):
         with self.assertRaisesRegex(ValueError, 'duplicate manifest key'):
             inspector.unique_pairs([('source_commit', 'a'), ('source_commit', 'b')])

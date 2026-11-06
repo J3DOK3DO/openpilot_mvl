@@ -50,6 +50,13 @@ class ReadOnlyComma4PreflightTest(unittest.TestCase):
         self.assertEqual(result['read_only_prerequisites'], 'OBSERVED_WITH_HOLDS')
         self.assertEqual(len(result['planning_holds']), 2)
 
+    def test_collected_build_prerequisites_all_hold_when_wrong(self):
+        changes = dict(model='other hardware', tinygrad_repo_sha='0' * 40, tinygrad_compiler_file='no', scons_path='', tmp_available_kb='1')
+        with patch.object(probe.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0, self.sample(**changes), '')):
+            result = probe.collect('comma')
+        self.assertEqual(result['read_only_prerequisites'], 'OBSERVED_WITH_HOLDS')
+        self.assertEqual(len(result['planning_holds']), 4)
+
     def test_duplicate_field_rejected(self):
         with self.assertRaisesRegex(ValueError, 'duplicate'):
             probe.parse_observations(self.sample() + 'arch=x86_64\n')

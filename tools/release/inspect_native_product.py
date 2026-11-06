@@ -62,6 +62,9 @@ def inspect(source_root: Path, stage: Path, qcom_manifest: Path, expected_source
     head = subprocess.check_output(['git', '-C', str(source_root), 'rev-parse', 'HEAD'], text=True).strip()
     if head != expected_source:
         raise ValueError('source checkout differs from expected Git SHA')
+    clean = subprocess.check_output(['git', '-c', 'filter.lfs.required=false', '-c', 'filter.lfs.process=', '-c', 'filter.lfs.clean=cat', '-C', str(source_root), 'status', '--porcelain', '--untracked-files=all'], text=True)
+    if clean.strip():
+        raise ValueError('source checkout is not clean')
     issues = []
     if not qcom_manifest.is_file() or qcom_manifest.is_symlink():
         issues.append('exact-source QCOM manifest absent')
@@ -125,7 +128,7 @@ def inspect(source_root: Path, stage: Path, qcom_manifest: Path, expected_source
         'qcom_manifest_sha256': sha256(qcom_manifest) if qcom else None,
         'file_count': len(rows), 'total_regular_bytes': total_bytes,
         'elf_count': elf_count, 'files': rows, 'issues': issues,
-        'static_decision': 'HOLD_STATIC_ISSUES' if issues else 'STATIC_INVENTORY_COMPLETE_PENDING_BUILD_AND_DEVICE_EVIDENCE',
+        'static_decision': 'HOLD_STATIC_ISSUES' if issues else 'STATIC_PARTIAL_INVENTORY_PASS_PRODUCT_SET_UNVERIFIED',
         'device_qualification': 'NOT_TESTED',
         'product_build_claim': 'NOT_ESTABLISHED_BY_THIS_INSPECTOR',
     }

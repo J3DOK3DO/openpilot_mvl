@@ -88,7 +88,7 @@ def collect(host: str, timeout_seconds: int = 12) -> dict:
         'observed_at_utc': datetime.now(timezone.utc).isoformat(),
         'host_alias': host,
         'probe_mode': 'READ_ONLY_SSH_NO_DEVICE_WRITES',
-        'expected_source_commit_for_future_isolated_build': SOURCE_COMMIT,
+        'exact_source_handoff_commit_for_future_isolated_build': SOURCE_COMMIT,
         'expected_pinned_tinygrad_gitlink': TINYGRAD_GITLINK,
         'known_good_confirmed_by_owner': False,
         'qualification_decision': 'NOT_TESTED',
@@ -115,19 +115,23 @@ def collect(host: str, timeout_seconds: int = 12) -> dict:
     result['observations'] = observations
     # Guardrails for planning only; not OEM ratings or permission to compile.
     holds = []
+    if not re.search(r'\bcomma\s*(?:4|four)\b', observations['model'].casefold()):
+        holds.append('device model does not identify comma 4')
     for key, required in (('arch', 'aarch64'), ('agnos_version', '19.8.1'), ('agnos_marker', 'yes'), ('gpu_char_device', 'yes')):
         if observations[key] != required:
             holds.append(f'{key} differs from {required}')
-    for key, floor in (('data_available_kb', 12 * 1024 * 1024), ('mem_available_kb', 2 * 1024 * 1024)):
+    for key, floor in (('data_available_kb', 12 * 1024 * 1024), ('tmp_available_kb', 2 * 1024 * 1024), ('mem_available_kb', 2 * 1024 * 1024)):
         value = observations[key]
         if not value.isdigit() or int(value) < floor:
             holds.append(f'{key} below planning guardrail or unavailable')
     thermal = observations['thermal_max_mc']
-    if not thermal.isdigit() or int(thermal) >= 70000:
+    if not thermal.isdigit() or int(thermal) >= 70000 or not observations['thermal_count'].isdigit() or int(observations['thermal_count']) == 0:
         holds.append('thermal headroom unavailable or at/above planning guardrail')
-    for key in ('python3_path', 'clang_path', 'clangxx_path', 'capnpc_path'):
+    for key in ('python3_path', 'clang_path', 'clangxx_path', 'capnpc_path', 'scons_path'):
         if not observations[key]:
             holds.append(f'{key} unavailable in observed PATH')
+    if observations['tinygrad_repo_sha'] != TINYGRAD_GITLINK or observations['tinygrad_compiler_file'] != 'yes':
+        holds.append('observed tinygrad compiler does not match pinned Git link')
     if not observations['installed_sha'] or not observations['installed_branch']:
         holds.append('installed branch/SHA unavailable; owner confirmation pending')
     result['planning_holds'] = holds
