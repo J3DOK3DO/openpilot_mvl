@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-06T10:10:50.979037+00:00",
+  "updated_at_utc": "2026-11-06T10:14:58.236670+00:00",
   "current_stage": "QCOM_exact_source_build_handoff_prepared_device_unreachable",
   "release_decision": "HOLD",
   "branch": "codex/mvl-qcom-build-continuation-20261106",
   "checkout_mode": "branch",
-  "head_commit": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
+  "head_commit": "3f3a5546b745649acb70317c227ccf59f6cbc210",
   "last_verified_result": {
     "decision": "PASS_OFFLINE_TOOLS_ONLY_DEVICE_UNREACHABLE",
     "scope": "Twelve focused preflight/inspector tests at c5c2cb367a451dd8f6476e3bd365649938ba16e4; prior 444 host tests remain accepted only at 4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb; handoff externally anchored and verified",
@@ -20,7 +20,7 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-qcom-build-continuation-20261106",
-    "head": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
+    "head": "3f3a5546b745649acb70317c227ccf59f6cbc210",
     "worktree": "/tmp/mvl-qcom-build-continuation-20261106",
     "owner": "QCOM continuation; exclusive lease during run"
   },
@@ -47,7 +47,7 @@
     "scope": "Source-only handoff verified; 12 offline tooling units pass; comma unreachable; six QCOM outputs and full product absent; device NOT_TESTED."
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded source c5c2cb367a451dd8f6476e3bd365649938ba16e4 may have one following docs-only campaign checkpoint; further source drift requires reconciliation.",
+  "checkpoint_rule": "Recorded reviewed docs checkpoint 3f3a5546b745649acb70317c227ccf59f6cbc210 may have one following publication-only campaign checkpoint; exact tested tool source c5c2cb367a451dd8f6476e3bd365649938ba16e4 remains separate. Further drift requires reconciliation.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -94,8 +94,12 @@
     "final_release_verified_at_utc": "2026-11-05T18:13:10.068098+00:00",
     "final_release_method": "SHA-verified Git bundle via authorized Windows Git helper; non-force push and authenticated ls-remote exact SHA verification. PR #1 unchanged.",
     "qcom_continuation_branch": "codex/mvl-qcom-build-continuation-20261106",
-    "qcom_continuation_status": "LOCAL_REVIEW_PENDING_PUBLICATION",
-    "qcom_continuation_verified_tool_source_sha": "c5c2cb367a451dd8f6476e3bd365649938ba16e4"
+    "qcom_continuation_status": "PUBLISHED_VERIFIED_ENGINEERING_HOLD",
+    "qcom_continuation_verified_tool_source_sha": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
+    "qcom_continuation_published_head": "3f3a5546b745649acb70317c227ccf59f6cbc210",
+    "qcom_continuation_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-qcom-build-continuation-20261106",
+    "qcom_continuation_remote_verified_at_utc": "2026-11-06T10:14:58.236670+00:00",
+    "qcom_continuation_method": "SHA-verified bundle via authorized Windows Git helper; non-force push and authenticated ls-remote exact ref; PR #1 unchanged"
   },
   "release_profile": "COMMA4_NON_ACTUATING_MVL",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE",

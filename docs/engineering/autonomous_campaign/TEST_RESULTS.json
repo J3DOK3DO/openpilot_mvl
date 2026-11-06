@@ -462,6 +462,15 @@
       "verified_at_utc": "2026-11-05T18:13:10.068098+00:00",
       "method": "Windows authenticated non-force push; ls-remote exact SHA",
       "release_status": "PRODUCT_BUILD_INCOMPLETE"
+    },
+    {
+      "branch": "codex/mvl-qcom-build-continuation-20261106",
+      "verified_remote_sha": "3f3a5546b745649acb70317c227ccf59f6cbc210",
+      "tested_source_sha": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
+      "verified_at_utc": "2026-11-06T10:14:58.236670+00:00",
+      "method": "SHA-verified Git bundle via authorized Windows helper; non-force push; authenticated ls-remote exact SHA",
+      "new_test_outcome": "not_rerun_docs_only",
+      "classification": "PRODUCT_BUILD_INCOMPLETE"
     }
   ]
 }
