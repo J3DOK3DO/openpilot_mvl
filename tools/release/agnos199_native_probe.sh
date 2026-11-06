@@ -10,8 +10,11 @@ cache=$base/build_cache
 expected_source=4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb
 expected_image=80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7
 expected_builder=sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95
+timeout_seconds=${AGNOS199_TIMEOUT_SECONDS:-1800}
+[[ $timeout_seconds =~ ^[0-9]+$ ]] && (( timeout_seconds >= 60 && timeout_seconds <= 3600 )) || { echo 'invalid bounded timeout' >&2; exit 2; }
 [[ $(cat "$rootfs/VERSION") == 19.9 ]]
 [[ $(git -C "$source_root" rev-parse HEAD) == "$expected_source" ]]
+python3 "$source_root/tools/release/preflight_readonly.py" --repo "$source_root" --commit "$expected_source" > /dev/null
 [[ $(sha256sum "$image" | cut -d' ' -f1) == "$expected_image" ]]
 [[ $(docker image inspect --format '{{.Id}}' starpilot-larch64-builder:latest) == "$expected_builder" ]]
 mkdir -p "$cache"
@@ -20,7 +23,7 @@ if [[ "$mode" == graph ]]; then
 else
   scons_args='-j1 --minimal cache_dir=/build_cache openpilot/common/libparams_c.so'
 fi
-timeout 900s docker run --rm --platform linux/arm64 --network none --read-only \
+timeout "${timeout_seconds}s" docker run --rm --platform linux/arm64 --network none --read-only \
   --tmpfs /agnos/tmp:rw,size=512m \
   --mount type=bind,src="$rootfs",dst=/agnos,readonly \
   --mount type=bind,src="$source_root",dst=/agnos/src \
