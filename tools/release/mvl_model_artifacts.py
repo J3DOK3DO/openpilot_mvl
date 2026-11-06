@@ -33,6 +33,8 @@ COMPILER_DIRS = ('tinygrad', 'extra', 'examples/openpilot')
 COMPILER_SUFFIXES = {'.py', '.c', '.cc', '.cpp', '.h', '.hpp', '.cl', '.json'}
 LFS_HEADER = 'version https://git-lfs.github.com/spec/v1'
 AGNOS_SHA256 = '98e15de07c39a19b5fa17c96a67e66d4362f9ebaf7827b640f4127e3b6417da8'
+AGNOS199_IMAGE_SHA256 = '80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7'
+AGNOS199_MANIFEST_SHA256 = 'c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693'
 MAX_PICKLE_OPCODES = 100_000_000
 
 
@@ -149,19 +151,40 @@ def source_hashes(root: Path) -> dict[str, str]:
     return {p.as_posix(): sha256(regular(root / p)) for p in sorted(set(paths))}
 
 
-def inventory(root: Path, assets: Path, artifacts: Path, agnos_image: Path, agnos_root: Path) -> dict:
+def agnos_identity(agnos_image: Path, agnos_root: Path, version: str = '19.8.1', component_manifest: Path | None = None) -> dict:
+    if version not in ('19.8.1', '19.9'):
+        raise ValueError('unsupported AGNOS version')
+    if regular(agnos_root / 'VERSION').read_text().strip() != version or (agnos_root / 'AGNOS').is_symlink() or not (agnos_root / 'AGNOS').is_file():
+        raise ValueError(f'AGNOS root is not version {version}')
+    image_sha = sha256(regular(agnos_image))
+    if version == '19.8.1':
+        if component_manifest is not None:
+            raise ValueError('19.8.1 does not accept a 19.9 component manifest')
+        if image_sha != AGNOS_SHA256:
+            raise ValueError('AGNOS image differs from pinned 19.8.1 reference')
+        return {'version': version, 'image_sha256': image_sha}
+    if component_manifest is None:
+        raise ValueError('19.9 requires pinned component manifest')
+    try:
+        from tools.release.agnos_image import pinned_system
+    except ModuleNotFoundError:
+        from agnos_image import pinned_system
+    part = pinned_system(component_manifest, AGNOS199_MANIFEST_SHA256)
+    if part['hash_raw'] != AGNOS199_IMAGE_SHA256 or image_sha != part['hash_raw']:
+        raise ValueError('AGNOS image differs from pinned 19.9 reference')
+    return {'version': version, 'image_sha256': image_sha, 'component_manifest_sha256': AGNOS199_MANIFEST_SHA256}
+
+
+def inventory(root: Path, assets: Path, artifacts: Path, agnos_image: Path, agnos_root: Path,
+              agnos_version: str = '19.8.1', agnos_component_manifest: Path | None = None) -> dict:
     root = root.resolve()
     head, tinygrad_link = source_identity(root)
-    if regular(agnos_root / 'VERSION').read_text().strip() != '19.8.1' or (agnos_root / 'AGNOS').is_symlink() or not (agnos_root / 'AGNOS').is_file():
-        raise ValueError('AGNOS root is not version 19.8.1')
-    image_sha = sha256(regular(agnos_image))
-    if image_sha != AGNOS_SHA256:
-        raise ValueError('AGNOS image differs from pinned 19.8.1 reference')
+    agnos = agnos_identity(agnos_image, agnos_root, agnos_version, agnos_component_manifest)
     result = {
         'version': 1,
         'source_commit': head,
         'tinygrad_gitlink': tinygrad_link,
-        'agnos': {'version': '19.8.1', 'image_sha256': image_sha},
+        'agnos': agnos,
         'source_files': source_hashes(root),
         'onnx': {name: lfs_identity(root / MODEL_DIR / name, assets / name) for name in ONNX},
         'artifacts': {name: qcom_capture(artifacts / name) for name in ARTIFACTS},
@@ -188,9 +211,12 @@ def main() -> None:
     parser.add_argument('--artifacts', type=Path, required=True)
     parser.add_argument('--agnos-image', type=Path, required=True)
     parser.add_argument('--agnos-root', type=Path, required=True)
+    parser.add_argument('--agnos-version', choices=('19.8.1', '19.9'), default='19.8.1')
+    parser.add_argument('--agnos-component-manifest', type=Path)
     parser.add_argument('--manifest', type=Path, required=True)
     args = parser.parse_args()
-    actual = inventory(args.source, args.onnx_assets, args.artifacts, args.agnos_image, args.agnos_root)
+    actual = inventory(args.source, args.onnx_assets, args.artifacts, args.agnos_image, args.agnos_root,
+                       args.agnos_version, args.agnos_component_manifest)
     if args.action == 'record':
         if args.manifest.exists():
             parser.error('manifest already exists; preserve original provenance')

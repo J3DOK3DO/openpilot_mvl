@@ -12,9 +12,9 @@ import stat
 import subprocess
 
 if __package__:
-    from tools.release.mvl_model_artifacts import AGNOS_SHA256, ARTIFACTS, MODEL_DIR
+    from tools.release.mvl_model_artifacts import AGNOS_SHA256, AGNOS199_IMAGE_SHA256, AGNOS199_MANIFEST_SHA256, ARTIFACTS, MODEL_DIR
 else:
-    from mvl_model_artifacts import AGNOS_SHA256, ARTIFACTS, MODEL_DIR
+    from mvl_model_artifacts import AGNOS_SHA256, AGNOS199_IMAGE_SHA256, AGNOS199_MANIFEST_SHA256, ARTIFACTS, MODEL_DIR
 
 MAX_FILES = 20000
 MAX_TOTAL_BYTES = 16 * 1024 * 1024 * 1024
@@ -53,11 +53,13 @@ def elf_identity(path: Path) -> dict:
         'build_id': (bracket(r'Build ID: ([0-9a-fA-F]+)') or [''])[0],
     }
 
-def inspect(source_root: Path, stage: Path, qcom_manifest: Path, expected_source: str) -> dict:
+def inspect(source_root: Path, stage: Path, qcom_manifest: Path, expected_source: str, agnos_version: str = '19.8.1') -> dict:
     source_root = source_root.resolve()
     stage = stage.resolve()
     if not re.fullmatch(r'[0-9a-f]{40}', expected_source):
         raise ValueError('expected source must be a full Git SHA')
+    if agnos_version not in ('19.8.1', '19.9'):
+        raise ValueError('unsupported AGNOS version')
     if not stage.is_dir() or stage == source_root or stage in source_root.parents or source_root in stage.parents:
         raise ValueError('staging root must be a separate existing directory')
     if stage.as_posix() in ('/data/openpilot', '/data', '/'):
@@ -76,7 +78,10 @@ def inspect(source_root: Path, stage: Path, qcom_manifest: Path, expected_source
         qcom = json.loads(qcom_manifest.read_text(), object_pairs_hook=unique_pairs)
         if qcom.get('source_commit') != expected_source:
             issues.append('QCOM manifest source SHA mismatch')
-        if qcom.get('agnos', {}).get('version') != '19.8.1' or qcom.get('agnos', {}).get('image_sha256') != AGNOS_SHA256:
+        expected_agnos = ({'version': '19.8.1', 'image_sha256': AGNOS_SHA256} if agnos_version == '19.8.1'
+                          else {'version': '19.9', 'image_sha256': AGNOS199_IMAGE_SHA256,
+                                'component_manifest_sha256': AGNOS199_MANIFEST_SHA256})
+        if qcom.get('agnos') != expected_agnos:
             issues.append('QCOM manifest AGNOS identity mismatch')
         if set(qcom.get('artifacts', {})) != set(ARTIFACTS):
             issues.append('QCOM manifest artifact set incomplete or unexpected')
@@ -127,6 +132,7 @@ def inspect(source_root: Path, stage: Path, qcom_manifest: Path, expected_source
     return {
         'schema_version': 1,
         'source_commit': head,
+        'agnos_version_expected': agnos_version,
         'staging_root': str(stage),
         'qcom_manifest_sha256': sha256(qcom_manifest) if qcom else None,
         'file_count': len(rows), 'total_regular_bytes': total_bytes,
@@ -142,7 +148,8 @@ if __name__ == '__main__':
     parser.add_argument('--staging-root', type=Path, required=True)
     parser.add_argument('--qcom-manifest', type=Path, required=True)
     parser.add_argument('--expected-source', required=True)
+    parser.add_argument('--agnos-version', choices=('19.8.1', '19.9'), default='19.8.1')
     args = parser.parse_args()
-    result = inspect(args.source_root, args.staging_root, args.qcom_manifest, args.expected_source)
+    result = inspect(args.source_root, args.staging_root, args.qcom_manifest, args.expected_source, args.agnos_version)
     print(json.dumps(result, indent=2, sort_keys=True))
     raise SystemExit(2 if result['issues'] else 0)

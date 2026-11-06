@@ -1,4 +1,5 @@
 import hashlib
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -112,6 +113,26 @@ class ModelArtifactPreflightTests(unittest.TestCase):
     def test_wrong_agnos_image_rejected(self):
         self.image.write_bytes(b'not the pinned reference')
         with self.assertRaisesRegex(ValueError, 'AGNOS image differs'):
+            self.check()
+
+    def test_agnos_199_accepts_only_pinned_component_and_image(self):
+        (self.agnos / 'VERSION').write_text('19.9\n')
+        component = self.base / 'agnos199.json'
+        component.write_text(json.dumps([{'name': 'system', 'sparse': True, 'size': len(self.image.read_bytes()),
+                                          'hash': 'a' * 64, 'hash_raw': hashlib.sha256(self.image.read_bytes()).hexdigest()}]))
+        with patch.object(m, 'AGNOS199_IMAGE_SHA256', hashlib.sha256(self.image.read_bytes()).hexdigest()), \
+             patch.object(m, 'AGNOS199_MANIFEST_SHA256', hashlib.sha256(component.read_bytes()).hexdigest()):
+            result = m.inventory(self.source, self.assets, self.artifacts, self.image, self.agnos, '19.9', component)
+            self.assertEqual(result['agnos']['version'], '19.9')
+            with self.assertRaisesRegex(ValueError, '19.9 requires'):
+                m.inventory(self.source, self.assets, self.artifacts, self.image, self.agnos, '19.9')
+            component.write_text('[]')
+            with self.assertRaisesRegex(ValueError, 'external SHA-256 anchor'):
+                m.inventory(self.source, self.assets, self.artifacts, self.image, self.agnos, '19.9', component)
+
+    def test_cross_version_reference_rejected(self):
+        (self.agnos / 'VERSION').write_text('19.9\n')
+        with self.assertRaisesRegex(ValueError, '19.8.1'):
             self.check()
 
     def test_duplicate_manifest_key_rejected(self):

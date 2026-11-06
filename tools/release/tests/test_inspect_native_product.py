@@ -1,8 +1,10 @@
 from pathlib import Path
+import json
 import shutil
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 from tools.release import inspect_native_product as inspector
 
 class NativeProductInspectorTest(unittest.TestCase):
@@ -51,6 +53,20 @@ class NativeProductInspectorTest(unittest.TestCase):
     def test_duplicate_manifest_keys_rejected(self):
         with self.assertRaisesRegex(ValueError, 'duplicate manifest key'):
             inspector.unique_pairs([('source_commit', 'a'), ('source_commit', 'b')])
+
+    def test_agnos_199_contract_rejects_cross_version_substitution(self):
+        from tools.release.mvl_model_artifacts import AGNOS199_IMAGE_SHA256, AGNOS199_MANIFEST_SHA256
+        manifest = {'source_commit': self.head, 'agnos': {'version': '19.9',
+                    'image_sha256': AGNOS199_IMAGE_SHA256,
+                    'component_manifest_sha256': AGNOS199_MANIFEST_SHA256}, 'artifacts': {}}
+        self.manifest.write_text(json.dumps(manifest))
+        def git_output(argv, **kwargs):
+            return self.head + '\n' if argv[-2:] == ['rev-parse', 'HEAD'] else ''
+        with patch.object(inspector.subprocess, 'check_output', side_effect=git_output):
+            ok = inspector.inspect(self.source, self.stage, self.manifest, self.head, '19.9')
+            wrong = inspector.inspect(self.source, self.stage, self.manifest, self.head, '19.8.1')
+        self.assertFalse(any('AGNOS identity mismatch' in x for x in ok['issues']))
+        self.assertTrue(any('AGNOS identity mismatch' in x for x in wrong['issues']))
 
 if __name__ == '__main__':
     unittest.main()
