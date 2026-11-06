@@ -14,7 +14,9 @@ FIELDS = {
     'model', 'arch', 'agnos_version', 'agnos_marker', 'gpu_char_device',
     'python3_path', 'clang_path', 'clangxx_path', 'capnpc_path', 'scons_path',
     'tinygrad_repo_sha', 'tinygrad_compiler_file', 'data_available_kb',
-    'tmp_available_kb', 'mem_available_kb', 'thermal_max_mc', 'thermal_count',
+    'tmp_available_kb', 'mem_available_kb', 'cpu_gpu_thermal_max_mc',
+    'cpu_gpu_thermal_count', 'limit_thermal_max_mc', 'limit_thermal_count',
+    'scons_candidate_path', 'capnpc_candidate_path', 'scons_module',
     'installed_branch', 'installed_sha',
 }
 # POSIX sh only. Every remote command reads metadata or files; there is no redirect,
@@ -31,21 +33,41 @@ for tool in python3 clang clang++ capnpc scons; do
   case "$tool" in clang++) key=clangxx_path;; *) key="${tool}_path";; esac
   printf '%s=%s\n' "$key" "$(command -v "$tool" 2>/dev/null || :)"
 done
+for tool in scons capnpc; do
+  found=''
+  for base in /usr/local/venv/bin /data/openpilot/.venv/bin /data/openpilot/venv/bin /usr/local/bin /usr/bin; do
+    if [ -x "$base/$tool" ]; then found="$base/$tool"; break; fi
+  done
+  printf '%s_candidate_path=%s\n' "$tool" "$found"
+done
+python_path=$(command -v python3 2>/dev/null || :)
+module='unknown'
+if [ -n "$python_path" ]; then
+  module=$("$python_path" -B -c 'import importlib.util; print("yes" if importlib.util.find_spec("SCons") else "no")' 2>/dev/null || printf 'unknown')
+fi
+printf 'scons_module=%s\n' "$module"
 printf 'tinygrad_repo_sha=%s\n' "$(git -C /data/openpilot/tinygrad_repo rev-parse HEAD 2>/dev/null || :)"
 if [ -f /data/openpilot/tinygrad_repo/examples/openpilot/compile_onnx.py ]; then printf 'tinygrad_compiler_file=yes\n'; else printf 'tinygrad_compiler_file=no\n'; fi
 printf 'data_available_kb=%s\n' "$(df -Pk /data 2>/dev/null | awk 'NR==2 {print $4}' || :)"
 printf 'tmp_available_kb=%s\n' "$(df -Pk /tmp 2>/dev/null | awk 'NR==2 {print $4}' || :)"
 printf 'mem_available_kb=%s\n' "$(awk '/^MemAvailable:/ {print $2}' /proc/meminfo 2>/dev/null || :)"
-max=''; count=0
+actual_max=''; actual_count=0; limit_max=''; limit_count=0
 for sensor in /sys/class/thermal/thermal_zone*/temp; do
   if [ -r "$sensor" ]; then
     value=$(cat "$sensor" 2>/dev/null || :)
     case "$value" in ''|*[!0-9]*) continue;; esac
-    count=$((count+1))
-    if [ -z "$max" ] || [ "$value" -gt "$max" ]; then max=$value; fi
+    type=$(cat "${sensor%/temp}/type" 2>/dev/null || :)
+    case "$type" in
+      *lmh*|*limit*|*virtual*)
+        limit_count=$((limit_count+1))
+        if [ -z "$limit_max" ] || [ "$value" -gt "$limit_max" ]; then limit_max=$value; fi;;
+      *cpu*|*CPU*|*gpu*|*GPU*)
+        actual_count=$((actual_count+1))
+        if [ -z "$actual_max" ] || [ "$value" -gt "$actual_max" ]; then actual_max=$value; fi;;
+    esac
   fi
 done
-printf 'thermal_max_mc=%s\nthermal_count=%s\n' "$max" "$count"
+printf 'cpu_gpu_thermal_max_mc=%s\ncpu_gpu_thermal_count=%s\nlimit_thermal_max_mc=%s\nlimit_thermal_count=%s\n' "$actual_max" "$actual_count" "$limit_max" "$limit_count"
 printf 'installed_branch=%s\n' "$(git -C /data/openpilot branch --show-current 2>/dev/null || :)"
 printf 'installed_sha=%s\n' "$(git -C /data/openpilot rev-parse HEAD 2>/dev/null || :)"
 '''
@@ -84,7 +106,7 @@ def collect(host: str, timeout_seconds: int = 12) -> dict:
     if not 6 <= timeout_seconds <= 30:
         raise ValueError('timeout must be 6..30 seconds')
     result = {
-        'schema_version': 1,
+        'schema_version': 2,
         'observed_at_utc': datetime.now(timezone.utc).isoformat(),
         'host_alias': host,
         'probe_mode': 'READ_ONLY_SSH_NO_DEVICE_WRITES',
@@ -115,27 +137,49 @@ def collect(host: str, timeout_seconds: int = 12) -> dict:
     result['observations'] = observations
     # Guardrails for planning only; not OEM ratings or permission to compile.
     holds = []
-    if not re.search(r'\bcomma\s*(?:4|four)\b', observations['model'].casefold()):
+    if not re.search(r'\bcomma\s*(?:4|four|mici)\b', observations['model'].casefold()):
         holds.append('device model does not identify comma 4')
-    for key, required in (('arch', 'aarch64'), ('agnos_version', '19.8.1'), ('agnos_marker', 'yes'), ('gpu_char_device', 'yes')):
+    for key, required in (('arch', 'aarch64'), ('agnos_marker', 'yes'), ('gpu_char_device', 'yes')):
         if observations[key] != required:
             holds.append(f'{key} differs from {required}')
-    for key, floor in (('data_available_kb', 12 * 1024 * 1024), ('tmp_available_kb', 2 * 1024 * 1024), ('mem_available_kb', 2 * 1024 * 1024)):
+    version = observations['agnos_version']
+    result['agnos_compatibility'] = ('OBSERVED_COMPATIBILITY_PENDING' if version in ('19.9', '19.8.1')
+                                     else 'UNRECOGNIZED_VERSION_HOLD')
+    result['build_target_match'] = 'BUILD_TARGET_MISMATCH' if version == '19.9' else ('HISTORICAL_REFERENCE_ONLY' if version == '19.8.1' else 'UNKNOWN')
+    if version not in ('19.9', '19.8.1'):
+        holds.append('AGNOS version unrecognized for this campaign')
+    # This is only a fixed-copy floor. Cache, output, tooling and working-set
+    # budgets must be measured before any device-side build can be approved.
+    fixed_copy_kb = (223006720 + 219518275 + 1023) // 1024
+    reserve_kb = 2 * 1024 * 1024
+    result['storage_plan'] = {
+        'fixed_archive_and_extracted_source_kb': fixed_copy_kb,
+        'minimum_reserve_kb': reserve_kb,
+        'cache_output_tooling_tmp_budget_kb': None,
+        'status': 'REQUIRED_CAPACITY_UNKNOWN',
+    }
+    result['tmpdir_plan'] = ('ISOLATED_DATA_TMPDIR_REQUIRED_IF_CAPACITY_PROVEN'
+                             if observations['tmp_available_kb'].isdigit() and int(observations['tmp_available_kb']) < 1024 * 1024
+                             else 'MEASURE_TMP_WORKING_SET_BEFORE_BUILD')
+    for key, floor in (('data_available_kb', fixed_copy_kb + reserve_kb), ('mem_available_kb', 1024 * 1024)):
         value = observations[key]
         if not value.isdigit() or int(value) < floor:
-            holds.append(f'{key} below planning guardrail or unavailable')
-    thermal = observations['thermal_max_mc']
-    if not thermal.isdigit() or int(thermal) >= 70000 or not observations['thermal_count'].isdigit() or int(observations['thermal_count']) == 0:
-        holds.append('thermal headroom unavailable or at/above planning guardrail')
-    for key in ('python3_path', 'clang_path', 'clangxx_path', 'capnpc_path', 'scons_path'):
+            holds.append(f'{key} below measured fixed-copy/reserve floor or unavailable')
+    thermal = observations['cpu_gpu_thermal_max_mc']
+    if not thermal.isdigit() or int(thermal) >= 70000 or not observations['cpu_gpu_thermal_count'].isdigit() or int(observations['cpu_gpu_thermal_count']) == 0:
+        holds.append('CPU/GPU thermal reading unavailable or at/above 70 C planning stop')
+    for key in ('python3_path', 'clang_path', 'clangxx_path'):
         if not observations[key]:
             holds.append(f'{key} unavailable in observed PATH')
+    for tool in ('capnpc', 'scons'):
+        if not observations[f'{tool}_path'] and not observations[f'{tool}_candidate_path'] and not (tool == 'scons' and observations['scons_module'] == 'yes'):
+            holds.append(f'{tool} unresolved in PATH and bounded candidate locations')
     if observations['tinygrad_repo_sha'] != TINYGRAD_GITLINK or observations['tinygrad_compiler_file'] != 'yes':
         holds.append('observed tinygrad compiler does not match pinned Git link')
     if not observations['installed_sha'] or not observations['installed_branch']:
         holds.append('installed branch/SHA unavailable; owner confirmation pending')
     result['planning_holds'] = holds
-    result['read_only_prerequisites'] = 'OBSERVED_WITH_HOLDS' if holds else 'OBSERVED_ONLY_OWNER_AND_BUILD_AUTHORIZATION_STILL_REQUIRED'
+    result['read_only_prerequisites'] = 'OBSERVED_WITH_HOLDS' if holds else 'OBSERVED_COMPATIBILITY_PENDING'
     return result
 
 if __name__ == '__main__':

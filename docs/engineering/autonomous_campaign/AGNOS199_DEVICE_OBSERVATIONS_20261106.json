@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "evidence_class": "USER_SUPPLIED_WINDOWS_SSH_READ_ONLY_OBSERVATION",
+  "observation_date": "2026-11-06",
+  "device": {
+    "model_device_tree": "comma mici",
+    "architecture": "aarch64",
+    "agnos_marker_present": true,
+    "agnos_version": "19.9",
+    "gpu_character_device_present": true,
+    "installed_branch": "sp-honda-dev-202608",
+    "installed_commit": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1"
+  },
+  "tooling": {
+    "system_python": "/usr/bin/python3",
+    "python_version": "3.12.3",
+    "clang_path": "/usr/bin/clang",
+    "clangxx_path": "/usr/bin/clang++",
+    "capnpc_on_observed_path": false,
+    "scons_on_observed_path": false,
+    "system_python_scons_spec": false,
+    "system_python_capnp_spec": false,
+    "tested_alternative_scons_capnpc_paths_found": false,
+    "alternative_path_search_exhaustive": false,
+    "tinygrad_gitlink": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4",
+    "tinygrad_compile_onnx_present": true
+  },
+  "capacity": {
+    "data_available_kib": 9256568,
+    "tmp_total_kib": 153600,
+    "shm_available_kib": 1795704,
+    "root_available_mib_approx": 445,
+    "mem_available_kib": 2481948
+  },
+  "thermal": {
+    "hottest_observed_cpu_sensor_type": "cpu0-silver-usr",
+    "hottest_observed_cpu_mc": 49400,
+    "lmh_dcvs_limit_zone_max_mc": 75000,
+    "gpu_actual_temperature_observed": false
+  },
+  "qualification": "NOT_TESTED",
+  "source_copy_or_compilation_performed": false,
+  "notes": "Facts were supplied from Windows SSH; this Ubuntu campaign did not connect to or mutate the device. No route, key, VIN, token or personal data is included."
+}
