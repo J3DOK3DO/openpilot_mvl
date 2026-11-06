@@ -11,7 +11,10 @@ import re
 import stat
 import subprocess
 
-from tools.release.mvl_model_artifacts import AGNOS_SHA256, ARTIFACTS, MODEL_DIR
+if __package__:
+    from tools.release.mvl_model_artifacts import AGNOS_SHA256, ARTIFACTS, MODEL_DIR
+else:
+    from mvl_model_artifacts import AGNOS_SHA256, ARTIFACTS, MODEL_DIR
 
 MAX_FILES = 20000
 MAX_TOTAL_BYTES = 16 * 1024 * 1024 * 1024

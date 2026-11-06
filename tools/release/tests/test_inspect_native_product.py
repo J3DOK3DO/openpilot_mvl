@@ -15,6 +15,11 @@ class NativeProductInspectorTest(unittest.TestCase):
         self.head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
         self.manifest = Path(self.tmp.name) / 'missing-qcom-manifest.json'
 
+    def test_documented_cli_invocation_imports(self):
+        command = subprocess.run(['python3', 'tools/release/inspect_native_product.py', '--help'], capture_output=True, text=True)
+        self.assertEqual(command.returncode, 0, command.stderr)
+        self.assertIn('--staging-root', command.stdout)
+
     def test_x86_binary_and_missing_qcom_remain_hold(self):
         shutil.copy2('/bin/true', self.stage / 'native-binary')
         report = inspector.inspect(self.source, self.stage, self.manifest, self.head)
