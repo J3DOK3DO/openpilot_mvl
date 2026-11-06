@@ -84,6 +84,9 @@ class WindowsDiagnosticsScriptTests(unittest.TestCase):
     def test_default_alias_and_native_capnpc_match_verified_windows_device(self):
         script = (Path(__file__).resolve().parents[1] / 'qcom_b1_windows_diagnostics.ps1').read_text()
         self.assertIn("[string]$HostAlias = 'comma4'", script)
+        self.assertIn('id_ed25519_openpilot_dev', script)
+        self.assertIn('-o IdentitiesOnly=yes', script)
+        self.assertIn('-i $IdentityFile', script)
         self.assertIn('/usr/local/venv/bin/capnpc', script)
         self.assertIn('-o StrictHostKeyChecking=yes', script)
         self.assertIn('PLAN ONLY:', script)

@@ -1,5 +1,5 @@
 # Optional Windows authenticated, read-only SSH diagnostic. Default: print plan only.
-param([switch]$RunReadOnly, [string]$HostAlias = 'comma4')
+param([switch]$RunReadOnly, [string]$HostAlias = 'comma4', [string]$IdentityFile = "$env:USERPROFILE\.ssh\id_ed25519_openpilot_dev")
 if ($HostAlias -notmatch '^[A-Za-z0-9_.-]{1,64}$' -or $HostAlias.StartsWith('-')) {
   throw 'Use a configured SSH alias.'
 }
@@ -38,5 +38,6 @@ if (-not $RunReadOnly) {
   Write-Output $Remote
   exit 0
 }
-$Remote | & ssh -T -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=5 -o ConnectionAttempts=1 $HostAlias 'sh -s'
+if (-not (Test-Path -LiteralPath $IdentityFile -PathType Leaf)) { throw 'Configured SSH identity file not found' }
+$Remote | & ssh -T -i $IdentityFile -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=5 -o ConnectionAttempts=1 $HostAlias 'sh -s'
 if ($LASTEXITCODE -ne 0) { throw "Read-only SSH failed with exit code $LASTEXITCODE" }
