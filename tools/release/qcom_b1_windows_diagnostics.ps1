@@ -1,5 +1,5 @@
 # Optional Windows authenticated, read-only SSH diagnostic. Default: print plan only.
-param([switch]$RunReadOnly, [string]$HostAlias = 'comma')
+param([switch]$RunReadOnly, [string]$HostAlias = 'comma4')
 if ($HostAlias -notmatch '^[A-Za-z0-9_.-]{1,64}$' -or $HostAlias.StartsWith('-')) {
   throw 'Use a configured SSH alias.'
 }
@@ -27,7 +27,7 @@ done
 printf 'data_available_kib='; df -Pk /data 2>/dev/null | awk 'NR==2 {print $4}'
 printf 'tmp_available_kib='; df -Pk /tmp 2>/dev/null | awk 'NR==2 {print $4}'
 printf 'mem_available_kib='; awk '/^MemAvailable:/ {print $2}' /proc/meminfo 2>/dev/null
-for path in /usr/local/venv/bin/python3 /usr/local/venv/bin/scons /usr/bin/clang /usr/bin/clang++ /usr/bin/capnpc /usr/bin/taskset /usr/bin/timeout; do
+for path in /usr/local/venv/bin/python3 /usr/local/venv/bin/scons /usr/local/venv/bin/capnpc /usr/bin/clang /usr/bin/clang++ /usr/bin/capnpc /usr/bin/taskset /usr/bin/timeout; do
   if [ -x "$path" ]; then printf 'tool=%s\n' "$path"; fi
 done
 printf 'installed_branch='; git -C /data/openpilot branch --show-current 2>/dev/null || :
