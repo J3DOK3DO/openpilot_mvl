@@ -111,6 +111,30 @@
   "sensor_note": "Actual CPU 43-44.5 C and GPU 40.9-41.8 C at idle; 75 C lmh-dcvs is virtual/limit, not actual. Compilation peaks unobserved.",
   "source_selected_file_bytes_retained": 219518275,
   "source_tar_bytes": 223006720,
+  "supplemental_authenticated_windows_readonly_observation": {
+    "actual_cpu0_silver_temperature_mC": 43500,
+    "actual_gpu_temperature_mC": [
+      40200,
+      40900
+    ],
+    "data_available_KiB": 9284852,
+    "gpu_character_device": true,
+    "gpu_model": "Adreno630v2",
+    "gpu_runtime_peak_resource_evidence": "UNMEASURED",
+    "known_good_branch": "sp-honda-dev-202608",
+    "known_good_sha": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1",
+    "mem_available_KiB": 2452512,
+    "observed_date": "2026-11-06",
+    "on_device_writes": false,
+    "strict_host_verified_ssh_exit": 0,
+    "tmp_available_KiB": 153600,
+    "userspace_abi_or_gpu_compile_success": "NOT_TESTED",
+    "userspace_library_paths_observed": [
+      "libOpenCL.so",
+      "libEGL.so",
+      "libGLESv2.so"
+    ]
+  },
   "tmp_available_gib": 0.146484,
   "tmp_available_kib": 153600,
   "tool_imports_observed": [

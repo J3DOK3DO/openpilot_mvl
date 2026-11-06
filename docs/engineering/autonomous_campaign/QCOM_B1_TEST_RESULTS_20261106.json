@@ -41,6 +41,26 @@
     "runtime_load": "NOT_TESTED",
     "status": "ELF64_AARCH64_RETAINED"
   },
+  "post_independent_review_windows_crosscheck": {
+    "device_write_performed": false,
+    "recovery_tests": {
+      "failed": 0,
+      "passed": 4,
+      "skipped": 0,
+      "status": "PASS_CLEAN_COMMIT"
+    },
+    "release_tool_tests": {
+      "failed": 0,
+      "passed": 60,
+      "skipped": 0,
+      "status": "PASS_CLEAN_COMMIT"
+    },
+    "scope": "Narrow post-review Windows host alias/identity path fixes; independently reviewed original host-scope code at 5ec8f6e is not represented as an independent review of these follow-up edits.",
+    "tested_tooling_commit": "1258dc5c34516e5c02b718f21ddf23b24e250d24",
+    "windows_powershell_5_1_parser_errors": 0,
+    "windows_script_readonly_ssh_exit": 0,
+    "windows_script_sha256": "b9e5affe051e5b669f0545b0d7490e6fdd3923d0d1e0de9925696d75aa84cedd"
+  },
   "qcom_b1_audit": {
     "device_action": false,
     "full_product": "BLOCKED",
