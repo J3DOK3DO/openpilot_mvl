@@ -1,0 +1,56 @@
+{
+  "campaign_recovery_units": {
+    "failed": 0,
+    "passed": 4,
+    "skipped": 0,
+    "status": "PASS_IN_DIRTY_TOOLING_WORKTREE"
+  },
+  "device_tests": {
+    "applicable": 10,
+    "executed": 0
+  },
+  "focused_qcom_b1_units": {
+    "failed": 0,
+    "passed": 13,
+    "skipped": 0,
+    "status": "PASS_IN_DIRTY_TOOLING_WORKTREE"
+  },
+  "frozen_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "frozen_source_preflight": {
+    "issues": [],
+    "pinned_submodules": 7,
+    "result": "PASS",
+    "selected_lfs_hydrated": 283
+  },
+  "handoff_verifier": {
+    "manifest_sha256": "998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4",
+    "members": 4372,
+    "result": "PASS",
+    "tar_sha256": "37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d60fe"
+  },
+  "historical_product_source_suite": {
+    "commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+    "passed": 444,
+    "rerun_this_checkpoint": false
+  },
+  "native_elf": {
+    "runtime_load": "NOT_TESTED",
+    "status": "ELF64_AARCH64_RETAINED"
+  },
+  "qcom_b1_audit": {
+    "device_action": false,
+    "full_product": "BLOCKED",
+    "result": "PASS_HOST_PRECONDITION_AUDIT",
+    "six_missing": 6
+  },
+  "release_tool_suite": {
+    "note": "Initial dirty checkout run: 55/57 pass, 2 inspector fixture errors due to its clean-source requirement; rerun after commit.",
+    "status": "PENDING_CLEAN_CHECKOUT_RERUN"
+  },
+  "retained_graph": {
+    "new_graph_execution": false,
+    "status": "PASS_RETAINED_DRY_RUN"
+  },
+  "schema_version": 1,
+  "tooling_starting_head": "0b3b68763325a4bb5b63a6891dd9a23efc42b76a"
+}

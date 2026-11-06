@@ -101,3 +101,16 @@ Release classification remains **PRODUCT_BUILD_INCOMPLETE / HOLD**. G11/G12 cond
 | G13/G14 physical/release | NOT_TESTED / HOLD | C4-01–07 and C4-09–11 pending, C4-08 N/A with G06 OFF, C4-12 WAIVED_BY_OWNER / NOT_EXECUTED. G11/G12 conditional non-actuating N/A. |
 
 **Release classification: PRODUCT_BUILD_INCOMPLETE / HOLD.** The previous 444 product-source tests and 32 readiness tool tests remain historical at their exact recorded commits. The new 46 release-tool and 4 recovery tests passed at `035f10a9...`.
+
+## QCOM B1 offline preflight — 2026-11-06
+
+| Gate | Decision | Evidence / limit |
+| --- | --- | --- |
+| Exact source and handoff | PASS_HOST | External manifest/tar anchors, 4,372 members, frozen 4b HEAD, seven pinned submodules, 283/283 selected LFS, two ONNX hashes and tinygrad link rechecked. |
+| AGNOS 19.9 graph and representative ELF | PASS_RETAINED_HOST | Pinned graph SHA/6 targets; 3,484,104-byte ELF64 AArch64 library. Runtime load and complete product untested. |
+| Device resource observation | OBSERVED_IDLE_ONLY | Supplied Windows read-only comma mici/19.9/GPU/tool/resource/idle-thermal snapshot. Driver/userspace and compilation peaks unknown. Ubuntu made no device connection. |
+| QCOM capacity | HOLD_REQUIRED_CAPACITY_UNKNOWN | 8.8547 GiB /data available at snapshot; GPU scratch/output/TMPDIR and peak RSS unmeasured. 2 GiB minimum reserve enforced. |
+| S12/S13/S14 | HOLD | Six captures absent, full cold product not run, complete package/ABI unavailable. |
+| C4 device and release | NOT_TESTED / HOLD | 0/10 applicable tests; 12/25 scoped software/device acceptance remains 48%; formal release 0%/HOLD. C4-08 conditional N/A while G06 OFF; C4-12 waived/unexecuted. |
+
+G11/G12 conditional N/A only for unchanged non-actuating control/Panda/ECU/CAN-transmit boundary; 254 Params keys DENY. See `QCOM_B1_READINESS_20261106.md` and JSON reports. Historical rows above are retained as dated evidence.

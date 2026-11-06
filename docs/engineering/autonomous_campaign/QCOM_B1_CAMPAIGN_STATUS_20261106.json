@@ -1,0 +1,28 @@
+{
+  "acceptance": "12/25_48_PERCENT_SCOPED_PASS",
+  "branch": "codex/mvl-qcom-b1-offline-preflight-20261106",
+  "c4_08": "CONDITIONAL_NOT_APPLICABLE_WHILE_G06_OFF",
+  "c4_12": "WAIVED_BY_OWNER_NOT_EXECUTED",
+  "campaign": "QCOM_B1_OFFLINE_PREFLIGHT_20261106",
+  "capacity_decision": "HOLD_REQUIRED_CAPACITY_UNKNOWN",
+  "device_action": false,
+  "device_tests": "0/10_NOT_TESTED",
+  "frozen_product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "full_cold_product": "NOT_ATTEMPTED_PREREQUISITES_MISSING",
+  "g06_live": "OFF",
+  "g11_g12": "CONDITIONAL_NOT_APPLICABLE_NON_ACTUATING_ONLY",
+  "inherited_campaign_state": "PRESERVED_NOT_REWRITTEN",
+  "inherited_lease": "PRESERVED_NOT_REWRITTEN",
+  "next_action": "Separate owner authorization required before any device transfer or compilation; collect genuine driver/userspace and resource peak evidence first.",
+  "params_overlapping": "254_DENY",
+  "publication": {
+    "method": "WINDOWS_AUTHENTICATED_NON_FORCE_GIT_HELPER_IF_NEEDED",
+    "status": "LOCAL_UNPUBLISHED_PENDING_FINAL_COMMIT"
+  },
+  "release_classification": "PRODUCT_BUILD_INCOMPLETE",
+  "release_decision": "HOLD",
+  "release_profile": "COMMA4_NON_ACTUATING_MVL",
+  "schema_version": 1,
+  "six_qcom_outputs": "NONE_VALIDATED",
+  "starting_head": "0b3b68763325a4bb5b63a6891dd9a23efc42b76a"
+}

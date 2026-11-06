@@ -1,0 +1,130 @@
+{
+  "allocation_note": "Scenarios include one source checkout plus an extra archive allowance. Checkout already includes extracted files and ONNX; no separate extracted copy is added. Outputs, GPU scratch and TMPDIR are a combined peak allocation to avoid double counting. Cache nominal pruning threshold is not a hard peak bound. All sizes except observed free and source archive are assumptions.",
+  "capacity_go": false,
+  "data_available_bytes": 9507704832,
+  "data_available_gib": 8.85474,
+  "data_available_kib": 9284868,
+  "decision": "HOLD_REQUIRED_CAPACITY_UNKNOWN",
+  "device_observation": {
+    "actual_cpu_mc": 44500,
+    "actual_gpu_mc": 41800,
+    "agnos": "19.9",
+    "decision": "OBSERVED_IDLE_ONLY",
+    "holds": [],
+    "model": "comma mici",
+    "virtual_limit_mc": 75000
+  },
+  "driver_identity": "NOT_OBSERVED",
+  "full_product_staging_peak_bytes": null,
+  "gpu_compiler_peak_rss_bytes": null,
+  "gpu_compiler_scratch_peak_bytes": null,
+  "mem_available_gib": 2.326408,
+  "mem_available_kib": 2439416,
+  "minimum_fixed_tar_plus_files_bytes": 442524995,
+  "minimum_free_reserve_gib": 2,
+  "observation_origin": "USER_SUPPLIED_WINDOWS_AUTHENTICATED_READ_ONLY_SSH",
+  "observed_at_utc": "2026-11-06T16:25:57Z",
+  "preferred_free_reserve_gib": 4,
+  "scenarios_gib": {
+    "illustrative_high": {
+      "allocation_gib": {
+        "archive_extra": 0.5,
+        "cache": 3,
+        "environment": 1,
+        "logs": 0.25,
+        "reserve": 2.0,
+        "source_checkout": 1.25
+      },
+      "arithmetic_fits": false,
+      "available_gib": 8.85474,
+      "available_kib": 9284868,
+      "decision": "HOLD_LOW_DISK",
+      "outputs_gpu_scratch_tmp_peak_gib": 4,
+      "required_gib": 12.0
+    },
+    "illustrative_low": {
+      "allocation_gib": {
+        "archive_extra": 0.5,
+        "cache": 0.25,
+        "environment": 0,
+        "logs": 0.25,
+        "reserve": 2.0,
+        "source_checkout": 1.25
+      },
+      "arithmetic_fits": true,
+      "available_gib": 8.85474,
+      "available_kib": 9284868,
+      "decision": "SCENARIO_FITS_ONLY_PEAK_EVIDENCE_REQUIRED",
+      "outputs_gpu_scratch_tmp_peak_gib": 1,
+      "required_gib": 5.25
+    },
+    "illustrative_mid": {
+      "allocation_gib": {
+        "archive_extra": 0.5,
+        "cache": 2,
+        "environment": 0.5,
+        "logs": 0.25,
+        "reserve": 2.0,
+        "source_checkout": 1.25
+      },
+      "arithmetic_fits": true,
+      "available_gib": 8.85474,
+      "available_kib": 9284868,
+      "decision": "SCENARIO_FITS_ONLY_PEAK_EVIDENCE_REQUIRED",
+      "outputs_gpu_scratch_tmp_peak_gib": 2,
+      "required_gib": 8.5
+    },
+    "preferred_reserve_mid": {
+      "allocation_gib": {
+        "archive_extra": 0.5,
+        "cache": 2,
+        "environment": 0.5,
+        "logs": 0.25,
+        "reserve": 4,
+        "source_checkout": 1.25
+      },
+      "arithmetic_fits": false,
+      "available_gib": 8.85474,
+      "available_kib": 9284868,
+      "decision": "HOLD_LOW_DISK",
+      "outputs_gpu_scratch_tmp_peak_gib": 2,
+      "required_gib": 10.5
+    },
+    "unknown_peak": {
+      "allocation_gib": {
+        "archive_extra": 0.5,
+        "cache": 2.0,
+        "environment": 0.5,
+        "logs": 0.25,
+        "reserve": 2.0,
+        "source_checkout": 1.25
+      },
+      "arithmetic_fits": null,
+      "available_gib": 8.85474,
+      "available_kib": 9284868,
+      "decision": "HOLD_REQUIRED_CAPACITY_UNKNOWN",
+      "outputs_gpu_scratch_tmp_peak_gib": null,
+      "required_gib": null
+    }
+  },
+  "schema_version": 1,
+  "sensor_note": "Actual CPU 43-44.5 C and GPU 40.9-41.8 C at idle; 75 C lmh-dcvs is virtual/limit, not actual. Compilation peaks unobserved.",
+  "source_selected_file_bytes_retained": 219518275,
+  "source_tar_bytes": 223006720,
+  "tmp_available_gib": 0.146484,
+  "tmp_available_kib": 153600,
+  "tool_imports_observed": [
+    "SCons",
+    "capnp",
+    "numpy"
+  ],
+  "tool_paths_observed": [
+    "/usr/local/venv/bin/python3",
+    "/usr/local/venv/bin/scons",
+    "/usr/local/venv/bin/capnpc",
+    "/usr/bin/clang",
+    "/usr/bin/clang++",
+    "/usr/bin/taskset",
+    "/usr/bin/timeout"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "agnos199_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+  "agnos_artifact_contract": "19.9 raw image 80d937... and component manifest c581f89... required by version-aware recorder; 19.8.1 substitution rejected by prior tests.",
+  "build_command_conditional": "unset SKIP_TINYGRAD_COMPILE && env PATH=/usr/local/venv/bin:/usr/bin:/bin TMPDIR=<isolated-host-tmp> HOME=<isolated-host-home> PYTHONDONTWRITEBYTECODE=1 python3 -m SCons -j1 --minimal cache_dir=<isolated-host-cache>  # default full product graph, NOT RUN; only after six verified captures and isolated checkout",
+  "build_command_note": "SConstruct default targets are the full graph; --minimal matches retained graph route. No full product command was executed. SCons may generate files even with -n; any later dry run must use isolated disposable checkout/copy.",
+  "cache_tmpdir_contract": "Isolated cache and TMPDIR; never /data/scons_cache or /tmp for device build. Host dry runs may only write to isolated checkout/copy.",
+  "device_action_performed": false,
+  "device_qualification": "NOT_TESTED",
+  "full_cold_product": "BLOCKED_SIX_QCOM_OUTPUTS_MISSING",
+  "gitlinks": {
+    "msgq_repo": "e7396e76dadbb49e374d4b664ff6bbb43a39bcb0",
+    "opendbc_repo": "3fec9a418a659de31d7b1f494193161697a35071",
+    "openpilot/sunnypilot/neural_network_data": "03cac2d30e111e0689c0429cb8c1fe6cb5a905af",
+    "panda": "8a16e089b88593914823743df29e1c30b7dd3e00",
+    "rednose_repo": "28d4a7f69e80e1c3e0d24ca0733d7daeaeade3d0",
+    "teleoprtc_repo": "1aa8fc433bef1519a95c0700c96258c3be6dfb34",
+    "tinygrad_repo": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4"
+  },
+  "handoff_manifest_sha256": "998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4",
+  "handoff_members": 4372,
+  "handoff_tar_sha256": "37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d60fe",
+  "limits": [
+    "retained graph does not prove product build",
+    "runtime load untested",
+    "GPU compilation and peak scratch/RSS unobserved"
+  ],
+  "missing_qcom_outputs": [
+    "dmonitoring_model_tinygrad.pkl",
+    "driving_tinygrad.pkl",
+    "driving_warp_1344x760_tinygrad.pkl",
+    "driving_warp_1928x1208_tinygrad.pkl",
+    "dm_warp_1344x760_tinygrad.pkl",
+    "dm_warp_1928x1208_tinygrad.pkl"
+  ],
+  "onnx_sha256": {
+    "openpilot/selfdrive/modeld/models/dmonitoring_model.onnx": "dee5a294e8afaacc9295ac5d100e00733ecac278e79264b96331e40a3ede1b04",
+    "openpilot/selfdrive/modeld/models/driving_supercombo.onnx": "65a08adc31d5c456219687d99b7bf5e44d61dae2d49ea67850e76105c7248cce"
+  },
+  "preconditions": [
+    {
+      "evidence": "manifest SHA and tar SHA recomputed; 4372 members; exact source/gitlinks/ONNX names and digests match",
+      "name": "externally_anchored_handoff",
+      "status": "PASS"
+    },
+    {
+      "evidence": "exact HEAD and fresh release source preflight, 7 submodules, 283 selected LFS hydrated",
+      "name": "frozen_checkout",
+      "status": "PASS"
+    },
+    {
+      "evidence": "prior official raw image and selected rootfs hashes; not rehashed this checkpoint",
+      "name": "agnos199_rootfs",
+      "status": "PASS_RETAINED"
+    },
+    {
+      "evidence": "pinned runner ID from prior graph; no new hydration",
+      "name": "arm64_runner",
+      "status": "PASS_RETAINED"
+    },
+    {
+      "evidence": "retained graph log hash and terminal completion; no new dry run or product binary claim",
+      "name": "scons_graph",
+      "status": "PASS_RETAINED_DRY_RUN"
+    },
+    {
+      "evidence": "SConscript QCOM flags, two ONNX and four warp targets; Python via PATH, taskset 0-7; SKIP_TINYGRAD_COMPILE must be unset",
+      "name": "stock_qcom_compiler_recipe",
+      "status": "PASS_STATIC"
+    },
+    {
+      "evidence": "all six absent; CPU/LLVM/Dom substitutes ineligible",
+      "name": "six_qcom_captures",
+      "status": "BLOCKED"
+    },
+    {
+      "evidence": "GPU node observed but driver/userspace identity, scratch, RSS and sustained thermal unknown",
+      "name": "compiler_device_driver_and_peak",
+      "status": "UNKNOWN"
+    },
+    {
+      "evidence": "six captures absent; full build not attempted",
+      "name": "complete_cold_product",
+      "status": "BLOCKED"
+    },
+    {
+      "evidence": "representative ELF only; no complete product inventory or runtime load",
+      "name": "source_to_package_abi",
+      "status": "BLOCKED"
+    },
+    {
+      "evidence": "0/10 applicable device tests executed",
+      "name": "device_tests",
+      "status": "BLOCKED"
+    }
+  ],
+  "product_build_attempted": false,
+  "python_contract": "SConscript invokes python3 through SCons process PATH; verify /usr/local/venv/bin precedes system PATH and same interpreter imports SCons, capnp, numpy, pinned tinygrad dependencies.",
+  "release_decision": "PRODUCT_BUILD_INCOMPLETE_HOLD",
+  "representative_library": {
+    "bytes": 3484104,
+    "runtime_load": "NOT_TESTED",
+    "sha256": "2594c615b0c97bd610ccc32606077d3fef9b8dc1e273662df9df28ee3ce0da8c",
+    "status": "ELF64_AARCH64_HOST_OBSERVED"
+  },
+  "required_qcom_outputs": [
+    "dmonitoring_model_tinygrad.pkl",
+    "driving_tinygrad.pkl",
+    "driving_warp_1344x760_tinygrad.pkl",
+    "driving_warp_1928x1208_tinygrad.pkl",
+    "dm_warp_1344x760_tinygrad.pkl",
+    "dm_warp_1928x1208_tinygrad.pkl"
+  ],
+  "retained_graph": {
+    "log_sha256": "15b18e03bf0aac74df65a723a63538918526b622ceadbe684d038b7997de25fa",
+    "not_executed_this_checkpoint": true,
+    "six_qcom_targets_in_graph": true,
+    "status": "PASS_DRY_RUN_RETAINED"
+  },
+  "runner_image_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+  "schema_version": 1,
+  "selected_lfs_assets": {
+    "release_selected_hydrated": 283,
+    "status": "PASS_FRESH_SOURCE_PREFLIGHT"
+  },
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "stock_qcom_flags": "DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1",
+  "stock_scons_recipe": "PASS_STATIC_SOURCE_INSPECTION"
+}
