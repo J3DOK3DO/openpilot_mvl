@@ -1,0 +1,61 @@
+{
+  "active_engineering": {
+    "branch": "codex/mvl-agnos199-native-build-20261106",
+    "head": "f66e80d0598dcb71596851231fa5d47edbd9de0f",
+    "owner": "AGNOS 19.9 local host evidence finalization; inherited lease preserved and not claimed",
+    "worktree": "/tmp/mvl-agnos199-native-build-20261106"
+  },
+  "branch": "codex/mvl-agnos199-native-build-20261106",
+  "c4_12": "WAIVED_BY_OWNER / NOT_EXECUTED",
+  "campaign": "AGNOS199_NATIVE_HOST_FINALIZATION_20261106",
+  "checkpoint_rule": "The following commit may contain only this standalone state and RUN_HISTORY.md. Verify actual HEAD and ancestry; this field does not claim a self-referential final SHA.",
+  "device_tests": "NOT_TESTED",
+  "evidence_commit": "f66e80d0598dcb71596851231fa5d47edbd9de0f",
+  "frozen_product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "full_product_build": "NOT_ATTEMPTED_PREREQUISITES_MISSING",
+  "g06_live": "OFF",
+  "host_checks": {
+    "campaign_recovery_units": "4/4 PASS at tested tooling commit in clean checkout",
+    "frozen_source_preflight": "PASS, 7/7 pinned submodules and 283/283 selected LFS assets",
+    "release_tool_units": "46/46 PASS at tested tooling commit in clean checkout",
+    "selected_abi_paths": "13/13 recorded hashes rechecked; full ABI not proven"
+  },
+  "inherited_campaign_state": {
+    "path": "CAMPAIGN_STATE.json",
+    "recorded_branch": "codex/mvl-qcom-build-continuation-20261106",
+    "recorded_head": "3f3a5546b745649acb70317c227ccf59f6cbc210",
+    "relationship": "Historical QCOM continuation state; not overwritten. campaignctl recover against it warns on this branch and HEAD."
+  },
+  "inherited_lease": {
+    "observation": "Owner token has no PID; no SCons/campaignctl process found during finalization; lease was not cleared or reclaimed.",
+    "path": ".campaign.lease",
+    "status": "PRESERVED_OWNERSHIP_UNCERTAIN"
+  },
+  "native_library_limits": [
+    "subprocess exit code not captured",
+    "AGNOS 19.9 runtime load not tested",
+    "full product not built"
+  ],
+  "native_library_result": "PASS_NATIVE_BINARY_BUILT_WITH_LOG",
+  "native_library_sha256": "2594c615b0c97bd610ccc32606077d3fef9b8dc1e273662df9df28ee3ce0da8c",
+  "next_action": "Use authorized Windows Git helper to transfer exact local commit by SHA-verified bundle, non-force publish new branch, and verify remote ref SHA. Separately authorize any future device transfer/compilation; retain release HOLD.",
+  "operation_in_progress": null,
+  "publication": {
+    "method": "Windows authenticated SHA-verified bundle handoff pending",
+    "remote_verified": false,
+    "status": "LOCAL_COMMIT_ONLY_REMOTE_BRANCH_ABSENT"
+  },
+  "release_classification": "PRODUCT_BUILD_INCOMPLETE",
+  "release_decision": "HOLD",
+  "release_profile": "COMMA4_NON_ACTUATING_MVL",
+  "release_qualification": {
+    "profile": "COMMA4_NON_ACTUATING_MVL",
+    "scope": "Verified 19.9 host image, selected ABI paths and representative native binary only; no QCOM outputs, full product or device qualification",
+    "status": "PRODUCT_BUILD_INCOMPLETE"
+  },
+  "schema_version": 1,
+  "six_qcom_outputs": "NONE_VALIDATED",
+  "starting_parent_commit": "169f46c9edb902977cd6183c6673dcb3cddf9c76",
+  "tested_tooling_commit": "035f10a9cd652a29f1c737a0c9cd7418a3e50db6",
+  "updated_at_utc": "2026-11-06T15:42:02.288058+00:00"
+}
