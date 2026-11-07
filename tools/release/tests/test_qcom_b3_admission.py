@@ -98,6 +98,16 @@ class AdmissionTest(unittest.TestCase):
                     admission.main()
             self.assertNotEqual(error.exception.code, 0)
 
+    def test_device_node_rejected_without_open(self):
+        p = Path('/dev/null')
+        if not p.exists():
+            self.skipTest('POSIX device node fixture unavailable')
+        with patch.object(sys, 'argv', ['qcom_b3_admission.py', '--plan', str(p)]):
+            with patch.object(admission.os, 'open', side_effect=AssertionError('opened device node')):
+                with self.assertRaises(SystemExit) as err:
+                    admission.main()
+        self.assertNotEqual(err.exception.code, 0)
+
     def test_modified_plan_is_rejected_even_if_file_has_same_semantics(self):
         original = admission.PLAN_PATH.read_bytes()
         with tempfile.TemporaryDirectory(prefix='b3c-plan-race-') as d:

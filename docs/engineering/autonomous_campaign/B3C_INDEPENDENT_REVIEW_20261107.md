@@ -34,3 +34,7 @@ A separate read-only re-review of the fail-closed admission commit found that th
 ## Second P2 follow-up — same-buffer authenticated parsing
 
 The independent reviewer identified a check/use race from hashing the plan file separately before `read_bytes()`. The final hardened CLI now opens a no-follow regular file descriptor once, reads at most 1 MiB + 1 byte, rejects oversize inputs, and SHA-256 hashes **the exact bounded bytes subsequently parsed**. An adversarial test appends semantically ignorable whitespace to the pinned plan and patches the old streaming helper to claim a trusted hash; the CLI rejects the modified bytes. No new native execution or safety validation is implied.
+
+## Third P2 follow-up — no device special-file opens
+
+Independent re-review observed that descriptor-first validation would invoke a device driver on paths such as `/dev/null` before `fstat()` rejected the nonregular inode. The final CLI now checks the path using `model.regular()` **before** `os.open`, retains `O_NOFOLLOW` and descriptor `fstat` for race resistance, and reads at most 1 MiB + 1 byte from the validated descriptor. The negative test patches `os.open` to reject any open attempt and confirms the device-node input is refused before reaching it. This test concerns offline proof-parser behavior, not actual Comma 4 access.

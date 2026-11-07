@@ -92,6 +92,12 @@ def main() -> int:
     parser.add_argument('--records', type=Path)
     parser.add_argument('--artifacts', type=Path)
     args = parser.parse_args()
+    # Reject nonregular/device paths without opening them, then guard against
+    # a path-swap race using O_NOFOLLOW and descriptor-level fstat.
+    try:
+        model.regular(args.plan)
+    except (OSError, ValueError):
+        parser.error('B3C plan must be a regular non-symlink file')
     # Read once from a no-follow regular-file descriptor, capped at 1 MiB + 1.
     # Hash and parse exactly those same bytes to avoid a check/use race.
     try:
