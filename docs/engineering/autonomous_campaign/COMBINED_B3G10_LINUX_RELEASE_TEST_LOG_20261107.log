@@ -88,9 +88,9 @@ test_agnos_199_contract_rejects_cross_version_substitution (test_inspect_native_
 test_dirty_source_rejected (test_inspect_native_product.NativeProductInspectorTest.test_dirty_source_rejected) ... ok
 test_documented_cli_invocation_imports (test_inspect_native_product.NativeProductInspectorTest.test_documented_cli_invocation_imports) ... ok
 test_duplicate_manifest_keys_rejected (test_inspect_native_product.NativeProductInspectorTest.test_duplicate_manifest_keys_rejected) ... ok
-test_escaping_symlink_reported (test_inspect_native_product.NativeProductInspectorTest.test_escaping_symlink_reported) ... ERROR
+test_escaping_symlink_reported (test_inspect_native_product.NativeProductInspectorTest.test_escaping_symlink_reported) ... ok
 test_wrong_source_commit_rejected (test_inspect_native_product.NativeProductInspectorTest.test_wrong_source_commit_rejected) ... ok
-test_x86_binary_and_missing_qcom_remain_hold (test_inspect_native_product.NativeProductInspectorTest.test_x86_binary_and_missing_qcom_remain_hold) ... ERROR
+test_x86_binary_and_missing_qcom_remain_hold (test_inspect_native_product.NativeProductInspectorTest.test_x86_binary_and_missing_qcom_remain_hold) ... ok
 test_agnos_199_accepts_only_pinned_component_and_image (test_mvl_model_artifacts.ModelArtifactPreflightTests.test_agnos_199_accepts_only_pinned_component_and_image) ... ok
 test_agnos_and_source_identity_bound (test_mvl_model_artifacts.ModelArtifactPreflightTests.test_agnos_and_source_identity_bound) ... ok
 test_cpu_artifact_rejected (test_mvl_model_artifacts.ModelArtifactPreflightTests.test_cpu_artifact_rejected) ... ok
@@ -175,29 +175,7 @@ test_missing_gpu_and_thermal_hold (test_readonly_comma4_preflight.ReadOnlyComma4
 test_observation_never_claims_build_or_known_good (test_readonly_comma4_preflight.ReadOnlyComma4PreflightTest.test_observation_never_claims_build_or_known_good) ... ok
 test_unreachable_keeps_device_qualification_untested (test_readonly_comma4_preflight.ReadOnlyComma4PreflightTest.test_unreachable_keeps_device_qualification_untested) ... ok
 
-======================================================================
-ERROR: test_escaping_symlink_reported (test_inspect_native_product.NativeProductInspectorTest.test_escaping_symlink_reported)
 ----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/mnt/commadrive/MVL_B3G10_NATIVE_RECOVERY_20261107/tools/release/tests/test_inspect_native_product.py", line 36, in test_escaping_symlink_reported
-    report = inspector.inspect(self.source, self.stage, self.manifest, self.head)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/commadrive/MVL_B3G10_NATIVE_RECOVERY_20261107/tools/release/inspect_native_product.py", line 72, in inspect
-    raise ValueError('source checkout is not clean')
-ValueError: source checkout is not clean
+Ran 163 tests in 3.837s
 
-======================================================================
-ERROR: test_x86_binary_and_missing_qcom_remain_hold (test_inspect_native_product.NativeProductInspectorTest.test_x86_binary_and_missing_qcom_remain_hold)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/mnt/commadrive/MVL_B3G10_NATIVE_RECOVERY_20261107/tools/release/tests/test_inspect_native_product.py", line 27, in test_x86_binary_and_missing_qcom_remain_hold
-    report = inspector.inspect(self.source, self.stage, self.manifest, self.head)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/commadrive/MVL_B3G10_NATIVE_RECOVERY_20261107/tools/release/inspect_native_product.py", line 72, in inspect
-    raise ValueError('source checkout is not clean')
-ValueError: source checkout is not clean
-
-----------------------------------------------------------------------
-Ran 163 tests in 3.853s
-
-FAILED (errors=2, skipped=9)
+OK (skipped=9)

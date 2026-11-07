@@ -4,6 +4,6 @@ test_interrupted_operation_is_detected (docs.engineering.autonomous_campaign.tes
 test_run_lease_prevents_overlap_and_unowned_modification (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest.test_run_lease_prevents_overlap_and_unowned_modification) ... ok
 
 ----------------------------------------------------------------------
-Ran 4 tests in 0.671s
+Ran 4 tests in 0.668s
 
 OK

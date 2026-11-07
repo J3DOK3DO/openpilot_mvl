@@ -14,7 +14,7 @@ The retained `/mnt/commadrive/MVL_G10_BUILD_ARTIFACTS/libparams_c_162391f.so` ha
 
 ## Tests and gate
 
-The combined gate source was unchanged. Its focused tests now run Linux symlink cases against actual symlinks, while Windows handle and sharing tests run only on Windows; the missing `O_PATH` branch runs only on a host without `O_PATH`. This corrects platform-specific test assumptions. The Linux focused suite ran 37 tests: 28 passed, 9 skipped, 0 failed. Campaign recovery ran 4 tests: 4 passed. The first broad release suite ran 163 tests with 9 platform skips and 2 inspector errors because these new report/log files made the engineering checkout dirty. That inspector requires a clean checkout by design. A clean final-commit rerun is recorded separately in the final test log and recovery JSON. The offline gate's exit 2 is the expected release HOLD, never promotion.
+The combined gate source was unchanged. Its focused tests now run Linux symlink cases against actual symlinks, while Windows handle and sharing tests run only on Windows; the missing `O_PATH` branch runs only on a host without `O_PATH`. This corrects platform-specific test assumptions. The Linux focused suite ran 37 tests: 28 passed, 9 skipped, 0 failed. Campaign recovery ran 4 tests: 4 passed. The first broad release suite ran 163 tests with 9 platform skips and 2 inspector errors because these new report/log files made the engineering checkout dirty. That inspector requires a clean checkout by design. After committing the evidence, the clean-tree rerun passed: 163 run, 154 passed, 9 skipped, 0 failed or errored. The final logs contain that clean-tree run. The offline gate's exit 2 is the expected release HOLD, never promotion.
 
 ## Product closure and blockers
 
