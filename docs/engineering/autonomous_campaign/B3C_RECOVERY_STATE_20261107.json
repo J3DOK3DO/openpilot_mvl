@@ -1,0 +1,74 @@
+{
+  "agnos": {
+    "component_manifest_sha256": "c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693",
+    "image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+    "version": "19.9"
+  },
+  "b2_safety_status": "NOT_SAFETY_ACCEPTED_NOT_PASSED",
+  "b2_waiver": "OWNER_WAIVED_B2_OUTSTANDING_REQUIREMENTS_FOR_PLANNING_ONLY",
+  "b3_completed_6_of_6": false,
+  "b3_required_artifact_count": 6,
+  "b3_static_candidate_count": 0,
+  "b3_verified_artifact_count": 0,
+  "campaign": "MVL_StarPilot_Comma4_B3_QCOM_OFFLINE_20261107",
+  "decision": "PREPARED_NO_QCOM_DEVICE",
+  "device_write_performed": false,
+  "engineering_branch": "codex/mvl-b3-qcom-offline-qualification-20261107",
+  "engineering_checkout_ancestor": "9d61a7e7f10e88f5236ca6628bbb32167c8f2547",
+  "execution_blockers": [
+    "No authenticated native QCOM provider on this host",
+    "No verified aggregate hard quota/free-space reserve",
+    "No authenticated live parked-state monitor",
+    "No device-tested GPU/thermal/memory abort controls",
+    "No genuine exact-source stock capture set"
+  ],
+  "frozen_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "g10_promotion": false,
+  "handoff_manifest_sha256": "998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4",
+  "handoff_tar_sha256": "37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d60fe",
+  "historical_sunnypilot_warps": "EXCLUDED_WRONG_PRODUCT_TARGET_AND_NO_B3_PROVENANCE",
+  "host_architecture": "x86_64",
+  "host_gpu_inventory": "VMware SVGA II Adapter; no /dev/dri, /dev/kgsl or /dev/nvidia node observed",
+  "issues": [],
+  "next_required_evidence": "Authenticated native QCOM provider and controls, then six static capture and independent quality reviews",
+  "onnx": {
+    "dmonitoring_model.onnx": {
+      "bytes": 7844499,
+      "sha256": "dee5a294e8afaacc9295ac5d100e00733ecac278e79264b96331e40a3ede1b04"
+    },
+    "driving_supercombo.onnx": {
+      "bytes": 60918562,
+      "sha256": "65a08adc31d5c456219687d99b7bf5e44d61dae2d49ea67850e76105c7248cce"
+    }
+  },
+  "plan_path": "docs/engineering/autonomous_campaign/B3C_SIX_TARGET_VERIFIED_PLAN_20261107.json",
+  "recipe_sha256": "07499bf98dafa501025e08f71c1819787b5dac9f681d443cb0557a1a9d0d7097",
+  "safety_boundary": {
+    "device_install_or_staging": false,
+    "device_ssh_adb_transport": false,
+    "g10_promotion": false,
+    "native_qcom_compile": false,
+    "panda_can": false
+  },
+  "schema_version": 1,
+  "stock_artifact_inventory": {
+    "dm_warp_1344x760_tinygrad.pkl": "ABSENT",
+    "dm_warp_1928x1208_tinygrad.pkl": "ABSENT",
+    "dmonitoring_model_tinygrad.pkl": "ABSENT",
+    "driving_tinygrad.pkl": "ABSENT",
+    "driving_warp_1344x760_tinygrad.pkl": "ABSENT",
+    "driving_warp_1928x1208_tinygrad.pkl": "ABSENT"
+  },
+  "tests": {
+    "campaignctl_recovery": {
+      "failed": 0,
+      "passed": 4
+    },
+    "release_unittest": {
+      "clean_checkout": true,
+      "failed": 0,
+      "passed": 120
+    }
+  },
+  "tinygrad_gitlink": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4"
+}
