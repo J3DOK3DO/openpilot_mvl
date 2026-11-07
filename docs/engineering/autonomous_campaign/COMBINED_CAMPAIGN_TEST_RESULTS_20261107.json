@@ -1,0 +1,24 @@
+{
+  "device_actions": 0,
+  "engineering_tested_commit": "799285efa15d5cd46d068e251ec87df18970ee6b",
+  "full_product_build": "NOT_EXECUTED",
+  "prior_transient_run": "Initial test run in newly created clean checkout had two inspector source-clean errors; immediate exact-commit rerun passed 94/94. Recheck clean Git state at final checkpoint.",
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "qcom_compiler_exits": "NOT_EXECUTED",
+  "recovery_command": "python3 -m unittest docs/engineering/autonomous_campaign/test_campaignctl.py -q",
+  "recovery_result": {
+    "errors": 0,
+    "failed": 0,
+    "passed": 4,
+    "skipped": 0
+  },
+  "release_tool_command": "python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -v",
+  "release_tool_result": {
+    "clean_exact_commit_checkout": "/tmp/mvl-b2final-test-799285",
+    "errors": 0,
+    "failed": 0,
+    "passed": 95,
+    "skipped": 0
+  },
+  "schema_version": 1
+}

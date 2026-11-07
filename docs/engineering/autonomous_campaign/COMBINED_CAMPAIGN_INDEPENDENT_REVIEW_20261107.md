@@ -1,0 +1,7 @@
+# Independent review — Campaign 1
+
+**Verdict: PASS_OFFLINE_SCOPE** for exact code commit `799285efa15d5cd46d068e251ec87df18970ee6b`. Independent agent `/root/b2final_independent_review` reviewed executable B2/B3/G10 tools and reported 25/25 focused tests passing. Its direct adversarial checks rejected Boolean test counts and compiler exit values and negative OOM counters. It found no remaining concrete defect in the host-only scope. The lead separately ran 95/95 release-tool tests and 4/4 campaign recovery tests in a clean exact-commit checkout.
+
+The first review of `84dcff9` identified negative OOM/GPU counters, malformed numeric QCOM evidence, dirty product build inputs accepted by G10, and unbound package test/review hashes. Follow-up reviews found an untrusted source verifier, then a wrong trusted path, then Boolean passing test counts. Those defects were fixed in code commits through `799285e`, with regressions and real B3/G10 preflights. The reviewer also noted a possible same-user replacement race in final name-based `/tmp` fixture removal; that helper is expressly host-only and cannot be promoted to device cleanup.
+
+Review is limited to offline host tooling. Aggregate device quota, live monitor, GPU containment, device cleanup, genuine QCOM outputs, full product runtime, OEM/Panda qualification and installation are **not reviewed or qualified**. PRODUCT_BUILD_INCOMPLETE / HOLD remains mandatory. No device action occurred.

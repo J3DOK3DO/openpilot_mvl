@@ -1,0 +1,19 @@
+{
+  "agnos": {
+    "component_manifest_sha256": "c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693",
+    "image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+    "version": "19.9"
+  },
+  "decision": "HOLD_QCOM_ARTIFACTS_MISSING_OR_EXTRA",
+  "device_write_performed": false,
+  "missing": [
+    "dm_warp_1344x760_tinygrad.pkl",
+    "dm_warp_1928x1208_tinygrad.pkl",
+    "dmonitoring_model_tinygrad.pkl",
+    "driving_tinygrad.pkl",
+    "driving_warp_1344x760_tinygrad.pkl",
+    "driving_warp_1928x1208_tinygrad.pkl"
+  ],
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "unexpected": []
+}

@@ -85,3 +85,7 @@ Remaining external gates: six exact-source QCOM outputs require a separately aut
 ## QCOM B1 2026-11-06 blocker reconciliation
 
 AGNOS 19.9 host image/rootfs, SCons/capnpc/Python tool presence, exact handoff and frozen source are host prerequisites now observed or verified; earlier unknown wording above is historical. The current device route still lacks Qualcomm driver/userspace identity and measured six-target GPU scratch, output/TMPDIR/cache high-water, peak RSS and sustained thermal evidence. `/data` snapshot 9,284,868 KiB cannot close capacity with unknown peaks; `HOLD_REQUIRED_CAPACITY_UNKNOWN`. Six exact-source captures, full cold product, complete package/ABI, 0/10 applicable device tests and separate device-side compilation/installation approvals remain open. No device files or known-good installation were changed. G06 OFF; 254 Params DENY; C4-08 conditional N/A, C4-12 waived/unexecuted, G11/G12 conditional N/A only for unchanged non-actuating behavior.
+
+## Campaign 1 continuation — 2026-11-07
+
+Device aggregate quota, runtime filesystem support and full build scratch peak remain unverified. The 512 MiB candidate is below measured source checkout size. Live `carState`/`controlsState` and a tested independent abort controller are absent; actual GPU containment is unknown. Six QCOM outputs, complete ARM64 product, target ABI/runtime and physical C4 tests remain absent. Offline preparation proceeds; device execution stays NO_GO.

@@ -1,0 +1,40 @@
+{
+  "baseline_commit": "7a5bb96a084cf62fa214eb095a20b63f715a4e34",
+  "blockers": [
+    "device aggregate quota not verified",
+    "live parked-state monitor not qualified",
+    "GPU resource containment unknown",
+    "six QCOM outputs absent",
+    "full product absent"
+  ],
+  "branch": "codex/mvl-b2final-b3-g10-prep-20261107",
+  "campaign": "B2_FINAL_B3_G10_PREPARATION_20261107",
+  "device_action": "NONE",
+  "gate": "PASS_OFFLINE_SCOPE_DEVICE_EXECUTION_NO_GO",
+  "independent_review": {
+    "reviewed_commit": "799285efa15d5cd46d068e251ec87df18970ee6b",
+    "verdict": "PASS_OFFLINE_SCOPE"
+  },
+  "last_verified_code_commit": "799285efa15d5cd46d068e251ec87df18970ee6b",
+  "last_verified_tests": {
+    "campaign_recovery": "4/4 PASS",
+    "release_tool": "95/95 PASS",
+    "source_commit": "799285efa15d5cd46d068e251ec87df18970ee6b"
+  },
+  "lease": "local campaignctl lease; inspect live owner and recover before new run",
+  "next_action": "Verify documentation-only delta, commit evidence, publish branch if authenticated",
+  "on_resume": [
+    "git status --short --branch",
+    "python3 docs/engineering/autonomous_campaign/campaignctl.py recover",
+    "inspect lease and running processes",
+    "compare last_verified_code_commit and HEAD ancestry",
+    "rerun tests if source changed or evidence uncertain",
+    "never infer device compilation from plan"
+  ],
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "record_commit": "DOCS_ONLY_DESCENDANT_OF_LAST_VERIFIED_CODE_COMMIT",
+  "release_classification": "PRODUCT_BUILD_INCOMPLETE / HOLD",
+  "schema_version": 1,
+  "stage": "REVIEW_PASS_DOCS_CHECKPOINT_AND_PUBLICATION",
+  "worktree": "/tmp/mvl-b2final-b3-g10-prep-20261107"
+}

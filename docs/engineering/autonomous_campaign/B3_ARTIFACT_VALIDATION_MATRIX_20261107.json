@@ -1,0 +1,81 @@
+{
+  "agnos": {
+    "component_manifest_sha256": "c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693",
+    "image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+    "version": "19.9"
+  },
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "required_flags": "DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1",
+  "required_proofs": [
+    "exact six output names and files",
+    "actual sha256 and byte size",
+    "QCOM backend capture format",
+    "exact source/tinygrad/AGNOS metadata",
+    "actual compiler exit 0",
+    "finite positive resource measurements",
+    "separate target inference"
+  ],
+  "schema_version": 1,
+  "scope": "STATIC_PLAN_NO_QCOM_COMPILATION",
+  "static_validator": "tools/release/qcom_b3_prepare.py::verify_artifact_set",
+  "targets": [
+    {
+      "actual_sha256": null,
+      "artifact": "driving_warp_1344x760_tinygrad.pkl",
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 1,
+      "runtime_inference": "NOT_TESTED",
+      "static_format": "NOT_TESTED",
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/driving_warp_1344x760_tinygrad.pkl"
+    },
+    {
+      "actual_sha256": null,
+      "artifact": "dmonitoring_model_tinygrad.pkl",
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 2,
+      "runtime_inference": "NOT_TESTED",
+      "static_format": "NOT_TESTED",
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/dmonitoring_model_tinygrad.pkl"
+    },
+    {
+      "actual_sha256": null,
+      "artifact": "driving_tinygrad.pkl",
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 3,
+      "runtime_inference": "NOT_TESTED",
+      "static_format": "NOT_TESTED",
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/driving_tinygrad.pkl"
+    },
+    {
+      "actual_sha256": null,
+      "artifact": "driving_warp_1928x1208_tinygrad.pkl",
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 4,
+      "runtime_inference": "NOT_TESTED",
+      "static_format": "NOT_TESTED",
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/driving_warp_1928x1208_tinygrad.pkl"
+    },
+    {
+      "actual_sha256": null,
+      "artifact": "dm_warp_1344x760_tinygrad.pkl",
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 5,
+      "runtime_inference": "NOT_TESTED",
+      "static_format": "NOT_TESTED",
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/dm_warp_1344x760_tinygrad.pkl"
+    },
+    {
+      "actual_sha256": null,
+      "artifact": "dm_warp_1928x1208_tinygrad.pkl",
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 6,
+      "runtime_inference": "NOT_TESTED",
+      "static_format": "NOT_TESTED",
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/dm_warp_1928x1208_tinygrad.pkl"
+    }
+  ],
+  "tinygrad_commit": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4",
+  "unset_environment": [
+    "SKIP_TINYGRAD_COMPILE"
+  ]
+}

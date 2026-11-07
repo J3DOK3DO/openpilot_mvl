@@ -35,3 +35,7 @@ The official 19.9 system image and extracted AArch64 native environment are veri
 ## QCOM B1 host checkpoint — 2026-11-06
 
 Fresh host preflight rechecked the external source-only handoff, frozen 4b source, seven pinned gitlinks, 283 selected LFS bytes and two ONNX hashes. The retained AGNOS 19.9 graph contains six QCOM targets and a representative ELF64 AArch64 library, with no runtime load proof. Windows read-only device facts establish model/19.9/tool presence and idle resources; driver/userspace and compilation peaks remain unknown. `HOLD_REQUIRED_CAPACITY_UNKNOWN`; six QCOM captures and full product remain absent. **PRODUCT_BUILD_INCOMPLETE / HOLD**, 12/25 scoped acceptance (48%), formal release 0%/HOLD, applicable device tests 0/10. This branch is not installable. See `QCOM_B1_READINESS_20261106.md`.
+
+## Campaign 1 offline preparation — 2026-11-07
+
+B2 host safeguards and B3/G10 plans are recorded in `COMBINED_CAMPAIGN_FINAL_REPORT_20261107.md`. No device compilation or full product exists. PRODUCT_BUILD_INCOMPLETE / HOLD; software-side 12/25 scoped acceptance (48%), physical 0/10 and final authorization HOLD.

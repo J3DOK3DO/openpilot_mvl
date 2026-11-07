@@ -123,3 +123,7 @@ G11/G12 conditional N/A only for unchanged non-actuating control/Panda/ECU/CAN-t
 | Vehicle and resource proof | NO_GO | No authenticated continuous parked/offline `pandaStates` plus `carState`, aggregate hard quota, memory ceiling, or independent abort monitor validated on AGNOS 19.9. Historical idle resource readings do not close peaks. |
 | B2 script | READ_ONLY_NO_GO | `--inspect`/`--plan` are read-only; `--execute` deliberately exits 2 before writes. Host fixture policy tests only; staging/cleanup and device pilot unimplemented. |
 | S12/S13/S14, C4 and release | HOLD | 0/6 exact QCOM outputs; no full product/package; 0/10 applicable C4 tests. C4-12 waived/unexecuted, C4-08 conditional N/A with G06 OFF, G11/G12 conditional non-actuating N/A; 254 Params DENY. PRODUCT_BUILD_INCOMPLETE / HOLD. |
+
+## Campaign 1 B2-Final/B3/G10 preparation — 2026-11-07
+
+B2 host safeguard policy and fixtures PASS_OFFLINE; device quota, independent state monitor, GPU containment and cleanup HOLD. B3 exact six-target stock QCOM plan PASS_OFFLINE; compilation and outputs NOT_EXECUTED. G10 clean exact-source/AGNOS preflight PASS_OFFLINE; full product HOLD_QCOM_ARTIFACTS_MISSING_OR_EXTRA. Release remains PRODUCT_BUILD_INCOMPLETE / HOLD, formal 12/25 (48%), physical 0/10. C4-08 conditional N/A, C4-12 WAIVED_BY_OWNER / NOT_EXECUTED, G11/G12 conditional non-actuating N/A. See `COMBINED_CAMPAIGN_FINAL_REPORT_20261107.md`.

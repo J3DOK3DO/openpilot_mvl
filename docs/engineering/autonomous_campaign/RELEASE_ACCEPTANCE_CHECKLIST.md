@@ -30,3 +30,7 @@ Checklist denominator is 25 applicable items: S01–S15 plus ten applicable devi
 AGNOS 19.9 host update (2026-11-06): the official 19.9 image, isolated native graph and selected ABI checks improve G10 prerequisite evidence but do not close the checklist's complete product, binary package or physical items. The formal count remains **12/25 = 48% scoped PASS**, with release approval **0% / HOLD**. C4-12 remains WAIVED_BY_OWNER / NOT_EXECUTED and is excluded from the denominator.
 
 QCOM B1 offline update (2026-11-06): trusted handoff/source bytes, selected LFS and retained 19.9 graph were rechecked; Windows read-only tool/resource facts were incorporated. S12/S13/S14 remain HOLD because all six QCOM captures, a full cold product and complete package/ABI are absent. Applicable device tests remain 0/10. Accepted count remains **12/25 = 48%**, formal release **0% / HOLD**. This update neither executes C4-12 nor changes conditional C4-08/G11/G12 exclusions.
+
+## 2026-11-07 Campaign 1 update
+
+Offline safeguard tooling and build plans add no formal release PASS. S12 six QCOM captures, S13 full ARM64 build, S14 product/ABI package and ten applicable C4 checks remain open. Formal 12/25 = 48%; physical 0/10. C4-08 conditional N/A while G06 unregistered; C4-12 WAIVED_BY_OWNER / NOT_EXECUTED.

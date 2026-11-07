@@ -1,0 +1,30 @@
+{
+  "actual_product_manifest": null,
+  "agnos_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+  "agnos_version": "19.9",
+  "classification": "NOT_INSTALLABLE_PRODUCT_BUILD_INCOMPLETE",
+  "device_qualification": "NOT_TESTED",
+  "full_product_build": "NOT_EXECUTED",
+  "known_good_installed_commit": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1",
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "required_manifest_fields": [
+    "seven_submodule_gitlinks",
+    "six_qcom_artifact_sha256",
+    "native_binary_sha256",
+    "elf_architecture",
+    "dynamic_interpreter",
+    "dt_needed",
+    "runpath_rpath",
+    "glibc_glibcxx",
+    "python_capnp_ipc_gpu_dependencies",
+    "package_tree_manifest",
+    "exact_engineering_test_record_sha256",
+    "independent_review_record_sha256",
+    "runtime_validation",
+    "physical_c4_results",
+    "recovery_prerequisites"
+  ],
+  "schema_version": 1,
+  "status": "CONTRACT_ONLY_NO_PRODUCT",
+  "tinygrad_commit": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4"
+}
