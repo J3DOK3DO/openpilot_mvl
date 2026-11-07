@@ -1,28 +1,37 @@
 {
-  "schema_version": 1,
   "campaign": "3A/3B/3C offline implementation; 3D/3E preparation",
-  "starting_commit": "4f269c7acd57b81569f2c3a4903ff8dca516feb4",
-  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
-  "known_good_installed_commit": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1",
-  "hardware_gate": "B2_HARDWARE_NOT_QUALIFIED",
-  "product_gate": "PRODUCT_BUILD_INCOMPLETE / HOLD",
-  "storage_hard_aggregate_enforced": false,
-  "guardian_sigkill_descendant_contained": false,
-  "live_three_service_30_second_proof": false,
-  "observed_live_updates": {"pandaStates": 51, "carState": 0, "controlsState": 0},
-  "qcom_captures": "0/6 NOT_EXECUTED",
   "cold_native_product": "NOT_BUILT",
   "device_writes": false,
-  "publication": "NOT_PUBLISHED",
+  "guardian_sigkill_descendant_contained": false,
+  "hardware_gate": "B2_HARDWARE_NOT_QUALIFIED",
+  "implementation_commit": "0914033bc996fbeff1d138cb997a33a7b85fe918",
+  "independent_clean_suite": "112/112 release tools, 4/4 recovery; repeated-service adversarial replay NO_GO",
   "independent_review": {
     "finding": "P2 NEEDS_FIX: repeated service timestamps could pass synthetic replay",
     "remediation": "Each service timestamp must strictly advance across frames; repeated and decreasing values produce NO_GO",
     "scope": "Synthetic replay only; no live telemetry or hardware qualification"
   },
-  "implementation_commit": "0914033bc996fbeff1d138cb997a33a7b85fe918",
+  "independent_review_evidence_file": "CAMPAIGN3_INDEPENDENT_REVIEW_20261107.md",
+  "known_good_installed_commit": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1",
+  "live_three_service_30_second_proof": false,
+  "local_qwen_attempt": "FAILED_INFERENCE_OOM_NO_VERDICT",
+  "observed_live_updates": {
+    "carState": 0,
+    "controlsState": 0,
+    "pandaStates": 51
+  },
+  "product_gate": "PRODUCT_BUILD_INCOMPLETE / HOLD",
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "publication": "NOT_PUBLISHED",
+  "qcom_captures": "0/6 NOT_EXECUTED",
+  "review_verdict": "PASS_SCOPED_OFFLINE_ONLY / HARDWARE_NO_GO",
+  "reviewed_implementation_commit": "0914033bc996fbeff1d138cb997a33a7b85fe918",
+  "schema_version": 1,
+  "starting_commit": "4f269c7acd57b81569f2c3a4903ff8dca516feb4",
+  "storage_hard_aggregate_enforced": false,
   "verification": {
     "campaign3_offline_tests": "6 passed; python3 -m unittest -q tools.release.tests.test_campaign3_offline",
-    "full_release_suite_after_commit": "112 passed at clean implementation commit 0914033bc; python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q",
-    "campaign_recovery_tests_after_commit": "4 passed at clean implementation commit 0914033bc; python3 -m unittest -q docs.engineering.autonomous_campaign.test_campaignctl"
+    "campaign_recovery_tests_after_commit": "4 passed at clean implementation commit 0914033bc; python3 -m unittest -q docs.engineering.autonomous_campaign.test_campaignctl",
+    "full_release_suite_after_commit": "112 passed at clean implementation commit 0914033bc; python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q"
   }
 }

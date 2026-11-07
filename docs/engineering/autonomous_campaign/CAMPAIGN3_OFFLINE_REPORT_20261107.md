@@ -29,3 +29,7 @@ The existing `agnos199_product_prepare.py` is the host-only cold product preflig
 ## Verification and open defects
 
 Campaign 3 tests exercise the offline assessment and dense synthetic negative cases. At clean remediation implementation commit `0914033bc996fbeff1d138cb997a33a7b85fe918`, the focused Campaign 3 suite passed 6/6, the full release-tool suite passed 112/112, and campaign recovery passed 4/4. The Campaign 2 guardian crash defect remains open; storage enforcement, live concurrent telemetry, GPU containment, actual QCOM captures, full native product and physical C4 checks remain blocked. Host fixture results do not prove device safety. Test commands and exact implementation commit are recorded in `CAMPAIGN3_RECOVERY_STATE_20261107.json`.
+
+## Final independent review and clean-checkout cross-check
+
+The separate read-only review of corrected implementation commit `0914033bc` found no actionable regression; direct independent clean-checkout reruns passed 112 release tools, 4 recovery tests and adversarial repeated-timestamp NO-GO checks. The Windows Qwen attempt ended in local inference OOM and supplies no verdict. Detailed scoped evidence is in `CAMPAIGN3_INDEPENDENT_REVIEW_20261107.md`. Hardware and product release remain HOLD; this documentation-only checkpoint is not a device qualification or installation approval.
