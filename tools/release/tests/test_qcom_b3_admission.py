@@ -3,6 +3,10 @@ import io
 import json
 import tempfile
 import unittest
+import tempfile
+from pathlib import Path
+from unittest.mock import patch
+import sys
 from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
@@ -93,6 +97,16 @@ class AdmissionTest(unittest.TestCase):
                 with self.assertRaises(SystemExit) as error:
                     admission.main()
             self.assertNotEqual(error.exception.code, 0)
+
+    def test_oversized_plan_fails_before_byte_read(self):
+        with tempfile.TemporaryDirectory(prefix='b3c-plan-oversize-') as d:
+            plan_file = Path(d) / 'plan.json'
+            plan_file.write_bytes(b'x' * (1024 * 1024 + 1))
+            with patch.object(sys, 'argv', ['qcom_b3_admission.py', '--plan', str(plan_file)]):
+                with patch.object(Path, 'read_bytes', side_effect=AssertionError('oversized read')):
+                    with self.assertRaises(SystemExit) as err:
+                        admission.main()
+            self.assertNotEqual(err.exception.code, 0)
 
     def test_bad_records_never_complete(self):
         for records in ([{'artifact': prep.FIRST}],

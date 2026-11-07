@@ -90,10 +90,13 @@ def main() -> int:
     parser.add_argument('--records', type=Path)
     parser.add_argument('--artifacts', type=Path)
     args = parser.parse_args()
-    # Reject a supplied plan whose bytes differ, before JSON decoding or audit.
-    plan_bytes = model.regular(args.plan).read_bytes()
-    if hashlib.sha256(plan_bytes).hexdigest() != PLAN_SHA256:
+    # Fail closed on oversized input before reading or decoding it.
+    plan_file = model.regular(args.plan)
+    if plan_file.stat().st_size > 1024 * 1024:
+        parser.error('supplied B3C plan exceeds 1 MiB limit')
+    if model.sha256(plan_file) != PLAN_SHA256:
         parser.error('supplied B3C plan hash mismatch')
+    plan_bytes = plan_file.read_bytes()
     report = audit(json.loads(plan_bytes, object_pairs_hook=model.no_duplicate_keys),
                    load_json(args.records) if args.records else [], args.artifacts)
     print(json.dumps(report, indent=2, sort_keys=True))

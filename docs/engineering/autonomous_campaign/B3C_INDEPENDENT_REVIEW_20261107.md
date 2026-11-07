@@ -26,3 +26,7 @@ Full release: `python3 -m unittest discover -s tools/release/tests -v`.
 Recovery: `python3 -m unittest docs.engineering.autonomous_campaign.test_campaignctl -v`.
 
 After the code commit, the clean checkout run passed 123/123 release tests and 4/4 recovery tests. The focused admission suite passed 6/6 tests.
+
+## P2 follow-up — oversized-plan input bound
+
+A separate read-only re-review of the fail-closed admission commit found that the CLI replaced the prior 1 MiB input-size guard with an unbounded `read_bytes()` before hashing. The coordinator corrected the CLI to reject files above 1 MiB using `stat()` before streaming the SHA-256 with `model.sha256`, and to read bytes only after the size and pinned digest both pass. A negative test confirms an oversized input returns a nonzero exit without invoking `Path.read_bytes`. This is an offline evidence-CLI hardening action only; B3 remains 0/6 and B2 safety remains not passed.
