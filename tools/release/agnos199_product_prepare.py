@@ -49,8 +49,11 @@ def verified_record(path: Path, expected_engineering_commit: str, kind: str) -> 
     record = json.loads(data, object_pairs_hook=model.no_duplicate_keys)
     if record.get('tested_commit') != expected_engineering_commit or record.get('product_source_commit') != SOURCE:
         raise ValueError(f'{kind} commit/source binding mismatch')
-    if kind == 'test' and (record.get('failed') != 0 or record.get('passed', 0) <= 0):
-        raise ValueError('test record is not passing')
+    if kind == 'test':
+        passed, failed = record.get('passed'), record.get('failed')
+        if not isinstance(passed, int) or isinstance(passed, bool) or passed <= 0 or \
+                not isinstance(failed, int) or isinstance(failed, bool) or failed != 0:
+            raise ValueError('test record is not passing')
     if kind == 'review' and record.get('verdict') != 'PASS_OFFLINE_SCOPE':
         raise ValueError('independent review record is not passing')
     return record, hashlib.sha256(data).hexdigest()

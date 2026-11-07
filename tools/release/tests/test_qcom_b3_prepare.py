@@ -24,6 +24,10 @@ def capture(name):
 
 
 class B3PrepareTest(unittest.TestCase):
+    def test_preflight_verifier_is_trusted_engineering_copy(self):
+        self.assertEqual(b.TRUSTED_PREFLIGHT,b.Path(b.__file__).resolve().with_name('preflight_readonly.py'))
+        self.assertTrue(b.TRUSTED_PREFLIGHT.is_file())
+
     def records(self, path):
         out=[]
         for name in model.ARTIFACTS:
@@ -70,7 +74,7 @@ class B3PrepareTest(unittest.TestCase):
             records=self.records(Path(tmp))
             for field, value in (('bytes', True), ('peak_rss_bytes', True),
                                  ('elapsed_seconds', True), ('elapsed_seconds', math.inf),
-                                 ('elapsed_seconds', math.nan)):
+                                 ('elapsed_seconds', math.nan), ('compiler_exit_code', False)):
                 changed=[dict(item) for item in records]
                 changed[0][field]=value
                 self.assertTrue(b.validate_capture_records(changed), (field, value))

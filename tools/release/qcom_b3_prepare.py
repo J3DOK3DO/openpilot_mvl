@@ -22,6 +22,7 @@ HANDOFF_TAR_SHA = '37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d6
 TINYGRAD = '92b742f711c7d216fd3ed7a46a30a959e3c43bd4'
 FLAGS = 'DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1'
 FIRST = 'driving_warp_1344x760_tinygrad.pkl'
+TRUSTED_PREFLIGHT = Path(__file__).resolve().with_name('preflight_readonly.py')
 
 
 def sha(path: Path) -> str:
@@ -46,7 +47,7 @@ def prepare(source: Path, handoff: Path, image: Path, rootfs: Path, component_ma
     head = subprocess.check_output(['git', '-C', str(source), 'rev-parse', 'HEAD'], text=True).strip()
     if head != SOURCE:
         raise ValueError('wrong frozen product commit')
-    preflight = subprocess.run(['python3', str(source/'tools/release/preflight_readonly.py'),
+    preflight = subprocess.run(['python3', str(TRUSTED_PREFLIGHT),
         '--repo', str(source), '--commit', SOURCE], capture_output=True, text=True, timeout=120)
     if preflight.returncode or json.loads(preflight.stdout).get('result') != 'PASS':
         raise ValueError('exact-source preflight failed')
@@ -94,7 +95,7 @@ def validate_capture_records(records: list[dict]) -> list[str]:
         if record.get('source_commit') != SOURCE or record.get('tinygrad_commit') != TINYGRAD or \
                 record.get('agnos_image_sha256') != model.AGNOS199_IMAGE_SHA256:
             issues.append(f'{name}: provenance mismatch')
-        if record.get('compiler_exit_code') != 0 or record.get('gpu_backend') != 'QCOM':
+        if type(record.get('compiler_exit_code')) is not int or record['compiler_exit_code'] != 0 or record.get('gpu_backend') != 'QCOM':
             issues.append(f'{name}: compiler/backend unverified')
         digest = record.get('sha256')
         if not isinstance(digest, str) or not re.fullmatch('[0-9a-f]{64}', digest) or \

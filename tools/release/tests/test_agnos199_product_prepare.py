@@ -93,5 +93,9 @@ class ProductPrepareTest(unittest.TestCase):
                                       'passed':92,'failed':0}))
         with self.assertRaisesRegex(ValueError,'binding mismatch'):
             g.verified_record(record,'a'*40,'test')
+        record.write_text(json.dumps({'tested_commit':'a'*40,'product_source_commit':g.SOURCE,
+                                      'passed':True,'failed':False}))
+        with self.assertRaisesRegex(ValueError,'not passing'):
+            g.verified_record(record,'a'*40,'test')
 
 if __name__=='__main__':unittest.main()
