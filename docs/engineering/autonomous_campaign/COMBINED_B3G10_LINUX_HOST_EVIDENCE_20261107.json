@@ -7,10 +7,13 @@
   "docker": {
     "codex_sandbox_socket": "PERMISSION_DENIED",
     "expected_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+    "host_execution_evidence": "COMBINED_B3G10_LINUX_NATIVE_INVOCATION_20261107.json",
     "host_image_verified": true,
     "image": "starpilot-larch64-builder:latest",
     "live_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
-    "representative_compile": "HOST_ONLY_NON_QCOM_AARCH64_REPRODUCIBLE_PASS"
+    "pre_run_hostconfig_inspected": true,
+    "representative_compile": "HOST_ONLY_NON_QCOM_AARCH64_REPRODUCIBLE_PASS",
+    "verified_exit_code": 0
   },
   "models": {
     "dm_warp_1344x760_tinygrad.pkl": "ABSENT_IN_FROZEN_SOURCE",

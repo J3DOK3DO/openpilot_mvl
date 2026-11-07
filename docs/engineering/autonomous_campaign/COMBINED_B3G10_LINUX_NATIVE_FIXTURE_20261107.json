@@ -91,5 +91,15 @@
   "source_file_sha256": {
     "yuv.cc": "e091015761c811b609c27bf8c107aa0a5e7c7d2bd8bd6edf7ac9d4ad3841c102",
     "yuv.h": "bf7b7dbd29563a50d20cb0951965fca8964ddb7f9ae582998756a853cb035e98"
+  },
+  "verified_local_docker_execution_record": {
+    "actual_container_inspect_verified": true,
+    "filename": "COMBINED_B3G10_LINUX_NATIVE_INVOCATION_20261107.json",
+    "native_compiler_stdout_retained": true,
+    "scope": "LOCAL_DOCKER_EXECUTION_EVIDENCE_ONLY_NOT_TRUSTED_REMOTE_HARDWARE_ATTESTATION",
+    "sha256": "bf77917c9da10e8c9ce02dcdf17430710b69a63b602cc7d7e2d3519829eead04",
+    "start_exit_code": 0,
+    "stdout_filename": "COMBINED_B3G10_LINUX_NATIVE_EXECUTION_20261107.log",
+    "stdout_sha256": "d0cd14f7374fc5bf7bac5ddaf58b20f42f26a26c81f275033a0dfeacb81e1176"
   }
 }

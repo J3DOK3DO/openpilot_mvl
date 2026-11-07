@@ -1,0 +1,97 @@
+{
+  "actual_inspected_host_config": {
+    "cap_add": [
+      "CAP_SYS_CHROOT"
+    ],
+    "cap_drop": [
+      "ALL"
+    ],
+    "image_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+    "memory_bytes": 1073741824,
+    "mounts": {
+      "/agnos": {
+        "source": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs",
+        "writable": false
+      },
+      "/agnos/build_cache": {
+        "source": "/mnt/commadrive/MVL_B3G10_NATIVE_YUV_FIXTURE_20261107/out",
+        "writable": true
+      },
+      "/agnos/src": {
+        "source": "/mnt/commadrive/MVL_B3G10_NATIVE_YUV_FIXTURE_20261107/src",
+        "writable": false
+      }
+    },
+    "nano_cpus": 1000000000,
+    "network_mode": "none",
+    "pids_limit": 64,
+    "readonly_rootfs": true,
+    "security_opt": [
+      "no-new-privileges"
+    ],
+    "tmpfs": {
+      "/agnos/tmp": "rw,size=64m,mode=1777",
+      "/tmp": "rw,size=64m,mode=1777"
+    }
+  },
+  "builder_image_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+  "cleanup_rc": 0,
+  "compiler_stderr": "",
+  "compiler_stdout": "CONTAINER_BOUNDARY_PROOF_START\nAGNOS_VERSION\n19.9\nARM64_NATIVE_COMPILER\ng++-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCOMPILE_OBJECT\nLINK_SHARED\nNATIVE_OUTPUT_HASHES\n23d4a8e4a73e79f9f0e6a01138a0de0ef4c757ca42d5704e5b368771c8f9fc68  /build_cache/yuv_provenance.o\nf586ce5214567159eafa2c35f089ec76210a182525aaf02dee63b2eea372dcd5  /build_cache/libyuv_provenance.so\nCONTAINER_BOUNDARY_PROOF_DONE\n",
+  "container_id": "4de45cc6b4aaf5fda6a42a2ee9357799ba17457332f75922aebab67fdddbfe37",
+  "create_exit": 0,
+  "create_stderr": "",
+  "docker_create_inspection": "MATCHED_PINNED_BOUNDED_CONFIG",
+  "docker_state_exit_code": 0,
+  "docker_state_finished_at": "2026-11-07T14:03:15.771104102Z",
+  "docker_state_started_at": "2026-11-07T14:03:12.587685512Z",
+  "end_utc": "2026-11-07T14:03:15.828060+00:00",
+  "exact_docker_create_argv": [
+    "docker",
+    "create",
+    "--name",
+    "mvl-b3g10-bounded-host-proof-20261107-v4",
+    "--platform",
+    "linux/arm64",
+    "--network",
+    "none",
+    "--read-only",
+    "--memory",
+    "1024m",
+    "--cpus",
+    "1",
+    "--pids-limit",
+    "64",
+    "--security-opt",
+    "no-new-privileges",
+    "--cap-drop",
+    "ALL",
+    "--cap-add",
+    "SYS_CHROOT",
+    "--tmpfs",
+    "/tmp:rw,size=64m,mode=1777",
+    "--tmpfs",
+    "/agnos/tmp:rw,size=64m,mode=1777",
+    "--mount",
+    "type=bind,src=/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs,dst=/agnos,readonly",
+    "--mount",
+    "type=bind,src=/mnt/commadrive/MVL_B3G10_NATIVE_YUV_FIXTURE_20261107/src,dst=/agnos/src,readonly",
+    "--mount",
+    "type=bind,src=/mnt/commadrive/MVL_B3G10_NATIVE_YUV_FIXTURE_20261107/out,dst=/agnos/build_cache",
+    "starpilot-larch64-builder:latest",
+    "/bin/sh",
+    "-c",
+    "set -eu; ulimit -f 16384; echo CONTAINER_BOUNDARY_PROOF_START; chroot /agnos /usr/bin/env PATH=/usr/bin:/bin TMPDIR=/tmp /bin/sh -c \"set -eu; echo AGNOS_VERSION; cat /VERSION; echo ARM64_NATIVE_COMPILER; /usr/bin/g++-13 --version | head -1; echo COMPILE_OBJECT; /usr/bin/g++-13 -std=c++17 -fPIC -O2 -c -I/src /src/common/yuv.cc -o /build_cache/yuv_provenance.o; echo LINK_SHARED; /usr/bin/g++-13 -std=c++17 -fPIC -O2 -shared -I/src /src/common/yuv.cc -o /build_cache/libyuv_provenance.so; echo NATIVE_OUTPUT_HASHES; sha256sum /build_cache/yuv_provenance.o /build_cache/libyuv_provenance.so\"; echo CONTAINER_BOUNDARY_PROOF_DONE"
+  ],
+  "expected_agnos_version": "19.9",
+  "output_sha256": {
+    "libyuv_provenance.so": "f586ce5214567159eafa2c35f089ec76210a182525aaf02dee63b2eea372dcd5",
+    "yuv_provenance.o": "23d4a8e4a73e79f9f0e6a01138a0de0ef4c757ca42d5704e5b368771c8f9fc68"
+  },
+  "prior_pre_execution_probe_note": "Recording preflight initially rejected the normalized Docker capability CAP_SYS_CHROOT, removed the container before execution, then the checked script was corrected and this clean successful run was executed.",
+  "prior_pre_execution_probe_record_sha256": "0469b6ed6127a01e082b62328a4ad3f438ac9ccdfaeafa7816f244dd2498668e",
+  "recording_script_sha256": "3e58047369ad7fe302d58ef378e560b09ccacdcf101f05bf8f7e8551086431ef",
+  "start_attach_returncode": 0,
+  "start_utc": "2026-11-07T14:03:12.515467+00:00",
+  "state": "VERIFIED_BOUNDED_HOST_ONLY_NON_QCOM_AARCH64_COMPILER_RUN"
+}
