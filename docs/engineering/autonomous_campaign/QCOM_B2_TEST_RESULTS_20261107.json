@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-07",
+  "scope": "Ubuntu host-only B2 policy and read-only device inspector",
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "handoff_manifest_sha256": "998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4",
+  "handoff_tar_sha256": "37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d60fe",
+  "handoff_verifier": {"status": "PASS", "files": 4372},
+  "frozen_source_preflight": {"status": "PASS", "submodules": 7, "selected_lfs_hydrated": 283, "issues": 0},
+  "focused_b2": {"command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tools.release.tests.test_qcom_b2_pilot -v", "tests": 10, "status": "PASS"},
+  "release_suite": {"command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q", "tests": 70, "status": "PENDING_CLEAN_COMMIT_RERUN", "initial_dirty_tree_result": "68 pass, 2 inspector tests reject untracked B2 files because fixture uses current source as clean checkout"},
+  "recovery_suite": {"command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest docs.engineering.autonomous_campaign.test_campaignctl -q", "tests": 4, "status": "PASS"},
+  "host_failure_cases": ["source mismatch", "handoff proof absent", "installed identity mismatch", "path traversal and symlink", "shell and PowerShell metacharacters in run id", "idle one-sample evidence", "sparse or stale telemetry", "subscription failure", "ignition and engagement", "virtual thermal sensor", "low disk", "low memory", "quota or watchdog missing", "--execute exits without write"],
+  "device_stage_cleanup": "UNIMPLEMENTED_NOT_TESTED",
+  "device_write_performed": false,
+  "device_pilot_executed": false,
+  "qcom_artifacts_obtained": 0,
+  "release_decision": "PRODUCT_BUILD_INCOMPLETE_HOLD"
+}

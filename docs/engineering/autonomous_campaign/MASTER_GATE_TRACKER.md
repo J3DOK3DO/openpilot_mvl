@@ -114,3 +114,12 @@ Release classification remains **PRODUCT_BUILD_INCOMPLETE / HOLD**. G11/G12 cond
 | C4 device and release | NOT_TESTED / HOLD | 0/10 applicable tests; 12/25 scoped software/device acceptance remains 48%; formal release 0%/HOLD. C4-08 conditional N/A while G06 OFF; C4-12 waived/unexecuted. |
 
 G11/G12 conditional N/A only for unchanged non-actuating control/Panda/ECU/CAN-transmit boundary; 254 Params keys DENY. See `QCOM_B1_READINESS_20261106.md` and JSON reports. Historical rows above are retained as dated evidence.
+
+## QCOM B2 isolated compiler pilot preflight — 2026-11-07
+
+| Gate | Decision | Evidence / limit |
+| --- | --- | --- |
+| Trusted source and compiler route | PASS_HOST_STATIC | Handoff anchors/4,372 members, immutable checkout HEAD/seven submodules/283 LFS verified; tar has source trees but no Git metadata or compiled runtime. Exact stock QCOM single driving warp route recorded. |
+| Vehicle and resource proof | NO_GO | No authenticated continuous parked/offline `pandaStates` plus `carState`, aggregate hard quota, memory ceiling, or independent abort monitor validated on AGNOS 19.9. Historical idle resource readings do not close peaks. |
+| B2 script | READ_ONLY_NO_GO | `--inspect`/`--plan` are read-only; `--execute` deliberately exits 2 before writes. Host fixture policy tests only; staging/cleanup and device pilot unimplemented. |
+| S12/S13/S14, C4 and release | HOLD | 0/6 exact QCOM outputs; no full product/package; 0/10 applicable C4 tests. C4-12 waived/unexecuted, C4-08 conditional N/A with G06 OFF, G11/G12 conditional non-actuating N/A; 254 Params DENY. PRODUCT_BUILD_INCOMPLETE / HOLD. |
