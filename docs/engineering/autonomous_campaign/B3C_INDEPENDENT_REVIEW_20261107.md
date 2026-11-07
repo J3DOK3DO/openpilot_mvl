@@ -38,3 +38,7 @@ The independent reviewer identified a check/use race from hashing the plan file 
 ## Third P2 follow-up — no device special-file opens
 
 Independent re-review observed that descriptor-first validation would invoke a device driver on paths such as `/dev/null` before `fstat()` rejected the nonregular inode. The final CLI now checks the path using `model.regular()` **before** `os.open`, retains `O_NOFOLLOW` and descriptor `fstat` for race resistance, and reads at most 1 MiB + 1 byte from the validated descriptor. The negative test patches `os.open` to reject any open attempt and confirms the device-node input is refused before reaching it. This test concerns offline proof-parser behavior, not actual Comma 4 access.
+
+## Final independent offline re-review
+
+At implementation commit `836962c2ab4ad885aa9d60d49e82a661ee650581`, a separate read-only Codex re-review found no introduced regression after the pre-open device-node validation fix. The independent follow-up reviewed the prior P2 findings on oversized input and same-buffer hash/parse binding. The engineering coordinator ran the full release test suite **126/126**, campaign recovery **4/4**, and the actual zero-output CLI successfully from a clean checkout. This review covers offline admission tooling only, **not** actual native QCOM provider authentication, artifact generation or device safety. All six QCOM artifacts remain absent.

@@ -7,6 +7,7 @@
   "b2_safety_status": "NOT_SAFETY_ACCEPTED_NOT_PASSED",
   "b2_waiver": "OWNER_WAIVED_B2_OUTSTANDING_REQUIREMENTS_FOR_PLANNING_ONLY",
   "b3_completed_6_of_6": false,
+  "b3_native_execution_provider": "UNAVAILABLE_NO_AUTHENTICATED_QCOM_PROVIDER",
   "b3_required_artifact_count": 6,
   "b3_static_candidate_count": 0,
   "b3_verified_artifact_count": 0,
@@ -29,13 +30,16 @@
   "historical_sunnypilot_warps": "EXCLUDED_WRONG_PRODUCT_TARGET_AND_NO_B3_PROVENANCE",
   "host_architecture": "x86_64",
   "host_gpu_inventory": "x86_64 VMware SVGA II Adapter; restricted Codex sandbox did not expose /dev/dri; unrestricted Ubuntu host has /dev/dri/card0 and /dev/dri/renderD128, no /dev/kgsl; DRM nodes are not QCOM proof",
+  "implementation_head_reviewed": "836962c2ab4ad885aa9d60d49e82a661ee650581",
   "independent_review_remediation": {
-    "status": "IMPLEMENTED_PENDING_SEPARATE_INDEPENDENT_RE_REVIEW_BEFORE_PUBLICATION",
     "HIGH1": "All nonempty capture sets fail closed with UNVERIFIED_NATIVE_COMPILER_EXECUTION and NATIVE_OUTPUT_PROVENANCE_NOT_AUTHENTICATED; static_candidates separate; verified count zero; CLI nonzero",
     "HIGH2": "All receipt fields SELF_REPORTED_NOT_AUTHENTICATED; no trusted signed manifest or validator available",
-    "MEDIUM": "Exact plan bytes SHA-256 checked before CLI decode; audit compares all fields with hash-pinned checked-in plan",
     "LOW": "Restricted sandbox /dev/dri visibility corrected against unrestricted x86_64 host DRM inventory",
-    "review_document": "docs/engineering/autonomous_campaign/B3C_INDEPENDENT_REVIEW_20261107.md",
+    "MEDIUM": "Exact plan bytes SHA-256 checked before CLI decode; audit compares all fields with hash-pinned checked-in plan",
+    "P2_device_node": "early regular-file path validation before os.open; fstat guards race",
+    "P2_oversized_plan": "1 MiB bound enforced before bounded input read",
+    "P2_same_buffer": "single no-follow regular descriptor; hashes same <=1 MiB buffer as parsed",
+    "final_review": "separate Codex review of 836962c2 found no introduced regression",
     "focused_tests": [
       "test_prepared_is_not_safety_approval",
       "test_every_plan_field_is_pinned",
@@ -43,9 +47,12 @@
       "test_cli_fabricated_records_exit_nonzero",
       "test_cli_rejects_altered_plan_bytes_before_decode",
       "test_bad_records_never_complete"
-    ]
+    ],
+    "review_document": "docs/engineering/autonomous_campaign/B3C_INDEPENDENT_REVIEW_20261107.md",
+    "status": "INDEPENDENT_SCOPED_REREVIEW_PASSED_OFFLINE_ONLY"
   },
   "issues": [],
+  "native_capture_completed": false,
   "next_required_evidence": "Authenticated native QCOM provider and controls, then six static capture and independent quality reviews",
   "onnx": {
     "dmonitoring_model.onnx": {
@@ -58,6 +65,7 @@
     }
   },
   "plan_path": "docs/engineering/autonomous_campaign/B3C_SIX_TARGET_VERIFIED_PLAN_20261107.json",
+  "publication_status": "ENGINEERING_BRANCH_PUBLISH_REQUESTED_NO_RELEASE",
   "recipe_sha256": "07499bf98dafa501025e08f71c1819787b5dac9f681d443cb0557a1a9d0d7097",
   "safety_boundary": {
     "device_install_or_staging": false,
@@ -77,13 +85,15 @@
   },
   "tests": {
     "campaignctl_recovery": {
+      "clean_checkout": true,
       "failed": 0,
       "passed": 4
     },
     "release_unittest": {
       "clean_checkout": true,
       "failed": 0,
-      "passed": 123
+      "passed": 126,
+      "verified_implementation": "836962c2ab4ad885aa9d60d49e82a661ee650581"
     }
   },
   "tinygrad_gitlink": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4"
