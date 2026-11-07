@@ -43,16 +43,44 @@ def fixture_script(path: Path, directory: Path) -> Path:
     return path
 
 
-def _stop(proc: subprocess.Popen) -> None:
-    if proc.poll() is None:
-        if os.getpgid(proc.pid) != proc.pid:
-            raise RuntimeError('fixture worker lost dedicated process group')
-        os.killpg(proc.pid, signal.SIGTERM)
+def _leader_exited(proc: subprocess.Popen) -> bool:
+    # WNOWAIT leaves the exited leader unreaped, reserving its PID/PGID until
+    # the whole owned process group is stopped. Popen.poll() would reap it.
+    return os.waitid(os.P_PID, proc.pid, os.WEXITED | os.WNOHANG | os.WNOWAIT) is not None
+
+
+def _live_group_members(pgid: int) -> list[int]:
+    members = []
+    for path in Path('/proc').iterdir():
+        if not path.name.isdecimal():
+            continue
         try:
-            proc.wait(timeout=0.5)
-        except subprocess.TimeoutExpired:
+            fields = path.joinpath('stat').read_text().rsplit(')', 1)[1].split()
+            if int(fields[2]) == pgid and fields[0] != 'Z':
+                members.append(int(path.name))
+        except (OSError, IndexError, ValueError):
+            continue
+    return members
+
+
+def _stop(proc: subprocess.Popen) -> bool:
+    if os.getpgid(proc.pid) != proc.pid:
+        raise RuntimeError('fixture worker lost dedicated process group')
+    remaining = _live_group_members(proc.pid)
+    if remaining:
+        os.killpg(proc.pid, signal.SIGTERM)
+        deadline = time.monotonic() + 0.5
+        while time.monotonic() < deadline and _live_group_members(proc.pid):
+            time.sleep(0.02)
+        if _live_group_members(proc.pid):
             os.killpg(proc.pid, signal.SIGKILL)
-            proc.wait(timeout=0.5)
+            deadline = time.monotonic() + 0.5
+            while time.monotonic() < deadline and _live_group_members(proc.pid):
+                time.sleep(0.02)
+    if _live_group_members(proc.pid):
+        raise RuntimeError('owned fixture process group still has live members')
+    proc.wait(timeout=0.5)
+    return bool(remaining)
 
 
 def _record(directory: Path, outcome: dict) -> None:
@@ -73,7 +101,8 @@ def _guardian(conn, directory: Path, script: Path, max_seconds: float, heartbeat
         conn.send({'state': 'STARTED', 'worker_pid': proc.pid})
         began = last_heartbeat = time.monotonic()
         reason = None
-        while proc.poll() is None:
+        leader_exited = False
+        while not (leader_exited := _leader_exited(proc)):
             now = time.monotonic()
             if now - began >= max_seconds:
                 reason = 'TIMEOUT'
@@ -92,8 +121,9 @@ def _guardian(conn, directory: Path, script: Path, max_seconds: float, heartbeat
                 else:
                     reason = 'ABORT_OR_INVALID_COMMAND'
                     break
-        if reason:
-            _stop(proc)
+        group_had_members = _stop(proc)
+        if leader_exited and group_had_members and reason is None:
+            reason = 'WORKER_EXITED_WITH_GROUP_MEMBERS_TERMINATED'
         outcome = {'decision': 'ABORTED_HOST_FIXTURE' if reason else 'HOST_FIXTURE_EXITED',
                    'reason': reason or ('EXIT_ZERO' if proc.returncode == 0 else 'WORKER_NONZERO'),
                    'exit_code': proc.returncode, 'worker_pid': proc.pid,
@@ -104,7 +134,7 @@ def _guardian(conn, directory: Path, script: Path, max_seconds: float, heartbeat
         except (BrokenPipeError, EOFError, OSError):
             pass
     finally:
-        if proc is not None:
+        if proc is not None and proc.returncode is None:
             _stop(proc)
         conn.close()
 

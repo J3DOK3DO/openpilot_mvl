@@ -5,7 +5,7 @@ if ($HostAlias -notmatch '^[A-Za-z0-9_.-]{1,64}$' -or $HostAlias.StartsWith('-')
   throw 'Use a configured SSH alias.'
 }
 $Remote = @'
-set -u
+set -eu
 PYTHONDONTWRITEBYTECODE=1 PYTHONNOUSERSITE=1 PYTHONPATH=/data/openpilot
 export PYTHONDONTWRITEBYTECODE PYTHONNOUSERSITE PYTHONPATH
 timeout 9s /usr/local/venv/bin/python3 -B - <<'PY'
@@ -48,6 +48,8 @@ print(json.dumps({'duration_seconds': round(time.monotonic()-start, 3),
   'updates': counts, 'alive_last_seen': alive, 'ignition_any_true': ignition_true,
   'motion_any': motion, 'engaged_any': engaged, 'errors': errors,
   'decision': 'READ_ONLY_SNAPSHOT_NOT_PARKED_PROOF'}))
+if errors:
+  sys.exit(1)
 PY
 printf 'probe_complete=1\n'
 '@

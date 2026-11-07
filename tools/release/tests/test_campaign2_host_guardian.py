@@ -83,5 +83,37 @@ class HostGuardianTest(unittest.TestCase):
                 self.fail('single fixture worker remained running after guardian death')
             self.assertFalse((directory/'completed').exists())
 
+    def test_exited_leader_does_not_leave_child_running(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            script = directory / 'worker.py'
+            script.write_text('import subprocess, sys\n'
+                              'subprocess.Popen([sys.executable, "-c", '
+                              '"import time; from pathlib import Path; time.sleep(0.6); '
+                              'Path(\\\"survived\\\").write_text(\\\"yes\\\")"])\n')
+            handle = g.start_host_fixture(directory, script, max_seconds=2, heartbeat_seconds=0.5)
+            result = handle.result()
+            self.assertEqual(result['decision'], 'ABORTED_HOST_FIXTURE')
+            self.assertEqual(result['reason'], 'WORKER_EXITED_WITH_GROUP_MEMBERS_TERMINATED')
+            time.sleep(0.7)
+            self.assertFalse((directory / 'survived').exists())
+
+    def test_abort_kills_child_that_ignores_term(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            script = directory / 'worker.py'
+            script.write_text('import subprocess, sys, time\n'
+                              'subprocess.Popen([sys.executable, "-c", '
+                              '"import signal, time; from pathlib import Path; '
+                              'signal.signal(signal.SIGTERM, signal.SIG_IGN); '
+                              'time.sleep(0.8); Path(\\\"survived\\\").write_text(\\\"yes\\\")"])\n'
+                              'time.sleep(4)\n')
+            handle = g.start_host_fixture(directory, script, max_seconds=2, heartbeat_seconds=0.25)
+            time.sleep(0.15)
+            result = handle.result()
+            self.assertEqual(result['reason'], 'HEARTBEAT_LOST')
+            time.sleep(0.9)
+            self.assertFalse((directory / 'survived').exists())
+
 
 if __name__ == '__main__': unittest.main()
