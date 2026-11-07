@@ -1,28 +1,31 @@
 {
   "agnos199_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
   "approval_requirements": [
-    "separate explicit owner approval for any device staging or QCOM compilation",
-    "independent verified hardware safeguards before approval request"
+    "separate explicit owner approval for any device staging or QCOM compilation after safeguards independently pass",
+    "separate installation/deployment approval after product and physical qualification"
   ],
   "baseline_commit": "1ed5da1b2c056cefb99f84cfb12ca71192003bb0",
   "blockers": [
-    "ext4 /data lacks observed project quota feature/mount option",
-    "no aggregate device quota enforcement test",
-    "5-second passive telemetry has zero carState/controlsState updates",
-    "GPU memory containment unverified",
-    "six QCOM outputs absent",
-    "full native product absent"
+    "/data ext4 lacks observed project/quota features and project quota mount option",
+    "no demonstrated alternative aggregate hard storage bound",
+    "five-second passive telemetry had zero carState and zero controlsState updates",
+    "guardian crash with forked child failed host containment; device watchdog not qualified",
+    "GPU memory containment, workload peak, device cleanup unverified",
+    "six exact-source QCOM outputs absent",
+    "full native product/package absent"
   ],
   "branch": "codex/mvl-campaign2-qcom-g10-qualification-20261107",
   "campaign": "CAMPAIGN2_B2_HARDWARE_B3_QCOM_G10_NATIVE",
   "current_gate": "B2_HARDWARE_NOT_QUALIFIED",
-  "current_stage": "2A_HOST_GUARDIAN_AND_READONLY_HARDWARE_EVIDENCE",
+  "current_stage": "2A_EVIDENCE_AND_2B_2C_OFFLINE_HANDOFF",
   "device_actions": "READ_ONLY_SSH_ONLY",
   "device_writes": false,
-  "last_completed_milestone": "Campaign 1 reviewed offline preparation",
-  "last_verified_code_commit": "799285efa15d5cd46d068e251ec87df18970ee6b",
+  "expected_head_relationship": "Documentation-only descendant of last_verified_code_commit; inspect Git diff to reconcile; do not infer test execution from a session ending",
+  "head_at_documentation_preparation": "947e326ecb221ccb2640d2bb2f8f051f230c34fd",
+  "last_completed_milestone": "Campaign 2A tooling fixes at exact code commit 947e326ec, read-only device observations and representative static ABI",
+  "last_verified_code_commit": "947e326ecb221ccb2640d2bb2f8f051f230c34fd",
   "lease": "campaignctl lease local to this isolated worktree; inspect before new run",
-  "next_action": "Commit Campaign 2A code/evidence, test exact commit, obtain independent review; continue B3/G10 offline evidence",
+  "next_action": "Independent review exact documentation commit; publish reviewed branch if accepted; then investigate alternate hard storage isolation and guardian-loss containment offline",
   "on_resume": [
     "git status --short --branch",
     "campaignctl.py recover and compare dedicated state to actual HEAD",
@@ -32,11 +35,14 @@
     "do not treat read-only observations as device qualification"
   ],
   "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "publication": "PENDING_REVIEW",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE / HOLD",
   "schema_version": 1,
   "tests": {
-    "campaign2_focused": "9/9 PASS in dirty development worktree; exact-commit broad suite pending",
-    "historical_campaign1": "95 release-tool and 4 recovery, not rerun yet"
+    "campaign_recovery_suite": "4/4 PASS at 947e326ec in clean detached checkout",
+    "device_qualification": "NOT_TESTED",
+    "host_guardian_focused": "6/6 PASS at 947e326ec development checkout",
+    "release_tool_suite": "106/106 PASS at 947e326ec in clean detached checkout"
   },
   "tinygrad_commit": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4",
   "worktree": "/tmp/mvl-campaign2-qcom-g10-qualification-20261107"

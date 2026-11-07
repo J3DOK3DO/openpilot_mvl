@@ -1,0 +1,5 @@
+# Campaign 2C native ABI report
+
+**Representative static ABI: PASS within a narrow host scope. Full product ABI: NOT_TESTED.** The retained source-built `libparams_c.so` hashes to `2594c615b0c97bd610ccc32606077d3fef9b8dc1e273662df9df28ee3ce0da8c`, ELF64 AArch64, build ID `c1e03bfe2068ccf9d5960b248e01a299b0a59f38`. Its RUNPATH is `/usr/local/venv/lib/python3.12/site-packages/ffmpeg/install/lib`. A read-only static check against the extracted AGNOS 19.9 rootfs found direct `libstdc++.so.6`, `libgcc_s.so.1` and `libc.so.6` and their required GLIBC/GLIBCXX/CXXABI versions; no required direct version was missing. The machine-readable evidence includes exact library hashes in `CAMPAIGN2_REPRESENTATIVE_ABI.json`.
+
+The check does **not** cover transitive dependencies, actual `dlopen` on AGNOS 19.9, QCOM runtime, the complete binary set or a package. The retained build log indicates representative linkage but did not capture a full product build exit. S14 remains HOLD; the static representative PASS cannot qualify the product or device.

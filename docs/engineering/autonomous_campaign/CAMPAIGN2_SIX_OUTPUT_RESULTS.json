@@ -1,0 +1,80 @@
+{
+  "agnos_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+  "agnos_version": "19.9",
+  "decision": "NOT_EXECUTED_HARDWARE_GATE_HOLD",
+  "device_writes": false,
+  "first_warp_pilot": "NOT_EXECUTED",
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "qcom_flags": "DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1",
+  "results": [
+    {
+      "actual_bytes": null,
+      "actual_sha256": null,
+      "compiler_exit": null,
+      "inference": "NOT_TESTED",
+      "name": "driving_warp_1344x760_tinygrad.pkl",
+      "peak_disk_bytes": null,
+      "peak_gpu_bytes": null,
+      "peak_ram_bytes": null,
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "actual_bytes": null,
+      "actual_sha256": null,
+      "compiler_exit": null,
+      "inference": "NOT_TESTED",
+      "name": "dmonitoring_model_tinygrad.pkl",
+      "peak_disk_bytes": null,
+      "peak_gpu_bytes": null,
+      "peak_ram_bytes": null,
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "actual_bytes": null,
+      "actual_sha256": null,
+      "compiler_exit": null,
+      "inference": "NOT_TESTED",
+      "name": "driving_tinygrad.pkl",
+      "peak_disk_bytes": null,
+      "peak_gpu_bytes": null,
+      "peak_ram_bytes": null,
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "actual_bytes": null,
+      "actual_sha256": null,
+      "compiler_exit": null,
+      "inference": "NOT_TESTED",
+      "name": "driving_warp_1928x1208_tinygrad.pkl",
+      "peak_disk_bytes": null,
+      "peak_gpu_bytes": null,
+      "peak_ram_bytes": null,
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "actual_bytes": null,
+      "actual_sha256": null,
+      "compiler_exit": null,
+      "inference": "NOT_TESTED",
+      "name": "dm_warp_1344x760_tinygrad.pkl",
+      "peak_disk_bytes": null,
+      "peak_gpu_bytes": null,
+      "peak_ram_bytes": null,
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "actual_bytes": null,
+      "actual_sha256": null,
+      "compiler_exit": null,
+      "inference": "NOT_TESTED",
+      "name": "dm_warp_1928x1208_tinygrad.pkl",
+      "peak_disk_bytes": null,
+      "peak_gpu_bytes": null,
+      "peak_ram_bytes": null,
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "schema_version": 1,
+  "six_output_status": "0/6 VERIFIED",
+  "tinygrad_commit": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4"
+}

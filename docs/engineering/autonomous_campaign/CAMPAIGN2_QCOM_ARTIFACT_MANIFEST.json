@@ -1,0 +1,68 @@
+{
+  "agnos_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+  "agnos_version": "19.9",
+  "artifact_count_verified": 0,
+  "artifacts": [
+    {
+      "bytes": null,
+      "compiler_exit": null,
+      "name": "driving_warp_1344x760_tinygrad.pkl",
+      "qcom_capture_format": "NOT_TESTED",
+      "runtime_inference": "NOT_TESTED",
+      "sha256": null,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/driving_warp_1344x760_tinygrad.pkl"
+    },
+    {
+      "bytes": null,
+      "compiler_exit": null,
+      "name": "dmonitoring_model_tinygrad.pkl",
+      "qcom_capture_format": "NOT_TESTED",
+      "runtime_inference": "NOT_TESTED",
+      "sha256": null,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/dmonitoring_model_tinygrad.pkl"
+    },
+    {
+      "bytes": null,
+      "compiler_exit": null,
+      "name": "driving_tinygrad.pkl",
+      "qcom_capture_format": "NOT_TESTED",
+      "runtime_inference": "NOT_TESTED",
+      "sha256": null,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/driving_tinygrad.pkl"
+    },
+    {
+      "bytes": null,
+      "compiler_exit": null,
+      "name": "driving_warp_1928x1208_tinygrad.pkl",
+      "qcom_capture_format": "NOT_TESTED",
+      "runtime_inference": "NOT_TESTED",
+      "sha256": null,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/driving_warp_1928x1208_tinygrad.pkl"
+    },
+    {
+      "bytes": null,
+      "compiler_exit": null,
+      "name": "dm_warp_1344x760_tinygrad.pkl",
+      "qcom_capture_format": "NOT_TESTED",
+      "runtime_inference": "NOT_TESTED",
+      "sha256": null,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/dm_warp_1344x760_tinygrad.pkl"
+    },
+    {
+      "bytes": null,
+      "compiler_exit": null,
+      "name": "dm_warp_1928x1208_tinygrad.pkl",
+      "qcom_capture_format": "NOT_TESTED",
+      "runtime_inference": "NOT_TESTED",
+      "sha256": null,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/dm_warp_1928x1208_tinygrad.pkl"
+    }
+  ],
+  "classification": "PLANNED_NOT_COMPILED",
+  "compiler_executed": false,
+  "device_writes": false,
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "qcom_flags": "DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1",
+  "schema_version": 1,
+  "tinygrad_commit": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4"
+}

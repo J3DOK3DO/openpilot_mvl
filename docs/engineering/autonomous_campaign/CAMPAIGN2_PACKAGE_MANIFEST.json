@@ -1,0 +1,19 @@
+{
+  "agnos_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+  "agnos_version": "19.9",
+  "classification": "PRODUCT_BUILD_INCOMPLETE",
+  "deployment_approved": false,
+  "device_qualified": false,
+  "device_writes": false,
+  "full_product_build": "NOT_EXECUTED",
+  "full_runtime_abi": "NOT_TESTED",
+  "installable": false,
+  "product_archive_sha256": null,
+  "product_binaries": [],
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "product_source_to_binary_verification": "NOT_TESTED",
+  "qcom_flags": "DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1",
+  "schema_version": 1,
+  "six_qcom_outputs_verified": 0,
+  "tinygrad_commit": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4"
+}

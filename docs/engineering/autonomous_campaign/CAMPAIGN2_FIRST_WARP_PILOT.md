@@ -1,0 +1,7 @@
+# First QCOM warp pilot — conditional procedure only
+
+**NOT_EXECUTED.** Target: `openpilot/selfdrive/modeld/models/driving_warp_1344x760_tinygrad.pkl`, frozen source `4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb`, tinygrad `92b742f711c7d216fd3ed7a46a30a959e3c43bd4`, AGNOS 19.9. Use stock SCons modeld recipe with `DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1`; unset `SKIP_TINYGRAD_COMPILE`. Do not reuse CPU/LLVM or Dom captures.
+
+The planned single job is `/usr/local/venv/bin/python3 -m SCons -j1 --minimal cache_dir=<run>/cache openpilot/selfdrive/modeld/models/driving_warp_1344x760_tinygrad.pkl`, from an exact-source isolated checkout under a unique run directory. HOME, TMPDIR, cache, all outputs and logs must remain inside the proven hard storage boundary; reserve ≥2 GiB /data. CPU affinity, finite timeout, tested memory bound, GPU/CPU thermal thresholds, OOM and KGSL errors, independent parked-state watchdog and process-group abort must be enforced. Capture exit code, peak disk/RAM/GPU, warnings, source/target/driver identities, SHA-256 and static capture format; then independently inspect target inference. Preserve diagnostics on failure.
+
+**Preconditions not met:** current ext4 project quota prerequisites fail; no alternative aggregate limit, continuous parked proof, actual GPU memory containment, device cleanup or independent abort are demonstrated. Obtain a separate owner authorization only after those prerequisites pass. No command in this document is approval to stage, compile, install, reboot or alter the vehicle.

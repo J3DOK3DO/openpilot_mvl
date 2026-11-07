@@ -89,3 +89,11 @@ AGNOS 19.9 host image/rootfs, SCons/capnpc/Python tool presence, exact handoff a
 ## Campaign 1 continuation — 2026-11-07
 
 Device aggregate quota, runtime filesystem support and full build scratch peak remain unverified. The 512 MiB candidate is below measured source checkout size. Live `carState`/`controlsState` and a tested independent abort controller are absent; actual GPU containment is unknown. Six QCOM outputs, complete ARM64 product, target ABI/runtime and physical C4 tests remain absent. Offline preparation proceeds; device execution stays NO_GO.
+
+## Campaign 2 actual-hardware blockers — 2026-11-07
+
+Read-only AGNOS 19.9 device inspection found /data ext4 without the observed `project`/`quota` features or project-quota mount option. There is no tested alternate hard aggregate limit that covers source, Git metadata, cache, TMPDIR, HOME, outputs and logs. No mount or filesystem was changed. A separately authorized, isolated enforcement proof or a qualified external Qualcomm runtime is required; capacity remains unknown despite 9,284,160 KiB idle free space.
+
+A five-second passive subscription yielded 51 pandaStates but zero carState/controlsState messages. It cannot establish continuously parked/stationary/disengaged conditions. GPU allocation containment, sustained thermal behavior, device OOM, run ownership and cleanup remain untested. The host guardian fix stops same-group children on normal exit and abort, but independent review reproduced a child surviving guardian SIGKILL; device watchdog qualification is HOLD. No source staging, compilation, installation, Panda/ECU/CAN or vehicle control action is authorized.
+
+Six exact-source QCOM outputs remain 0/6, full ARM64 product and complete package do not exist, physical C4 checks remain 0/10 and separate installation approval remains outstanding. The next permitted work is offline alternative-quota/watchdog research and an independent non-production proof; actual device write requires separate owner authorization after all safeguards pass.

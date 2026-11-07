@@ -127,3 +127,15 @@ G11/G12 conditional N/A only for unchanged non-actuating control/Panda/ECU/CAN-t
 ## Campaign 1 B2-Final/B3/G10 preparation — 2026-11-07
 
 B2 host safeguard policy and fixtures PASS_OFFLINE; device quota, independent state monitor, GPU containment and cleanup HOLD. B3 exact six-target stock QCOM plan PASS_OFFLINE; compilation and outputs NOT_EXECUTED. G10 clean exact-source/AGNOS preflight PASS_OFFLINE; full product HOLD_QCOM_ARTIFACTS_MISSING_OR_EXTRA. Release remains PRODUCT_BUILD_INCOMPLETE / HOLD, formal 12/25 (48%), physical 0/10. C4-08 conditional N/A, C4-12 WAIVED_BY_OWNER / NOT_EXECUTED, G11/G12 conditional non-actuating N/A. See `COMBINED_CAMPAIGN_FINAL_REPORT_20261107.md`.
+
+## Campaign 2A/2B/2C read-only qualification — 2026-11-07
+
+| Gate | Decision | Exact Campaign 2 evidence |
+| --- | --- | --- |
+| B2 actual hardware identity | PASS_READ_ONLY | comma mici/AArch64/AGNOS 19.9 and installed known-good `a969e5e` observed without device write. |
+| B2 storage/project quota | FAIL_PREREQUISITE / HOLD | /data ext4 feature and mount inspection lacks project quota; no alternative hard aggregate bound demonstrated. |
+| B2 live vehicle state | HOLD_UNKNOWN | Five-second passive cereal: 51 pandaStates, 0 carState, 0 controlsState. No 30-second stationary/disengaged proof. |
+| B2 watchdog/abort | HOLD_DEVICE | Host process-group regressions pass, but guardian SIGKILL with descendant survived in independent review; no device safeguard proof. |
+| B3 first warp and six outputs | NOT_EXECUTED / 0 OF 6 | Hardware gate not qualified; no device write or QCOM compilation. |
+| G10 complete product/package | NOT_BUILT / HOLD | Representative AArch64 static ABI passes only direct-library/version inspection; full product, runtime and package absent. |
+| Formal and physical release | 12/25 SCOPED PASS; 0/10 PHYSICAL; HOLD | No S12/S13/S14 or C4 promotion; C4-08 conditional N/A, C4-12 waived/unexecuted; G11/G12 conditional non-actuating N/A; 254 Params DENY. |

@@ -1,0 +1,7 @@
+# Campaign 2A storage quota evidence
+
+**Current result: FAIL for observed ext4 project-quota prerequisites; UNKNOWN for any alternative enforceable aggregate limit.** The read-only device inspection reported /data as ext4 on `/dev/sda12`, 9,284,160 KiB free. `tune2fs -l` listed `has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum`; it did not list `project` or `quota`. Mount options did not include `prjquota` or `pquota`. No quota was enabled, mounted, allocated, or enforcement-tested.
+
+The frozen source checkout is about 1,009 MiB before compiler scratch, Git metadata, cache, HOME, TMPDIR, model output and diagnostics. The earlier 512 MiB candidate cannot hold that source. An acceptable future mechanism must hard-limit the entire per-run write set, preserve at least 2 GiB free on /data (4 GiB preferred), and demonstrate refusal at the limit while known-good storage remains unchanged. Sampling `df` cannot prevent a rapid allocation spike. An isolated bounded filesystem or qualified external Qualcomm environment may be evaluated offline; neither is yet proven on this device.
+
+**Gate:** NO-GO for device staging or compilation. Recheck /data features and mount identity on the exact target before any separately authorized enforcement experiment. Do not change the installed /data filesystem or known-good software to make this gate pass.

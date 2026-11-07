@@ -39,3 +39,7 @@ Fresh host preflight rechecked the external source-only handoff, frozen 4b sourc
 ## Campaign 1 offline preparation — 2026-11-07
 
 B2 host safeguards and B3/G10 plans are recorded in `COMBINED_CAMPAIGN_FINAL_REPORT_20261107.md`. No device compilation or full product exists. PRODUCT_BUILD_INCOMPLETE / HOLD; software-side 12/25 scoped acceptance (48%), physical 0/10 and final authorization HOLD.
+
+## Campaign 2 read-only update — 2026-11-07
+
+The actual comma mici/AGNOS 19.9 and installed known-good SHA were observed over strict-host-key authenticated read-only SSH. /data lacks observed ext4 project-quota prerequisites; five-second cereal data lacks carState and controlsState; host guardian crash with a descendant is a reproduced limitation. No device write or QCOM compilation occurred. B2 is `B2_HARDWARE_NOT_QUALIFIED`; B3 0/6 and G10 full product/package NOT_BUILT. Representative AArch64 static ABI evidence is not product qualification. `PRODUCT_BUILD_INCOMPLETE / HOLD` persists; scoped acceptance 12/25 = 48%, physical 0/10, final approval 0%/HOLD.

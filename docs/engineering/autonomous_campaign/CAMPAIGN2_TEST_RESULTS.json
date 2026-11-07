@@ -1,0 +1,64 @@
+{
+  "campaign_recovery_suite": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest docs.engineering.autonomous_campaign.test_campaignctl -q",
+    "errors": 0,
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 4,
+    "tests": 4
+  },
+  "device_readonly": {
+    "device_write_performed": false,
+    "qualification": "B2_HARDWARE_NOT_QUALIFIED",
+    "status": "OBSERVATIONS_CAPTURED"
+  },
+  "full_native_product_build": "NOT_EXECUTED",
+  "hardware_failures": {
+    "continuous_parked_disengaged_state": "UNKNOWN",
+    "ext4_project_quota_capability": "FAIL",
+    "gpu_memory_containment": "UNKNOWN",
+    "guardian_crash_with_descendant": "FAIL_HOST_FIXTURE"
+  },
+  "historical_campaign1": {
+    "recovery_tests": 4,
+    "release_tool_tests": 95,
+    "rerun_this_campaign": false,
+    "source_commit": "799285efa15d5cd46d068e251ec87df18970ee6b"
+  },
+  "host_guardian_focused": {
+    "checkout": "development worktree at code commit 947e326ec; documentation untracked",
+    "command": "python3 -m unittest tools.release.tests.test_campaign2_host_guardian -v",
+    "errors": 0,
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 6,
+    "tests": 6
+  },
+  "qcom_compilation": "NOT_EXECUTED",
+  "release_tool_suite": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q",
+    "errors": 0,
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 106,
+    "tests": 106
+  },
+  "representative_abi": {
+    "full_product": "NOT_BUILT",
+    "runtime": "NOT_TESTED",
+    "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+    "status": "PASS_REPRESENTATIVE_STATIC_ABI"
+  },
+  "schema_version": 1,
+  "test_checkout": "/tmp/mvl-campaign2-test-9f16b4",
+  "test_checkout_git_status": "clean before tests",
+  "tested_code_commit": "947e326ecb221ccb2640d2bb2f8f051f230c34fd",
+  "windows_host_powershell": {
+    "device_probe_rerun": false,
+    "device_write_performed": false,
+    "parser_errors": 0,
+    "plan_only_exit": "PASS",
+    "script": "tools/release/campaign2_passive_telemetry.ps1",
+    "tested_code_commit": "947e326ecb221ccb2640d2bb2f8f051f230c34fd"
+  }
+}

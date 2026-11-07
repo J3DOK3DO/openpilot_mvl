@@ -34,3 +34,7 @@ QCOM B1 offline update (2026-11-06): trusted handoff/source bytes, selected LFS 
 ## 2026-11-07 Campaign 1 update
 
 Offline safeguard tooling and build plans add no formal release PASS. S12 six QCOM captures, S13 full ARM64 build, S14 product/ABI package and ten applicable C4 checks remain open. Formal 12/25 = 48%; physical 0/10. C4-08 conditional N/A while G06 unregistered; C4-12 WAIVED_BY_OWNER / NOT_EXECUTED.
+
+## Campaign 2 update — 2026-11-07
+
+Read-only hardware findings and host-tool tests do not promote S12, S13, S14 or the ten applicable C4 checks. QCOM 0/6, full native product and package absent, B2 hardware gate not qualified. Accepted scoped count remains **12/25 = 48%**; physical **0/10**; release approval **0% / HOLD**. C4-08 remains conditional N/A while G06 is unregistered, C4-12 remains WAIVED_BY_OWNER / NOT_EXECUTED, G11/G12 remain conditional N/A for the unchanged non-actuating profile.
