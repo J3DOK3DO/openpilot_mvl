@@ -1,0 +1,56 @@
+{
+  "date_utc": "2026-11-07",
+  "decision": "NO_GO_DEVICE_PILOT_HARD_GATES_NOT_PROVEN",
+  "device_source_staged": false,
+  "installed": {
+    "agnos": "19.9",
+    "architecture": "aarch64",
+    "hardware_model": "comma mici",
+    "known_good_branch": "sp-honda-dev-202608",
+    "known_good_sha": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1"
+  },
+  "installed_source_modified": false,
+  "model_compile_executed": false,
+  "observed_running_processes": [
+    "manager.py",
+    "openpilot.selfdrive.ui.ui",
+    "openpilot.sunnypilot.modeld_v2.warmup"
+  ],
+  "passive_panda_state": {
+    "carState_alive_any": false,
+    "controlsState_alive_any": false,
+    "duration_seconds_approx": 0.9,
+    "ignitionCan_any_true": false,
+    "ignitionLine_any_true": false,
+    "inference": "OBSERVED_IGNITION_OFF_BRIEFLY_NOT_A_CONTINUOUS_30S_OR_PHYSICAL_PARKED_PROOF",
+    "pandaStates_alive_and_updated_each": true,
+    "samples": 10
+  },
+  "passive_panda_state_at_utc": "2026-11-07T03:03:10Z",
+  "persistent_device_files_changed": false,
+  "qcom_artifacts_compiled": 0,
+  "remaining_hard_gates": [
+    "continuous offroad/ignition and reliable telemetry for entire run",
+    "physical parked/disconnected condition not independently verified",
+    "aggregate per-pilot storage quota enforcement and reserve",
+    "GPU workload/OOM/thermal bound and active model-warmup coexistence",
+    "independent abort controller and tested isolated cleanup"
+  ],
+  "resource_snapshot": {
+    "data_available_kib": 9284320,
+    "gpu_compiler_peak_rss_bytes": null,
+    "gpu_compiler_peak_storage_bytes": null,
+    "gpu_model": "Adreno630v2",
+    "mem_available_mib_approx": 2356
+  },
+  "schema_version": 1,
+  "scope": "Authenticated Windows-to-comma read-only observations, plus temporary systemd memory-scope proof (not compiler test)",
+  "source": "Windows SSH with strict host-key verification and loaded OpenPilot development identity",
+  "temporary_cgroup_scope": {
+    "compiled_or_allocated_gpu_memory": false,
+    "gpu_memory_accounting_verified": false,
+    "memory_max_verified_bytes": 805306368,
+    "not_a_full_RAM_OR_GPU_QUALIFICATION": true,
+    "runtime_action": "Executed /bin/sh within temporary systemd --user --scope with MemoryMax=805306368; scope exited normally"
+  }
+}
