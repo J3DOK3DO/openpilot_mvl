@@ -1,0 +1,95 @@
+{
+  "agnos_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+  "agnos_version": "19.9",
+  "attempts": [
+    {
+      "id": 1,
+      "log": "native_compile_attempt1_permission_denied.log",
+      "result": "FAIL_CLOSED_OUTPUT_PERMISSION_DENIED"
+    },
+    {
+      "id": 2,
+      "log": "native_compile_attempt2.log",
+      "result": "PASS_NATIVE_AARCH64_OBJECT"
+    },
+    {
+      "id": 3,
+      "log": "native_compile_attempt3_repro_and_link.log",
+      "result": "PASS_REPRODUCIBLE_OBJECT_AND_SHARED_LIBRARY"
+    }
+  ],
+  "b2_safety": "NOT_PASSED_OWNER_PLANNING_WAIVER_ONLY",
+  "builder_architecture": "arm64",
+  "builder_image_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+  "classification": "BOUNDED_HOST_ONLY_NON_QCOM_AARCH64_COMPILATION",
+  "codex_sandbox_docker": "PERMISSION_DENIED",
+  "comma4_physical_passed": 0,
+  "comma4_physical_required": 10,
+  "compile_commands": [
+    "AGNOS19.9 g++-13 -std=c++17 -fPIC -O2 -c -I/src /src/common/yuv.cc -o /build_cache/yuv.o",
+    "AGNOS19.9 g++-13 same flags -o /build_cache/yuv_rebuild.o",
+    "AGNOS19.9 g++-13 -std=c++17 -fPIC -O2 -shared -I/src /src/common/yuv.cc -o /build_cache/libyuv_host_probe.so"
+  ],
+  "decision": "HOLD",
+  "device_access_performed": false,
+  "fixture_local_path": "/mnt/commadrive/MVL_B3G10_NATIVE_YUV_FIXTURE_20261107",
+  "frozen_source_clean": true,
+  "g10_complete": "NOT_BUILT",
+  "host_docker": "VERIFIED_AND_EXECUTED",
+  "host_gpu": {
+    "drm_renderD128": true,
+    "qualcomm_kgsl_3d0": false
+  },
+  "installable": false,
+  "linked_shared_library_needed": [
+    "libc.so.6"
+  ],
+  "model_captures_required": 6,
+  "model_captures_verified": 0,
+  "outputs": {
+    "libyuv_host_probe.so": {
+      "class": "ELF64",
+      "machine": "AArch64",
+      "sha256": "f586ce5214567159eafa2c35f089ec76210a182525aaf02dee63b2eea372dcd5",
+      "size_bytes": 69888
+    },
+    "yuv.o": {
+      "class": "ELF64",
+      "machine": "AArch64",
+      "sha256": "23d4a8e4a73e79f9f0e6a01138a0de0ef4c757ca42d5704e5b368771c8f9fc68",
+      "size_bytes": 3472
+    },
+    "yuv_rebuild.o": {
+      "class": "ELF64",
+      "machine": "AArch64",
+      "sha256": "23d4a8e4a73e79f9f0e6a01138a0de0ef4c757ca42d5704e5b368771c8f9fc68",
+      "size_bytes": 3472
+    }
+  },
+  "qualification_limit": "Host-only compiler proof, not device ABI or actual full product",
+  "reproducible_object": true,
+  "resource_controls": {
+    "agnos_rootfs": "read-only",
+    "capabilities": "drop all, add SYS_CHROOT",
+    "container": "read-only",
+    "cpus": 1,
+    "file_size_ulimit_mebibytes": 16,
+    "frozen_source": "not mounted; exact copied files read-only",
+    "memory_mebibytes": 1024,
+    "network": "none",
+    "no_new_privileges": true,
+    "pids": 64,
+    "timeout_seconds": 135,
+    "tmpfs_mebibytes": [
+      64,
+      64
+    ],
+    "writable_host_mount": "dedicated output fixture only"
+  },
+  "schema_version": 1,
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "source_file_sha256": {
+    "yuv.cc": "e091015761c811b609c27bf8c107aa0a5e7c7d2bd8bd6edf7ac9d4ad3841c102",
+    "yuv.h": "bf7b7dbd29563a50d20cb0951965fca8964ddb7f9ae582998756a853cb035e98"
+  }
+}

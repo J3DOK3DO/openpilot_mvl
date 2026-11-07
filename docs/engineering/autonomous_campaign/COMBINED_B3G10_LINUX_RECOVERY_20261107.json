@@ -11,7 +11,7 @@
     "skipped": 0
   },
   "device_access_attempted": false,
-  "docker_inspection": "PERMISSION_DENIED",
+  "docker_inspection": "CODEX_SANDBOX_DENIED_AUTHORIZED_HOST_VERIFIED_PINNED_ARM64_IMAGE",
   "focused_combined": {
     "errors": 0,
     "failures": 0,
@@ -19,7 +19,7 @@
     "run": 37,
     "skipped": 9
   },
-  "fresh_compile": "NOT_ATTEMPTED_BUILDER_UNVERIFIED",
+  "fresh_compile": "HOST_AARCH64_NON_QCOM_YUV_ONLY_REPRODUCIBLE_PASS",
   "frozen_source_clean": true,
   "frozen_source_head": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
   "g10_product": "NOT_BUILT",
@@ -28,6 +28,8 @@
   "independent_review": "PENDING",
   "lease_id": "8c7e361a1f69f3cd458b7ff8b897935e",
   "lease_modified": false,
+  "native_fixture_provenance": "COMBINED_B3G10_LINUX_NATIVE_FIXTURE_20261107.json",
+  "native_object_sha256": "23d4a8e4a73e79f9f0e6a01138a0de0ef4c757ca42d5704e5b368771c8f9fc68",
   "native_qcom_required": 6,
   "native_qcom_verified": 0,
   "rc": "NOT_INSTALLABLE",

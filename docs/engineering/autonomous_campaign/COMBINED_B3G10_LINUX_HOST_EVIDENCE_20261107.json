@@ -5,10 +5,12 @@
     "version": "19.9"
   },
   "docker": {
+    "codex_sandbox_socket": "PERMISSION_DENIED",
     "expected_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+    "host_image_verified": true,
     "image": "starpilot-larch64-builder:latest",
-    "live_id": "UNVERIFIED_DOCKER_SOCKET_PERMISSION_DENIED",
-    "representative_compile": "NOT_ATTEMPTED"
+    "live_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+    "representative_compile": "HOST_ONLY_NON_QCOM_AARCH64_REPRODUCIBLE_PASS"
   },
   "models": {
     "dm_warp_1344x760_tinygrad.pkl": "ABSENT_IN_FROZEN_SOURCE",
@@ -18,9 +20,11 @@
     "driving_warp_1344x760_tinygrad.pkl": "ABSENT_IN_FROZEN_SOURCE",
     "driving_warp_1928x1208_tinygrad.pkl": "ABSENT_IN_FROZEN_SOURCE"
   },
+  "native_host_proof": "COMBINED_B3G10_LINUX_NATIVE_FIXTURE_20261107.json",
   "provider": {
     "comma4_access_attempted": false,
-    "drm_renderD128_present": false,
+    "drm_renderD128_present": true,
+    "host_drm_note": "PRESENT_ON_AUTHORIZED_HOST_NOT_QUALCOMM",
     "kgsl_3d0_present": false
   },
   "qualification": {
@@ -57,7 +61,7 @@
     "provenance": "HISTORICAL_OLDER_SOURCE_NOT_CURRENT_FULL_PRODUCT",
     "sha256": "46e70c2295eb72d55590f1e2c1029db5b5ed63f8cb9f0565d2fdac4e2730c028"
   },
-  "scope": "READ_ONLY_HOST_PROBE",
+  "scope": "READ_ONLY_PROVENANCE_AND_BOUNDED_NON_QCOM_HOST_BUILD",
   "source": {
     "clean": true,
     "gitlinks": {
