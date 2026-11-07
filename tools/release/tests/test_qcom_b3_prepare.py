@@ -1,4 +1,5 @@
 import hashlib
+import math
 from pathlib import Path
 import tempfile
 import unittest
@@ -63,6 +64,16 @@ class B3PrepareTest(unittest.TestCase):
             reasons=b.validate_capture_records(records)
             self.assertTrue(any('resource evidence' in x for x in reasons))
             self.assertTrue(any('provenance mismatch' in x for x in reasons))
+
+    def test_boolean_and_nonfinite_resource_evidence_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            records=self.records(Path(tmp))
+            for field, value in (('bytes', True), ('peak_rss_bytes', True),
+                                 ('elapsed_seconds', True), ('elapsed_seconds', math.inf),
+                                 ('elapsed_seconds', math.nan)):
+                changed=[dict(item) for item in records]
+                changed[0][field]=value
+                self.assertTrue(b.validate_capture_records(changed), (field, value))
 
     def test_recipe_requires_stock_flags(self):
         with tempfile.TemporaryDirectory() as tmp:

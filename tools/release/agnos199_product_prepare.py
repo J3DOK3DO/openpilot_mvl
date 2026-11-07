@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import subprocess
 
 if __package__:
@@ -24,10 +25,39 @@ def source_head(source: Path) -> str:
     return subprocess.check_output(['git','-C',str(source),'rev-parse','HEAD'], text=True).strip()
 
 
-def preflight(source: Path, artifacts: Path, onnx_assets: Path, image: Path,
-              rootfs: Path, component_manifest: Path, build_root: Path) -> dict:
+def verify_source(source: Path) -> None:
     if source_head(source) != SOURCE:
         raise ValueError('frozen product source mismatch')
+    check = subprocess.run(['python3', str(source/'tools/release/preflight_readonly.py'),
+        '--repo', str(source), '--commit', SOURCE], capture_output=True, text=True, timeout=120)
+    try:
+        result = json.loads(check.stdout)
+    except json.JSONDecodeError as exc:
+        raise ValueError('source preflight did not return valid evidence') from exc
+    if check.returncode or result.get('result') != 'PASS' or result.get('dirty_paths'):
+        raise ValueError('frozen source content or worktree preflight failed')
+
+
+def verified_record(path: Path, expected_engineering_commit: str, kind: str) -> tuple[dict,str]:
+    if not re.fullmatch('[0-9a-f]{40}', expected_engineering_commit):
+        raise ValueError('invalid expected engineering commit')
+    model.regular(path)
+    if path.stat().st_size > 1024*1024:
+        raise ValueError('oversized evidence record')
+    data = path.read_bytes()
+    record = json.loads(data, object_pairs_hook=model.no_duplicate_keys)
+    if record.get('tested_commit') != expected_engineering_commit or record.get('product_source_commit') != SOURCE:
+        raise ValueError(f'{kind} commit/source binding mismatch')
+    if kind == 'test' and (record.get('failed') != 0 or record.get('passed', 0) <= 0):
+        raise ValueError('test record is not passing')
+    if kind == 'review' and record.get('verdict') != 'PASS_OFFLINE_SCOPE':
+        raise ValueError('independent review record is not passing')
+    return record, hashlib.sha256(data).hexdigest()
+
+
+def preflight(source: Path, artifacts: Path, onnx_assets: Path, image: Path,
+              rootfs: Path, component_manifest: Path, build_root: Path) -> dict:
+    verify_source(source)
     resolved_build = build_root.resolve(strict=False)
     resolved_source = source.resolve(strict=True)
     if not build_root.is_absolute() or '..' in build_root.parts or resolved_build == resolved_source or \
@@ -55,16 +85,14 @@ def preflight(source: Path, artifacts: Path, onnx_assets: Path, image: Path,
             'actual_build_exit':'NOT_EXECUTED','device_write_performed':False}
 
 
-def package_manifest(source: Path, stage: Path, qcom_manifest: Path, *, test_record_sha256: str,
-                     independent_review_sha256: str) -> dict:
-    if source_head(source) != SOURCE:
-        raise ValueError('product source mismatch')
+def package_manifest(source: Path, stage: Path, qcom_manifest: Path, *, test_record: Path,
+                     independent_review: Path, expected_engineering_commit: str) -> dict:
+    verify_source(source)
     report = inspector.inspect(source, stage, qcom_manifest, SOURCE, '19.9')
     if report['issues']:
         raise ValueError('product stage has static issues: '+', '.join(report['issues'][:3]))
-    for value in (test_record_sha256, independent_review_sha256):
-        if len(value) != 64 or any(x not in '0123456789abcdef' for x in value):
-            raise ValueError('invalid external evidence SHA-256')
+    _, test_record_sha256 = verified_record(test_record, expected_engineering_commit, 'test')
+    _, independent_review_sha256 = verified_record(independent_review, expected_engineering_commit, 'review')
     links = {}
     for path in ('msgq_repo','opendbc_repo','openpilot/sunnypilot/neural_network_data',
                  'panda','rednose_repo','teleoprtc_repo','tinygrad_repo'):
@@ -77,6 +105,7 @@ def package_manifest(source: Path, stage: Path, qcom_manifest: Path, *, test_rec
         'agnos_version':'19.9','agnos_raw_image_sha256':model.AGNOS199_IMAGE_SHA256,
         'agnos_component_manifest_sha256':model.AGNOS199_MANIFEST_SHA256,
         'known_good_installed_commit':KNOWN_GOOD,'qcom_manifest_sha256':report['qcom_manifest_sha256'],
+        'engineering_tested_commit':expected_engineering_commit,
         'test_record_sha256':test_record_sha256,'independent_review_sha256':independent_review_sha256,
         'stage_files':report['files'],'stage_elf_count':report['elf_count'],
         'target_runtime':'NOT_TESTED','physical_c4':'NOT_TESTED','device_write_performed':False}

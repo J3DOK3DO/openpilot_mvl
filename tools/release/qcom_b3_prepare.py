@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import math
 import hashlib
 import json
 from pathlib import Path
@@ -97,14 +98,15 @@ def validate_capture_records(records: list[dict]) -> list[str]:
             issues.append(f'{name}: compiler/backend unverified')
         digest = record.get('sha256')
         if not isinstance(digest, str) or not re.fullmatch('[0-9a-f]{64}', digest) or \
-                not isinstance(record.get('bytes'), int) or record['bytes'] <= 0:
+                not isinstance(record.get('bytes'), int) or isinstance(record['bytes'], bool) or record['bytes'] <= 0:
             issues.append(f'{name}: missing output identity')
         elif digest in hashes:
             issues.append(f'{name}: duplicate output bytes')
         else:
             hashes.add(digest)
-        if not isinstance(record.get('peak_rss_bytes'), int) or record['peak_rss_bytes'] <= 0 or \
-                not isinstance(record.get('elapsed_seconds'), (int,float)) or record['elapsed_seconds'] <= 0:
+        elapsed = record.get('elapsed_seconds')
+        if not isinstance(record.get('peak_rss_bytes'), int) or isinstance(record['peak_rss_bytes'], bool) or record['peak_rss_bytes'] <= 0 or \
+                not isinstance(elapsed, (int,float)) or isinstance(elapsed, bool) or not math.isfinite(elapsed) or elapsed <= 0:
             issues.append(f'{name}: resource evidence missing')
     return issues
 

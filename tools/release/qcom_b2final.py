@@ -81,9 +81,9 @@ def resource_reasons(*, cpu_c: float | None, gpu_c: float | None, mem_available:
         reasons.append('MEMORY_HEADROOM_LOW_OR_MISSING')
     if not isinstance(data_free, int) or isinstance(data_free, bool) or data_free < RESERVE:
         reasons.append('DISK_RESERVE_LOW_OR_MISSING')
-    if not isinstance(memory_oom_events, int) or isinstance(memory_oom_events, bool) or memory_oom_events > 0:
+    if not isinstance(memory_oom_events, int) or isinstance(memory_oom_events, bool) or memory_oom_events != 0:
         reasons.append('OOM_EVENT_OR_COUNTER_MISSING')
-    if not isinstance(gpu_errors, int) or isinstance(gpu_errors, bool) or gpu_errors > 0:
+    if not isinstance(gpu_errors, int) or isinstance(gpu_errors, bool) or gpu_errors != 0:
         reasons.append('GPU_ERROR_OR_COUNTER_MISSING')
     if not isinstance(heartbeat_age, (int, float)) or isinstance(heartbeat_age, bool) or not math.isfinite(heartbeat_age) or not 0 <= heartbeat_age <= 1:
         reasons.append('WATCHDOG_HEARTBEAT_LOST')

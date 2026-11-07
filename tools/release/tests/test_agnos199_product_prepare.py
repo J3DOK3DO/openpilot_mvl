@@ -23,7 +23,7 @@ class ProductPrepareTest(unittest.TestCase):
                            self.base/'root',self.base/'agnos.json',self.stage)
 
     def test_missing_six_outputs_holds_and_never_runs(self):
-        with patch.object(g,'source_head',return_value=g.SOURCE),patch.object(model,'agnos_identity',return_value=self.agnos):
+        with patch.object(g,'verify_source'),patch.object(model,'agnos_identity',return_value=self.agnos):
             result=self.call()
         self.assertEqual(result['decision'],'HOLD_QCOM_ARTIFACTS_MISSING_OR_EXTRA')
         self.assertEqual(set(result['missing']),set(model.ARTIFACTS))
@@ -32,7 +32,7 @@ class ProductPrepareTest(unittest.TestCase):
 
     def test_complete_static_inputs_only_prepare_build_command(self):
         for name in model.ARTIFACTS:(self.artifacts/name).write_bytes(b'fixture')
-        with patch.object(g,'source_head',return_value=g.SOURCE),patch.object(model,'agnos_identity',return_value=self.agnos),\
+        with patch.object(g,'verify_source'),patch.object(model,'agnos_identity',return_value=self.agnos),\
              patch.object(model,'inventory',return_value={'artifacts':{}}):
             result=self.call()
         self.assertEqual(result['decision'],'STATIC_INPUTS_VERIFIED_BUILD_NOT_EXECUTED')
@@ -44,7 +44,7 @@ class ProductPrepareTest(unittest.TestCase):
     def test_wrong_commit_and_unsafe_destination_rejected(self):
         with patch.object(g,'source_head',return_value='0'*40):
             with self.assertRaisesRegex(ValueError,'source mismatch'):self.call()
-        with patch.object(g,'source_head',return_value=g.SOURCE):
+        with patch.object(g,'verify_source'):
             with self.assertRaisesRegex(ValueError,'isolated host storage'):
                 g.preflight(self.source,self.artifacts,self.base/'onnx',self.base/'image',
                     self.base/'root',self.base/'agnos.json',Path('/data/openpilot'))
@@ -63,12 +63,30 @@ class ProductPrepareTest(unittest.TestCase):
         def git_output(argv,**kwargs):
             if argv[3]=='ls-tree': return '160000 commit '+('c'*40)+'\t'+argv[-1]+'\n'
             raise AssertionError(argv)
-        with patch.object(g,'source_head',return_value=g.SOURCE),patch.object(g.inspector,'inspect',return_value=report),\
+        commit='a'*40
+        test=self.base/'tests.json';test.write_text(json.dumps({'tested_commit':commit,'product_source_commit':g.SOURCE,
+            'passed':92,'failed':0}))
+        review=self.base/'review.json';review.write_text(json.dumps({'tested_commit':commit,
+            'product_source_commit':g.SOURCE,'verdict':'PASS_OFFLINE_SCOPE'}))
+        with patch.object(g,'verify_source'),patch.object(g.inspector,'inspect',return_value=report),\
              patch.object(g.subprocess,'check_output',side_effect=git_output):
             manifest=g.package_manifest(self.source,self.stage,self.base/'qcom.json',
-                test_record_sha256='d'*64,independent_review_sha256='e'*64)
+                test_record=test,independent_review=review,expected_engineering_commit=commit)
         self.assertEqual(manifest['classification'],'NOT_INSTALLABLE_TARGET_RUNTIME_PENDING')
         self.assertEqual(len(manifest['submodule_gitlinks']),7)
         self.assertEqual(manifest['physical_c4'],'NOT_TESTED')
+        self.assertEqual(manifest['engineering_tested_commit'],commit)
+
+    def test_dirty_source_preflight_and_unbound_evidence_rejected(self):
+        with patch.object(g,'source_head',return_value=g.SOURCE),patch.object(g.subprocess,'run') as run:
+            run.return_value.returncode=1
+            run.return_value.stdout=json.dumps({'result':'HOLD','dirty_paths':['SConstruct']})
+            with self.assertRaisesRegex(ValueError,'preflight failed'):
+                g.verify_source(self.source)
+        record=self.base/'test.json'
+        record.write_text(json.dumps({'tested_commit':'b'*40,'product_source_commit':g.SOURCE,
+                                      'passed':92,'failed':0}))
+        with self.assertRaisesRegex(ValueError,'binding mismatch'):
+            g.verified_record(record,'a'*40,'test')
 
 if __name__=='__main__':unittest.main()
