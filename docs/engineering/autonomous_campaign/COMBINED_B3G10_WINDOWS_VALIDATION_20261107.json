@@ -1,0 +1,95 @@
+{
+  "B3C_RECOVERY_STATE_20261107.json": {
+    "committed_sha256": "c2e0249d30074bc96e37eb7803c1f75667158c03b2aab6b4b35bccad85f81761",
+    "exact_committed_bytes": true,
+    "working_sha256": "c2e0249d30074bc96e37eb7803c1f75667158c03b2aab6b4b35bccad85f81761"
+  },
+  "B3C_SIX_TARGET_VERIFIED_PLAN_20261107.json": {
+    "committed_sha256": "6a493a0d9418f62310ee9a0f33d8e50ade4d5dc768cd54ec9c20ad45eaf3cd6e",
+    "exact_committed_bytes": true,
+    "working_sha256": "6a493a0d9418f62310ee9a0f33d8e50ade4d5dc768cd54ec9c20ad45eaf3cd6e"
+  },
+  "delivery_scope": {
+    "blocker": "Coordinator owns staging/commit outside sandbox; no staging/commit/push attempted during remediation",
+    "commit_created": false,
+    "files": [
+      "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_GATE_20261107.json",
+      "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_OFFLINE_REPORT_20261107.md",
+      "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_RECOVERY_20261107.json",
+      "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_TEST_LOG_20261107.log",
+      "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_VALIDATION_20261107.json",
+      "tools/release/combined_b3g10_gate.py",
+      "tools/release/tests/test_combined_b3g10_gate.py"
+    ],
+    "final_tree_clean": false,
+    "new_file_whitespace_check": "PASS",
+    "only_seven_untracked_new_campaign_files": true,
+    "staged_files": 0,
+    "tracked_changes": false
+  },
+  "environment": {
+    "bytecode_disabled": true,
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.9.21 (main, Dec 18 2024, 07:13:46) [MSC v.1929 64 bit (AMD64)]",
+    "temp_directory": "D:\\MVL_B3G10_WINDOWS_FALLBACK_20261107\\engineering_checkout",
+    "utc": "2026-11-07T13:07:56.853089+00:00"
+  },
+  "git branch --show-current": {
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": "codex/mvl-b3g10-windows-offline-gates-20261107\n"
+  },
+  "git diff --check": {
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "git ls-tree HEAD msgq_repo opendbc_repo panda rednose_repo teleoprtc_repo tinygrad_repo openpilot": {
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": "160000 commit e7396e76dadbb49e374d4b664ff6bbb43a39bcb0\tmsgq_repo\n160000 commit 3fec9a418a659de31d7b1f494193161697a35071\topendbc_repo\n040000 tree 4ca10102b1c5d2b8dbfdbb737e97fe4331848593\topenpilot\n160000 commit 8a16e089b88593914823743df29e1c30b7dd3e00\tpanda\n160000 commit 28d4a7f69e80e1c3e0d24ca0733d7daeaeade3d0\trednose_repo\n160000 commit 1aa8fc433bef1519a95c0700c96258c3be6dfb34\tteleoprtc_repo\n160000 commit 92b742f711c7d216fd3ed7a46a30a959e3c43bd4\ttinygrad_repo\n"
+  },
+  "git rev-parse HEAD": {
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": "b708816ab845c1a4b4988fc1e210cf167be43254\n"
+  },
+  "git sparse-checkout list": {
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": "docs/engineering/autonomous_campaign\ntools/release\n"
+  },
+  "p2_remediation": {
+    "actual_junctions_or_special_devices_used": false,
+    "broader_windows_results_refreshed": true,
+    "findings": {
+      "P2_1": "FIXED_PENDING_FRESH_INDEPENDENT_RE_REVIEW",
+      "P2_2": "FIXED_PENDING_FRESH_INDEPENDENT_RE_REVIEW",
+      "P2_3": "FIXED_PENDING_FRESH_INDEPENDENT_RE_REVIEW"
+    },
+    "focused_windows": {
+      "errors": 0,
+      "exit_code": 0,
+      "failures": 0,
+      "passed": 37,
+      "run": 37,
+      "skipped": 0
+    },
+    "immutable_committed_hashes_rechecked": {
+      "B3C_RECOVERY_STATE_20261107.json": "c2e0249d30074bc96e37eb7803c1f75667158c03b2aab6b4b35bccad85f81761",
+      "B3C_SIX_TARGET_VERIFIED_PLAN_20261107.json": "6a493a0d9418f62310ee9a0f33d8e50ade4d5dc768cd54ec9c20ad45eaf3cd6e"
+    },
+    "posix_coverage": "MOCKED_ON_WINDOWS_NOT_NATIVE_LINUX",
+    "stage_commit_push_attempted": false,
+    "utc": "2026-11-07T13:27:02.893812+00:00"
+  },
+  "seven_gitlinks": [
+    "160000 commit e7396e76dadbb49e374d4b664ff6bbb43a39bcb0\tmsgq_repo",
+    "160000 commit 3fec9a418a659de31d7b1f494193161697a35071\topendbc_repo",
+    "160000 commit 03cac2d30e111e0689c0429cb8c1fe6cb5a905af\topenpilot/sunnypilot/neural_network_data",
+    "160000 commit 8a16e089b88593914823743df29e1c30b7dd3e00\tpanda",
+    "160000 commit 28d4a7f69e80e1c3e0d24ca0733d7daeaeade3d0\trednose_repo",
+    "160000 commit 1aa8fc433bef1519a95c0700c96258c3be6dfb34\tteleoprtc_repo",
+    "160000 commit 92b742f711c7d216fd3ed7a46a30a959e3c43bd4\ttinygrad_repo"
+  ]
+}

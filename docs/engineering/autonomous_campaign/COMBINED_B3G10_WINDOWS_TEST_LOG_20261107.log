@@ -1,0 +1,659 @@
+combined_gate_tests
+["C:\\Users\\JK\\AppData\\Local\\Programs\\Python\\Python39\\python.exe", "-B", "-m", "unittest", "tools.release.tests.test_combined_b3g10_gate", "-v"]
+EXIT 0
+test_artifact_link_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_bogus_independent_review (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_changed_recovery_cannot_approve (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_cli_always_nonzero_and_json_hold (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_cli_bad_input_is_nonzero_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_directory_is_not_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_every_altered_plan_field_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_fake_safety_booleans_cannot_override (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_false_cold_build_claim (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_forged_six_records_and_bytes_remain_unverified (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_json_rejections (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_missing_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_oversized_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_pinned_defaults_and_six_absences (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_reparse_attribute_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_same_semantics_changed_plan_bytes_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_stale_external_source (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_symlink_rejected_without_privilege_requirement (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_syntactic_hashes_and_fake_signature_are_not_authority (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.073s
+
+OK
+
+
+existing_b3_admission
+["C:\\Users\\JK\\AppData\\Local\\Programs\\Python\\Python39\\python.exe", "-B", "-m", "unittest", "tools.release.tests.test_qcom_b3_admission", "-v"]
+EXIT 1
+test_bad_records_never_complete (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ok
+test_cli_fabricated_records_exit_nonzero (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ERROR
+test_cli_rejects_altered_plan_bytes_before_decode (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ERROR
+test_device_node_rejected_without_open (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... skipped 'POSIX device node fixture unavailable'
+test_every_plan_field_is_pinned (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ok
+test_fabricated_six_remain_unverified_even_if_byte_verifier_passes (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ok
+test_modified_plan_is_rejected_even_if_file_has_same_semantics (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ERROR
+test_oversized_plan_fails_before_byte_read (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ERROR
+test_prepared_is_not_safety_approval (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ok
+
+======================================================================
+ERROR: test_cli_fabricated_records_exit_nonzero (tools.release.tests.test_qcom_b3_admission.AdmissionTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_qcom_b3_admission.py", line 89, in test_cli_fabricated_records_exit_nonzero
+    self.assertNotEqual(admission.main(), 0)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\qcom_b3_admission.py", line 104, in main
+    fd = os.open(args.plan, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+AttributeError: module 'os' has no attribute 'O_NOFOLLOW'
+
+======================================================================
+ERROR: test_cli_rejects_altered_plan_bytes_before_decode (tools.release.tests.test_qcom_b3_admission.AdmissionTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_qcom_b3_admission.py", line 98, in test_cli_rejects_altered_plan_bytes_before_decode
+    admission.main()
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\qcom_b3_admission.py", line 104, in main
+    fd = os.open(args.plan, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+AttributeError: module 'os' has no attribute 'O_NOFOLLOW'
+
+======================================================================
+ERROR: test_modified_plan_is_rejected_even_if_file_has_same_semantics (tools.release.tests.test_qcom_b3_admission.AdmissionTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_qcom_b3_admission.py", line 119, in test_modified_plan_is_rejected_even_if_file_has_same_semantics
+    admission.main()
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\qcom_b3_admission.py", line 104, in main
+    fd = os.open(args.plan, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+AttributeError: module 'os' has no attribute 'O_NOFOLLOW'
+
+======================================================================
+ERROR: test_oversized_plan_fails_before_byte_read (tools.release.tests.test_qcom_b3_admission.AdmissionTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_qcom_b3_admission.py", line 129, in test_oversized_plan_fails_before_byte_read
+    admission.main()
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\qcom_b3_admission.py", line 104, in main
+    fd = os.open(args.plan, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+AttributeError: module 'os' has no attribute 'O_NOFOLLOW'
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.013s
+
+FAILED (errors=4, skipped=1)
+
+
+existing_offline_subset
+["C:\\Users\\JK\\AppData\\Local\\Programs\\Python\\Python39\\python.exe", "-B", "-m", "unittest", "tools.release.tests.test_qcom_b3_prepare", "tools.release.tests.test_mvl_model_artifacts", "tools.release.tests.test_qcom_capacity_budget", "tools.release.tests.test_campaign2_hardware_gate", "-v"]
+EXIT 1
+test_boolean_and_nonfinite_resource_evidence_rejected (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_missing_extra_and_duplicate_output_rejected (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_missing_record_resource_and_agnos_rejected (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_preflight_verifier_is_trusted_engineering_copy (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_recipe_requires_stock_flags (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_six_static_captures_and_negative_provenance (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_agnos_199_accepts_only_pinned_component_and_image (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ERROR
+test_agnos_and_source_identity_bound (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_cpu_artifact_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_cross_version_reference_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_duplicate_manifest_key_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_missing_or_extra_artifact_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_onnx_hash_mismatch_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_symlink_artifact_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ERROR
+test_valid_static_inventory_binds_all_six (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_wrong_agnos_image_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_invalid_observation (tools.release.tests.test_qcom_capacity_budget.CapacityBudgetTest) ... ok
+test_low_disk_and_copy_accounting (tools.release.tests.test_qcom_capacity_budget.CapacityBudgetTest) ... ok
+test_unknown_peak_never_goes_green (tools.release.tests.test_qcom_capacity_budget.CapacityBudgetTest) ... ok
+test_actual_readonly_facts_cannot_promote_quota_or_pilot (tools.release.tests.test_campaign2_hardware_gate.HardwareGateTest) ... ok
+test_false_claims_and_identity_mismatch_fail_closed (tools.release.tests.test_campaign2_hardware_gate.HardwareGateTest) ... ok
+
+======================================================================
+ERROR: test_agnos_199_accepts_only_pinned_component_and_image (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_mvl_model_artifacts.py", line 125, in test_agnos_199_accepts_only_pinned_component_and_image
+    result = m.inventory(self.source, self.assets, self.artifacts, self.image, self.agnos, '19.9', component)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\mvl_model_artifacts.py", line 182, in inventory
+    agnos = agnos_identity(agnos_image, agnos_root, agnos_version, agnos_component_manifest)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\mvl_model_artifacts.py", line 172, in agnos_identity
+    part = pinned_system(component_manifest, AGNOS199_MANIFEST_SHA256)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\agnos_image.py", line 41, in pinned_system
+    fd = os.open(manifest, os.O_RDONLY | os.O_NOFOLLOW)
+AttributeError: module 'os' has no attribute 'O_NOFOLLOW'
+
+======================================================================
+ERROR: test_symlink_artifact_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_mvl_model_artifacts.py", line 100, in test_symlink_artifact_rejected
+    target.symlink_to(self.artifacts / m.ARTIFACTS[0])
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\pathlib.py", line 1403, in symlink_to
+    self._accessor.symlink(target, self, target_is_directory)
+OSError: [WinError 1314] A required privilege is not held by the client: 'D:\\MVL_B3G10_WINDOWS_FALLBACK_20261107\\engineering_checkout\\tmpg_a3xii2\\artifacts\\dmonitoring_model_tinygrad.pkl' -> 'D:\\MVL_B3G10_WINDOWS_FALLBACK_20261107\\engineering_checkout\\tmpg_a3xii2\\artifacts\\dm_warp_1928x1208_tinygrad.pkl'
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.269s
+
+FAILED (errors=2)
+
+
+campaign_recovery
+["C:\\Users\\JK\\AppData\\Local\\Programs\\Python\\Python39\\python.exe", "-B", "-m", "unittest", "docs.engineering.autonomous_campaign.test_campaignctl", "-v"]
+EXIT 1
+test_checkpoint_drift_is_detected (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest) ... ERROR
+test_interrupted_lease_can_be_reclaimed_only_after_expiry (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest) ... ERROR
+test_interrupted_operation_is_detected (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest) ... ERROR
+test_run_lease_prevents_overlap_and_unowned_modification (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest) ... ERROR
+
+======================================================================
+ERROR: test_checkpoint_drift_is_detected (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 65, in test_checkpoint_drift_is_detected
+    code, result = self.check_state(state)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 18, in check_state
+    result = subprocess.run(['python3', str(SCRIPT), 'recover', '--state-file', str(path)], text=True, capture_output=True)
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 1436, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+======================================================================
+ERROR: test_interrupted_lease_can_be_reclaimed_only_after_expiry (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 47, in test_interrupted_lease_can_be_reclaimed_only_after_expiry
+    first = subprocess.run(['python3', str(SCRIPT), 'claim-run'], env=env, text=True, capture_output=True)
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 1436, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+======================================================================
+ERROR: test_interrupted_operation_is_detected (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 24, in test_interrupted_operation_is_detected
+    code, result = self.check_state(state)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 18, in check_state
+    result = subprocess.run(['python3', str(SCRIPT), 'recover', '--state-file', str(path)], text=True, capture_output=True)
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 1436, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+======================================================================
+ERROR: test_run_lease_prevents_overlap_and_unowned_modification (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 33, in test_run_lease_prevents_overlap_and_unowned_modification
+    first = subprocess.run(['python3', str(SCRIPT), 'claim-run'], env=env, text=True, capture_output=True)
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 1436, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.028s
+
+FAILED (errors=4)
+
+
+gate_cli
+["C:\\Users\\JK\\AppData\\Local\\Programs\\Python\\Python39\\python.exe", "-B", "tools/release/combined_b3g10_gate.py"]
+EXIT 2
+{
+  "artifact_directory": "D:\\MVL_B3G10_WINDOWS_FALLBACK_20261107\\engineering_checkout\\openpilot\\selfdrive\\modeld\\models",
+  "artifact_inventory": {
+    "dm_warp_1344x760_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "dm_warp_1928x1208_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "dmonitoring_model_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_warp_1344x760_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_warp_1928x1208_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT"
+  },
+  "b2_safety_status": "NOT_SAFETY_ACCEPTED_NOT_PASSED",
+  "b2_waiver": "OWNER_WAIVED_B2_OUTSTANDING_REQUIREMENTS_FOR_PLANNING_ONLY",
+  "b3_completed_6_of_6": false,
+  "b3_local_present_count": 0,
+  "b3_required_artifact_count": 6,
+  "b3_static_candidate_count": 0,
+  "b3_status": "B3_NATIVE_PROVIDER_MISSING",
+  "b3_verified_artifact_count": 0,
+  "decision": "BLOCKED_NATIVE_B3_AND_G10_NOT_INSTALLABLE",
+  "device_access_performed": false,
+  "device_status": "DEVICE_NOT_QUALIFIED",
+  "device_write_performed": false,
+  "evidence_authority": "PINNED_HISTORICAL_OFFLINE_STATE_ONLY",
+  "external_proof_authentication": "UNSUPPORTED_NO_TRUST_ROOT_OR_SIGNATURE_VALIDATOR",
+  "g10_cold_build": "NOT_BUILT",
+  "g10_promotion": false,
+  "g10_status": "G10_PRODUCT_BUILD_INCOMPLETE",
+  "independent_combined_review": "PENDING",
+  "install_allowed": false,
+  "issues": [],
+  "physical_checks_passed": 0,
+  "physical_checks_required": 10,
+  "plan_sha256": "6a493a0d9418f62310ee9a0f33d8e50ade4d5dc768cd54ec9c20ad45eaf3cd6e",
+  "rc_status": "RC_NOT_INSTALLABLE",
+  "recovery_sha256": "c2e0249d30074bc96e37eb7803c1f75667158c03b2aab6b4b35bccad85f81761",
+  "release_status": "HOLD",
+  "schema_version": 1,
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb"
+}
+
+FINAL COMBINED GATE TESTS exit=0
+test_artifact_link_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_bogus_independent_review (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_changed_recovery_cannot_approve (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_cli_always_nonzero_and_json_hold (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_cli_bad_input_is_nonzero_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_directory_is_not_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_every_altered_plan_field_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_fake_safety_booleans_cannot_override (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_false_cold_build_claim (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_forged_six_records_and_bytes_remain_unverified (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_json_rejections (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_missing_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_oversized_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_pinned_defaults_and_six_absences (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_reparse_attribute_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_same_semantics_changed_plan_bytes_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_stale_external_source (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_symlink_rejected_without_privilege_requirement (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_syntactic_hashes_and_fake_signature_are_not_authority (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.076s
+
+OK
+
+FINAL GATE CLI exit=2 (expected HOLD)
+{
+  "artifact_directory": "D:\\MVL_B3G10_WINDOWS_FALLBACK_20261107\\engineering_checkout\\openpilot\\selfdrive\\modeld\\models",
+  "artifact_inventory": {
+    "dm_warp_1344x760_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "dm_warp_1928x1208_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "dmonitoring_model_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_warp_1344x760_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_warp_1928x1208_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT"
+  },
+  "b2_safety_status": "NOT_SAFETY_ACCEPTED_NOT_PASSED",
+  "b2_waiver": "OWNER_WAIVED_B2_OUTSTANDING_REQUIREMENTS_FOR_PLANNING_ONLY",
+  "b3_completed_6_of_6": false,
+  "b3_local_present_count": 0,
+  "b3_required_artifact_count": 6,
+  "b3_static_candidate_count": 0,
+  "b3_status": "B3_NATIVE_PROVIDER_MISSING",
+  "b3_verified_artifact_count": 0,
+  "blocking_requirements": {
+    "b2_technical_safeguards": "NO_SAFETY_PROOF",
+    "cold_complete_agnos199_arm64_product": "NOT_BUILT",
+    "complete_bundle_and_owner_recovery_identity": "NOT_VERIFIED",
+    "elf_dependencies_and_target_runtime": "NOT_QUALIFIED",
+    "independent_combined_review": "PENDING",
+    "native_qcom_provider_and_execution": "NO_AUTHENTICATED_EVIDENCE",
+    "physical_comma4_checks": "0_OF_10",
+    "six_exact_source_qcom_outputs": "NO_AUTHENTICATED_EVIDENCE"
+  },
+  "decision": "BLOCKED_NATIVE_B3_AND_G10_NOT_INSTALLABLE",
+  "device_access_performed": false,
+  "device_status": "DEVICE_NOT_QUALIFIED",
+  "device_write_performed": false,
+  "evidence_authority": "PINNED_HISTORICAL_OFFLINE_STATE_ONLY",
+  "external_proof_authentication": "UNSUPPORTED_NO_TRUST_ROOT_OR_SIGNATURE_VALIDATOR",
+  "g10_cold_build": "NOT_BUILT",
+  "g10_promotion": false,
+  "g10_status": "G10_PRODUCT_BUILD_INCOMPLETE",
+  "independent_combined_review": "PENDING",
+  "install_allowed": false,
+  "issues": [],
+  "physical_checks_passed": 0,
+  "physical_checks_required": 10,
+  "plan_sha256": "6a493a0d9418f62310ee9a0f33d8e50ade4d5dc768cd54ec9c20ad45eaf3cd6e",
+  "rc_status": "RC_NOT_INSTALLABLE",
+  "recovery_sha256": "c2e0249d30074bc96e37eb7803c1f75667158c03b2aab6b4b35bccad85f81761",
+  "release_status": "HOLD",
+  "schema_version": 1,
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb"
+}
+
+DELIVERY FINAL FOCUSED TESTS (includes namespace rejection) exit=0
+test_artifact_link_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_bogus_independent_review (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_changed_recovery_cannot_approve (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_cli_always_nonzero_and_json_hold (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_cli_bad_input_is_nonzero_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_directory_is_not_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_every_altered_plan_field_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_fake_safety_booleans_cannot_override (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_false_cold_build_claim (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_forged_six_records_and_bytes_remain_unverified (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_json_rejections (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_missing_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_network_device_and_parent_paths_rejected_before_metadata_access (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_oversized_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_pinned_defaults_and_six_absences (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_reparse_attribute_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_same_semantics_changed_plan_bytes_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_stale_external_source (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_symlink_rejected_without_privilege_requirement (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_syntactic_hashes_and_fake_signature_are_not_authority (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.068s
+
+OK
+
+GIT STAGING BLOCKER
+git add -- <seven explicit combined campaign paths>
+fatal: Unable to create D:/MVL_B3G10_WINDOWS_FALLBACK_20261107/engineering_checkout/.git/index.lock: Permission denied
+Managed filesystem profile marks .git read-only; approval policy never. No commit or push performed.
+
+P2 REMEDIATION 2026-11-07. No staging/commit/push attempted this remediation.
+Development checks: initial 32-test run had one exhausted race mock; corrected cleanup fixture. Initial 35-test native write-exclusion checks exposed that attribute-only access does not enforce write exclusion (FILE_WRITE_ATTRIBUTES also is not a suitable sharing probe). Added FILE_LIST_DIRECTORY and verified GENERIC_WRITE exclusion. These development runs are not additional unique tests.
+
+P2_REMEDIATION_FOCUSED
+['C:\\Users\\JK\\AppData\\Local\\Programs\\Python\\Python39\\python.exe', '-B', '-m', 'unittest', 'tools.release.tests.test_combined_b3g10_gate', '-v']
+test_artifact_link_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_artifact_metadata_never_opens_artifact_bytes (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_bogus_independent_review (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_changed_recovery_cannot_approve (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_cli_always_nonzero_and_json_hold (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_cli_bad_input_is_nonzero_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_directory_is_not_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_every_altered_plan_field_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_fake_safety_booleans_cannot_override (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_false_cold_build_claim (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_forged_six_records_and_bytes_remain_unverified (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_inventory_network_paths_no_filesystem_access (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_json_rejections (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_missing_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_missing_sparse_component_stops_all_child_lookups (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_native_directory_lock_denies_generic_write_during_read (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_native_existing_directory_writer_refuses_inventory (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_network_device_and_parent_paths_rejected_before_metadata_access (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_oversized_json (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_pinned_defaults_and_six_absences (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_posix_exact_held_regular_inode_reopen_and_mismatch (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_posix_inventory_uses_held_fd_after_simulated_ancestor_swap (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_posix_missing_procfs_fails_closed_without_path_fallback (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_posix_no_opath_fails_closed (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_posix_nonregular_rejected_before_any_final_open (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_posix_raced_device_only_path_pinned_never_read_opened (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_reparse_attribute_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_safe_regular_file_native_read (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_same_semantics_changed_plan_bytes_rejected (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_stale_external_source (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_symlink_rejected_without_privilege_requirement (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_syntactic_hashes_and_fake_signature_are_not_authority (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_windows_all_ancestor_handles_retained_for_six_checks (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_windows_ancestor_swap_reparse_and_final_path_race (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_windows_createfile_directory_read_share_only_contract (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_windows_handle_reparse_and_final_path_validation (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+test_windows_sharing_violation_fails_closed_and_closes_ancestors (tools.release.tests.test_combined_b3g10_gate.CombinedGateTest) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 0.108s
+
+OK
+
+exit=0
+
+P2_REMEDIATION_EXISTING_ADMISSION
+['C:\\Users\\JK\\AppData\\Local\\Programs\\Python\\Python39\\python.exe', '-B', '-m', 'unittest', 'tools.release.tests.test_qcom_b3_admission', '-v']
+test_bad_records_never_complete (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ok
+test_cli_fabricated_records_exit_nonzero (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ERROR
+test_cli_rejects_altered_plan_bytes_before_decode (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ERROR
+test_device_node_rejected_without_open (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... skipped 'POSIX device node fixture unavailable'
+test_every_plan_field_is_pinned (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ok
+test_fabricated_six_remain_unverified_even_if_byte_verifier_passes (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ok
+test_modified_plan_is_rejected_even_if_file_has_same_semantics (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ERROR
+test_oversized_plan_fails_before_byte_read (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ERROR
+test_prepared_is_not_safety_approval (tools.release.tests.test_qcom_b3_admission.AdmissionTest) ... ok
+
+======================================================================
+ERROR: test_cli_fabricated_records_exit_nonzero (tools.release.tests.test_qcom_b3_admission.AdmissionTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_qcom_b3_admission.py", line 89, in test_cli_fabricated_records_exit_nonzero
+    self.assertNotEqual(admission.main(), 0)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\qcom_b3_admission.py", line 104, in main
+    fd = os.open(args.plan, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+AttributeError: module 'os' has no attribute 'O_NOFOLLOW'
+
+======================================================================
+ERROR: test_cli_rejects_altered_plan_bytes_before_decode (tools.release.tests.test_qcom_b3_admission.AdmissionTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_qcom_b3_admission.py", line 98, in test_cli_rejects_altered_plan_bytes_before_decode
+    admission.main()
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\qcom_b3_admission.py", line 104, in main
+    fd = os.open(args.plan, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+AttributeError: module 'os' has no attribute 'O_NOFOLLOW'
+
+======================================================================
+ERROR: test_modified_plan_is_rejected_even_if_file_has_same_semantics (tools.release.tests.test_qcom_b3_admission.AdmissionTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_qcom_b3_admission.py", line 119, in test_modified_plan_is_rejected_even_if_file_has_same_semantics
+    admission.main()
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\qcom_b3_admission.py", line 104, in main
+    fd = os.open(args.plan, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+AttributeError: module 'os' has no attribute 'O_NOFOLLOW'
+
+======================================================================
+ERROR: test_oversized_plan_fails_before_byte_read (tools.release.tests.test_qcom_b3_admission.AdmissionTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_qcom_b3_admission.py", line 129, in test_oversized_plan_fails_before_byte_read
+    admission.main()
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\qcom_b3_admission.py", line 104, in main
+    fd = os.open(args.plan, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+AttributeError: module 'os' has no attribute 'O_NOFOLLOW'
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.013s
+
+FAILED (errors=4, skipped=1)
+
+exit=1
+
+P2_REMEDIATION_EXISTING_SUBSET
+['C:\\Users\\JK\\AppData\\Local\\Programs\\Python\\Python39\\python.exe', '-B', '-m', 'unittest', 'tools.release.tests.test_qcom_b3_prepare', 'tools.release.tests.test_mvl_model_artifacts', 'tools.release.tests.test_qcom_capacity_budget', 'tools.release.tests.test_campaign2_hardware_gate', '-v']
+test_boolean_and_nonfinite_resource_evidence_rejected (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_missing_extra_and_duplicate_output_rejected (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_missing_record_resource_and_agnos_rejected (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_preflight_verifier_is_trusted_engineering_copy (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_recipe_requires_stock_flags (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_six_static_captures_and_negative_provenance (tools.release.tests.test_qcom_b3_prepare.B3PrepareTest) ... ok
+test_agnos_199_accepts_only_pinned_component_and_image (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ERROR
+test_agnos_and_source_identity_bound (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_cpu_artifact_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_cross_version_reference_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_duplicate_manifest_key_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_missing_or_extra_artifact_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_onnx_hash_mismatch_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_symlink_artifact_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ERROR
+test_valid_static_inventory_binds_all_six (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_wrong_agnos_image_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests) ... ok
+test_invalid_observation (tools.release.tests.test_qcom_capacity_budget.CapacityBudgetTest) ... ok
+test_low_disk_and_copy_accounting (tools.release.tests.test_qcom_capacity_budget.CapacityBudgetTest) ... ok
+test_unknown_peak_never_goes_green (tools.release.tests.test_qcom_capacity_budget.CapacityBudgetTest) ... ok
+test_actual_readonly_facts_cannot_promote_quota_or_pilot (tools.release.tests.test_campaign2_hardware_gate.HardwareGateTest) ... ok
+test_false_claims_and_identity_mismatch_fail_closed (tools.release.tests.test_campaign2_hardware_gate.HardwareGateTest) ... ok
+
+======================================================================
+ERROR: test_agnos_199_accepts_only_pinned_component_and_image (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_mvl_model_artifacts.py", line 125, in test_agnos_199_accepts_only_pinned_component_and_image
+    result = m.inventory(self.source, self.assets, self.artifacts, self.image, self.agnos, '19.9', component)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\mvl_model_artifacts.py", line 182, in inventory
+    agnos = agnos_identity(agnos_image, agnos_root, agnos_version, agnos_component_manifest)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\mvl_model_artifacts.py", line 172, in agnos_identity
+    part = pinned_system(component_manifest, AGNOS199_MANIFEST_SHA256)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\agnos_image.py", line 41, in pinned_system
+    fd = os.open(manifest, os.O_RDONLY | os.O_NOFOLLOW)
+AttributeError: module 'os' has no attribute 'O_NOFOLLOW'
+
+======================================================================
+ERROR: test_symlink_artifact_rejected (tools.release.tests.test_mvl_model_artifacts.ModelArtifactPreflightTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\tools\release\tests\test_mvl_model_artifacts.py", line 100, in test_symlink_artifact_rejected
+    target.symlink_to(self.artifacts / m.ARTIFACTS[0])
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\pathlib.py", line 1403, in symlink_to
+    self._accessor.symlink(target, self, target_is_directory)
+OSError: [WinError 1314] A required privilege is not held by the client: 'D:\\MVL_B3G10_WINDOWS_FALLBACK_20261107\\engineering_checkout\\tmp1q1xwb2g\\artifacts\\dmonitoring_model_tinygrad.pkl' -> 'D:\\MVL_B3G10_WINDOWS_FALLBACK_20261107\\engineering_checkout\\tmp1q1xwb2g\\artifacts\\dm_warp_1928x1208_tinygrad.pkl'
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.170s
+
+FAILED (errors=2)
+
+exit=1
+
+P2_REMEDIATION_RECOVERY
+['C:\\Users\\JK\\AppData\\Local\\Programs\\Python\\Python39\\python.exe', '-B', '-m', 'unittest', 'docs.engineering.autonomous_campaign.test_campaignctl', '-v']
+test_checkpoint_drift_is_detected (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest) ... ERROR
+test_interrupted_lease_can_be_reclaimed_only_after_expiry (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest) ... ERROR
+test_interrupted_operation_is_detected (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest) ... ERROR
+test_run_lease_prevents_overlap_and_unowned_modification (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest) ... ERROR
+
+======================================================================
+ERROR: test_checkpoint_drift_is_detected (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 65, in test_checkpoint_drift_is_detected
+    code, result = self.check_state(state)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 18, in check_state
+    result = subprocess.run(['python3', str(SCRIPT), 'recover', '--state-file', str(path)], text=True, capture_output=True)
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 1436, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+======================================================================
+ERROR: test_interrupted_lease_can_be_reclaimed_only_after_expiry (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 47, in test_interrupted_lease_can_be_reclaimed_only_after_expiry
+    first = subprocess.run(['python3', str(SCRIPT), 'claim-run'], env=env, text=True, capture_output=True)
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 1436, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+======================================================================
+ERROR: test_interrupted_operation_is_detected (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 24, in test_interrupted_operation_is_detected
+    code, result = self.check_state(state)
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 18, in check_state
+    result = subprocess.run(['python3', str(SCRIPT), 'recover', '--state-file', str(path)], text=True, capture_output=True)
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 1436, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+======================================================================
+ERROR: test_run_lease_prevents_overlap_and_unowned_modification (docs.engineering.autonomous_campaign.test_campaignctl.RecoveryTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\MVL_B3G10_WINDOWS_FALLBACK_20261107\engineering_checkout\docs\engineering\autonomous_campaign\test_campaignctl.py", line 33, in test_run_lease_prevents_overlap_and_unowned_modification
+    first = subprocess.run(['python3', str(SCRIPT), 'claim-run'], env=env, text=True, capture_output=True)
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\JK\AppData\Local\Programs\Python\Python39\lib\subprocess.py", line 1436, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.016s
+
+FAILED (errors=4)
+
+exit=1
+
+P2_REMEDIATION_CLI
+{
+  "artifact_directory": "D:\\MVL_B3G10_WINDOWS_FALLBACK_20261107\\engineering_checkout\\openpilot\\selfdrive\\modeld\\models",
+  "artifact_inventory": {
+    "dm_warp_1344x760_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "dm_warp_1928x1208_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "dmonitoring_model_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_warp_1344x760_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_warp_1928x1208_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT"
+  },
+  "b2_safety_status": "NOT_SAFETY_ACCEPTED_NOT_PASSED",
+  "b2_waiver": "OWNER_WAIVED_B2_OUTSTANDING_REQUIREMENTS_FOR_PLANNING_ONLY",
+  "b3_completed_6_of_6": false,
+  "b3_local_present_count": 0,
+  "b3_required_artifact_count": 6,
+  "b3_static_candidate_count": 0,
+  "b3_status": "B3_NATIVE_PROVIDER_MISSING",
+  "b3_verified_artifact_count": 0,
+  "blocking_requirements": {
+    "b2_technical_safeguards": "NO_SAFETY_PROOF",
+    "cold_complete_agnos199_arm64_product": "NOT_BUILT",
+    "complete_bundle_and_owner_recovery_identity": "NOT_VERIFIED",
+    "elf_dependencies_and_target_runtime": "NOT_QUALIFIED",
+    "independent_combined_review": "PENDING",
+    "native_qcom_provider_and_execution": "NO_AUTHENTICATED_EVIDENCE",
+    "physical_comma4_checks": "0_OF_10",
+    "six_exact_source_qcom_outputs": "NO_AUTHENTICATED_EVIDENCE"
+  },
+  "decision": "BLOCKED_NATIVE_B3_AND_G10_NOT_INSTALLABLE",
+  "device_access_performed": false,
+  "device_status": "DEVICE_NOT_QUALIFIED",
+  "device_write_performed": false,
+  "evidence_authority": "PINNED_HISTORICAL_OFFLINE_STATE_ONLY",
+  "external_proof_authentication": "UNSUPPORTED_NO_TRUST_ROOT_OR_SIGNATURE_VALIDATOR",
+  "g10_cold_build": "NOT_BUILT",
+  "g10_promotion": false,
+  "g10_status": "G10_PRODUCT_BUILD_INCOMPLETE",
+  "independent_combined_review": "PENDING",
+  "install_allowed": false,
+  "issues": [],
+  "physical_checks_passed": 0,
+  "physical_checks_required": 10,
+  "plan_sha256": "6a493a0d9418f62310ee9a0f33d8e50ade4d5dc768cd54ec9c20ad45eaf3cd6e",
+  "rc_status": "RC_NOT_INSTALLABLE",
+  "recovery_sha256": "c2e0249d30074bc96e37eb7803c1f75667158c03b2aab6b4b35bccad85f81761",
+  "release_status": "HOLD",
+  "schema_version": 1,
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb"
+}
+
+exit=2

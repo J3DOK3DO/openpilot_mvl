@@ -1,0 +1,221 @@
+{
+  "C4-08": "CONDITIONAL_NA_WHILE_G06_OFF_UNREGISTERED",
+  "C4-12": "WAIVED_BY_OWNER_NOT_EXECUTED",
+  "actual_product_bundle": null,
+  "agnos": {
+    "component_manifest_sha256": "c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693",
+    "image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+    "version": "19.9"
+  },
+  "b2_safety_status": "NOT_SAFETY_ACCEPTED_NOT_PASSED",
+  "b2_waiver": "OWNER_WAIVED_B2_OUTSTANDING_REQUIREMENTS_FOR_PLANNING_ONLY",
+  "b3_completed_6_of_6": false,
+  "b3_local_present_count": 0,
+  "b3_required_artifact_count": 6,
+  "b3_static_candidate_count": 0,
+  "b3_status": "B3_NATIVE_PROVIDER_MISSING",
+  "b3_verified_artifact_count": 0,
+  "blocking_requirements": {
+    "b2_technical_safeguards": "NO_SAFETY_PROOF",
+    "cold_complete_agnos199_arm64_product": "NOT_BUILT",
+    "complete_bundle_and_owner_recovery_identity": "NOT_VERIFIED",
+    "elf_dependencies_and_target_runtime": "NOT_QUALIFIED",
+    "independent_combined_review": "PENDING",
+    "native_qcom_provider_and_execution": "NO_AUTHENTICATED_EVIDENCE",
+    "physical_comma4_checks": "0_OF_10",
+    "six_exact_source_qcom_outputs": "NO_AUTHENTICATED_EVIDENCE"
+  },
+  "campaign": "MVL_StarPilot_Comma4_COMBINED_B3_G10_RC_WINDOWS_OFFLINE_20261107",
+  "decision": "BLOCKED_NATIVE_B3_AND_G10_NOT_INSTALLABLE",
+  "delivery_commit_identity": null,
+  "delivery_commit_status": "NOT_CREATED_COORDINATOR_WILL_STAGE_AND_COMMIT_OUTSIDE_SANDBOX",
+  "device_status": "DEVICE_NOT_QUALIFIED",
+  "engineering_branch": "codex/mvl-b3g10-windows-offline-gates-20261107",
+  "engineering_checkout": "D:\\MVL_B3G10_WINDOWS_FALLBACK_20261107\\engineering_checkout",
+  "environment": {
+    "bytecode_disabled": true,
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.9.21 (main, Dec 18 2024, 07:13:46) [MSC v.1929 64 bit (AMD64)]",
+    "temp_directory": "D:\\MVL_B3G10_WINDOWS_FALLBACK_20261107\\engineering_checkout",
+    "utc": "2026-11-07T13:07:56.853089+00:00"
+  },
+  "evidence_sha256": {
+    "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_GATE_20261107.json": "faea8b422667a987106a6c3c4c7c7cba046a0b213fcc2baf79c9d2dfc699e81c",
+    "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_OFFLINE_REPORT_20261107.md": "c1894ace3a08b12e8c4a056d009d327b7a0df4329c51e734661565721650a71a",
+    "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_TEST_LOG_20261107.log": "e6bd056ba837db4de1b6dbd82c8ef86a6952504c4bfca67ada8957650b7b62cd",
+    "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_VALIDATION_20261107.json": "3c4eb8afce0c36de7c2eee7a4ce433db5f3fda71f0db4a29462d20aaee5dbccf",
+    "tools/release/combined_b3g10_gate.py": "6ed73290528776e71cf2cbf4a4773a84567b5a673b15d83fd15ab9146f775754",
+    "tools/release/tests/test_combined_b3g10_gate.py": "e3054604a6afea52d8e53d482acd5343c0bddb2bed1e8b2fd5544ddef42f4521"
+  },
+  "external_signed_proof_support": "UNSUPPORTED_NO_TRUST_ROOT_SIGNATURE_VALIDATOR_OR_REVOCATION_POLICY",
+  "final_head": "b708816ab845c1a4b4988fc1e210cf167be43254",
+  "final_tree_clean": false,
+  "frozen_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "g06_status": "OFF_REPORTED_NO_DEVICE_VERIFICATION",
+  "g10_full_cold_product": "NOT_BUILT",
+  "g10_status": "G10_PRODUCT_BUILD_INCOMPLETE",
+  "handoff_manifest_sha256": "998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4",
+  "handoff_tar_sha256": "37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d60fe",
+  "head_at_inspection_and_tests": "b708816ab845c1a4b4988fc1e210cf167be43254",
+  "historical_native_graph_and_representative_library": "UBUNTU_HOST_ONLY_INHERITED_NOT_A_NEW_BUILD_NOT_COMPLETE_PRODUCT",
+  "independent_second_review": "THREE_P2_REMEDIATED_PENDING_FRESH_INDEPENDENT_RE_REVIEW",
+  "initial_tree_clean": true,
+  "known_good_installed_commit": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1",
+  "known_good_installed_status": "NOT_CURRENTLY_VERIFIED",
+  "next_exact_action": "Fresh independent read-only re-review of all three P2 remediations in the seven prepared files. Coordinator stages and commits outside this sandbox; no push. Release remains HOLD, 0/6 verified QCOM, 0/10 C4, B2 planning waiver only, not safety passed.",
+  "p2_remediation": {
+    "actual_junctions_or_special_devices_used": false,
+    "broader_windows_results_refreshed": true,
+    "findings": {
+      "P2_1": "FIXED_PENDING_FRESH_INDEPENDENT_RE_REVIEW",
+      "P2_2": "FIXED_PENDING_FRESH_INDEPENDENT_RE_REVIEW",
+      "P2_3": "FIXED_PENDING_FRESH_INDEPENDENT_RE_REVIEW"
+    },
+    "focused_windows": {
+      "errors": 0,
+      "exit_code": 0,
+      "failures": 0,
+      "passed": 37,
+      "run": 37,
+      "skipped": 0
+    },
+    "immutable_committed_hashes_rechecked": {
+      "B3C_RECOVERY_STATE_20261107.json": "c2e0249d30074bc96e37eb7803c1f75667158c03b2aab6b4b35bccad85f81761",
+      "B3C_SIX_TARGET_VERIFIED_PLAN_20261107.json": "6a493a0d9418f62310ee9a0f33d8e50ade4d5dc768cd54ec9c20ad45eaf3cd6e"
+    },
+    "posix_coverage": "MOCKED_ON_WINDOWS_NOT_NATIVE_LINUX",
+    "stage_commit_push_attempted": false,
+    "utc": "2026-11-07T13:27:02.893812+00:00"
+  },
+  "params_policy": "254_DENY_REPORTED_PRESERVED_NO_SOURCE_CHANGES",
+  "physical_checks_not_tested": [
+    "C4-01",
+    "C4-02",
+    "C4-03",
+    "C4-04",
+    "C4-05",
+    "C4-06",
+    "C4-07",
+    "C4-09",
+    "C4-10",
+    "C4-11"
+  ],
+  "physical_checks_passed": 0,
+  "physical_checks_required": 10,
+  "prepared_paths": [
+    "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_GATE_20261107.json",
+    "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_OFFLINE_REPORT_20261107.md",
+    "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_RECOVERY_20261107.json",
+    "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_TEST_LOG_20261107.log",
+    "docs/engineering/autonomous_campaign/COMBINED_B3G10_WINDOWS_VALIDATION_20261107.json",
+    "tools/release/combined_b3g10_gate.py",
+    "tools/release/tests/test_combined_b3g10_gate.py"
+  ],
+  "rc_status": "RC_NOT_INSTALLABLE",
+  "release_status": "HOLD",
+  "reported_available_disk_gib": {
+    "C": 0.35,
+    "D": 135,
+    "E": 14.5,
+    "authority": "OWNER_REPORT_NOT_MEASURED"
+  },
+  "required_ancestor": "b708816ab845c1a4b4988fc1e210cf167be43254",
+  "safety_boundary": {
+    "device_access_performed": false,
+    "device_write_performed": false,
+    "firmware_panda_can_vehicle_operation": false,
+    "g10_promotion": false,
+    "install_allowed": false,
+    "native_qcom_compile": false,
+    "package_installs": false,
+    "product_build": false,
+    "push_performed": false
+  },
+  "schema_version": 1,
+  "source_agnos_handoff_actual_bytes_on_windows": "NOT_REVERIFIED_NO_ROOTFS_OR_NATIVE_CAPTURE_BYTES",
+  "sparse_paths": [
+    "tools/release",
+    "docs/engineering/autonomous_campaign"
+  ],
+  "ssh_observation": {
+    "authority": "OWNER_REPORTED_NOT_REPROBED",
+    "result": "PUBLICKEY_AUTH_FAILURE",
+    "time_dubai": "2026-11-07 16:40"
+  },
+  "staged_file_count": 0,
+  "stock_artifact_inventory": {
+    "dm_warp_1344x760_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "dm_warp_1928x1208_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "dmonitoring_model_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_warp_1344x760_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT",
+    "driving_warp_1928x1208_tinygrad.pkl": "ABSENT_IN_LOCAL_CHECKOUT"
+  },
+  "tests_current_windows": {
+    "campaign_recovery": {
+      "conditions": [
+        "Hardcoded python3 executable unavailable; fcntl is additionally Unix-only"
+      ],
+      "errors": 4,
+      "exit_code": 1,
+      "failures": 0,
+      "passed": 0,
+      "run": 4,
+      "skipped": 0
+    },
+    "combined_gate": {
+      "errors": 0,
+      "exit_code": 0,
+      "failures": 0,
+      "passed": 37,
+      "run": 37,
+      "skipped": 0
+    },
+    "existing_b3_admission": {
+      "conditions": [
+        "O_NOFOLLOW unavailable",
+        "POSIX device node fixture unavailable"
+      ],
+      "errors": 4,
+      "exit_code": 1,
+      "failures": 0,
+      "passed": 4,
+      "run": 9,
+      "skipped": 1
+    },
+    "existing_offline_subset": {
+      "conditions": [
+        "O_NOFOLLOW unavailable",
+        "WinError 1314 symlink privilege"
+      ],
+      "errors": 2,
+      "exit_code": 1,
+      "failures": 0,
+      "modules": [
+        "test_qcom_b3_prepare",
+        "test_mvl_model_artifacts",
+        "test_qcom_capacity_budget",
+        "test_campaign2_hardware_gate"
+      ],
+      "passed": 19,
+      "run": 21,
+      "skipped": 0
+    },
+    "full_unix_suite": {
+      "executed": false,
+      "reason": "Demonstrated platform incompatibility; remaining Linux process/resource/mount and sparse-source fixtures not portable"
+    },
+    "gate_cli": {
+      "exit_code": 2,
+      "meaning": "EXPECTED_RELEASE_HOLD"
+    }
+  },
+  "tests_historical_ubuntu_only": {
+    "not_current_windows_results": true,
+    "recovery_passed": 4,
+    "release_tools_passed": 126
+  },
+  "tinygrad_gitlink": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4",
+  "ubuntu_branch_untouched": "codex/mvl-b3g10-rc-offline-continuation-20261107",
+  "ubuntu_bridge": "OWNER_REPORTED_UNRESPONSIVE_VM_NO_ACCESS_OR_WORK_IMPORT"
+}
