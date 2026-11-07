@@ -22,7 +22,7 @@
     "source_commit": "799285efa15d5cd46d068e251ec87df18970ee6b"
   },
   "lease": "local campaignctl lease; inspect live owner and recover before new run",
-  "next_action": "Verify documentation-only delta, commit evidence, publish branch if authenticated",
+  "next_action": "Separate authorization and actual hardware qualification of B2 safeguards before any B3 warp pilot",
   "on_resume": [
     "git status --short --branch",
     "python3 docs/engineering/autonomous_campaign/campaignctl.py recover",
@@ -32,9 +32,15 @@
     "never infer device compilation from plan"
   ],
   "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "publication": {
+    "final_remote_head_check": "compare actual GitHub ref to git rev-parse HEAD after this docs-only record is published",
+    "method": "SHA-verified 40 KB incremental bundle transferred via connected Windows helper; authenticated non-force push",
+    "remote_branch": "codex/mvl-b2final-b3-g10-prep-20261107",
+    "verified_remote_sha_before_publication_record": "bfc5070e11305de4f18ef28ec2eaa8c4ebccd695"
+  },
   "record_commit": "DOCS_ONLY_DESCENDANT_OF_LAST_VERIFIED_CODE_COMMIT",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE / HOLD",
   "schema_version": 1,
-  "stage": "REVIEW_PASS_DOCS_CHECKPOINT_AND_PUBLICATION",
+  "stage": "CAMPAIGN1_OFFLINE_COMPLETE_HARDWARE_GATES_HOLD",
   "worktree": "/tmp/mvl-b2final-b3-g10-prep-20261107"
 }

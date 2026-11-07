@@ -53,3 +53,5 @@ Append new actions in chronological order; preserve prior entries and identify w
 ## 2026-11-07 Campaign 1 B2-Final/B3/G10 preparation
 
 Recovered starting `7a5bb96`, created isolated branch/worktree and acquired separate campaignctl lease. Verified frozen `4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb`, handoff archive and AGNOS 19.9 image. Committed host tooling at `84dcff9`; independent review found four evidence-validation gaps. Fixed at `799285efa15d5cd46d068e251ec87df18970ee6b`; clean exact-commit rerun passed 94 release-tool and 4 recovery tests. Generated dry-run and G10 HOLD evidence; no device action. Documentation/review/publication checkpoint follows.
+
+- 2026-11-07: Reviewed Campaign 1 branch published at `bfc5070e11305de4f18ef28ec2eaa8c4ebccd695` via SHA-verified bundle, authenticated Windows non-force push and independent GitHub ref check. No device action; release HOLD. A docs-only publication record follows.
