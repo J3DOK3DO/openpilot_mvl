@@ -2,12 +2,61 @@ import copy
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from tools.release import campaign3_host_contracts as c
 from tools.release.tests.test_campaign3_offline import frames
 
 
 class HostContractsTest(unittest.TestCase):
+    @staticmethod
+    def _mountinfo_line(mount_id, parent_id, mount):
+        escaped = (str(mount).replace('\\', r'\134').replace(' ', r'\040')
+                   .replace('\t', r'\011').replace('\n', r'\012'))
+        return f'{mount_id} {parent_id} 0:1 / {escaped} rw - tmpfs tmpfs rw'
+
+    def test_escaped_mountinfo_parent_and_same_device_child_bind(self):
+        for awkward in (' ', '\t', '\n', '\\'):
+            with self.subTest(awkward=repr(awkward)):
+                with tempfile.TemporaryDirectory(prefix=f'campaign3{awkward}parent-') as name:
+                    root = Path(name) / 'pilot-0123456789abcdef'
+                    root.mkdir()
+                    paths = {area: root / area for area in c.WRITE_AREAS}
+                    for path in paths.values():
+                        path.mkdir()
+                    child = paths['cache']
+                    self.assertEqual(child.stat().st_dev, root.stat().st_dev)
+                    lines = [self._mountinfo_line(1, 0, '/'),
+                             self._mountinfo_line(2, 1, name)]
+                    with patch.object(Path, 'read_text', return_value='\n'.join(lines)):
+                        result = c.validate_write_coverage(root, paths)
+                    self.assertEqual(result['coverage'], 'SIX_AREAS_ONE_ACTUAL_MOUNT')
+                    lines.append(self._mountinfo_line(3, 2, child))
+                    with patch.object(Path, 'read_text', return_value='\n'.join(lines)):
+                        with self.assertRaisesRegex(ValueError, 'crosses filesystem or mount'):
+                            c.validate_write_coverage(root, paths)
+
+    def test_malformed_mountinfo_fails_closed_with_awkward_paths(self):
+        with tempfile.TemporaryDirectory(prefix='campaign3 awkward\t\\-') as name:
+            root = Path(name) / 'pilot-0123456789abcdef'
+            root.mkdir()
+            paths = {area: root / area for area in c.WRITE_AREAS}
+            for path in paths.values():
+                path.mkdir()
+            valid = [self._mountinfo_line(1, 0, '/'),
+                     self._mountinfo_line(2, 1, name)]
+            malformed = ('3 2 0:1 / /unexpected\\999 rw - tmpfs tmpfs rw',
+                         '3 2 0:1 / /unexpected\\04 rw - tmpfs tmpfs rw',
+                         '3 2 0:1 / /unexpected\\000 rw - tmpfs tmpfs rw',
+                         '3 2 0:1 /unexpected\\999 /other rw - tmpfs tmpfs rw',
+                         '3 2 0:1 / /unexpected rw tmpfs tmpfs rw',
+                         'bad 2 0:1 / /unexpected rw - tmpfs tmpfs rw')
+            for line in malformed:
+                with self.subTest(line=line):
+                    with patch.object(Path, 'read_text', return_value='\n'.join(valid + [line])):
+                        with self.assertRaisesRegex(ValueError, 'mountinfo'):
+                            c.validate_write_coverage(root, paths)
+
     def test_actual_write_path_coverage_and_symlink_escape(self):
         with tempfile.TemporaryDirectory(prefix='campaign3-') as name:
             root = Path(name) / 'pilot-0123456789abcdef'

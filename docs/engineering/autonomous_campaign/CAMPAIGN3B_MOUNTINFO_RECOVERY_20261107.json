@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "base_commit": "8219f82144f5bf049299620e6084d8555d7b040a",
+  "decision": "B2_HARDWARE_NOT_QUALIFIED / PRODUCT_BUILD_INCOMPLETE / HOLD",
+  "finding": "P2: incomplete mountinfo path decoding can miss a same-device child bind mount",
+  "remediation": "Decode mountinfo octal space, tab, newline and backslash escapes; reject malformed entries before mount selection",
+  "focused_tests": "11/11 pass with mocked escaped mountinfo and real /proc/self/mountinfo",
+  "full_release_clean_commit_command": "python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q",
+  "recovery_clean_commit_command": "python3 -m unittest -q docs.engineering.autonomous_campaign.test_campaignctl",
+  "qcom_outputs": "0/6",
+  "cold_native_product": "NOT_BUILT",
+  "physical_c4": "0/10",
+  "device_qualified": false,
+  "device_contact": false,
+  "host_mounts_created": false,
+  "production_source_changed": false,
+  "github_push": false,
+  "next_owner": "coordinator for independent re-review and separate host evidence"
+}

@@ -9,13 +9,35 @@ import stat
 from tools.release.campaign3_offline import WRITE_AREAS, SERVICES, replay_state
 
 
+def _mountinfo_path(value: str) -> str:
+    """Decode the four octal escapes used for mountinfo path fields."""
+    escapes = {'040': ' ', '011': '\t', '012': '\n', '134': '\\'}
+
+    def decode(match: re.Match[str]) -> str:
+        code = match.group(1)
+        if code not in escapes:
+            raise ValueError('invalid mountinfo path escape')
+        return escapes[code]
+
+    if re.search(r'\\(?![0-7]{3})', value):
+        raise ValueError('invalid mountinfo path escape')
+    return re.sub(r'\\([0-7]{3})', decode, value)
+
+
 def _mount_id(path: Path) -> str:
     """Return the covering mount ID, including bind mounts on the same device."""
     target = str(path)
     winner = (-1, '')
     for line in Path('/proc/self/mountinfo').read_text().splitlines():
-        fields = line.split()
-        mount = fields[4].replace('\\040', ' ')
+        before, separator, after = line.partition(' - ')
+        fields, filesystem = before.split(), after.split()
+        if not separator or len(fields) < 6 or len(filesystem) != 3 or \
+                not fields[0].isdigit() or not fields[1].isdigit() or \
+                not re.fullmatch(r'[0-9]+:[0-9]+', fields[2]) or \
+                not fields[3] or not fields[4].startswith('/'):
+            raise ValueError('malformed mountinfo')
+        _mountinfo_path(fields[3])
+        mount = _mountinfo_path(fields[4])
         if target == mount or target.startswith(mount.rstrip('/') + '/'):
             if len(mount) > winner[0]:
                 winner = (len(mount), fields[0])
