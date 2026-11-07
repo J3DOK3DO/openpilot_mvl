@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
@@ -18,22 +19,25 @@ REQUIRED_EVIDENCE = ('provider_attestation_sha256', 'compiler_log_sha256',
                      'hard_quota_evidence_sha256', 'parked_monitor_evidence_sha256',
                      'gpu_thermal_evidence_sha256', 'memory_abort_evidence_sha256',
                      'quality_review_evidence_sha256')
+PLAN_PATH = (Path(__file__).resolve().parents[2] / 'docs/engineering/autonomous_campaign'
+             / 'B3C_SIX_TARGET_VERIFIED_PLAN_20261107.json')
+PLAN_SHA256 = '6a493a0d9418f62310ee9a0f33d8e50ade4d5dc768cd54ec9c20ad45eaf3cd6e'
+UNVERIFIED = 'UNVERIFIED_NATIVE_COMPILER_EXECUTION'
+UNAUTHENTICATED = 'NATIVE_OUTPUT_PROVENANCE_NOT_AUTHENTICATED'
+
+
+def trusted_plan() -> dict:
+    """Load the frozen plan only after authenticating its exact checked-in bytes."""
+    raw = model.regular(PLAN_PATH).read_bytes()
+    if hashlib.sha256(raw).hexdigest() != PLAN_SHA256:
+        raise ValueError('trusted B3C plan hash mismatch')
+    return json.loads(raw, object_pairs_hook=model.no_duplicate_keys)
 
 
 def audit(plan: dict, records: list[dict], artifacts: Path | None = None) -> dict:
     issues = []
-    if plan.get('source_commit') != prep.SOURCE or plan.get('tinygrad_commit') != prep.TINYGRAD or \
-            plan.get('agnos', {}).get('image_sha256') != model.AGNOS199_IMAGE_SHA256 or \
-            plan.get('agnos', {}).get('component_manifest_sha256') != model.AGNOS199_MANIFEST_SHA256 or \
-            plan.get('handoff_manifest_sha256') != prep.HANDOFF_MANIFEST_SHA or \
-            plan.get('handoff_tar_sha256') != prep.HANDOFF_TAR_SHA:
-        issues.append('plan provenance mismatch')
-    targets = plan.get('targets')
-    if not isinstance(targets, list) or len(targets) != 6 or \
-            [x.get('artifact') for x in targets if isinstance(x, dict)] != \
-            [prep.FIRST] + [x for x in model.ARTIFACTS if x != prep.FIRST] or \
-            any(x.get('stock_scons_target') != str(model.MODEL_DIR / x['artifact']) for x in targets if isinstance(x, dict)):
-        issues.append('plan target sequence mismatch')
+    if json.dumps(plan, sort_keys=True) != json.dumps(trusted_plan(), sort_keys=True):
+        issues.append('frozen native execution plan mismatch')
     if not isinstance(records, list) or any(not isinstance(x, dict) for x in records):
         raise ValueError('records must be an array of objects')
     if len(records) > 6:
@@ -54,13 +58,20 @@ def audit(plan: dict, records: list[dict], artifacts: Path | None = None) -> dic
                     issues.append(f"{record.get('artifact')}: missing {field}")
             if record.get('quality_result') != 'PASS_INDEPENDENT_REVIEW':
                 issues.append(f"{record.get('artifact')}: quality review missing")
-    count = len(records) if not issues else 0
-    # Static bytes and self-reported hashes cannot authenticate a native provider.
-    # An independent signed provider/reviewer workflow must issue completion.
-    decision = 'B3_STATIC_6_OF_6_PENDING_AUTHENTICATION' if count == 6 else 'PREPARED_NO_QCOM_DEVICE'
+    static_issues = list(issues)
+    count = len(records) if len(records) == 6 and not static_issues else 0
+    if records:
+        # Neither byte inspection nor self-reported receipts authenticate execution.
+        issues.extend((UNVERIFIED, UNAUTHENTICATED))
+    decision = UNVERIFIED if records else 'PREPARED_NO_QCOM_DEVICE'
     return {'schema_version': 1, 'decision': decision, 'b2_waiver': WAIVER,
             'b2_safety_status': 'NOT_SAFETY_ACCEPTED_NOT_PASSED',
-            'b3_static_candidate_count': count, 'b3_verified_artifact_count': 0,
+            'static_candidates': count, 'b3_static_candidate_count': count,
+            'receipt_authentication_status': 'SELF_REPORTED_NOT_AUTHENTICATED',
+            'receipt_field_authentication': {
+                field: 'SELF_REPORTED_NOT_AUTHENTICATED'
+                for field in (*REQUIRED_EVIDENCE, 'quality_result')},
+            'b3_verified_artifact_count': 0,
             'b3_required_artifact_count': 6, 'b3_completed_6_of_6': False,
             'issues': sorted(set(issues)), 'device_write_performed': False,
             'g10_promotion': False}
@@ -79,7 +90,12 @@ def main() -> int:
     parser.add_argument('--records', type=Path)
     parser.add_argument('--artifacts', type=Path)
     args = parser.parse_args()
-    report = audit(load_json(args.plan), load_json(args.records) if args.records else [], args.artifacts)
+    # Reject a supplied plan whose bytes differ, before JSON decoding or audit.
+    plan_bytes = model.regular(args.plan).read_bytes()
+    if hashlib.sha256(plan_bytes).hexdigest() != PLAN_SHA256:
+        parser.error('supplied B3C plan hash mismatch')
+    report = audit(json.loads(plan_bytes, object_pairs_hook=model.no_duplicate_keys),
+                   load_json(args.records) if args.records else [], args.artifacts)
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0 if not report['issues'] else 2
 
