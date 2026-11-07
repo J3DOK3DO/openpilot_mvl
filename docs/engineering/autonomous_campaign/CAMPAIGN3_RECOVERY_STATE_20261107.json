@@ -19,10 +19,10 @@
     "remediation": "Each service timestamp must strictly advance across frames; repeated and decreasing values produce NO_GO",
     "scope": "Synthetic replay only; no live telemetry or hardware qualification"
   },
-  "implementation_commit": "Commit containing this recovery state; resolve with git rev-parse HEAD",
+  "implementation_commit": "0914033bc996fbeff1d138cb997a33a7b85fe918",
   "verification": {
     "campaign3_offline_tests": "6 passed; python3 -m unittest -q tools.release.tests.test_campaign3_offline",
-    "full_release_suite_after_commit": "Pending clean-commit rerun",
-    "campaign_recovery_tests_after_commit": "Pending clean-commit rerun"
+    "full_release_suite_after_commit": "112 passed at clean implementation commit 0914033bc; python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q",
+    "campaign_recovery_tests_after_commit": "4 passed at clean implementation commit 0914033bc; python3 -m unittest -q docs.engineering.autonomous_campaign.test_campaignctl"
   }
 }
