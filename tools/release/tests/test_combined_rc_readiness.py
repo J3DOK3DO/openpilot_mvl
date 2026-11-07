@@ -22,6 +22,11 @@ class CombinedRCReadinessTest(unittest.TestCase):
         self.assertEqual(report['applicable_physical_checks_passed'], 0)
         self.assertEqual(report['formal_scoped_acceptance']['percent'], 48)
         self.assertEqual(report['installation_sequence_status'], 'PLAN_ONLY_NOT_EXECUTED')
+        historical = {r['requirement']: r['status'] for r in report['checks']}
+        self.assertEqual(historical['C1 non-actuating source integration'], 'HISTORICAL_NOT_REVERIFIED')
+        self.assertEqual(historical['C4 host release regression'], 'HISTORICAL_NOT_REVERIFIED')
+        self.assertEqual(historical['C4 254 restricted Params'], 'REQUIRED_DENY_NOT_REVERIFIED')
+        self.assertEqual(historical['C4 G06 transport'], 'HISTORICAL_OFF_NOT_REVERIFIED')
         self.assertEqual({r['requirement'] for r in report['checks'] if r['status'] == 'NOT_RUN'},
                          {'C4 physical C4-01–07 and C4-09–11'})
 
@@ -48,8 +53,9 @@ class CombinedRCReadinessTest(unittest.TestCase):
             rc.evaluate(altered)
 
     def test_rehearsal_failure_paths_are_mock_only(self):
-        for failure in ('stage_failed', 'switch_failed', 'health_failed'):
-            prefix = {'stage_failed': ['preflight_ok', 'backup_ok'],
+        for failure in ('preflight_failed', 'backup_failed', 'stage_failed', 'switch_failed', 'health_failed'):
+            prefix = {'preflight_failed': [], 'backup_failed': ['preflight_ok'],
+                      'stage_failed': ['preflight_ok', 'backup_ok'],
                       'switch_failed': ['preflight_ok', 'backup_ok', 'stage_ok'],
                       'health_failed': ['preflight_ok', 'backup_ok', 'stage_ok', 'switch_ok']}[failure]
             result = rc.rehearse(prefix + [failure])

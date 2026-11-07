@@ -44,21 +44,21 @@ def evaluate(base: Mapping[str, object]) -> dict[str, object]:
     if base.get('b3_local_present_count') != present:
         raise ValueError('artifact inventory count mismatch')
     checks = [
-        _row('C1 non-actuating source integration', 'PASSED_HOST_SCOPE',
-             'Pinned source is unchanged from frozen 4b product; historical host tests are separately recorded',
+        _row('C1 non-actuating source integration', 'HISTORICAL_NOT_REVERIFIED',
+             'Frozen 4b product and its earlier host tests are recorded separately; this evaluator does not recheck them',
              'Native UI, IPC, startup, fault and Honda display checks on a qualified device'),
         _row('C2 six QCOM captures', 'BLOCKED', f'{present}/6 locally present; 0/6 authenticated',
              'Authenticated source-matched QCOM execution, six hashes and target quality review'),
         _row('C3 full AGNOS 19.9 product', 'BLOCKED', 'Complete cold build NOT_BUILT',
              'Six verified QCOM inputs, exact cold build, binary/ABI and package closure'),
-        _row('C4 host release regression', 'PASSED_HISTORICAL_SCOPE',
-             'Prior exact-commit host suites recorded; current campaign result is separate',
+        _row('C4 host release regression', 'HISTORICAL_NOT_REVERIFIED',
+             'Prior exact-commit host suites are recorded elsewhere; this evaluator does not execute tests',
              'Rerun current changed-tool suite at exact committed HEAD'),
-        _row('C4 254 restricted Params', 'REQUIRED_DENY',
-             'Historical 254-key DENY crosswalk at frozen product source',
+        _row('C4 254 restricted Params', 'REQUIRED_DENY_NOT_REVERIFIED',
+             'Historical 254-key DENY crosswalk exists; this evaluator does not inspect its current bytes',
              'Keep all 254 denied; target runtime proof remains separate'),
-        _row('C4 G06 transport', 'OFF_CONDITIONAL_NA',
-             'Production registration remains OFF in the restricted release profile',
+        _row('C4 G06 transport', 'HISTORICAL_OFF_NOT_REVERIFIED',
+             'The restricted profile records production registration OFF; this evaluator does not inspect current source',
              'Separate target security qualification before any future registration'),
         _row('C4 physical C4-01–07 and C4-09–11', 'NOT_RUN',
              '0/10 applicable target checks accepted',
@@ -102,7 +102,8 @@ def evaluate(base: Mapping[str, object]) -> dict[str, object]:
 def rehearse(events: Sequence[str]) -> dict[str, object]:
     """Pure mock failure-response rehearsal; no filesystem or subprocess action."""
     allowed = {'preflight_ok', 'backup_ok', 'stage_ok', 'switch_ok', 'health_ok',
-               'stage_failed', 'switch_failed', 'health_failed'}
+               'preflight_failed', 'backup_failed', 'stage_failed',
+               'switch_failed', 'health_failed'}
     if type(events) not in (list, tuple) or not events or any(type(e) is not str or e not in allowed for e in events):
         raise ValueError('invalid rehearsal event')
     steps = []
@@ -113,7 +114,7 @@ def rehearse(events: Sequence[str]) -> dict[str, object]:
         if event == expected[index]:
             steps.append(event)
             continue
-        if index < 2 or event != expected[index].replace('_ok', '_failed') or index != len(events) - 1:
+        if event != expected[index].replace('_ok', '_failed') or index != len(events) - 1:
             raise ValueError('invalid failure transition')
         return {'mode': 'MOCK_ONLY', 'result': 'STOP_OWNER_RECOVERY_REQUIRED',
                 'last_event': event, 'known_good_reference': KNOWN_GOOD,
