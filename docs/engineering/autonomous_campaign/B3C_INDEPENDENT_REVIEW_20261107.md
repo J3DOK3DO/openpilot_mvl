@@ -24,3 +24,5 @@ Focused: `python3 -m unittest tools.release.tests.test_qcom_b3_admission -v`.
 Full release: `python3 -m unittest discover -s tools/release/tests -v`.
 
 Recovery: `python3 -m unittest docs.engineering.autonomous_campaign.test_campaignctl -v`.
+
+After the code commit, the clean checkout run passed 123/123 release tests and 4/4 recovery tests. The focused admission suite passed 6/6 tests.
