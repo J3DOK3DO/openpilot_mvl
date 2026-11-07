@@ -98,6 +98,17 @@ class AdmissionTest(unittest.TestCase):
                     admission.main()
             self.assertNotEqual(error.exception.code, 0)
 
+    def test_modified_plan_is_rejected_even_if_file_has_same_semantics(self):
+        original = admission.PLAN_PATH.read_bytes()
+        with tempfile.TemporaryDirectory(prefix='b3c-plan-race-') as d:
+            p = Path(d) / 'plan.json'
+            p.write_bytes(original + b' ')
+            with patch.object(sys, 'argv', ['qcom_b3_admission.py', '--plan', str(p)]):
+                with patch.object(admission.model, 'sha256', return_value=admission.PLAN_SHA256):
+                    with self.assertRaises(SystemExit) as err:
+                        admission.main()
+            self.assertNotEqual(err.exception.code, 0)
+
     def test_oversized_plan_fails_before_byte_read(self):
         with tempfile.TemporaryDirectory(prefix='b3c-plan-oversize-') as d:
             plan_file = Path(d) / 'plan.json'

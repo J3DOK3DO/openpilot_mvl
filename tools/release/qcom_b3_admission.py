@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import os
+import stat
 import json
 from pathlib import Path
 
@@ -90,13 +92,20 @@ def main() -> int:
     parser.add_argument('--records', type=Path)
     parser.add_argument('--artifacts', type=Path)
     args = parser.parse_args()
-    # Fail closed on oversized input before reading or decoding it.
-    plan_file = model.regular(args.plan)
-    if plan_file.stat().st_size > 1024 * 1024:
+    # Read once from a no-follow regular-file descriptor, capped at 1 MiB + 1.
+    # Hash and parse exactly those same bytes to avoid a check/use race.
+    try:
+        fd = os.open(args.plan, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+    except OSError:
+        parser.error('cannot open B3C plan as a regular no-follow file')
+    with os.fdopen(fd, 'rb') as stream:
+        if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
+            parser.error('B3C plan must be a regular file')
+        plan_bytes = stream.read(1024 * 1024 + 1)
+    if len(plan_bytes) > 1024 * 1024:
         parser.error('supplied B3C plan exceeds 1 MiB limit')
-    if model.sha256(plan_file) != PLAN_SHA256:
+    if hashlib.sha256(plan_bytes).hexdigest() != PLAN_SHA256:
         parser.error('supplied B3C plan hash mismatch')
-    plan_bytes = plan_file.read_bytes()
     report = audit(json.loads(plan_bytes, object_pairs_hook=model.no_duplicate_keys),
                    load_json(args.records) if args.records else [], args.artifacts)
     print(json.dumps(report, indent=2, sort_keys=True))

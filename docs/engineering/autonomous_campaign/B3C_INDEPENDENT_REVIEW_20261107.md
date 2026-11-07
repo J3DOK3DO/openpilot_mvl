@@ -30,3 +30,7 @@ After the code commit, the clean checkout run passed 123/123 release tests and 4
 ## P2 follow-up — oversized-plan input bound
 
 A separate read-only re-review of the fail-closed admission commit found that the CLI replaced the prior 1 MiB input-size guard with an unbounded `read_bytes()` before hashing. The coordinator corrected the CLI to reject files above 1 MiB using `stat()` before streaming the SHA-256 with `model.sha256`, and to read bytes only after the size and pinned digest both pass. A negative test confirms an oversized input returns a nonzero exit without invoking `Path.read_bytes`. This is an offline evidence-CLI hardening action only; B3 remains 0/6 and B2 safety remains not passed.
+
+## Second P2 follow-up — same-buffer authenticated parsing
+
+The independent reviewer identified a check/use race from hashing the plan file separately before `read_bytes()`. The final hardened CLI now opens a no-follow regular file descriptor once, reads at most 1 MiB + 1 byte, rejects oversize inputs, and SHA-256 hashes **the exact bounded bytes subsequently parsed**. An adversarial test appends semantically ignorable whitespace to the pinned plan and patches the old streaming helper to claim a trusted hash; the CLI rejects the modified bytes. No new native execution or safety validation is implied.
