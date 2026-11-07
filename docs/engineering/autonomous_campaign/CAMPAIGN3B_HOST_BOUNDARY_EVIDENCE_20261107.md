@@ -1,0 +1,36 @@
+# Campaign 3 continuation: host boundaries and handoff, 2026-11-07
+
+**Decision: B2_HARDWARE_NOT_QUALIFIED / PRODUCT_BUILD_INCOMPLETE / HOLD.** Starting engineering HEAD `8e58eff9b1f075bd52a0bc644d5c4de294faeac0`; previous reviewed implementation `0914033bc996fbeff1d138cb997a33a7b85fe918`. Frozen product `4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb`; known-good installed `a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1`. All 254 restricted Params remain DENY and G06 OFF. This continuation made no device contact, compilation, install, or production source change.
+
+## 3A: host storage qualification
+
+Read-only `bwrap --help` confirms `--size BYTES` applies to the next `--tmpfs`. A direct no-work namespace probe, `bwrap --unshare-user --ro-bind / / -- true`, failed: `No permissions to create new namespace, likely because the kernel does not allow non-privileged user namespaces.` `unshare --user --map-root-user -- true` failed: `write failed /proc/self/uid_map: Operation not permitted`. Although `kernel.unprivileged_userns_clone=1`, this execution context denies the required mapping. `/dev/fuse` is absent, so a user FUSE filesystem cannot be opened here. `/tmp` is ext4 at `/dev/nvme0n1p2[/tmp]`, with no per-run hard cap. No bounded filesystem was created, no ENOSPC claim is made, and no host-spill claim is made. A `df` sample cannot replace a hard aggregate boundary.
+
+`campaign3_host_contracts.validate_write_coverage` checks six existing direct child directories (`source`, `cache`, `home`, `tmp`, `outputs`, `diagnostics`) against their run root, rejects symlinks, non-direct paths, different device IDs and different mount IDs (including bind mounts on the same device). A small owned `/tmp` test directory exercised positive coverage, a symlink escape and an outside path; test cleanup used its own temporary directory. Coverage result explicitly says `hard_limit_proven=false`. The helper does not confer quota or device readiness. A future bounded tmpfs trial, on a separately qualified host, should set less than 32 MiB, create distinct files whose aggregate actual writes exceed the cap, observe kernel ENOSPC, prove the backing directory has no spill files, then remove only its uniquely owned fixture. tmpfs consumes RAM and swap; even a successful small trial would not establish a viable bound for the roughly 1009 MiB source checkout or AGNOS `/data`.
+
+## 3B: independent supervisor qualification
+
+`systemd-run` and systemd 255 are installed, but `systemctl --user show` and `systemctl --user list-units --type=scope` both failed `Failed to connect to bus: Operation not permitted`. The current cgroup is `/user.slice/user-1000.slice/session-7.scope`, a shared session outside this run's ownership. No transient user unit, sleeper, signal, or cgroup mutation was attempted. The deterministic `supervisor_trace` contract requires one named guardian loss or supervisor disconnect, followed by abort and an empty exact owned scope before a 4.9-second deadline. Negative tests reject missing empty-scope proof, late cleanup and a foreign scope. A synthetic trace cannot establish real cgroup ownership or guardian SIGKILL survival. Any later fixture requires a separately delegated user bus, a unique transient unit and exact descendant ownership; no existing session or other job may be changed.
+
+## 3C: acquisition and provenance contract
+
+`acquisition_contract` separately applies the existing three-service synthetic parked-state replay and checks 31 fresh acquisition records spanning at least 30 seconds, at most one-second gaps, stable distinct feed identities, increasing per-feed sequence, matching run and observer identity, and an external provenance verifier for every feed. Missing, stale, switched, repeated or unauthenticated records return NO_GO. The positive test uses a stub verifier and is labeled `MONITOR_CONTRACT_PASS_DEVICE_HOLD`; it is not authenticated live telemetry. A future independent monitor must bind its verifier to actual source and transport identity, maintain a separate trusted clock and observer process, and acquire fresh `pandaStates`, `carState`, and `controlsState` continuously before and throughout any run. Last observed live counts remain 51/0/0 in 5.056 seconds, so the live gate is NO_GO.
+
+## 3D/3E: pinned no-execution handoff
+
+`qcom_b3_prepare.py` and `agnos199_product_prepare.py` remain preflight only. The exact source and tinygrad commits are above and `92b742f711c7d216fd3ed7a46a30a959e3c43bd4`. Source handoff `manifest.json` SHA-256 is `998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4`; `source.tar` SHA-256 is `37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d60fe`. AGNOS 19.9 raw image SHA-256 is `80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7`; component manifest SHA-256 is `c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693`. The rootfs must be verified against that image and manifest by the preflight; the archive is not a Git identity.
+
+The six exact stock targets, in planned order, are:
+
+1. `openpilot/selfdrive/modeld/models/driving_warp_1344x760_tinygrad.pkl`
+2. `openpilot/selfdrive/modeld/models/dmonitoring_model_tinygrad.pkl`
+3. `openpilot/selfdrive/modeld/models/driving_tinygrad.pkl`
+4. `openpilot/selfdrive/modeld/models/driving_warp_1928x1208_tinygrad.pkl`
+5. `openpilot/selfdrive/modeld/models/dm_warp_1344x760_tinygrad.pkl`
+6. `openpilot/selfdrive/modeld/models/dm_warp_1928x1208_tinygrad.pkl`
+
+Later, after separate owner authorization and real device 3A/3B/3C qualification: verify clean source/rootfs and artifact identities; establish hard storage, process, memory, GPU, thermal and live-state gates; then use the stock native `/usr/local/venv/bin/python3 -m SCons -j1 --minimal` target recipe with isolated cache, HOME, TMPDIR, outputs and diagnostics. Required flags: `DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1`; `SKIP_TINYGRAD_COMPILE` unset. Review first-target actual exit, QCOM bytes/hash, resource and abort evidence before the other targets. After six genuine outputs, run the cold AGNOS 19.9 product build and static stage inspection, then separate target runtime and physical tests. A separately qualified Qualcomm environment may be an owner-controlled AGNOS 19.9 C4 bench with delegated isolation and verified telemetry; none was accessed or initiated here. Current status: **QCOM 0/6, NOT_BUILT, physical 0/10**.
+
+## Scope review
+
+Changed paths are confined to `tools/release`, `tools/release/tests`, and new `CAMPAIGN3B_*` documents here. No product source or previous lease was touched. Host contract outputs deliberately retain `device_qualified=false`; neither static identities nor synthetic replay can promote the hardware gate. Full clean-commit test and recovery counts are recorded in the companion recovery JSON.
