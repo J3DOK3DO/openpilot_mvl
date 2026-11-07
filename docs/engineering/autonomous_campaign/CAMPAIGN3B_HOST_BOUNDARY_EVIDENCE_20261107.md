@@ -50,3 +50,7 @@ These two independently executed bounded host fixtures were performed via the au
 **Current live Comma 4 limitation:** A new Windows strict-host-key, read-only SSH authentication attempt at approximately 13:39 UAE time returned `Permission denied (publickey)`. No current device state was retrieved, no device writes occurred, and the historical 51/0/0 five-second passive observation is unchanged. Authentication failure cannot be treated as either a parked proof or a change in installed software.
 
 The host-positive evidence promotes only a **host feasibility** milestone. The product and hardware gates remain **B2_HARDWARE_NOT_QUALIFIED / PRODUCT_BUILD_INCOMPLETE / HOLD**. The next indispensable step is proving enforceable full-capacity storage, independent watchdog, GPU/memory/thermal isolation and authenticated 30-second parked-state evidence on a compatible, separately approved physical bench environment, before any Comma 4 compilation or installation.
+
+## Reviewed engineering publication reconciliation
+
+Authenticated Windows GitHub `ls-remote` verified that non-installable engineering branch `codex/mvl-campaign3-host-boundary-proof-20261107` was published at exact reviewed checkpoint `55a02ee04d2e497e01a75a13975e92d685f72985` on 2026-11-07. Ubuntu-to-Windows Git bundle SHA-256 was verified and publication was a non-force new-branch push. This section records publication only, not any hardware gate promotion. **B2_HARDWARE_NOT_QUALIFIED / PRODUCT_BUILD_INCOMPLETE / HOLD** remains in effect.

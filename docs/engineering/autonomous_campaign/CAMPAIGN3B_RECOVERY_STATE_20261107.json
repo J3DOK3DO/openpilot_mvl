@@ -22,10 +22,15 @@
     "CAMPAIGN3B_HOST_SYSTEMD_CRASH_EVIDENCE_20261107.json"
   ],
   "known_good_installed": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1",
+  "next_action": "Develop a separately qualified full-capacity environment and independent live bench monitoring; Comma 4 writes/compilation/installation remain HOLD until actual device evidence and owner approval.",
   "physical_c4": "0/10",
   "previous_reviewed_implementation": "0914033bc996fbeff1d138cb997a33a7b85fe918",
   "product_source": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
-  "publication": "NOT_PUBLISHED",
+  "publication": "PUBLISHED_REMOTE_SHA_VERIFIED",
+  "publication_verification": "2026-11-07 Windows authenticated git ls-remote exact SHA match, SHA256 bundle transfer and non-force new branch; no production/device changes",
+  "published_engineering_commit": "55a02ee04d2e497e01a75a13975e92d685f72985",
+  "published_ref": "refs/heads/codex/mvl-campaign3-host-boundary-proof-20261107",
+  "published_remote": "https://github.com/J3DOK3DO/openpilot_mvl.git",
   "qcom_compilation": false,
   "qcom_outputs": "0/6",
   "remaining_blockers": [
