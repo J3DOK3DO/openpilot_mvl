@@ -34,8 +34,20 @@
     "rerun uncertain exact-commit tests",
     "do not treat read-only observations as device qualification"
   ],
+  "post_interruption_verification": {
+    "device_execution": "NO_GO",
+    "evidence_json": "9 files valid; no duplicate keys",
+    "hardware_gate": "B2_HARDWARE_NOT_QUALIFIED",
+    "power_shell_scripts": "2 parsed and plan-only PASS on Windows",
+    "recovery_suite": "4/4 PASS",
+    "release_tool_suite": "106/106 PASS at clean aa4d39a (implementation code unchanged from 947e326ec)",
+    "review_verdict": "PASS_OFFLINE_EVIDENCE_AND_PUBLICATION_SCOPE_HARDWARE_NO_GO",
+    "reviewed_checkpoint": "aa4d39abb4693187fcbd2f4b1356ba67cfaad267",
+    "source_boundary": "host release tools, tests, campaign documentation only",
+    "verification_origin": "separate ChatGPT technical audit, not the Codex implementation agent"
+  },
   "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
-  "publication": "PENDING_REVIEW",
+  "publication": "PENDING_AUTHENTICATED_PUSH",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE / HOLD",
   "schema_version": 1,
   "tests": {
