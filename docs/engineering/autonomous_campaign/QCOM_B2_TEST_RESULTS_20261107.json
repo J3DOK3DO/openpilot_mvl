@@ -8,7 +8,7 @@
   "handoff_verifier": {"status": "PASS", "files": 4372},
   "frozen_source_preflight": {"status": "PASS", "submodules": 7, "selected_lfs_hydrated": 283, "issues": 0},
   "focused_b2": {"command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tools.release.tests.test_qcom_b2_pilot -v", "tests": 10, "status": "PASS"},
-  "release_suite": {"command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q", "tests": 70, "status": "PENDING_CLEAN_COMMIT_RERUN", "initial_dirty_tree_result": "68 pass, 2 inspector tests reject untracked B2 files because fixture uses current source as clean checkout"},
+  "release_suite": {"command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q", "tests": 70, "status": "PASS", "tested_code_commit": "10cfb1ccb4c1625162efd5091e2f94dfc0667187", "initial_dirty_tree_result": "68 pass, 2 inspector tests rejected untracked B2 files because fixture uses current source as clean checkout; clean-commit rerun passed 70/70"},
   "recovery_suite": {"command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest docs.engineering.autonomous_campaign.test_campaignctl -q", "tests": 4, "status": "PASS"},
   "host_failure_cases": ["source mismatch", "handoff proof absent", "installed identity mismatch", "path traversal and symlink", "shell and PowerShell metacharacters in run id", "idle one-sample evidence", "sparse or stale telemetry", "subscription failure", "ignition and engagement", "virtual thermal sensor", "low disk", "low memory", "quota or watchdog missing", "--execute exits without write"],
   "device_stage_cleanup": "UNIMPLEMENTED_NOT_TESTED",
