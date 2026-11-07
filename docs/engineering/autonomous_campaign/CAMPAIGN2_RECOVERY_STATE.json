@@ -25,7 +25,7 @@
   "last_completed_milestone": "Campaign 2A tooling fixes at exact code commit 947e326ec, read-only device observations and representative static ABI",
   "last_verified_code_commit": "947e326ecb221ccb2640d2bb2f8f051f230c34fd",
   "lease": "campaignctl lease local to this isolated worktree; inspect before new run",
-  "next_action": "Independent review exact documentation commit; publish reviewed branch if accepted; then investigate alternate hard storage isolation and guardian-loss containment offline",
+  "next_action": "Offline-only study of enforceable aggregate storage boundary, independent guardian-death containment, and live state monitoring prerequisites; no device work without separate approval.",
   "on_resume": [
     "git status --short --branch",
     "campaignctl.py recover and compare dedicated state to actual HEAD",
@@ -47,7 +47,15 @@
     "verification_origin": "separate ChatGPT technical audit, not the Codex implementation agent"
   },
   "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
-  "publication": "PENDING_AUTHENTICATED_PUSH",
+  "publication": "PUBLISHED_REMOTE_SHA_VERIFIED",
+  "publication_verification": {
+    "date": "2026-11-07",
+    "method": "Authenticated Windows git ls-remote, SHA matched reviewed checkpoint; no force push",
+    "ref": "refs/heads/codex/mvl-campaign2-qcom-g10-qualification-20261107",
+    "release_effect": "NONE; PRODUCT_BUILD_INCOMPLETE / HOLD",
+    "remote": "https://github.com/J3DOK3DO/openpilot_mvl.git"
+  },
+  "published_remote_commit": "73b57690190642fe847690b2db0c3e53ecd36535",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE / HOLD",
   "schema_version": 1,
   "tests": {
