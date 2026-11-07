@@ -83,6 +83,8 @@ class ProductPrepareTest(unittest.TestCase):
             run.return_value.stdout=json.dumps({'result':'HOLD','dirty_paths':['SConstruct']})
             with self.assertRaisesRegex(ValueError,'preflight failed'):
                 g.verify_source(self.source)
+            self.assertEqual(Path(run.call_args.args[0][1]),g.TRUSTED_PREFLIGHT)
+            self.assertNotEqual(Path(run.call_args.args[0][1]),self.source/'tools/release/preflight_readonly.py')
         record=self.base/'test.json'
         record.write_text(json.dumps({'tested_commit':'b'*40,'product_source_commit':g.SOURCE,
                                       'passed':92,'failed':0}))

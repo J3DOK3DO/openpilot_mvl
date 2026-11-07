@@ -19,6 +19,7 @@ else:
     from qcom_b2final import SOURCE
 
 KNOWN_GOOD = 'a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1'
+TRUSTED_PREFLIGHT = Path(__file__).resolve().parents[2] / 'docs/engineering/autonomous_campaign/preflight_readonly.py'
 
 
 def source_head(source: Path) -> str:
@@ -28,7 +29,7 @@ def source_head(source: Path) -> str:
 def verify_source(source: Path) -> None:
     if source_head(source) != SOURCE:
         raise ValueError('frozen product source mismatch')
-    check = subprocess.run(['python3', str(source/'tools/release/preflight_readonly.py'),
+    check = subprocess.run(['python3', str(TRUSTED_PREFLIGHT),
         '--repo', str(source), '--commit', SOURCE], capture_output=True, text=True, timeout=120)
     try:
         result = json.loads(check.stdout)
