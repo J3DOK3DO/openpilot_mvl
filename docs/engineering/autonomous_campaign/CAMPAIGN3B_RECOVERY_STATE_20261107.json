@@ -1,39 +1,33 @@
 {
-  "schema_version": 1,
-  "starting_head": "8e58eff9b1f075bd52a0bc644d5c4de294faeac0",
-  "previous_reviewed_implementation": "0914033bc996fbeff1d138cb997a33a7b85fe918",
   "branch": "codex/mvl-campaign3-host-boundary-proof-20261107",
-  "product_source": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
-  "known_good_installed": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1",
-  "decision": "B2_HARDWARE_NOT_QUALIFIED / PRODUCT_BUILD_INCOMPLETE / HOLD",
-  "storage": {
-    "host_enospc_proven": false,
-    "device_hard_quota_proven": false,
-    "bwrap_error": "No permissions to create new namespace",
-    "fuse_device_present": false,
-    "coverage_tested": true
-  },
-  "containment": {
-    "host_scope_tested": false,
-    "device_scope_tested": false,
-    "user_bus_error": "Failed to connect to bus: Operation not permitted",
-    "synthetic_failure_traces_tested": true
-  },
-  "state": {
-    "authenticated_live_30_seconds": false,
-    "synthetic_acquisition_contract_tested": true,
-    "last_live_counts": {
-      "pandaStates": 51,
-      "carState": 0,
-      "controlsState": 0
-    }
-  },
-  "qcom_outputs": "0/6",
   "cold_native_product": "NOT_BUILT",
-  "physical_c4": "0/10",
+  "containment": {
+    "device_scope_tested": false,
+    "host_scope_tested": true,
+    "synthetic_failure_traces_tested": true,
+    "unrestricted_host_parent_child_cgroup_same": true,
+    "unrestricted_host_user_service_crash_contained": true,
+    "user_bus_error": "Restricted Codex sandbox only: Failed to connect to bus: Operation not permitted"
+  },
+  "decision": "B2_HARDWARE_NOT_QUALIFIED / PRODUCT_BUILD_INCOMPLETE / HOLD",
   "device_actions": false,
-  "qcom_compilation": false,
+  "device_readonly_recheck": {
+    "device_write": false,
+    "local_time_uae": "2026-11-07T13:39:41+04:00",
+    "result": "SSH_PUBLICKEY_AUTH_FAILURE_NO_CURRENT_STATE"
+  },
+  "implementation_commit": "912d34d60f6023146f50ed0a00536eb77c3ee402",
+  "independent_unrestricted_host_evidence": [
+    "CAMPAIGN3B_HOST_STORAGE_EVIDENCE_20261107.json",
+    "CAMPAIGN3B_HOST_SYSTEMD_CRASH_EVIDENCE_20261107.json"
+  ],
+  "known_good_installed": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1",
+  "physical_c4": "0/10",
+  "previous_reviewed_implementation": "0914033bc996fbeff1d138cb997a33a7b85fe918",
+  "product_source": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
   "publication": "NOT_PUBLISHED",
+  "qcom_compilation": false,
+  "qcom_outputs": "0/6",
   "remaining_blockers": [
     "actual aggregate hard ENOSPC and write confinement on qualified environment",
     "independently owned supervisor/cgroup and crash containment",
@@ -43,12 +37,34 @@
     "cold product build",
     "target runtime and physical C4"
   ],
+  "schema_version": 1,
+  "starting_head": "8e58eff9b1f075bd52a0bc644d5c4de294faeac0",
+  "state": {
+    "authenticated_live_30_seconds": false,
+    "last_live_counts": {
+      "carState": 0,
+      "controlsState": 0,
+      "pandaStates": 51
+    },
+    "synthetic_acquisition_contract_tested": true
+  },
+  "storage": {
+    "bwrap_error": "Restricted Codex sandbox only: No permissions to create new namespace",
+    "codex_sandbox_fuse_visible": false,
+    "coverage_tested": true,
+    "device_hard_quota_proven": false,
+    "fuse_device_present": false,
+    "host_enospc_proven": true,
+    "unrestricted_host_enospc_proven": true,
+    "unrestricted_host_fuse_visible": true,
+    "unrestricted_host_outside_write_refused_errno": 30,
+    "unrestricted_host_tmpfs_limit_bytes": 16777216
+  },
   "verification": {
-    "focused": "9/9; python3 -m unittest -q tools.release.tests.test_campaign3_host_contracts tools.release.tests.test_campaign3_offline",
-    "full_release_clean_commit": "115/115 at 912d34d60; python3 -m unittest discover -s tools/release/tests -p test_*.py -q",
     "campaign_recovery_clean_commit": "4/4 at 912d34d60; python3 -m unittest -q docs.engineering.autonomous_campaign.test_campaignctl",
     "diff_check": "PASS at 912d34d60",
+    "focused": "9/9; python3 -m unittest -q tools.release.tests.test_campaign3_host_contracts tools.release.tests.test_campaign3_offline",
+    "full_release_clean_commit": "115/115 at 912d34d60; python3 -m unittest discover -s tools/release/tests -p test_*.py -q",
     "scope_review": "Only four allowed paths changed from pinned HEAD; no production source, lease, device or QCOM changes"
-  },
-  "implementation_commit": "912d34d60f6023146f50ed0a00536eb77c3ee402"
+  }
 }

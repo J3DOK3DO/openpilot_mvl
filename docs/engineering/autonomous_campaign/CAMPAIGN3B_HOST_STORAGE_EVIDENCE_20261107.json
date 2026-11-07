@@ -1,0 +1,35 @@
+{
+  "areas": [
+    "source",
+    "cache",
+    "home",
+    "tmp",
+    "outputs",
+    "diagnostics"
+  ],
+  "bytes_total": 16777216,
+  "device_qualified": false,
+  "free_bytes_after": 0,
+  "host_namespace_cleaned": true,
+  "outside_ro_bind_write_rejected_errno": 30,
+  "qualification": "HOST_BWRAP_TMPFS_AGGREGATE_LIMIT_DEMONSTRATED_NOT_DEVICE",
+  "sandbox_rc": 0,
+  "source_device": "Ubuntu_24.04_host_not_AGNOS",
+  "writes": [
+    {
+      "area": "source",
+      "bytes": 7340032,
+      "result": "OK"
+    },
+    {
+      "area": "cache",
+      "bytes": 7340032,
+      "result": "OK"
+    },
+    {
+      "area": "outputs",
+      "errno": 28,
+      "result": "ENOSPC"
+    }
+  ]
+}

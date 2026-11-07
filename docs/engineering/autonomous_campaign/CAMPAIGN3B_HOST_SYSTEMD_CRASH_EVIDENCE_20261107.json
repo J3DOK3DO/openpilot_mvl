@@ -1,0 +1,20 @@
+{
+  "before": {
+    "child_cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/mvl-c3-guard-v2-2002548.service",
+    "child_pid": 2002551,
+    "child_present_before_kill": true,
+    "main_pid": 2002550,
+    "parent_cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/mvl-c3-guard-v2-2002548.service"
+  },
+  "bounded_sleep_seconds": 8,
+  "child_alive_after_service_failure": false,
+  "child_present_before_kill": true,
+  "device_tested": false,
+  "elapsed_seconds": 0.086,
+  "expected_parent_crash_rc": 255,
+  "parent_and_child_same_cgroup": true,
+  "qualification": "HOST_ONLY_INDEPENDENT_SYSTEMD_CONTROL_GROUP_FIXTURE",
+  "runtime_limit_seconds": 3,
+  "systemd_result": "Running as unit: mvl-c3-guard-v2-2002548.service; invocation ID: 8ea6215adf954a7a853558218510b9c1\nFinished with result: signal\nMain processes terminated with: code=killed/status=KILL\nService runtime: 70ms\nCPU time consumed: 19ms\nMemory peak: 256.0K\nMemory swap peak: 0B\n",
+  "unit": "mvl-c3-guard-v2-2002548"
+}
