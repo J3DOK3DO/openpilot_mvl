@@ -78,6 +78,9 @@ class ProductPrepareTest(unittest.TestCase):
         self.assertEqual(manifest['engineering_tested_commit'],commit)
 
     def test_dirty_source_preflight_and_unbound_evidence_rejected(self):
+        self.assertTrue(g.TRUSTED_PREFLIGHT.is_file())
+        probe=subprocess.run([sys.executable,str(g.TRUSTED_PREFLIGHT),'--help'],capture_output=True,text=True)
+        self.assertEqual(probe.returncode,0,probe.stderr)
         with patch.object(g,'source_head',return_value=g.SOURCE),patch.object(g.subprocess,'run') as run:
             run.return_value.returncode=1
             run.return_value.stdout=json.dumps({'result':'HOLD','dirty_paths':['SConstruct']})

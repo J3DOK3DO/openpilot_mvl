@@ -19,7 +19,7 @@ else:
     from qcom_b2final import SOURCE
 
 KNOWN_GOOD = 'a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1'
-TRUSTED_PREFLIGHT = Path(__file__).resolve().parents[2] / 'docs/engineering/autonomous_campaign/preflight_readonly.py'
+TRUSTED_PREFLIGHT = Path(__file__).resolve().with_name('preflight_readonly.py')
 
 
 def source_head(source: Path) -> str:
