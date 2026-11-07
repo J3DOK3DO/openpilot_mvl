@@ -1,0 +1,77 @@
+{
+  "agnos": {
+    "image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+    "image_sha256_verified_by_sha256sum": true,
+    "version": "19.9"
+  },
+  "docker": {
+    "expected_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+    "image": "starpilot-larch64-builder:latest",
+    "live_id": "UNVERIFIED_DOCKER_SOCKET_PERMISSION_DENIED",
+    "representative_compile": "NOT_ATTEMPTED"
+  },
+  "models": {
+    "dm_warp_1344x760_tinygrad.pkl": "ABSENT_IN_FROZEN_SOURCE",
+    "dm_warp_1928x1208_tinygrad.pkl": "ABSENT_IN_FROZEN_SOURCE",
+    "dmonitoring_model_tinygrad.pkl": "ABSENT_IN_FROZEN_SOURCE",
+    "driving_tinygrad.pkl": "ABSENT_IN_FROZEN_SOURCE",
+    "driving_warp_1344x760_tinygrad.pkl": "ABSENT_IN_FROZEN_SOURCE",
+    "driving_warp_1928x1208_tinygrad.pkl": "ABSENT_IN_FROZEN_SOURCE"
+  },
+  "provider": {
+    "comma4_access_attempted": false,
+    "drm_renderD128_present": false,
+    "kgsl_3d0_present": false
+  },
+  "qualification": {
+    "full_g10_product": "NOT_BUILT",
+    "native_qcom_required": 6,
+    "native_qcom_verified": 0,
+    "physical_c4_passed": 0,
+    "physical_c4_required": 10,
+    "release": "HOLD"
+  },
+  "representative_elf": {
+    "agnos_direct_libs": {
+      "libc.so.6": "0f1905dc27dbc6715875c70527bc8da846a10084c9c483e9d8ff76dce8d69d0e",
+      "libgcc_s.so.1": "f2d3ad2bf0b61f6bc944cc37d7b6ab7f88d2582b41ff989ca164803f56cc5f20",
+      "libstdc++.so.6.0.33": "6e3112d35cfc86db7ee85b27e1746f67408e2837ff8628b46386c3eabd5682a4"
+    },
+    "class": "ELF64",
+    "exact_current_source_build": false,
+    "interpreter": "NONE_SHARED_LIBRARY",
+    "machine": "AArch64",
+    "needed": [
+      "libstdc++.so.6",
+      "libgcc_s.so.1",
+      "libc.so.6"
+    ],
+    "path": "/mnt/commadrive/MVL_G10_BUILD_ARTIFACTS/libparams_c_162391f.so",
+    "runpath": "/usr/local/venv/lib/python3.12/site-packages/ffmpeg/install/lib",
+    "sha256": "2594c615b0c97bd610ccc32606077d3fef9b8dc1e273662df9df28ee3ce0da8c",
+    "source_commit_from_historical_build": "162391f22567774166a6bd02024a65d969f63b59"
+  },
+  "schema_version": 1,
+  "scons_graph": {
+    "path": "docs/engineering/autonomous_campaign/G10_SCONS_GRAPH_20261105.log",
+    "provenance": "HISTORICAL_OLDER_SOURCE_NOT_CURRENT_FULL_PRODUCT",
+    "sha256": "46e70c2295eb72d55590f1e2c1029db5b5ed63f8cb9f0565d2fdac4e2730c028"
+  },
+  "scope": "READ_ONLY_HOST_PROBE",
+  "source": {
+    "clean": true,
+    "gitlinks": {
+      "msgq_repo": "e7396e76dadbb49e374d4b664ff6bbb43a39bcb0",
+      "opendbc_repo": "3fec9a418a659de31d7b1f494193161697a35071",
+      "openpilot/sunnypilot/neural_network_data": "03cac2d30e111e0689c0429cb8c1fe6cb5a905af",
+      "panda": "8a16e089b88593914823743df29e1c30b7dd3e00",
+      "rednose_repo": "28d4a7f69e80e1c3e0d24ca0733d7daeaeade3d0",
+      "teleoprtc_repo": "1aa8fc433bef1519a95c0700c96258c3be6dfb34",
+      "tinygrad_repo": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4"
+    },
+    "head": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+    "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/source_4b25263",
+    "status_porcelain": "",
+    "tinygrad_head": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4"
+  }
+}

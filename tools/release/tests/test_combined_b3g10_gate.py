@@ -150,20 +150,30 @@ class CombinedGateTest(unittest.TestCase):
                 gate.regular(self.root / 'junction')
 
     def test_symlink_rejected_without_privilege_requirement(self):
-        info = SimpleNamespace(st_mode=stat.S_IFLNK, st_file_attributes=0)
-        with patch.object(Path, 'lstat', return_value=info):
-            with self.assertRaisesRegex(ValueError, 'symlink'):
+        if os.name != 'nt':
+            (self.root / 'link.json').symlink_to(self.write({'safe': True}))
+            with self.assertRaises((ValueError, OSError)):
                 gate.load(self.root / 'link.json')
+        else:
+            info = SimpleNamespace(st_mode=stat.S_IFLNK, st_file_attributes=0)
+            with patch.object(Path, 'lstat', return_value=info):
+                with self.assertRaisesRegex(ValueError, 'symlink'):
+                    gate.load(self.root / 'link.json')
 
     def test_artifact_link_rejected(self):
-        original = gate.regular
-        def check(path, directory=False):
-            if path.name == gate.NAMES[0]:
-                raise ValueError('symlink/reparse point refused')
-            return original(path, directory)
-        with patch.object(gate, 'regular', side_effect=check):
-            with self.assertRaisesRegex(ValueError, 'reparse'):
+        if os.name != 'nt':
+            (self.root / gate.NAMES[0]).symlink_to(self.write({'safe': True}))
+            with self.assertRaisesRegex(ValueError, 'symlink'):
                 gate.evaluate(artifacts=self.root)
+        else:
+            original = gate.regular
+            def check(path, directory=False):
+                if path.name == gate.NAMES[0]:
+                    raise ValueError('symlink/reparse point refused')
+                return original(path, directory)
+            with patch.object(gate, 'regular', side_effect=check):
+                with self.assertRaisesRegex(ValueError, 'reparse'):
+                    gate.evaluate(artifacts=self.root)
 
     def test_cli_always_nonzero_and_json_hold(self):
         with redirect_stdout(io.StringIO()) as output:
@@ -194,6 +204,7 @@ class CombinedGateTest(unittest.TestCase):
                     gate.inventory_artifacts(path)
                 api.assert_not_called()
 
+    @unittest.skipUnless(os.name == 'nt', 'Windows handle contract')
     def test_missing_sparse_component_stops_all_child_lookups(self):
         api = Mock()
         api.open.side_effect = [10, FileNotFoundError('sparse')]
@@ -204,6 +215,7 @@ class CombinedGateTest(unittest.TestCase):
         self.assertEqual(api.open.call_count, 2)
         api.close.assert_called_once_with(10)
 
+    @unittest.skipUnless(os.name == 'nt', 'Windows handle contract')
     def test_windows_createfile_directory_read_share_only_contract(self):
         api = gate.WindowsLocks()
         api.kernel = Mock()
@@ -220,6 +232,7 @@ class CombinedGateTest(unittest.TestCase):
             api.open(self.root, True)
         api.create.assert_not_called()
 
+    @unittest.skipUnless(os.name == 'nt', 'Windows handle contract')
     def test_windows_all_ancestor_handles_retained_for_six_checks(self):
         api = Mock()
         api.open.side_effect = range(100, 200)
@@ -235,6 +248,7 @@ class CombinedGateTest(unittest.TestCase):
         self.assertEqual(api.validate.call_count, 2 * expected)
         self.assertEqual(set(result.values()), {'PRESENT_UNVERIFIED'})
 
+    @unittest.skipUnless(os.name == 'nt', 'Windows handle contract')
     def test_windows_sharing_violation_fails_closed_and_closes_ancestors(self):
         api = Mock()
         api.open.side_effect = [10, OSError(32, 'sharing violation')]
@@ -245,6 +259,7 @@ class CombinedGateTest(unittest.TestCase):
         check.assert_not_called()
         api.close.assert_called_once_with(10)
 
+    @unittest.skipUnless(os.name == 'nt', 'Windows handle contract')
     def test_windows_ancestor_swap_reparse_and_final_path_race(self):
         for stage in ('acquire', 'release'):
             with self.subTest(stage=stage):
@@ -258,6 +273,7 @@ class CombinedGateTest(unittest.TestCase):
                         gate.inventory_artifacts(self.root)
                 self.assertEqual(api.close.call_count, api.open.call_count)
 
+    @unittest.skipUnless(os.name == 'nt', 'Windows handle contract')
     def test_windows_handle_reparse_and_final_path_validation(self):
         api = gate.WindowsLocks()
         def attrs(handle, kind, data, size):
@@ -325,6 +341,7 @@ class CombinedGateTest(unittest.TestCase):
             opened.assert_called_once_with('input', 0x220000, dir_fd=71)
             closed.assert_called_once_with(72)
 
+    @unittest.skipIf(hasattr(os, 'O_PATH'), 'O_PATH is available on this host')
     def test_posix_no_opath_fails_closed(self):
         @contextmanager
         def held(path):
@@ -340,6 +357,7 @@ class CombinedGateTest(unittest.TestCase):
                 gate.load('/local/input')
 
 
+    @unittest.skipUnless(os.name == 'nt', 'Windows sharing contract')
     def test_native_directory_lock_denies_generic_write_during_read(self):
         import ctypes
         api = gate.WindowsLocks()
@@ -407,6 +425,7 @@ class CombinedGateTest(unittest.TestCase):
             closed.assert_called_once_with(72)
 
 
+    @unittest.skipUnless(os.name == 'nt', 'Windows sharing contract')
     def test_native_existing_directory_writer_refuses_inventory(self):
         api = gate.WindowsLocks()
         handle = api.create(str(self.root), 0x40000000, 7, None, 3, 0x02200000, None)
@@ -426,8 +445,12 @@ class CombinedGateTest(unittest.TestCase):
             self.assertTrue(directory)
             self.assertNotIn(path.name, gate.NAMES)
             return original(api, path, directory)
+        posix_open = gate.os.open
+        def no_artifact_open(path, *args, **kwargs):
+            self.assertNotIn(str(path), gate.NAMES)
+            return posix_open(path, *args, **kwargs)
         with patch.object(gate.WindowsLocks, 'open', only_directories), \
-                patch.object(gate.os, 'open', side_effect=AssertionError('artifact open')):
+                patch.object(gate.os, 'open', side_effect=no_artifact_open):
             result = gate.inventory_artifacts(self.root)
         self.assertEqual(set(result.values()), {'PRESENT_UNVERIFIED'})
 

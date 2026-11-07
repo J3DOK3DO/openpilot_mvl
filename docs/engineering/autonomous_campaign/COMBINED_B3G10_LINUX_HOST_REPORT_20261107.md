@@ -1,0 +1,23 @@
+# Combined B3 + G10 Linux native host qualification — 2026-11-07
+
+**Decision: HOLD.** Native Qualcomm captures 0/6; complete G10 product NOT_BUILT; physical Comma4 checks 0/10. B2 owner waiver covers project planning only and is not a safety pass. RC is not installable. No device access, installation, firmware, Panda, CAN, calibration, driving, or vehicle control was attempted.
+
+## Current host evidence
+
+This campaign ran in the isolated Ubuntu sparse engineering worktree on `codex/mvl-b3g10-native-host-readiness-20261107`, starting at `2ea8980ff41cad5a0629381b2d6249c4d2538402`. The frozen source `/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/source_4b25263` was inspected read-only: Git HEAD `4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb`, clean including untracked files with LFS smudge/clean disabled. Its tinygrad HEAD is `92b742f711c7d216fd3ed7a46a30a959e3c43bd4`; seven exact Gitlinks are in `COMBINED_B3G10_LINUX_HOST_EVIDENCE_20261107.json`. The frozen AGNOS rootfs `VERSION` is `19.9`; the 4.4 GiB image independently hashes to `80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7`.
+
+The six exact required `*_tinygrad.pkl` outputs are absent from the frozen source model directory. This is local inventory, not a search of all possible hosts. `/dev/kgsl-3d0` and `/dev/dri/renderD128` are absent. Even an Ubuntu DRM render node, if present, would be a different GPU/kernel provider; it cannot authenticate native Qualcomm QCOM compilation. Comma4 SSH authentication was previously reported to fail; this campaign made no device connection attempt.
+
+Docker inspection returned permission denied on `/var/run/docker.sock`. Therefore the expected `starpilot-larch64-builder:latest` image ID `sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95` is a historical pin, not a live verified identity. No container was started and no fresh representative compile was attempted. The proposed bounded command cannot safely run without builder authentication; no substitute host compile is represented as target product evidence. No writable source, rootfs, cache, or staging mounts were made.
+
+The retained `/mnt/commadrive/MVL_G10_BUILD_ARTIFACTS/libparams_c_162391f.so` hashes to `2594c615b0c97bd610ccc32606077d3fef9b8dc1e273662df9df28ee3ce0da8c`. Fresh `readelf` confirms ELF64 AArch64 shared library, no interpreter, direct DT_NEEDED `libstdc++.so.6`, `libgcc_s.so.1`, `libc.so.6`, and RUNPATH `/usr/local/venv/lib/python3.12/site-packages/ffmpeg/install/lib`. The three AGNOS rootfs direct dependency hashes match the retained ABI report. This binary came from historical source `162391f22567774166a6bd02024a65d969f63b59`, not the current frozen source. Transitive dependency closure and target runtime load were not retested. A separate host `libparams_c.so` is x86-64 and does not count as AArch64 evidence. `G10_SCONS_GRAPH_20261105.log` is also historical, with older provenance; it shows graph traversal, not a cold complete product.
+
+## Tests and gate
+
+The combined gate source was unchanged. Its focused tests now run Linux symlink cases against actual symlinks, while Windows handle and sharing tests run only on Windows; the missing `O_PATH` branch runs only on a host without `O_PATH`. This corrects platform-specific test assumptions. The Linux focused suite ran 37 tests: 28 passed, 9 skipped, 0 failed. Campaign recovery ran 4 tests: 4 passed. The first broad release suite ran 163 tests with 9 platform skips and 2 inspector errors because these new report/log files made the engineering checkout dirty. That inspector requires a clean checkout by design. A clean final-commit rerun is recorded separately in the final test log and recovery JSON. The offline gate's exit 2 is the expected release HOLD, never promotion.
+
+## Product closure and blockers
+
+The G10 package provenance contract has `actual_product_manifest: null` and `full_product_build: NOT_EXECUTED`. There is no exact-source cold ARM64 product, complete ELF interpreter/DT_NEEDED/RPATH/version and Python/Cap'n Proto/IPC/GPU closure, package tree manifest, or target runtime validation. The six authenticated Qualcomm outputs and hashes, exact-source build/test records, independent combined review, physical C4 results and recovery prerequisites are missing. The contract's required fields must be filled from verified evidence, not pass strings or user-supplied claims. None of this host evidence promotes B3, G10, RC, or release status.
+
+`COMBINED_B3G10_LINUX_HOST_EVIDENCE_20261107.json` contains observed identities and status. The Linux recovery JSON records the campaign outcome. The two Linux test logs capture commands and counts. The lease was not modified; the old interrupted worktree and its stale lease were not accessed.

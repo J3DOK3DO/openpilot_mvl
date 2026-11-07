@@ -1,0 +1,27 @@
+{
+  "b2_safety": "NOT_PASSED_PLANNING_WAIVER_ONLY",
+  "c4_passed": 0,
+  "c4_required": 10,
+  "campaign": "COMBINED_B3G10_LINUX_HOST_20261107",
+  "device_access_attempted": false,
+  "docker_inspection": "PERMISSION_DENIED",
+  "fresh_compile": "NOT_ATTEMPTED_BUILDER_UNVERIFIED",
+  "frozen_source_clean": true,
+  "frozen_source_head": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "g10_product": "NOT_BUILT",
+  "gate_exit_code": 2,
+  "gate_exit_meaning": "EXPECTED_HOLD",
+  "independent_review": "PENDING",
+  "lease_id": "8c7e361a1f69f3cd458b7ff8b897935e",
+  "lease_modified": false,
+  "native_qcom_required": 6,
+  "native_qcom_verified": 0,
+  "rc": "NOT_INSTALLABLE",
+  "release": "HOLD",
+  "schema_version": 1,
+  "start_head": "2ea8980ff41cad5a0629381b2d6249c4d2538402",
+  "test_logs": [
+    "COMBINED_B3G10_LINUX_RELEASE_TEST_LOG_20261107.log",
+    "COMBINED_B3G10_LINUX_RECOVERY_TEST_LOG_20261107.log"
+  ]
+}
