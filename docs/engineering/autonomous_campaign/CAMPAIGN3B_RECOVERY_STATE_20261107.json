@@ -6,15 +6,49 @@
   "product_source": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
   "known_good_installed": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1",
   "decision": "B2_HARDWARE_NOT_QUALIFIED / PRODUCT_BUILD_INCOMPLETE / HOLD",
-  "storage": {"host_enospc_proven": false, "device_hard_quota_proven": false, "bwrap_error": "No permissions to create new namespace", "fuse_device_present": false, "coverage_tested": true},
-  "containment": {"host_scope_tested": false, "device_scope_tested": false, "user_bus_error": "Failed to connect to bus: Operation not permitted", "synthetic_failure_traces_tested": true},
-  "state": {"authenticated_live_30_seconds": false, "synthetic_acquisition_contract_tested": true, "last_live_counts": {"pandaStates": 51, "carState": 0, "controlsState": 0}},
+  "storage": {
+    "host_enospc_proven": false,
+    "device_hard_quota_proven": false,
+    "bwrap_error": "No permissions to create new namespace",
+    "fuse_device_present": false,
+    "coverage_tested": true
+  },
+  "containment": {
+    "host_scope_tested": false,
+    "device_scope_tested": false,
+    "user_bus_error": "Failed to connect to bus: Operation not permitted",
+    "synthetic_failure_traces_tested": true
+  },
+  "state": {
+    "authenticated_live_30_seconds": false,
+    "synthetic_acquisition_contract_tested": true,
+    "last_live_counts": {
+      "pandaStates": 51,
+      "carState": 0,
+      "controlsState": 0
+    }
+  },
   "qcom_outputs": "0/6",
   "cold_native_product": "NOT_BUILT",
   "physical_c4": "0/10",
   "device_actions": false,
   "qcom_compilation": false,
   "publication": "NOT_PUBLISHED",
-  "remaining_blockers": ["actual aggregate hard ENOSPC and write confinement on qualified environment", "independently owned supervisor/cgroup and crash containment", "authenticated fresh three-service 30-second parked-state acquisition", "GPU/thermal and memory containment", "six genuine QCOM captures", "cold product build", "target runtime and physical C4"],
-  "verification": {"focused": "9/9", "full_release_clean_commit": "PENDING", "campaign_recovery_clean_commit": "PENDING", "diff_check": "PENDING"}
+  "remaining_blockers": [
+    "actual aggregate hard ENOSPC and write confinement on qualified environment",
+    "independently owned supervisor/cgroup and crash containment",
+    "authenticated fresh three-service 30-second parked-state acquisition",
+    "GPU/thermal and memory containment",
+    "six genuine QCOM captures",
+    "cold product build",
+    "target runtime and physical C4"
+  ],
+  "verification": {
+    "focused": "9/9; python3 -m unittest -q tools.release.tests.test_campaign3_host_contracts tools.release.tests.test_campaign3_offline",
+    "full_release_clean_commit": "115/115 at 912d34d60; python3 -m unittest discover -s tools/release/tests -p test_*.py -q",
+    "campaign_recovery_clean_commit": "4/4 at 912d34d60; python3 -m unittest -q docs.engineering.autonomous_campaign.test_campaignctl",
+    "diff_check": "PASS at 912d34d60",
+    "scope_review": "Only four allowed paths changed from pinned HEAD; no production source, lease, device or QCOM changes"
+  },
+  "implementation_commit": "912d34d60f6023146f50ed0a00536eb77c3ee402"
 }

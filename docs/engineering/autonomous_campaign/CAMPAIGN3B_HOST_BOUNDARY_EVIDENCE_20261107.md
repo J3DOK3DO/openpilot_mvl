@@ -34,3 +34,7 @@ Later, after separate owner authorization and real device 3A/3B/3C qualification
 ## Scope review
 
 Changed paths are confined to `tools/release`, `tools/release/tests`, and new `CAMPAIGN3B_*` documents here. No product source or previous lease was touched. Host contract outputs deliberately retain `device_qualified=false`; neither static identities nor synthetic replay can promote the hardware gate. Full clean-commit test and recovery counts are recorded in the companion recovery JSON.
+
+## Clean-commit verification
+
+At implementation commit `912d34d60f6023146f50ed0a00536eb77c3ee402`, the combined focused contracts and previous Campaign 3 replay suite passed **9/9**, the full release suite passed **115/115**, and campaign recovery passed **4/4**. `git diff --check` passed. A separate path-level review of the diff from pinned HEAD found exactly four changed files, all in the allowed `tools/release` or new `CAMPAIGN3B_*` documentation scope; no production source or existing lease paths changed. This is an independent scope check, not an independent safety certification.
