@@ -96,6 +96,7 @@ def replay_state(frames: list[dict]) -> dict:
         return {'decision': 'NO_GO', 'reasons': ['INSUFFICIENT_FRAMES']}
     previous = None
     first = None
+    previous_stamps = {}
     for frame in frames:
         if not isinstance(frame, dict) or set(frame) != {'at', *SERVICES} or not _number(frame['at']):
             reasons.add('PARSE_OR_UNKNOWN_STATE'); continue
@@ -110,6 +111,10 @@ def replay_state(frames: list[dict]) -> dict:
             if not isinstance(value, dict) or set(value) != {'timestamp', 'alive', 'valid', 'value'}:
                 reasons.add('PARSE_OR_UNKNOWN_STATE'); continue
             stamp = value['timestamp']
+            if _number(stamp):
+                if service in previous_stamps and stamp <= previous_stamps[service]:
+                    reasons.add('SERVICE_TIMESTAMP_NONMONOTONIC')
+                previous_stamps[service] = stamp
             if not _number(stamp) or not 0 <= at - stamp <= 1.0 or value['alive'] is not True or value['valid'] is not True:
                 reasons.add('STALE_OR_MISSING_SERVICE'); continue
             stamps.append(stamp)

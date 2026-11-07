@@ -97,10 +97,45 @@ class Campaign3OfflineTest(unittest.TestCase):
         stream = frames(); stream[15]['carState']['timestamp'] = 14.7
         self.assertIn('TIMESTAMP_SKEW', c.replay_state(stream)['reasons'])
         self.assertEqual(c.replay_state(frames()[:-1])['decision'], 'NO_GO')
+        stream = frames()
+        for index, frame in enumerate(stream):
+            frame['at'] = index * 0.99
+            for service in c.SERVICES:
+                frame[service]['timestamp'] = frame['at']
+        self.assertIn('DURATION_SHORT', c.replay_state(stream)['reasons'])
         stream = frames(); stream[15]['carState']['value']['vEgo'] = float('nan')
         self.assertEqual(c.replay_state(stream)['decision'], 'NO_GO')
         stream = frames(); stream[15]['controlsState']['value']['enabled'] = 0
         self.assertEqual(c.replay_state(stream)['decision'], 'NO_GO')
+
+    def test_replay_requires_each_service_timestamp_to_advance(self):
+        for change, services in (('repeat', ('carState',)),
+                                 ('repeat', c.SERVICES),
+                                 ('decrease', ('carState',)),
+                                 ('decrease', c.SERVICES)):
+            with self.subTest(change=change, services=services):
+                stream = frames()
+                stream.append(copy.deepcopy(stream[-1]))
+                for index, frame in enumerate(stream):
+                    at = 0.0 if index == 0 else index - 0.5
+                    frame['at'] = at
+                    for service in c.SERVICES:
+                        frame[service]['timestamp'] = at
+                if change == 'decrease':
+                    for service in c.SERVICES:
+                        stream[0][service]['timestamp'] = -0.2
+                    for service in c.SERVICES:
+                        stream[1][service]['timestamp'] = -0.1
+                    for service in services:
+                        stream[1][service]['timestamp'] = -0.3
+                else:
+                    for service in c.SERVICES:
+                        stream[1][service]['timestamp'] = 0.2
+                    for service in services:
+                        stream[1][service]['timestamp'] = 0.0
+                result = c.replay_state(stream)
+                self.assertEqual(result['decision'], 'NO_GO')
+                self.assertEqual(result['reasons'], ['SERVICE_TIMESTAMP_NONMONOTONIC'])
 
 
 if __name__ == '__main__': unittest.main()

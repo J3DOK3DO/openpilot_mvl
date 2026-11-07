@@ -14,10 +14,15 @@
   "cold_native_product": "NOT_BUILT",
   "device_writes": false,
   "publication": "NOT_PUBLISHED",
+  "independent_review": {
+    "finding": "P2 NEEDS_FIX: repeated service timestamps could pass synthetic replay",
+    "remediation": "Each service timestamp must strictly advance across frames; repeated and decreasing values produce NO_GO",
+    "scope": "Synthetic replay only; no live telemetry or hardware qualification"
+  },
   "implementation_commit": "Commit containing this recovery state; resolve with git rev-parse HEAD",
   "verification": {
-    "campaign3_offline_tests": "5 passed",
-    "full_release_suite_before_commit": "111 run, 2 inspector tests require a clean source checkout and rejected intentional uncommitted Campaign 3 files",
-    "full_release_suite_after_commit": "111 tests passed; python3 -m unittest discover -s tools/release/tests -p test_*.py -q"
+    "campaign3_offline_tests": "6 passed; python3 -m unittest -q tools.release.tests.test_campaign3_offline",
+    "full_release_suite_after_commit": "Pending clean-commit rerun",
+    "campaign_recovery_tests_after_commit": "Pending clean-commit rerun"
   }
 }
