@@ -1,0 +1,36 @@
+{
+  "agnos_version": "19.9",
+  "baseline_branch": "codex/mvl-b3g10-native-host-readiness-20261107",
+  "baseline_commit": "2489f58b97c915547ec94c03a073da0dbe45eaa9",
+  "campaign": "COMBINED_B3_G10_RC_20261108",
+  "current_blockers": [
+    "B2 technical safeguards not safety passed; waiver is planning only",
+    "No authenticated native QCOM provider; six outputs 0/6",
+    "Full AGNOS 19.9 product not built",
+    "Physical Comma 4 checks 0/10",
+    "Separate installation approval absent"
+  ],
+  "current_gate": "RC_NOT_INSTALLABLE",
+  "current_stage": "C4_C5_OFFLINE_ADMISSION_IMPLEMENTATION",
+  "device_contact_this_campaign": false,
+  "device_writes": false,
+  "engineering_branch": "codex/mvl-combined-b3g10-rc-20261108",
+  "frozen_product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "last_verified_checkpoint": "2489f58b97c915547ec94c03a073da0dbe45eaa9",
+  "last_verified_tests": "Historical Linux 163 run, 154 passed, 9 platform skips and recovery 4/4 at earlier exact implementation; current code milestone pending exact-commit broad suite",
+  "lease": "Dedicated campaignctl lease active in this isolated worktree; inspect local lease before changes; token intentionally not stored in Git",
+  "next_action": "Commit offline admission tool, run exact-commit release and recovery suites, prepare C1\u2013C5 matrix and independent review",
+  "on_resume": [
+    "Inspect Git status and running processes",
+    "Run campaignctl.py recover; compare actual HEAD to baseline and this state",
+    "Check active lease ownership and pending operation",
+    "Rerun uncertain tests on exact code HEAD",
+    "Keep QCOM/product/device gates HOLD without actual evidence"
+  ],
+  "pending_operation": "New offline admission tool and tests, 5 focused PASS in development worktree; commit and run exact-commit suites",
+  "publication": "PENDING_REVIEW",
+  "release_status": "PRODUCT_BUILD_INCOMPLETE / HOLD",
+  "schema_version": 1,
+  "tinygrad_commit": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4",
+  "worktree": "/tmp/mvl-combined-b3g10-rc-20261108"
+}
