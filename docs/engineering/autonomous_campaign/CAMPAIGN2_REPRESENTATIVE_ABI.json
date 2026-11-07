@@ -1,0 +1,109 @@
+{
+  "agnos_runtime_load": "NOT_TESTED",
+  "binary_sha256": "2594c615b0c97bd610ccc32606077d3fef9b8dc1e273662df9df28ee3ce0da8c",
+  "classification": "REPRESENTATIVE_STATIC_ABI_ONLY",
+  "complete_product": "NOT_BUILT",
+  "device_qualification": "NOT_TESTED",
+  "direct_dependencies": [
+    {
+      "missing_versions": [],
+      "name": "libstdc++.so.6",
+      "path": "usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33",
+      "required_versions": [
+        "CXXABI_1.3",
+        "CXXABI_1.3.11",
+        "CXXABI_1.3.13",
+        "CXXABI_1.3.2",
+        "CXXABI_1.3.3",
+        "CXXABI_1.3.5",
+        "CXXABI_1.3.7",
+        "GLIBCXX_3.4",
+        "GLIBCXX_3.4.11",
+        "GLIBCXX_3.4.14",
+        "GLIBCXX_3.4.15",
+        "GLIBCXX_3.4.18",
+        "GLIBCXX_3.4.19",
+        "GLIBCXX_3.4.20",
+        "GLIBCXX_3.4.21",
+        "GLIBCXX_3.4.22",
+        "GLIBCXX_3.4.26",
+        "GLIBCXX_3.4.29",
+        "GLIBCXX_3.4.30",
+        "GLIBCXX_3.4.9"
+      ],
+      "sha256": "6e3112d35cfc86db7ee85b27e1746f67408e2837ff8628b46386c3eabd5682a4"
+    },
+    {
+      "missing_versions": [],
+      "name": "libgcc_s.so.1",
+      "path": "usr/lib/aarch64-linux-gnu/libgcc_s.so.1",
+      "required_versions": [],
+      "sha256": "f2d3ad2bf0b61f6bc944cc37d7b6ab7f88d2582b41ff989ca164803f56cc5f20"
+    },
+    {
+      "missing_versions": [],
+      "name": "libc.so.6",
+      "path": "usr/lib/aarch64-linux-gnu/libc.so.6",
+      "required_versions": [
+        "GLIBC_2.17",
+        "GLIBC_2.32",
+        "GLIBC_2.33",
+        "GLIBC_2.34",
+        "GLIBC_2.38"
+      ],
+      "sha256": "0f1905dc27dbc6715875c70527bc8da846a10084c9c483e9d8ff76dce8d69d0e"
+    }
+  ],
+  "elf": {
+    "build_id": "c1e03bfe2068ccf9d5960b248e01a299b0a59f38",
+    "class": "ELF64",
+    "interpreter": "",
+    "machine": "AArch64",
+    "needed": [
+      "libstdc++.so.6",
+      "libgcc_s.so.1",
+      "libc.so.6"
+    ],
+    "os_abi": "UNIX - System V",
+    "rpath": [],
+    "runpath": [
+      "/usr/local/venv/lib/python3.12/site-packages/ffmpeg/install/lib"
+    ]
+  },
+  "issues": [],
+  "schema_version": 1,
+  "static_decision": "PASS_REPRESENTATIVE_STATIC_ABI",
+  "transitive_dependencies": "NOT_CHECKED",
+  "version_needs": {
+    "libc.so.6": [
+      "GLIBC_2.17",
+      "GLIBC_2.32",
+      "GLIBC_2.33",
+      "GLIBC_2.34",
+      "GLIBC_2.38"
+    ],
+    "libgcc_s.so.1": [],
+    "libstdc++.so.6": [
+      "CXXABI_1.3",
+      "CXXABI_1.3.11",
+      "CXXABI_1.3.13",
+      "CXXABI_1.3.2",
+      "CXXABI_1.3.3",
+      "CXXABI_1.3.5",
+      "CXXABI_1.3.7",
+      "GLIBCXX_3.4",
+      "GLIBCXX_3.4.11",
+      "GLIBCXX_3.4.14",
+      "GLIBCXX_3.4.15",
+      "GLIBCXX_3.4.18",
+      "GLIBCXX_3.4.19",
+      "GLIBCXX_3.4.20",
+      "GLIBCXX_3.4.21",
+      "GLIBCXX_3.4.22",
+      "GLIBCXX_3.4.26",
+      "GLIBCXX_3.4.29",
+      "GLIBCXX_3.4.30",
+      "GLIBCXX_3.4.9"
+    ]
+  }
+}

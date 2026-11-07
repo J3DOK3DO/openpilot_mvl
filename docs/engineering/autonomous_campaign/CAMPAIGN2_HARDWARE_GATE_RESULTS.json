@@ -1,0 +1,69 @@
+{
+  "decision": "B2_HARDWARE_NOT_QUALIFIED",
+  "device_writes": false,
+  "qcom_compilation": "NOT_EXECUTED",
+  "rows": [
+    {
+      "evidence": "read-only model, architecture, AGNOS and installed Git identity",
+      "next_proof": "Recheck exact installed branch/SHA before any later action",
+      "requirement": "device_and_known_good_identity",
+      "status": "PASS"
+    },
+    {
+      "evidence": "40 17 8:12 / /data rw,nosuid,nodev,noatime,nodiratime shared:50 - ext4 /dev/sda12 rw,discard,stripe=2,data=ordered",
+      "next_proof": "Verify /data mount source and filesystem on device",
+      "requirement": "data_filesystem_identity",
+      "status": "PASS"
+    },
+    {
+      "evidence": "project_feature=False; project_mount_option=False",
+      "next_proof": "Current filesystem lacks observed project quota prerequisites; do not alter it in Campaign 2",
+      "requirement": "ext4_project_quota_capability",
+      "status": "FAIL"
+    },
+    {
+      "evidence": "No isolated enforcement test; read-only inspection cannot demonstrate a hard bound",
+      "next_proof": "Separately authorize and prove an isolated aggregate limit including all compiler writes",
+      "requirement": "aggregate_hard_storage_limit",
+      "status": "UNKNOWN"
+    },
+    {
+      "evidence": "last_snapshot_free_kib=9284160; actual compiler peak unknown",
+      "next_proof": "Measure peak usage under hard quota; keep at least 2 GiB free, preferably 4 GiB",
+      "requirement": "disk_reserve_under_compilation",
+      "status": "UNKNOWN"
+    },
+    {
+      "evidence": "read-only cgroup v2 controller observation",
+      "next_proof": "Test workload memory.max, OOM events and process termination in separate authorized scope",
+      "requirement": "cgroup_memory_controller",
+      "status": "PASS"
+    },
+    {
+      "evidence": "KGSL node does not prove GPU allocation accounting or containment",
+      "next_proof": "Obtain bounded actual GPU allocation and driver error evidence",
+      "requirement": "gpu_memory_containment",
+      "status": "UNKNOWN"
+    },
+    {
+      "evidence": "actual CPU/GPU thermal paths observed, no sustained workload",
+      "next_proof": "Validate sensor semantics and continuous response under authorized isolated load",
+      "requirement": "cpu_gpu_thermal_paths",
+      "status": "PASS"
+    },
+    {
+      "evidence": "No authenticated 30-second concurrent pandaStates/carState/controlsState proof",
+      "next_proof": "Establish independent live stationary or physically controlled disconnected bench proof",
+      "requirement": "continuous_parked_disengaged_state",
+      "status": "UNKNOWN"
+    },
+    {
+      "evidence": "Host fixture only; device controller and cleanup not executed",
+      "next_proof": "Hardware-test guardian, process ownership, failure recovery and cleanup boundaries",
+      "requirement": "independent_abort_and_cleanup",
+      "status": "UNKNOWN"
+    }
+  ],
+  "schema_version": 1,
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb"
+}
