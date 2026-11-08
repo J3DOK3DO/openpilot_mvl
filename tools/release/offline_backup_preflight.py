@@ -95,6 +95,8 @@ def _scan_directory(directory_fd: int, prefix: str, expected: dict[str, dict[str
         try:
             entry_stat = os.stat(name, dir_fd=directory_fd, follow_symlinks=False)
             if stat.S_ISDIR(entry_stat.st_mode):
+                if not any(item.startswith(path + '/') for item in expected):
+                    raise ValueError('backup inventory incomplete or contains extras')
                 child_fd = os.open(name, _DIR_FLAGS, dir_fd=directory_fd)
                 try:
                     child = os.fstat(child_fd)
@@ -107,6 +109,8 @@ def _scan_directory(directory_fd: int, prefix: str, expected: dict[str, dict[str
                 finally:
                     os.close(child_fd)
                 continue
+            if not stat.S_ISREG(entry_stat.st_mode):
+                raise ValueError('backup special file or hardlink rejected')
             # O_NONBLOCK prevents a swapped-in FIFO from hanging the verifier.
             leaf_fd = os.open(name, _FILE_FLAGS, dir_fd=directory_fd)
         except OSError as exc:

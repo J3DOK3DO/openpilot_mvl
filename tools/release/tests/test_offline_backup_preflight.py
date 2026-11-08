@@ -56,7 +56,7 @@ class OfflineBackupPreflightTest(unittest.TestCase):
         link.symlink_to(self.file)
         altered = {**self.manifest, 'files': [self.manifest['files'][0],
                                              {**self.manifest['files'][0], 'path': 'known_good/link.txt'}]}
-        with self.assertRaisesRegex(ValueError, 'unsafe'):
+        with self.assertRaisesRegex(ValueError, 'special file'):
             backup.verify(self.root, altered)
         link.unlink()
         altered = {**self.manifest, 'files': self.manifest['files'] * 2}
@@ -99,7 +99,18 @@ class OfflineBackupPreflightTest(unittest.TestCase):
 
     def test_unlisted_fifo_is_rejected_without_opening_it_blocking(self):
         os.mkfifo(self.root / 'owner_data' / 'unexpected_fifo')
-        with self.assertRaisesRegex(ValueError, 'special file'):
+        original_open = backup.os.open
+        def reject_fifo_open(path, flags, *args, **kwargs):
+            if path == 'unexpected_fifo':
+                self.fail('special file was opened before type validation')
+            return original_open(path, flags, *args, **kwargs)
+        with mock.patch.object(backup.os, 'open', side_effect=reject_fifo_open):
+            with self.assertRaisesRegex(ValueError, 'special file'):
+                backup.verify(self.root, self.manifest)
+
+    def test_unlisted_empty_directory_is_rejected(self):
+        (self.root / 'owner_data' / 'unlisted_empty').mkdir()
+        with self.assertRaisesRegex(ValueError, 'incomplete'):
             backup.verify(self.root, self.manifest)
 
     def test_replacement_by_symlink_between_stat_and_open_is_rejected(self):
