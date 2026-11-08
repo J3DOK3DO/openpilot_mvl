@@ -202,6 +202,21 @@ def test_concurrent_producer_can_pair_old_metadata_with_new_state_without_snapsh
   assert snapshot.device.free_space_percent == 90.0
 
 
+def test_clock_rollback_returns_no_topics_and_recovers_on_fresh_time():
+  source = FakeSubMaster({"deviceState": device()}, timestamps={"deviceState": NOW - 10})
+  times = iter((NOW, NOW - 1, NOW + 1))
+  reader = adapter(source, enabled(Feature.DEVICE_STATUS), now=lambda: next(times))
+  first = reader.read()
+  assert first.device is not None
+  rollback = reader.read()
+  assert rollback.device is None
+  assert reasons(rollback) == ["clock_rollback"]
+  source.logMonoTime["deviceState"] = NOW - 5
+  recovered = reader.read()
+  assert recovered.device is not None
+  assert recovered.now_ns == NOW + 1
+
+
 def test_clock_rollback_does_not_read_any_topic():
   source = FakeSubMaster({"deviceState": device()}, timestamps={"deviceState": NOW - 10})
   times = iter((NOW, NOW - 1))

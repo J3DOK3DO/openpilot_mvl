@@ -166,6 +166,36 @@ class OfflineBackupPreflightTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'changed'):
                 backup._read_manifest(path)
 
+    @unittest.skipUnless(hasattr(os, 'mkfifo') and hasattr(os, 'O_NOFOLLOW') and
+                         hasattr(os, 'O_NONBLOCK') and hasattr(os, 'O_CLOEXEC'),
+                         'nonblocking FIFO API required for bounded race test')
+    def test_manifest_regular_to_fifo_swap_after_lstat_cannot_block(self):
+        path = self.root / 'manifest.json'
+        path.write_bytes(b'original')
+        script = "\n".join([
+            "import os, sys",
+            "from pathlib import Path",
+            "from unittest import mock",
+            "from tools.release import offline_backup_preflight as backup",
+            "p = Path(sys.argv[1])",
+            "saved = backup.os.open",
+            "def change(name, flags, *args, **kw):",
+            "    if name == p:",
+            "        p.unlink()",
+            "        os.mkfifo(p)",
+            "    return saved(name, flags, *args, **kw)",
+            "with mock.patch.object(backup.os, 'open', side_effect=change):",
+            "    try:",
+            "        backup._read_manifest(p)",
+            "    except ValueError as e:",
+            "        sys.exit(0 if 'changed' in str(e) or 'unsafe' in str(e) else 3)",
+            "sys.exit(2)",
+        ])
+        run = subprocess.run([sys.executable, '-B', '-c', script, str(path)],
+                             cwd=Path(__file__).resolve().parents[3],
+                             text=True, capture_output=True, timeout=3)
+        self.assertEqual(run.returncode, 0, run.stdout + run.stderr)
+
     def test_external_hardlink_is_not_a_self_contained_backup(self):
         outside = self.root.parent / (self.root.name + '-outside')
         outside.write_bytes(b'known good bytes')
