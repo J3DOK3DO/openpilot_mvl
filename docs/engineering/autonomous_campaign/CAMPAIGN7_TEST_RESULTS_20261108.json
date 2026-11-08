@@ -1,6 +1,14 @@
 {
   "command_scope": "Linux Ubuntu host; UI suite uses pinned external host libparams_c.so temporarily staged and removed, source worktree clean",
   "date": "2026-11-08",
+  "final_evidence_head_tests": {
+    "code_unchanged_since": "0ab98cca292353080d1f230ea4d36146160834cb",
+    "evidence_head": "5b742df3ed6de7aa0c0291ca3ce84b3e8f50ea52",
+    "logs_retained_outside_git": "/mnt/commadrive/MVL_C7_CROSS_REVIEW_20261108/C7_FINAL_DOC_HEAD_*.log",
+    "recovery_tests": "4/4 passed",
+    "release_tests": "187 run, 178 passed, 9 skips",
+    "ui_bridge_tests": "99/99 passed"
+  },
   "focused_backup": {
     "failed": 0,
     "included_in_release_tools": true,
@@ -15,6 +23,7 @@
     "release_gate": "4f5316a799f8aed53821af9cdc91c8a130c4126c7ca19fcda387636574144249",
     "ui_bridge": "0ca0f85384a0a5e9a709349985304c21748d2ebb8043d93d3c4d327bd72a820b"
   },
+  "published_evidence_commit": "5b742df3ed6de7aa0c0291ca3ce84b3e8f50ea52",
   "recovery": {
     "failed": 0,
     "passed": 4,

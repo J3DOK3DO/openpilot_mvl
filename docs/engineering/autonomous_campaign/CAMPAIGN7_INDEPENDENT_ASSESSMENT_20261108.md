@@ -14,3 +14,10 @@
 
 ## Further boundary
 The audit is an offline source and host-test qualification, not independent OEM, Panda, Comma4, B3 or full-product certification. Production release remains HOLD.
+
+
+## Optional Qwen3.8 secondary assessment
+OpenCode/Qwen3.8 27B IQ3 was launched in a separate model session against the same isolated Windows source. It generated **no usable findings or final verdict** and was stopped. Classification: INCONCLUSIVE_NOT_ACCEPTED. Its absence does not certify the code, diminish the source-backed initial P2 or turn unverified Qwen3-Coder claims into confirmed defects.
+
+## Publication and reviewer limitation
+The evidence branch was published and independently verified at 5b742df3ed6de7aa0c0291ca3ce84b3e8f50ea52. Tests were executed independently through Ubuntu host commands. Neither Qwen source review constituted a passing automotive release assessment.

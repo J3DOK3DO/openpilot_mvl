@@ -42,3 +42,7 @@ Final release: RC_NOT_INSTALLABLE / PRODUCT_BUILD_INCOMPLETE / HOLD.
 
 ## Handoff
 Continue independent reviewer reconciliation and publish only after scope and tests are verified at final committed HEAD. Preserve original Campaigns 1–6 and known-good installation. Do not reopen B3 or waive release prerequisites.
+
+## Final disposition
+Reviewed engineering evidence published and verified at 5b742df3ed6de7aa0c0291ca3ce84b3e8f50ea52 on codex/mvl-c7-offline-review-remediation-20261108.
+The dedicated Campaign 7 lease was released. Optional Qwen3.8 second reviewer provided no usable result and is explicitly INCONCLUSIVE. The completed work remains OFFLINE TESTED WITH REVIEW LIMITATIONS; not a production-ready release.
