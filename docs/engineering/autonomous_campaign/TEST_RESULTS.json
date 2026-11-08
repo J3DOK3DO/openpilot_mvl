@@ -1,476 +1,486 @@
 {
-  "schema_version": 1,
-  "verified_at_utc": "2026-11-03T16:17:35Z",
-  "commit": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
   "branch": "codex/autonomous-campaign",
+  "campaign6_latest": {
+    "c1_host": "96/96 pass",
+    "implementation_commit": "e9f654422f80d9c7f17abdef5ee6f512299137ac",
+    "independent_review": "PASS_SCOPED",
+    "native_component": "AArch64 socketmaster archive exit 0",
+    "record": "CAMPAIGN6_TEST_RESULTS_20261108.json",
+    "recovery": "4/4 pass",
+    "release": "HOLD",
+    "release_tools": "180 run, 171 pass, nine skips"
+  },
   "checkout_mode": "branch",
   "command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+  "commit": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
   "exit_code": 0,
-  "outcomes": {
-    "passed": 377,
+  "last_verified_commit": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
+  "last_verified_outcomes": {
     "failed": 0,
+    "passed": 12,
+    "scope": "offline observer and inspector units only; prior 444 host suite at 4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
     "skipped": 0
-  },
-  "scope": "offline host tests; no native device, Panda, OEM, or target-build verification",
-  "prior_campaign_log": "../campaign_20261103/CONSOLIDATED_HOST_REGRESSION.log",
-  "prior_campaign_counts": {
-    "retained_bridge": 51,
-    "g03": 7,
-    "g05": 13,
-    "g06": 22,
-    "g08": 14,
-    "g09": 261,
-    "g10": 9
-  },
-  "recovery_tests": {
-    "command": "python3 -m unittest -v docs/engineering/autonomous_campaign/test_campaignctl.py",
-    "passed": 2,
-    "failed": 0,
-    "scope": "simulated pending operation and recorded SHA drift"
   },
   "lock_contention_test": "Second locked-run exited 3 while first held the lock; first exited 0.",
   "milestone_runs": [
     {
-      "milestone": "G06 source-only transport readiness",
-      "commit": "efdc8b4f0dfcae5c3ddc1ae176bec8a6db5044ea",
-      "verified_at_utc": "2026-11-03T16:18:22Z",
       "command": "python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_galaxy/tests",
+      "commit": "efdc8b4f0dfcae5c3ddc1ae176bec8a6db5044ea",
+      "milestone": "G06 source-only transport readiness",
       "outcomes": {
-        "passed": 22,
         "failed": 0,
+        "passed": 22,
         "skipped": 0
       },
       "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
       "recovery_outcomes": {
-        "passed": 2,
-        "failed": 0
-      }
+        "failed": 0,
+        "passed": 2
+      },
+      "verified_at_utc": "2026-11-03T16:18:22Z"
     },
     {
-      "milestone": "background worktree baseline and environment",
+      "command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
       "commit": "5d2d2cae47ff1548e317bacb1357fbb44b9d8388",
-      "verified_at_utc": "2026-11-03T16:22:36Z",
-      "command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+      "milestone": "background worktree baseline and environment",
       "outcomes": {
+        "failed": 0,
         "passed": 377,
-        "failed": 0,
-        "skipped": 0
-      }
-    },
-    {
-      "milestone": "G05 offroad admission guard",
-      "commit": "e65dc8aa9053e53d41fb9a7c2f721b3e819557c6",
-      "verified_at_utc": "2026-11-03T16:27:36Z",
-      "command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
-      "outcomes": {
-        "passed": 389,
-        "failed": 0,
         "skipped": 0
       },
+      "verified_at_utc": "2026-11-03T16:22:36Z"
+    },
+    {
+      "command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+      "commit": "e65dc8aa9053e53d41fb9a7c2f721b3e819557c6",
       "focused_command": "python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_views/tests",
       "focused_outcomes": {
-        "passed": 25,
         "failed": 0,
+        "passed": 25,
         "skipped": 0
       },
+      "milestone": "G05 offroad admission guard",
       "native_ui_attempt": {
+        "cached_pycapnp_retry_missing_dependency": "opendbc",
         "command": "timeout 30s python3 -m pytest -p no:cacheprovider -q -ra openpilot/selfdrive/ui/tests/test_raylib_ui.py",
         "exit_code": 2,
-        "outcome": "BLOCKED_DURING_COLLECTION",
         "first_missing_dependency": "capnp",
-        "cached_pycapnp_retry_missing_dependency": "opendbc"
-      }
+        "outcome": "BLOCKED_DURING_COLLECTION"
+      },
+      "outcomes": {
+        "failed": 0,
+        "passed": 389,
+        "skipped": 0
+      },
+      "verified_at_utc": "2026-11-03T16:27:36Z"
     },
     {
-      "milestone": "G03 status schema and Params quarantine",
-      "commit": "accfcb90a4794df2ab162ff35267fff3c0d3b0e7",
-      "verified_at_utc": "2026-11-03T16:31:31Z",
       "command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
+      "commit": "accfcb90a4794df2ab162ff35267fff3c0d3b0e7",
       "exit_code": 0,
-      "outcome": "8 source field decisions matched pinned schema; 254 Params DENY",
       "host_command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
       "host_outcomes": {
-        "passed": 389,
         "failed": 0,
+        "passed": 389,
         "skipped": 0
-      }
+      },
+      "milestone": "G03 status schema and Params quarantine",
+      "outcome": "8 source field decisions matched pinned schema; 254 Params DENY",
+      "verified_at_utc": "2026-11-03T16:31:31Z"
     },
     {
-      "milestone": "offline engineering candidate and run lease",
       "commit": "05806a6ca81a3d99478202593b1deeb8b69fb807",
-      "verified_at_utc": "2026-11-03T16:39:52Z",
-      "host_command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
-      "host_outcomes": {
-        "passed": 389,
-        "failed": 0,
-        "skipped": 0
-      },
-      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
-      "recovery_outcomes": {
-        "passed": 4,
-        "failed": 0
-      },
       "g03_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
       "g03_exit_code": 0,
+      "host_command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
+      "host_outcomes": {
+        "failed": 0,
+        "passed": 389,
+        "skipped": 0
+      },
       "manifest_command": "python3 docs/engineering/autonomous_campaign/build_offline_release_manifest.py --commit 05806a6ca81a3d99478202593b1deeb8b69fb807 | cmp - docs/engineering/autonomous_campaign/RELEASE_MANIFEST.json",
       "manifest_exit_code": 0,
-      "native_ui_startup": "BLOCKED_DURING_COLLECTION"
+      "milestone": "offline engineering candidate and run lease",
+      "native_ui_startup": "BLOCKED_DURING_COLLECTION",
+      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
+      "recovery_outcomes": {
+        "failed": 0,
+        "passed": 4
+      },
+      "verified_at_utc": "2026-11-03T16:39:52Z"
     },
     {
-      "milestone": "local offline candidate publication attempt",
       "commit": "daeffba203435502015ff037d436e3a2b89db1df",
-      "verified_at_utc": "2026-11-03T16:41:18Z",
+      "g03_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
+      "g03_exit_code": 0,
       "host_command": "PYTHONPATH=\"$PWD:$PWD/docs/engineering/campaign_20261103/g10\" python3 -m pytest -p no:cacheprovider -q -ra openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
       "host_outcomes": {
-        "passed": 389,
         "failed": 0,
+        "passed": 389,
         "skipped": 0
+      },
+      "milestone": "local offline candidate publication attempt",
+      "push_attempt": {
+        "command": "git push -u origin codex/mvl-starpilot-continuation",
+        "error": "could not read Username for https://github.com: No such device or address",
+        "exit_code": 128
       },
       "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
       "recovery_outcomes": {
-        "passed": 4,
-        "failed": 0
+        "failed": 0,
+        "passed": 4
       },
-      "g03_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
-      "g03_exit_code": 0,
-      "push_attempt": {
-        "command": "git push -u origin codex/mvl-starpilot-continuation",
-        "exit_code": 128,
-        "error": "could not read Username for https://github.com: No such device or address"
-      }
+      "verified_at_utc": "2026-11-03T16:41:18Z"
     },
     {
-      "milestone": "N1 G05 native host and G03 local IPC; N4 G06/G08 metadata integration; N2 G10 preflight",
-      "commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
-      "verified_at_utc": "2026-11-03T17:20:04.981433Z",
       "command": "source /tmp/mvl-n1-native-env.sh; export PYTHONPATH=\"$PWD:${PYTHONPATH}\"; /tmp/mvl-n1-native-venv/bin/python -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
-      "setup": "Temporary symlink openpilot/common/libparams_c.so to pinned matching x86 library; removed after test; isolated cached Python dependencies, pinned opendbc/msgq. Exact consolidated command used equivalent PYTHONPATH with /tmp clone first.",
-      "outcomes": {
-        "passed": 400,
-        "failed": 0,
-        "skipped": 0
-      },
+      "commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
       "g03_ipc_command": "source /tmp/mvl-n1-native-env.sh; export PYTHONPATH=\"$PWD:${PYTHONPATH}\"; /tmp/mvl-n1-native-venv/bin/python docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
       "g03_ipc_exit_code": 0,
       "g03_ipc_paths": 8,
-      "params_denied": 254,
-      "n2_build": "HOLD_PREREQUISITES",
       "independent_review": "N1 and N4 PASS after exception-safety and validation remediations",
-      "limits": "x86 host native renderer and local IPC only; target and vehicle release HOLD"
-    },
-    {
-      "milestone": "persisted isolated native host setup verification",
-      "commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
-      "checkpoint_parent": "56ba8140cb0f371d73233ec1615c78e5da6abfd0",
-      "verified_at_utc": "2026-11-03T17:29:44.237140Z",
-      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py; python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
-      "temporary_host_library_symlink_removed": true,
+      "limits": "x86 host native renderer and local IPC only; target and vehicle release HOLD",
+      "milestone": "N1 G05 native host and G03 local IPC; N4 G06/G08 metadata integration; N2 G10 preflight",
+      "n2_build": "HOLD_PREREQUISITES",
       "outcomes": {
+        "failed": 0,
         "passed": 400,
-        "failed": 0,
         "skipped": 0
       },
+      "params_denied": 254,
+      "setup": "Temporary symlink openpilot/common/libparams_c.so to pinned matching x86 library; removed after test; isolated cached Python dependencies, pinned opendbc/msgq. Exact consolidated command used equivalent PYTHONPATH with /tmp clone first.",
+      "verified_at_utc": "2026-11-03T17:20:04.981433Z"
+    },
+    {
+      "checkpoint_parent": "56ba8140cb0f371d73233ec1615c78e5da6abfd0",
+      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py; python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
+      "commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
       "g03_ipc": "PASS 8 schema paths; 254 Params DENY",
-      "limits": "host only; no target/device release"
+      "limits": "host only; no target/device release",
+      "milestone": "persisted isolated native host setup verification",
+      "outcomes": {
+        "failed": 0,
+        "passed": 400,
+        "skipped": 0
+      },
+      "temporary_host_library_symlink_removed": true,
+      "verified_at_utc": "2026-11-03T17:29:44.237140Z"
     },
     {
-      "milestone": "G10 isolated AGNOS 19.8.1 ARM64 native library and G08 NUL-path fail-closed fix; G05 bench and G06/G08 read-only qualification",
-      "commit": "162391f22567774166a6bd02024a65d969f63b59",
-      "verified_at_utc": "2026-11-04T07:01:57.237828+00:00",
-      "host_checkout": "/tmp/mvl-g10-host-check (clean exact-commit detached checkout; no copied build submodules)",
       "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py",
-      "outcomes": {
-        "passed": 401,
-        "failed": 0,
-        "skipped": 0
-      },
+      "commit": "162391f22567774166a6bd02024a65d969f63b59",
       "exit_code": 0,
       "g03_ipc_command": "python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
       "g03_ipc_exit_code": 0,
       "g03_ipc_paths": 8,
-      "params_denied": 254,
-      "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
-      "schema_exit_code": 0,
-      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
-      "recovery_passed": 4,
-      "temporary_host_library_symlink_removed": true,
-      "initial_build_worktree_host_attempt": {
-        "outcomes": {
-          "passed": 400,
-          "failed": 1
-        },
-        "cause": "Copied opendbc submodule made local car schema available; crosswalk test intentionally expects absent local schema in this host scope. Clean exact-commit checkout passed 401."
-      },
-      "native_build_evidence": "G10_BUILD_EVIDENCE_20261104.json",
+      "host_checkout": "/tmp/mvl-g10-host-check (clean exact-commit detached checkout; no copied build submodules)",
       "independent_exact_commit_review": "PASS for narrow offline scope at 162391f; full product, device and release HOLD",
-      "limits": "No full cold product build, target GPU, device boot, live transport, Panda, OEM or protected rollback qualification"
-    },
-    {
-      "milestone": "comma 4 restricted release offline integration and independent G06 cleanup remediation",
-      "commit": "feee77a81dbefe4655c5d60c459362005e8e588d",
-      "verified_at_utc": "2026-11-04T16:23:12.443198+00:00",
-      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py tools/honda11g_health/tests tools/release/test_preflight_readonly.py tools/release/tests/test_mvl_model_artifacts.py; rm -f openpilot/common/libparams_c.so",
+      "initial_build_worktree_host_attempt": {
+        "cause": "Copied opendbc submodule made local car schema available; crosswalk test intentionally expects absent local schema in this host scope. Clean exact-commit checkout passed 401.",
+        "outcomes": {
+          "failed": 1,
+          "passed": 400
+        }
+      },
+      "limits": "No full cold product build, target GPU, device boot, live transport, Panda, OEM or protected rollback qualification",
+      "milestone": "G10 isolated AGNOS 19.8.1 ARM64 native library and G08 NUL-path fail-closed fix; G05 bench and G06/G08 read-only qualification",
+      "native_build_evidence": "G10_BUILD_EVIDENCE_20261104.json",
       "outcomes": {
-        "passed": 442,
         "failed": 0,
+        "passed": 401,
         "skipped": 0
       },
-      "exit_code": 0,
-      "g03_ipc_command": "python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
-      "g03_ipc_paths": 8,
-      "g03_ipc_exit_code": 0,
-      "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
-      "schema_exit_code": 0,
-      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
-      "recovery_passed": 4,
-      "temporary_host_library_symlink_removed": true,
-      "independent_review": "PASS for feee77a host-only G06 fix and source boundary; reviewer sandbox denied AF_UNIX bind EPERM, but simulated race regression passed. Full normal-host suite separately passed. Device security remains HOLD.",
-      "build_decision": "HOLD_PREREQUISITES: 7 submodules absent, 286 LFS unhydrated, 6 MVL QCOM outputs absent; no full cold build attempted",
-      "device_status": "NOT_TESTED",
-      "release_classification": "PRODUCT_BUILD_INCOMPLETE"
-    },
-    {
-      "milestone": "G10 exact dependency restoration, source preflight and AGNOS ARM64 graph",
-      "commit": "7e0015b5b74e2b6372cd7dae0122815cbd491e43",
-      "verified_at_utc": "2026-11-05T16:47:08.322270+00:00",
-      "host_checkout": "/tmp/mvl-g10-hostcheck-20261105 clean exact commit with temporary pinned x86 libparams symlink removed",
-      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py tools/honda11g_health/tests tools/release/test_preflight_readonly.py tools/release/tests/test_mvl_model_artifacts.py",
-      "outcomes": {
-        "passed": 443,
-        "failed": 0,
-        "skipped": 0
-      },
-      "exit_code": 0,
-      "g03_ipc_command": "python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
-      "g03_ipc_paths": 8,
-      "g03_ipc_exit_code": 0,
-      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
-      "recovery_passed": 4,
-      "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
-      "schema_exit_code": 0,
       "params_denied": 254,
-      "source_preflight": {
-        "command": "python3 tools/release/preflight_readonly.py --repo . --commit HEAD --baseline 2ce036d21fd53e2dfabf9c8468da9b954ebedb4d",
-        "result": "PASS",
-        "pinned_submodules": 7,
-        "selected_lfs_hydrated": 283,
-        "selected_lfs_bytes": 144104922,
-        "optional_unhydrated_lfs": 3,
-        "record": "G10_SOURCE_PREFLIGHT_20261105.json"
+      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
+      "recovery_passed": 4,
+      "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
+      "schema_exit_code": 0,
+      "temporary_host_library_symlink_removed": true,
+      "verified_at_utc": "2026-11-04T07:01:57.237828+00:00"
+    },
+    {
+      "build_decision": "HOLD_PREREQUISITES: 7 submodules absent, 286 LFS unhydrated, 6 MVL QCOM outputs absent; no full cold build attempted",
+      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py tools/honda11g_health/tests tools/release/test_preflight_readonly.py tools/release/tests/test_mvl_model_artifacts.py; rm -f openpilot/common/libparams_c.so",
+      "commit": "feee77a81dbefe4655c5d60c459362005e8e588d",
+      "device_status": "NOT_TESTED",
+      "exit_code": 0,
+      "g03_ipc_command": "python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
+      "g03_ipc_exit_code": 0,
+      "g03_ipc_paths": 8,
+      "independent_review": "PASS for feee77a host-only G06 fix and source boundary; reviewer sandbox denied AF_UNIX bind EPERM, but simulated race regression passed. Full normal-host suite separately passed. Device security remains HOLD.",
+      "milestone": "comma 4 restricted release offline integration and independent G06 cleanup remediation",
+      "outcomes": {
+        "failed": 0,
+        "passed": 442,
+        "skipped": 0
       },
+      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
+      "recovery_passed": 4,
+      "release_classification": "PRODUCT_BUILD_INCOMPLETE",
+      "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
+      "schema_exit_code": 0,
+      "temporary_host_library_symlink_removed": true,
+      "verified_at_utc": "2026-11-04T16:23:12.443198+00:00"
+    },
+    {
       "arm64_graph": {
-        "result": "PASS_DRY_RUN_ONLY",
         "command": "AGNOS 19.8.1 network-disabled AArch64 builder; python3 -m SCons -n --minimal cache_dir=/build_cache with exact 8 safe.directory entries",
         "exit_code": 0,
-        "warnings": 0,
-        "record": "G10_SCONS_GRAPH_20261105.log"
+        "record": "G10_SCONS_GRAPH_20261105.log",
+        "result": "PASS_DRY_RUN_ONLY",
+        "warnings": 0
       },
-      "qcom_artifact_validation": {
-        "result": "REJECTED_CPU_CAPTURE",
-        "exit_code": 1,
-        "record": "G10_CPU_CAPTURE_REJECTION_20261105.log"
-      },
+      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py tools/honda11g_health/tests tools/release/test_preflight_readonly.py tools/release/tests/test_mvl_model_artifacts.py",
+      "commit": "7e0015b5b74e2b6372cd7dae0122815cbd491e43",
+      "device_status": "NOT_TESTED",
+      "exit_code": 0,
       "full_cold_product_build": {
         "attempted": false,
         "decision": "HOLD_PREREQUISITES",
         "missing": "six exact-source QCOM outputs and host Qualcomm GPU"
       },
-      "device_status": "NOT_TESTED",
-      "release_classification": "PRODUCT_BUILD_INCOMPLETE",
-      "independent_review": "pending exact-source review"
-    },
-    {
-      "milestone": "G10 corrected selected-submodule LFS preflight and final exact-source review",
-      "commit": "b39410908b15a27ff29f07b451ade468764bb148",
-      "verified_at_utc": "2026-11-05T16:53:53.501471+00:00",
-      "host_checkout": "/tmp/mvl-g10-hostcheck-20261105 clean exact commit; temporary pinned x86 libparams symlink removed",
-      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py tools/honda11g_health/tests tools/release/test_preflight_readonly.py tools/release/tests/test_mvl_model_artifacts.py",
+      "g03_ipc_command": "python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
+      "g03_ipc_exit_code": 0,
+      "g03_ipc_paths": 8,
+      "host_checkout": "/tmp/mvl-g10-hostcheck-20261105 clean exact commit with temporary pinned x86 libparams symlink removed",
+      "independent_review": "pending exact-source review",
+      "milestone": "G10 exact dependency restoration, source preflight and AGNOS ARM64 graph",
       "outcomes": {
-        "passed": 444,
         "failed": 0,
+        "passed": 443,
         "skipped": 0
       },
-      "exit_code": 0,
-      "g03_ipc_command": "python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
-      "g03_ipc_paths": 8,
-      "g03_ipc_exit_code": 0,
+      "params_denied": 254,
+      "qcom_artifact_validation": {
+        "exit_code": 1,
+        "record": "G10_CPU_CAPTURE_REJECTION_20261105.log",
+        "result": "REJECTED_CPU_CAPTURE"
+      },
       "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
       "recovery_passed": 4,
+      "release_classification": "PRODUCT_BUILD_INCOMPLETE",
       "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
       "schema_exit_code": 0,
-      "params_denied": 254,
       "source_preflight": {
         "command": "python3 tools/release/preflight_readonly.py --repo . --commit HEAD --baseline 2ce036d21fd53e2dfabf9c8468da9b954ebedb4d",
-        "result": "PASS",
-        "pinned_submodules": 7,
-        "selected_lfs_hydrated": 283,
-        "selected_submodule_lfs_pointers": 0,
         "optional_unhydrated_lfs": 3,
+        "pinned_submodules": 7,
         "record": "G10_SOURCE_PREFLIGHT_20261105.json",
-        "sha256": "ae78eba025d9dcc1f319a32230e6a5d2c02f0a111f8be810de98b348c933315a"
+        "result": "PASS",
+        "selected_lfs_bytes": 144104922,
+        "selected_lfs_hydrated": 283
       },
+      "verified_at_utc": "2026-11-05T16:47:08.322270+00:00"
+    },
+    {
       "arm64_graph": {
-        "result": "PASS_DRY_RUN_ONLY",
         "command": "network-disabled AGNOS 19.8.1 AArch64 builder; python3 -m SCons -n --minimal cache_dir=/build_cache with explicit 8 safe.directory entries",
         "exit_code": 0,
-        "warnings": 0,
         "record": "G10_SCONS_GRAPH_20261105.log",
-        "sha256": "46e70c2295eb72d55590f1e2c1029db5b5ed63f8cb9f0565d2fdac4e2730c028"
+        "result": "PASS_DRY_RUN_ONLY",
+        "sha256": "46e70c2295eb72d55590f1e2c1029db5b5ed63f8cb9f0565d2fdac4e2730c028",
+        "warnings": 0
       },
-      "qcom_artifact_validation": {
-        "result": "REJECTED_CPU_CAPTURE",
-        "exit_code": 1,
-        "record": "G10_CPU_CAPTURE_REJECTION_20261105.log"
-      },
+      "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py tools/honda11g_health/tests tools/release/test_preflight_readonly.py tools/release/tests/test_mvl_model_artifacts.py",
+      "commit": "b39410908b15a27ff29f07b451ade468764bb148",
+      "device_status": "NOT_TESTED",
+      "exit_code": 0,
       "full_cold_product_build": {
         "attempted": false,
         "decision": "HOLD_PREREQUISITES",
         "missing": "six exact-source QCOM outputs and host Qualcomm GPU"
       },
-      "device_status": "NOT_TESTED",
-      "release_classification": "PRODUCT_BUILD_INCOMPLETE",
-      "independent_review": "PASS for corrected preflight, bench-plan limitations and unchanged control/Panda boundary at exact code commit"
-    },
-    {
-      "milestone": "Final non-actuating source-only QCOM handoff and owner C4-12 waiver",
-      "commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
-      "verified_at_utc": "2026-11-05T18:10:39.297825+00:00",
-      "branch": "codex/mvl-comma4-final-release-20261105",
-      "host_command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py tools/honda11g_health/tests tools/release/test_preflight_readonly.py tools/release/tests/test_mvl_model_artifacts.py; rm -f openpilot/common/libparams_c.so",
-      "host_outcomes": {
-        "passed": 444,
-        "failed": 0,
-        "skipped": 0,
-        "exit_code": 0
-      },
-      "environment": "Ubuntu x86_64; Python 3.12; pinned native_host_env.sh; approved unsandboxed Unix-domain socket access; temporary x86 library symlink removed after test",
-      "first_sandbox_attempt": {
-        "passed": 428,
-        "failed": 16,
-        "cause": "sandbox denied AF_UNIX bind with EPERM; no product-code defect inferred",
-        "remediation": "reran unchanged tests with approved socket access",
-        "final_exit_code": 0
-      },
-      "handoff_recovery_unit_command": "python3 -m unittest -q tools/release/tests/test_build_qcom_handoff.py docs/engineering/autonomous_campaign/test_campaignctl.py",
-      "handoff_recovery_unit_outcomes": {
-        "passed": 13,
-        "failed": 0,
-        "exit_code": 0
-      },
-      "g03_ipc_command": "source docs/engineering/autonomous_campaign/native_host_env.sh; python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
-      "g03_ipc_paths": 8,
+      "g03_ipc_command": "python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
       "g03_ipc_exit_code": 0,
+      "g03_ipc_paths": 8,
+      "host_checkout": "/tmp/mvl-g10-hostcheck-20261105 clean exact commit; temporary pinned x86 libparams symlink removed",
+      "independent_review": "PASS for corrected preflight, bench-plan limitations and unchanged control/Panda boundary at exact code commit",
+      "milestone": "G10 corrected selected-submodule LFS preflight and final exact-source review",
+      "outcomes": {
+        "failed": 0,
+        "passed": 444,
+        "skipped": 0
+      },
+      "params_denied": 254,
+      "qcom_artifact_validation": {
+        "exit_code": 1,
+        "record": "G10_CPU_CAPTURE_REJECTION_20261105.log",
+        "result": "REJECTED_CPU_CAPTURE"
+      },
+      "recovery_command": "python3 -m unittest -q docs/engineering/autonomous_campaign/test_campaignctl.py",
+      "recovery_passed": 4,
+      "release_classification": "PRODUCT_BUILD_INCOMPLETE",
       "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
       "schema_exit_code": 0,
-      "params_quarantined_denied": 254,
       "source_preflight": {
+        "command": "python3 tools/release/preflight_readonly.py --repo . --commit HEAD --baseline 2ce036d21fd53e2dfabf9c8468da9b954ebedb4d",
+        "optional_unhydrated_lfs": 3,
+        "pinned_submodules": 7,
+        "record": "G10_SOURCE_PREFLIGHT_20261105.json",
         "result": "PASS",
-        "record": "FINAL_SOURCE_PREFLIGHT_20261105.json",
-        "sha256": "9850e2f6c61c3c46d1f2074d4b974b4a3291025b8b53d8fd061fdb8f627bd07b",
-        "submodules": 7,
         "selected_lfs_hydrated": 283,
-        "release_selected_paths": 4371
+        "selected_submodule_lfs_pointers": 0,
+        "sha256": "ae78eba025d9dcc1f319a32230e6a5d2c02f0a111f8be810de98b348c933315a"
       },
-      "handoff": {
-        "result": "PASS_SOURCE_ONLY",
-        "record": "QCOM_HANDOFF_EVIDENCE_20261105.json",
-        "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
-        "archive_members": 4372,
-        "manifest_sha256": "998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4",
-        "tar_sha256": "37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d60fe"
+      "verified_at_utc": "2026-11-05T16:53:53.501471+00:00"
+    },
+    {
+      "branch": "codex/mvl-comma4-final-release-20261105",
+      "commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+      "device_status": "NOT_TESTED",
+      "environment": "Ubuntu x86_64; Python 3.12; pinned native_host_env.sh; approved unsandboxed Unix-domain socket access; temporary x86 library symlink removed after test",
+      "first_sandbox_attempt": {
+        "cause": "sandbox denied AF_UNIX bind with EPERM; no product-code defect inferred",
+        "failed": 16,
+        "final_exit_code": 0,
+        "passed": 428,
+        "remediation": "reran unchanged tests with approved socket access"
       },
       "full_cold_product_build": {
         "attempted": false,
         "decision": "HOLD_PREREQUISITES",
         "missing": "six exact-source QCOM outputs and Qualcomm GPU host"
       },
-      "device_status": "NOT_TESTED",
-      "waiver_C4_12": "WAIVED_BY_OWNER / NOT_EXECUTED",
-      "release_classification": "PRODUCT_BUILD_INCOMPLETE",
-      "independent_review": "PASS source-only scope and unchanged control/Panda boundary at exact source commit"
-    },
-    {
-      "milestone": "QCOM continuation bounded read-only preflight and static product inspector",
-      "commit": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
-      "verified_at_utc": "2026-11-06T10:10:50.979037+00:00",
-      "command": "python3 -m unittest -q tools.release.tests.test_readonly_comma4_preflight tools.release.tests.test_inspect_native_product",
-      "exit_code": 0,
-      "outcomes": {
-        "passed": 12,
+      "g03_ipc_command": "source docs/engineering/autonomous_campaign/native_host_env.sh; python3.12 docs/engineering/autonomous_campaign/probe_g03_host_ipc.py",
+      "g03_ipc_exit_code": 0,
+      "g03_ipc_paths": 8,
+      "handoff": {
+        "archive_members": 4372,
+        "manifest_sha256": "998b417374930b75338b7ef8be9b3739d3e9e4d130c39ae0aa10e4abfcab9ee4",
+        "record": "QCOM_HANDOFF_EVIDENCE_20261105.json",
+        "result": "PASS_SOURCE_ONLY",
+        "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+        "tar_sha256": "37a82b744d079c0a130b3f88e24ba4d56b7aa5db4c0bc709449ed4f0ba3d60fe"
+      },
+      "handoff_recovery_unit_command": "python3 -m unittest -q tools/release/tests/test_build_qcom_handoff.py docs/engineering/autonomous_campaign/test_campaignctl.py",
+      "handoff_recovery_unit_outcomes": {
+        "exit_code": 0,
         "failed": 0,
+        "passed": 13
+      },
+      "host_command": "source docs/engineering/autonomous_campaign/native_host_env.sh; ln -s /mnt/commadrive/MVL_NATIVE_LATEST_20261103/openpilot/common/libparams_c.so openpilot/common/libparams_c.so; python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_bridge/tests openpilot/sunnypilot/starpilot_compat/tests openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_galaxy/tests openpilot/sunnypilot/starpilot_models/tests openpilot/sunnypilot/starpilot_research/tests docs/engineering/campaign_20261103/g10/test_agnos_passive_check.py tools/honda11g_health/tests tools/release/test_preflight_readonly.py tools/release/tests/test_mvl_model_artifacts.py; rm -f openpilot/common/libparams_c.so",
+      "host_outcomes": {
+        "exit_code": 0,
+        "failed": 0,
+        "passed": 444,
         "skipped": 0
       },
-      "scope": "offline tool unit tests only; no device contact or product build qualification",
-      "preflight_command": "python3 tools/release/readonly_comma4_preflight.py --host comma --timeout-seconds 12",
-      "preflight_record": "COMMA4_READONLY_PREFLIGHT_20261106.json",
-      "preflight_result": "UNREACHABLE / NO_ROUTE_TO_HOST; device NOT_TESTED",
-      "prior_accepted_source": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
-      "prior_accepted_host_passed": 444,
-      "qcom_compilation": "NOT_ATTEMPTED; separate authorization and compatible reachable runtime required",
+      "independent_review": "PASS source-only scope and unchanged control/Panda boundary at exact source commit",
+      "milestone": "Final non-actuating source-only QCOM handoff and owner C4-12 waiver",
+      "params_quarantined_denied": 254,
+      "release_classification": "PRODUCT_BUILD_INCOMPLETE",
+      "schema_command": "python3 docs/engineering/autonomous_campaign/verify_g03_status_compat.py | cmp - docs/engineering/autonomous_campaign/G03_STATUS_COMPATIBILITY.json",
+      "schema_exit_code": 0,
+      "source_preflight": {
+        "record": "FINAL_SOURCE_PREFLIGHT_20261105.json",
+        "release_selected_paths": 4371,
+        "result": "PASS",
+        "selected_lfs_hydrated": 283,
+        "sha256": "9850e2f6c61c3c46d1f2074d4b974b4a3291025b8b53d8fd061fdb8f627bd07b",
+        "submodules": 7
+      },
+      "verified_at_utc": "2026-11-05T18:10:39.297825+00:00",
+      "waiver_C4_12": "WAIVED_BY_OWNER / NOT_EXECUTED"
+    },
+    {
+      "command": "python3 -m unittest -q tools.release.tests.test_readonly_comma4_preflight tools.release.tests.test_inspect_native_product",
+      "commit": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
+      "exit_code": 0,
       "full_product_build": "NOT_ATTEMPTED / HOLD",
       "independent_review": "PASS exact source c5c2cb367a451dd8f6476e3bd365649938ba16e4: offline tools/tests only; no UI/control/Panda/Honda/manager change; 12 focused tests confirmed",
+      "milestone": "QCOM continuation bounded read-only preflight and static product inspector",
+      "outcomes": {
+        "failed": 0,
+        "passed": 12,
+        "skipped": 0
+      },
+      "preflight_command": "python3 tools/release/readonly_comma4_preflight.py --host comma --timeout-seconds 12",
       "preflight_command_exit_code": 0,
-      "preflight_observation": "SSH error classified; no remote response or device fact"
+      "preflight_observation": "SSH error classified; no remote response or device fact",
+      "preflight_record": "COMMA4_READONLY_PREFLIGHT_20261106.json",
+      "preflight_result": "UNREACHABLE / NO_ROUTE_TO_HOST; device NOT_TESTED",
+      "prior_accepted_host_passed": 444,
+      "prior_accepted_source": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+      "qcom_compilation": "NOT_ATTEMPTED; separate authorization and compatible reachable runtime required",
+      "scope": "offline tool unit tests only; no device contact or product build qualification",
+      "verified_at_utc": "2026-11-06T10:10:50.979037+00:00"
     }
   ],
-  "last_verified_commit": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
-  "last_verified_outcomes": {
-    "passed": 12,
+  "outcomes": {
     "failed": 0,
-    "skipped": 0,
-    "scope": "offline observer and inspector units only; prior 444 host suite at 4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb"
+    "passed": 377,
+    "skipped": 0
   },
+  "prior_campaign_counts": {
+    "g03": 7,
+    "g05": 13,
+    "g06": 22,
+    "g08": 14,
+    "g09": 261,
+    "g10": 9,
+    "retained_bridge": 51
+  },
+  "prior_campaign_log": "../campaign_20261103/CONSOLIDATED_HOST_REGRESSION.log",
   "publication_events": [
     {
-      "published_commit": "17c43e9e505f193113777a7266fedd0b03bee7cc",
-      "tested_source_commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc",
       "branch": "codex/mvl-starpilot-manual",
-      "remote_ref_verified": true,
+      "new_test_outcome": "not_rerun_docs_only",
+      "published_commit": "17c43e9e505f193113777a7266fedd0b03bee7cc",
       "pull_request": "https://github.com/J3DOK3DO/openpilot_mvl/pull/1",
-      "new_test_outcome": "not_rerun_docs_only"
+      "remote_ref_verified": true,
+      "tested_source_commit": "6ea2fc99792a0f1a27d5e977fb6171637c5136cc"
     },
     {
-      "published_commit": "7bcb88f69c4cb7a0ea817545216c6783e5fa7520",
-      "tested_source_commit": "162391f22567774166a6bd02024a65d969f63b59",
       "branch": "codex/mvl-g10-continuation",
-      "remote_ref_verified": true,
       "method": "Windows helper non-force push; GitHub compare and authenticated ls-remote",
-      "new_test_outcome": "not_rerun_docs_only"
+      "new_test_outcome": "not_rerun_docs_only",
+      "published_commit": "7bcb88f69c4cb7a0ea817545216c6783e5fa7520",
+      "remote_ref_verified": true,
+      "tested_source_commit": "162391f22567774166a6bd02024a65d969f63b59"
     },
     {
-      "published_commit": "c2330174cde34ad1a5d1bd776839864eedd3de83",
-      "tested_source_commit": "feee77a81dbefe4655c5d60c459362005e8e588d",
       "branch": "codex/mvl-comma4-release-rc-20261104",
-      "remote_ref_verified": true,
+      "classification": "PRODUCT_BUILD_INCOMPLETE",
       "method": "SHA-verified bundle via authorized Windows helper; non-force push; authenticated ls-remote",
       "new_test_outcome": "not_rerun_docs_only",
-      "classification": "PRODUCT_BUILD_INCOMPLETE"
+      "published_commit": "c2330174cde34ad1a5d1bd776839864eedd3de83",
+      "remote_ref_verified": true,
+      "tested_source_commit": "feee77a81dbefe4655c5d60c459362005e8e588d"
     },
     {
-      "published_commit": "529253cbb8fc4bc05a5848af189d825091609f63",
-      "tested_source_commit": "b39410908b15a27ff29f07b451ade468764bb148",
       "branch": "codex/mvl-g10-closure-20261105",
-      "remote_ref_verified": true,
+      "classification": "PRODUCT_BUILD_INCOMPLETE",
       "method": "SHA-verified Git bundle via authorized Windows helper; non-force push and authenticated ls-remote",
       "new_test_outcome": "not_rerun_docs_only",
-      "classification": "PRODUCT_BUILD_INCOMPLETE"
+      "published_commit": "529253cbb8fc4bc05a5848af189d825091609f63",
+      "remote_ref_verified": true,
+      "tested_source_commit": "b39410908b15a27ff29f07b451ade468764bb148"
     },
     {
       "branch": "codex/mvl-comma4-final-release-20261105",
-      "verified_remote_sha": "627e9171f209d2457706cb694d5169d4de264654",
+      "method": "Windows authenticated non-force push; ls-remote exact SHA",
+      "release_status": "PRODUCT_BUILD_INCOMPLETE",
       "tested_source_sha": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
       "verified_at_utc": "2026-11-05T18:13:10.068098+00:00",
-      "method": "Windows authenticated non-force push; ls-remote exact SHA",
-      "release_status": "PRODUCT_BUILD_INCOMPLETE"
+      "verified_remote_sha": "627e9171f209d2457706cb694d5169d4de264654"
     },
     {
       "branch": "codex/mvl-qcom-build-continuation-20261106",
-      "verified_remote_sha": "3f3a5546b745649acb70317c227ccf59f6cbc210",
-      "tested_source_sha": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
-      "verified_at_utc": "2026-11-06T10:14:58.236670+00:00",
+      "classification": "PRODUCT_BUILD_INCOMPLETE",
       "method": "SHA-verified Git bundle via authorized Windows helper; non-force push; authenticated ls-remote exact SHA",
       "new_test_outcome": "not_rerun_docs_only",
-      "classification": "PRODUCT_BUILD_INCOMPLETE"
+      "tested_source_sha": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
+      "verified_at_utc": "2026-11-06T10:14:58.236670+00:00",
+      "verified_remote_sha": "3f3a5546b745649acb70317c227ccf59f6cbc210"
     }
-  ]
+  ],
+  "recovery_tests": {
+    "command": "python3 -m unittest -v docs/engineering/autonomous_campaign/test_campaignctl.py",
+    "failed": 0,
+    "passed": 2,
+    "scope": "simulated pending operation and recorded SHA drift"
+  },
+  "schema_version": 1,
+  "scope": "offline host tests; no native device, Panda, OEM, or target-build verification",
+  "verified_at_utc": "2026-11-03T16:17:35Z"
 }

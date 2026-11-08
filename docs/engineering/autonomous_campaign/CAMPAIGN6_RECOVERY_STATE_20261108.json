@@ -1,0 +1,15 @@
+{
+  "b3": "DEFERRED_BY_OWNER_0_OF_6",
+  "baseline": "7de85d6573e731a589341b7d1693754cb5ede0e2",
+  "branch": "codex/mvl-c6-residual-offline-closure-20261108",
+  "frozen_product_source": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "historical_worktrees_preserved": true,
+  "implementation_commit": "e9f654422f80d9c7f17abdef5ee6f512299137ac",
+  "lease_owner": "Dedicated Campaign 6 lease; recover local lease file to inspect ownership",
+  "lease_status": "ACTIVE_UNTIL_PUBLICATION",
+  "next_action": "Compare actual HEAD and records; verify lease owner, rerun uncertain tests; do not assume publication",
+  "pending_operation": "documentation commit, final tests and publication",
+  "recovery_command": "python3 docs/engineering/autonomous_campaign/campaignctl.py recover",
+  "release": "HOLD",
+  "worktree": "/mnt/commadrive/MVL_C6_RESIDUAL_OFFLINE_20261108"
+}

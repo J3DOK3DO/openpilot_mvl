@@ -1,0 +1,49 @@
+{
+  "agnos_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+  "agnos_version": "19.9",
+  "build_log": "CAMPAIGN6_SOCKETMASTER_BUILD_20261108.log",
+  "build_log_sha256": "f8e7f7d1dfa20532e51b4aaefb6292d48e7fe696de93821f05b6a0dd4410e162",
+  "build_method": "direct compilation of SCons-listed socketmaster.cc with SConstruct-equivalent flags; not a complete SCons target build",
+  "build_script": "CAMPAIGN6_SOCKETMASTER_BUILD_20261108.sh",
+  "build_script_sha256": "1ba66f20fe6d45134158bf4e9d79f0655764cae97011dc1ee7f36a6a6ec8fb8d",
+  "builder_image_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+  "compiler": "Ubuntu clang 18.1.3 (1ubuntu1) inside AGNOS 19.9",
+  "dynamic_dependencies": "No dynamic section in relocatable object; final link requires resolving recorded symbol groups",
+  "inputs": {
+    "generated_services.h": "0375f639a1158d277dce7c0f4aadc44dcffb94e9375ea1d29433c2fb26af23b1",
+    "services.py": "127a0cf5f85e7a5be2c33149c264aeab44d510b6250d43ec4597c3443195f5b6",
+    "socketmaster.cc": "d98fa7ba3912738b4059e0cf7ab59fd8d0e1a7f84a3efc7adc132fd07080a7b1"
+  },
+  "outputs": {
+    "libsocketmaster.a": {
+      "bytes": 972156,
+      "members": [
+        "socketmaster.o"
+      ],
+      "sha256": "05c251e4214dfd2600f489dfdd7f21f2058e8aee794c0607844caeb7f8655d6a"
+    },
+    "socketmaster.o": {
+      "bytes": 965744,
+      "elf": "ELF64 little-endian AArch64 REL",
+      "sha256": "ab078b66bc94231b57a8fc13d7b942dd6f1ba68fa64d51a7ee4c64f6aaebc423"
+    }
+  },
+  "product_build": "NOT_BUILT_BLOCKED_BY_OWNER_DEFERRED_B3",
+  "runtime_qualification": "NOT_EXECUTED",
+  "seven_gitlinks": {
+    "msgq_repo": "e7396e76dadbb49e374d4b664ff6bbb43a39bcb0",
+    "neural_network_data": "03cac2d30e111e0689c0429cb8c1fe6cb5a905af",
+    "opendbc_repo": "3fec9a418a659de31d7b1f494193161697a35071",
+    "panda": "8a16e089b88593914823743df29e1c30b7dd3e00",
+    "rednose_repo": "28d4a7f69e80e1c3e0d24ca0733d7daeaeade3d0",
+    "teleoprtc_repo": "1aa8fc433bef1519a95c0700c96258c3be6dfb34",
+    "tinygrad_repo": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4"
+  },
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "target": "openpilot/cereal/libsocketmaster.a",
+  "unresolved_symbol_groups": [
+    "capnp and kj static libraries",
+    "msgq socket and context objects",
+    "C++ standard runtime and libc"
+  ]
+}

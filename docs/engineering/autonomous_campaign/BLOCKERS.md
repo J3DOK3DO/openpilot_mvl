@@ -105,3 +105,7 @@ No authenticated native Qualcomm provider or six matching model/warp outputs is 
 ## Campaign 5 owner exclusion — 2026-11-08
 
 B3 Qualcomm compilation and readiness work is excluded by owner decision; 0/6 genuine outputs. Dependent G10 full product is BLOCKED_B3_DEPENDENCY / NOT_BUILT. Native Comma 4 UI/IPC, OEM behavior, full ABI/package, current installed known-good identity, physical C4 0/10 and installation approval remain external gates. No B3 workaround or device action was attempted.
+
+## Campaign 6 remaining holds — 2026-11-08
+
+B3 remains owner-excluded, 0/6 genuine Qualcomm outputs. Full G10 product depends on those outputs and is NOT_BUILT. Static AArch64 socketmaster compilation does not qualify runtime or final-link dependencies. Backup manifest lacks an independently trusted anchor; host-copy verification cannot prove current device state or recovery readiness. Physical Comma 4 checks remain 0/10, and installation approval is absent. No device, Panda, OEM or control action occurred.

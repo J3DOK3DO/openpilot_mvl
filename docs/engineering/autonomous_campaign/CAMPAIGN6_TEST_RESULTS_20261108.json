@@ -1,0 +1,41 @@
+{
+  "c1_host": {
+    "command": "source docs/engineering/autonomous_campaign/native_host_env.sh && PYTHONDONTWRITEBYTECODE=1 python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_bridge/tests",
+    "exit_code": 0,
+    "failed": 0,
+    "log": "CAMPAIGN6_C1_TESTS_20261108.log",
+    "log_sha256": "45c578f3926d634f3db6d97d4c13defdd95454102e8c4b5de238dab78ee94aa1",
+    "passed": 96,
+    "run": 96
+  },
+  "final_evidence_commit": "PENDING",
+  "hardware_tests": "NOT_EXECUTED_0_OF_10",
+  "implementation_commit": "e9f654422f80d9c7f17abdef5ee6f512299137ac",
+  "initial_unprivileged_release_test": "31 fixture errors due read-only mount/dirty source; rerun under isolated authorized writable worktree passed 179 with 9 skips",
+  "native_component": {
+    "artifact_sha256": "05c251e4214dfd2600f489dfdd7f21f2058e8aee794c0607844caeb7f8655d6a",
+    "command": "bash docs/engineering/autonomous_campaign/CAMPAIGN6_SOCKETMASTER_BUILD_20261108.sh",
+    "exit_code": 0
+  },
+  "qcom_compile": "OWNER_EXCLUDED_NOT_EXECUTED_0_OF_6",
+  "recovery": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest docs.engineering.autonomous_campaign.test_campaignctl -q",
+    "exit_code": 0,
+    "failed": 0,
+    "log": "CAMPAIGN6_RECOVERY_TESTS_20261108.log",
+    "log_sha256": "4b655bef1a18acc01ddb50ffbaf73972561755efa8cae832efca17915385bc38",
+    "passed": 4,
+    "run": 4
+  },
+  "release_tools": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q",
+    "environment": "isolated Campaign 6 worktree with writable test fixtures",
+    "exit_code": 0,
+    "failed": 0,
+    "log": "CAMPAIGN6_RELEASE_TESTS_20261108.log",
+    "log_sha256": "28d2db4530e7610f664794ed72586153b58a8a8235af512444789419e4fcfd7c",
+    "passed": 171,
+    "run": 180,
+    "skipped": 9
+  }
+}

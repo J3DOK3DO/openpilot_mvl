@@ -155,3 +155,15 @@ Engineering preparation is 11/20 (55%) after exact-code review; inherited formal
 ## Campaign 5 B3-deferred offline engineering — 2026-11-08
 
 B3 is **DEFERRED / OWNER-ACCEPTED SCOPE EXCLUSION**, 0/6 genuine outputs; not a technical or safety PASS. C1 hidden HOME status read guard PASS_HOST, C3 model-independent msgq AArch64 archive PASS_BOUNDED_HOST, C4 release tools 174 run with nine platform skips and C1 host 92/92 PASS, C5 backup preflight PASS_TOOL. Full G10 product `G10_FULL_PRODUCT_BLOCKED_BY_DEFERRED_B3 / NOT_BUILT`; physical C4 0/10 and installation HOLD. Campaign 5 accounting 9/16 = 56.25% (four B3 rows removed, no waiver credit).
+
+## Campaign 6 residual offline closure — 2026-11-08
+
+| Gate | Decision | Evidence |
+| --- | --- | --- |
+| C1 host UI/IPC | PASS_SCOPED | `e9f654422f80d9c7f17abdef5ee6f512299137ac`; 96/96; independent review PASS_SCOPED |
+| C3 AArch64 socketmaster | BUILT_NOT_RUNTIME_TESTED | AGNOS 19.9 direct component archive SHA `05c251e4...`; not a complete SCons/product build |
+| C5 backup host copy | PASS_BYTES_ONLY / TRUST_HOLD | 12 focused tests; independent anchor unavailable |
+| B3 | EXCLUDED_BY_OWNER / 0 OF 6 | No Qualcomm compilation |
+| G10 product | NOT_BUILT / BLOCKED_BY_OWNER_DEFERRED_B3 | Six QCOM outputs absent |
+| Physical Comma 4 | NOT_EXECUTED / 0 OF 10 | No device operation |
+| Release | HOLD | RC_NOT_INSTALLABLE / PRODUCT_BUILD_INCOMPLETE |

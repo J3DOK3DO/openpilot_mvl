@@ -1,0 +1,21 @@
+{
+  "b3": {
+    "authentic_qcom_outputs": 0,
+    "required": 6,
+    "status": "EXCLUDED_BY_OWNER"
+  },
+  "backup_manifest_trust": "EXTERNAL_HASH_REQUIRED",
+  "classification": "RC_NOT_INSTALLABLE / PRODUCT_BUILD_INCOMPLETE",
+  "decision": "HOLD",
+  "g06": "OFF_UNREGISTERED_UNCHANGED",
+  "g10_full_product": "NOT_BUILT_BLOCKED_BY_OWNER_DEFERRED_B3",
+  "host_socketmaster_archive": "BUILT_AND_INSPECTED_NOT_RUNTIME_TESTED",
+  "implementation_commit": "e9f654422f80d9c7f17abdef5ee6f512299137ac",
+  "independent_review": "PASS_SCOPED_AT_IMPLEMENTATION_COMMIT",
+  "installation_approval": "ABSENT",
+  "physical_comma4": {
+    "passed": 0,
+    "required": 10
+  },
+  "protected_params_254": "DENY_UNCHANGED"
+}

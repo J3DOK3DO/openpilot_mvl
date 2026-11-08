@@ -1,0 +1,33 @@
+{
+  "b3": "EXCLUDED_BY_OWNER_0_OF_6",
+  "campaign5_b3_excluded_baseline": {
+    "applicable": 16,
+    "completed": 9,
+    "percent": 56.25
+  },
+  "campaign6_b3_excluded": {
+    "applicable": 16,
+    "completed": 9,
+    "percent": 56.25,
+    "reason": "new engineering improvements do not alone complete a previously incomplete applicable milestone"
+  },
+  "historical_formal_acceptance": {
+    "completed": 12,
+    "percent": 48,
+    "total": 25
+  },
+  "physical": {
+    "completed": 0,
+    "total": 10
+  },
+  "release": "HOLD",
+  "stages": {
+    "C6-A": "PASS_SCOPED",
+    "C6-B": "PASS_COMPONENT_ONLY",
+    "C6-C": "PASS_SCOPED",
+    "C6-D": "PASS_HOST_COPY_ONLY_TRUST_HOLD",
+    "C6-E": "HOLD_RELEASE",
+    "C6-F": "PASS_SCOPED",
+    "C6-G": "PENDING_PUBLICATION"
+  }
+}

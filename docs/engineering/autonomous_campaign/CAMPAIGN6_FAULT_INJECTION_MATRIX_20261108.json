@@ -1,0 +1,47 @@
+{
+  "cases": [
+    {
+      "case": "invalid HOME started values",
+      "evidence": "test_invalid_ui_started_never_reads_status_supplier",
+      "result": "PASS"
+    },
+    {
+      "case": "concurrent IPC read",
+      "evidence": "test_concurrent_read_fails_closed_without_rewinding_timestamp_state",
+      "result": "PASS"
+    },
+    {
+      "case": "external hardlink in backup",
+      "result": "PASS_REJECTED"
+    },
+    {
+      "case": "unexpected FIFO in backup",
+      "result": "PASS_REJECTED"
+    },
+    {
+      "case": "symlink replacement during verification",
+      "result": "PASS_REJECTED"
+    },
+    {
+      "case": "duplicate manifest JSON key",
+      "result": "PASS_REJECTED"
+    },
+    {
+      "case": "oversized manifest",
+      "result": "PASS_REJECTED"
+    },
+    {
+      "case": "unlisted empty backup directory",
+      "evidence": "test_unlisted_empty_directory_is_rejected",
+      "result": "PASS_REJECTED"
+    },
+    {
+      "case": "special file pre-open",
+      "evidence": "test_unlisted_fifo_is_rejected_without_opening_it_blocking",
+      "result": "PASS_REJECTED"
+    }
+  ],
+  "device_failure_simulation": "HOST_ONLY_NOT_DEVICE_EVIDENCE",
+  "implementation_commit": "e9f654422f80d9c7f17abdef5ee6f512299137ac",
+  "release": "HOLD"
+}
