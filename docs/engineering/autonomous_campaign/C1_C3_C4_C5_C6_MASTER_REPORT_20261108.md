@@ -8,7 +8,7 @@ The optional native status badge now returns before invoking its supplier when H
 
 ## C3 native engineering
 
-In a separate copy of frozen product source 4b25263, pinned AGNOS 19.9 builder produced `msgq_repo/libmsgq.a` with process exit 0. Five archive members are ELF64 AArch64; archive SHA-256 is `0b6ad7dad40090a86aacc93b971a74ed12403810be1a51f51ad1e4965c00d1a7`. The bounded command, warnings, recipe hashes and log are in the native evidence JSON. A static archive has no NEEDED/RUNPATH and was not runtime loaded. Full G10 product remains G10_FULL_PRODUCT_BLOCKED_BY_DEFERRED_B3 / NOT_BUILT.
+In a separate copy of frozen product source 4b25263, pinned AGNOS 19.9 builder produced `msgq_repo/libmsgq.a` with process exit 0. Five archive members are ELF64 AArch64; archive SHA-256 is `0b6ad7dad40090a86aacc93b971a74ed12403810be1a51f51ad1e4965c00d1a7`. The exact executed shell invocation is reconstructed in the companion command script, linked and hashed by the native evidence JSON; its recorded exit, warnings, recipe hashes and log are retained. A static archive has no NEEDED/RUNPATH and was not runtime loaded. Full G10 product remains G10_FULL_PRODUCT_BLOCKED_BY_DEFERRED_B3 / NOT_BUILT.
 
 ## C4/C5/C6
 

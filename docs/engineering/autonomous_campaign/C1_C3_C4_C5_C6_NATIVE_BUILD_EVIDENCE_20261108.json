@@ -11,7 +11,6 @@
   "agnos_version": "19.9",
   "builder_image_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
   "target": "msgq_repo/libmsgq.a",
-  "command": "timeout 300s docker run --rm --platform linux/arm64 --network none --read-only --memory 1g --cpus 1 --pids-limit 64 --security-opt no-new-privileges; chroot AGNOS 19.9; python3 -m SCons -j1 --minimal cache_dir=/build_cache msgq_repo/libmsgq.a",
   "mounts": "AGNOS rootfs read-only; isolated source copy/cache writable; Git metadata read-only; /dev read-only",
   "exit_code": 0,
   "build_log": "C1_C3_C4_C5_C6_MSGQ_BUILD_20261108.log",
@@ -30,5 +29,9 @@
   "needed_and_runpath": "NOT_APPLICABLE_STATIC_ARCHIVE",
   "runtime_load": "NOT_TESTED",
   "warning": "SCons emitted panda submodule dubious-ownership warnings while reading graph; no Panda target built and archive target exited 0",
-  "device_contact": false
+  "device_contact": false,
+  "command_summary": "timeout 300s docker run --rm --platform linux/arm64 --network none --read-only --memory 1g --cpus 1 --pids-limit 64 --security-opt no-new-privileges; chroot AGNOS 19.9; python3 -m SCons -j1 --minimal cache_dir=/build_cache msgq_repo/libmsgq.a",
+  "exact_command_reconstructed_from_executed_tool_call": "C1_C3_C4_C5_C6_MSGQ_BUILD_COMMAND_20261108.sh",
+  "exact_command_sha256": "ab33c574dcd79552e6fc97a013e7c9e7c771116b5ee4afa6a38d4b92f35c8e93",
+  "command_provenance_limit": "Script was reconstructed from the executed command call after the build; recorded exit/log/archive independently verify result"
 }

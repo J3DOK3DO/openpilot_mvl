@@ -36,5 +36,16 @@
   "native_build_exit_code": 0,
   "qcom_compile": "EXCLUDED_NOT_EXECUTED",
   "device_tests": "NOT_EXECUTED_0_OF_10",
-  "release": "HOLD"
+  "release": "HOLD",
+  "final_clean_evidence_checkpoint": {
+    "commit": "c5172b6b0f0f1c6d2f6e7202774f1f3f17d9b315",
+    "release_tools": "174 run, 165 passed, nine platform skips, exit 0",
+    "recovery": "4/4 PASS, exit 0",
+    "c1_host": "92/92 PASS, exit 0",
+    "logs_sha256": {
+      "release_tools": "db127e5bfa9580783e002373772b8848361054a8098f2ba45c7b0d814acbc20c",
+      "recovery": "fd8df8ac4699e281be78c02510a5d38fea648f803e5a7ae0c11e555fabdcaf79",
+      "c1_host": "320fd739ebfc2d6a39de47680588bb8324fe6f895471316f700fefd5d027f359"
+    }
+  }
 }
