@@ -101,3 +101,7 @@ Six exact-source QCOM outputs remain 0/6, full ARM64 product and complete packag
 ## Combined B3/G10/RC — 2026-11-08
 
 No authenticated native Qualcomm provider or six matching model/warp outputs is available (0/6). The B2 owner waiver is planning-only; device aggregate quota, sustained parked/disengaged feed, independent abort and GPU resource containment are not qualified. Thus the full AGNOS 19.9 cold product, complete ABI/package and ten applicable Comma 4 physical checks remain unexecuted. Separate device compilation and installation approvals remain required. Offline RC tooling and its mock failure paths passed scoped review; they do not close these external gates.
+
+## Campaign 5 owner exclusion — 2026-11-08
+
+B3 Qualcomm compilation and readiness work is excluded by owner decision; 0/6 genuine outputs. Dependent G10 full product is BLOCKED_B3_DEPENDENCY / NOT_BUILT. Native Comma 4 UI/IPC, OEM behavior, full ABI/package, current installed known-good identity, physical C4 0/10 and installation approval remain external gates. No B3 workaround or device action was attempted.

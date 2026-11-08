@@ -1,0 +1,7 @@
+# Campaign 5 independent assessment
+
+A separate read-only Codex assessor reviewed exact clean implementation commit `20a1835c2e2c7f7c034a40778da93c1d76154b55` and returned **PASS_SCOPED**, with no demonstrated P1/P2 implementation finding. It checked the C1 hidden-HOME guard, C5 backup-verifier paths and negative cases, protected source diff, and the actual `msgq_repo/libmsgq.a` archive. It independently reran focused C5 6/6 and recovery 4/4 PASS.
+
+The reviewer could not independently reproduce the lead's full 174-test run because its `/mnt` checkout was read-only; 29 fixture writes failed with `Errno 30`. Its system Python lacked pyray, so it could not reproduce the 92 C1 tests. The lead's exact committed-code test results remain separately recorded and are rerun at the final clean docs commit. These reviewer environment errors are not product test failures or independent PASS claims.
+
+**P3:** the SCons log contains `/src/panda` Git dubious-ownership diagnostics while reading the graph. The bounded target still exited 0 and produced five ELF64 AArch64 archive members. This is a successful static-component build **with diagnostics**, with no Panda build, runtime load, linked-product ABI, QCOM or installation claim. The diff contains no protected active-control, Panda, SConstruct or CAN-transmit change. B3 remains DEFERRED / OWNER-ACCEPTED SCOPE EXCLUSION, 0/6 outputs. Full product, physical checks and release remain HOLD.

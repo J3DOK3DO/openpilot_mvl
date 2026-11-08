@@ -1,0 +1,24 @@
+aarch64
+scons: Reading SConscript files ...
+fatal: detected dubious ownership in repository at '/src/panda'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory /src/panda
+fatal: detected dubious ownership in repository at '/src/panda'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory /src/panda
+scons: done reading SConscript files.
+scons: Building targets ...
+progress: 26.3
+  [CXX] msgq_repo/msgq/ipc.os
+progress: 52.6
+  [CXX] msgq_repo/msgq/event.os
+  [CXX] msgq_repo/msgq/impl_msgq.os
+  [CXX] msgq_repo/msgq/impl_fake.os
+progress: 78.9
+  [CXX] msgq_repo/msgq/msgq.os
+  [AR] msgq_repo/libmsgq.a
+  [RANLIB] msgq_repo/libmsgq.a
+prune_cache_dir(["msgq_repo/libmsgq.a"], ["msgq_repo/msgq/ipc.os", "msgq_repo/msgq/event.os", "msgq_repo/msgq/impl_msgq.os", "msgq_repo/msgq/impl_fake.os", "msgq_repo/msgq/msgq.os"])
+scons: done building targets.

@@ -3,7 +3,7 @@
   "campaign": "C1_C3_C4_C5_C6_B3_DEFERRED_20261108",
   "baseline_commit": "66194d5b74865295155ef8bec2da6a17f40e8d13",
   "branch": "codex/mvl-c1-c3-c4-c5-c6-b3-deferred-20261108",
-  "recorded_head": "66194d5b74865295155ef8bec2da6a17f40e8d13",
+  "recorded_head": "20a1835c2e2c7f7c034a40778da93c1d76154b55",
   "lease": "Dedicated active campaignctl lease; token stored locally only",
   "stage": "C1_C3_C4_C5_C6_OFFLINE",
   "b3": "DEFERRED / OWNER-ACCEPTED SCOPE EXCLUSION",
@@ -11,12 +11,15 @@
   "g10_full_product": "G10_FULL_PRODUCT_BLOCKED_BY_DEFERRED_B3 / NOT_BUILT",
   "device_writes": false,
   "release": "RC_NOT_INSTALLABLE / PRODUCT_BUILD_INCOMPLETE / HOLD",
-  "pending_operation": "C1/C5 code tests and C3 bounded native build underway",
+  "pending_operation": null,
   "on_resume": [
     "Inspect Git branch, HEAD, status and running processes",
     "Run campaignctl.py recover and reconcile this record",
     "Check lease owner before writes",
     "Rerun uncertain tests at exact commit",
     "Keep B3 excluded, device and release HOLD"
-  ]
+  ],
+  "last_verified_tests": "174 release-tool run, 165 pass, 9 platform skips; recovery 4/4; C1 host 92/92 at 20a1835c2e2c7f7c034a40778da93c1d76154b55",
+  "next_action": "Commit reviewed evidence, rerun final clean HEAD suites, publish non-force",
+  "engineering_completion": "9/16 = 56.25%; B3 four milestones excluded, 0/6 outputs"
 }

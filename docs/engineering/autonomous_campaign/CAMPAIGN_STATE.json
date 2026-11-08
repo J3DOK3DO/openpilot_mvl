@@ -1,32 +1,32 @@
 {
   "schema_version": 2,
   "updated_at_utc": "2026-11-08",
-  "current_stage": "CAMPAIGN5_C1_C3_C4_C5_C6_OFFLINE",
+  "current_stage": "CAMPAIGN5_REVIEW_AND_PUBLICATION",
   "release_decision": "HOLD",
   "branch": "codex/mvl-c1-c3-c4-c5-c6-b3-deferred-20261108",
   "checkout_mode": "branch",
-  "head_commit": "66194d5b74865295155ef8bec2da6a17f40e8d13",
+  "head_commit": "20a1835c2e2c7f7c034a40778da93c1d76154b55",
   "last_verified_result": {
-    "decision": "PASS_SCOPED_CODE_ONLY_RELEASE_HOLD",
-    "scope": "168 release-tool tests, 9 platform skips; 4 recovery; 5 focused RC at exact ed18b9f84; independent exact-code review PASS_SCOPED",
-    "passed": 168,
+    "decision": "PASS_OFFLINE_SCOPED_RELEASE_HOLD",
+    "scope": "174 release-tool tests with 9 skips, 4 recovery tests, 92 affected C1 host tests; new AArch64 msgq archive exit 0",
+    "passed": 261,
     "failed": 0,
     "skipped": 9,
-    "record": "COMBINED_CAMPAIGN_TEST_RESULTS.json"
+    "record": "C1_C3_C4_C5_C6_TEST_RESULTS_20261108.json and C1_C3_C4_C5_C6_NATIVE_BUILD_EVIDENCE_20261108.json"
   },
-  "next_action": "Validate C1/C5 implementation and bounded C3 build, then independent review",
-  "source_of_truth": "COMBINED_CAMPAIGN_RECOVERY_STATE.json, COMBINED_CAMPAIGN_TEST_RESULTS.json, COMBINED_CAMPAIGN_STAGE_MATRIX.json and this state; prior reports historical.",
+  "next_action": "Commit reviewed Campaign 5 evidence, rerun final clean HEAD suites, publish non-force",
+  "source_of_truth": "C1_C3_C4_C5_C6_RECOVERY_STATE_20261108.json, C1_C3_C4_C5_C6_STAGE_MATRIX_20261108.json, C1_C3_C4_C5_C6_TEST_RESULTS_20261108.json; previous reports historical",
   "authoritative_baseline_sha": "66194d5b74865295155ef8bec2da6a17f40e8d13",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-c1-c3-c4-c5-c6-b3-deferred-20261108",
-    "head": "66194d5b74865295155ef8bec2da6a17f40e8d13",
+    "head": "20a1835c2e2c7f7c034a40778da93c1d76154b55",
     "worktree": "/mnt/commadrive/MVL_C1_C3_C4_C5_C6_B3_DEFERRED_20261108",
     "owner": "Dedicated Campaign 5 lease"
   },
   "current_gate": "RC_NOT_INSTALLABLE",
   "last_successful_milestone": "Independent exact-code PASS_SCOPED at ed18b9f84; 11/20 offline milestones, QCOM 0/6, physical 0/10",
-  "tests_verified_at_commit": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
+  "tests_verified_at_commit": "20a1835c2e2c7f7c034a40778da93c1d76154b55",
   "tests_record": "COMBINED_CAMPAIGN_TEST_RESULTS.json",
   "next_actionable_milestone": "Run focused and full host suites, record native build and review",
   "current_blockers": [
@@ -46,7 +46,7 @@
     "scope": "B3 owner-deferred; QCOM 0/6, full product NOT_BUILT, physical 0/10, release HOLD"
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Campaign 5 branch starts at published 66194d5b; record exact tested code commits and allow one docs-only successor after review.",
+  "checkpoint_rule": "Reviewed implementation code commit 20a1835c2e2c7f7c034a40778da93c1d76154b55; one docs-only evidence successor may follow, then publication reconciliation.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",

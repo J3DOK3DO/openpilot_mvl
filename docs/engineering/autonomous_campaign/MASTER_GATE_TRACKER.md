@@ -151,3 +151,7 @@ B2 host safeguard policy and fixtures PASS_OFFLINE; device quota, independent st
 | Physical release | NOT_TESTED 0/10 / HOLD | C4-08 conditional N/A with G06 OFF; C4-12 WAIVED_BY_OWNER / NOT_EXECUTED. |
 
 Engineering preparation is 11/20 (55%) after exact-code review; inherited formal scoped acceptance 12/25 (48%) is historical, not reverified. Release remains PRODUCT_BUILD_INCOMPLETE / HOLD. See `COMBINED_CAMPAIGN_MASTER_REPORT.md`.
+
+## Campaign 5 B3-deferred offline engineering — 2026-11-08
+
+B3 is **DEFERRED / OWNER-ACCEPTED SCOPE EXCLUSION**, 0/6 genuine outputs; not a technical or safety PASS. C1 hidden HOME status read guard PASS_HOST, C3 model-independent msgq AArch64 archive PASS_BOUNDED_HOST, C4 release tools 174 run with nine platform skips and C1 host 92/92 PASS, C5 backup preflight PASS_TOOL. Full G10 product `G10_FULL_PRODUCT_BLOCKED_BY_DEFERRED_B3 / NOT_BUILT`; physical C4 0/10 and installation HOLD. Campaign 5 accounting 9/16 = 56.25% (four B3 rows removed, no waiver credit).

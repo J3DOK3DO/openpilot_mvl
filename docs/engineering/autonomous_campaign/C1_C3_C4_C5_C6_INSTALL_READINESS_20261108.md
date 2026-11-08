@@ -1,0 +1,7 @@
+# Campaign 5 offline installation and recovery readiness
+
+**Decision: NOT_INSTALLABLE / HOLD.** B3 is DEFERRED / OWNER-ACCEPTED SCOPE EXCLUSION with 0/6 genuine outputs; G10 full product is NOT_BUILT; physical checks 0/10; installation approval absent. No Comma 4 write, reset, staging or installation occurred.
+
+`tools/release/offline_backup_preflight.py` verifies bytes in an isolated host copy against a supplied SHA-256 pinned JSON manifest and the historical known-good commit `a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1`. The expected manifest digest must come from an independent trusted source; a matching supplied digest alone does not prove trust. The tool checks all listed files and rejects extras, symlinks, traversal, protected Params paths, missing known-good files, corruption and wrong identity. It always exits 2 and reports `install_allowed=false`; it does not attest the currently installed device. Six focused tests are included in the 174 release-tool suite.
+
+Before any separately approved installation, confirm actual installed branch/SHA, complete product and genuine model hashes, AGNOS/ABI/package integrity, owner data inventory, migration plan, hardware isolation and C4 procedure. The previous known-good reference `sp-honda-dev-202608` / `a969e5e...` is historical, not freshly observed. Owner retains factory-reset/reinstall responsibility. C4-12 remains WAIVED_BY_OWNER / NOT_EXECUTED; no restoration exercise is claimed. Mock preflight/backup/stage/switch/health flows remain simulation only.

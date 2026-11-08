@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "tested_code_commit": "20a1835c2e2c7f7c034a40778da93c1d76154b55",
+  "final_docs_commit": "See Git HEAD and publication record; SHA cannot be embedded in its own commit",
+  "release_tools": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q",
+    "run": 174,
+    "passed": 165,
+    "skipped": 9,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "recovery": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest docs.engineering.autonomous_campaign.test_campaignctl -q",
+    "run": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "c1_host": {
+    "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; PYTHONDONTWRITEBYTECODE=1 python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_bridge/tests",
+    "run": 92,
+    "passed": 92,
+    "failed": 0
+  },
+  "focused_backup": {
+    "run": 6,
+    "passed": 6,
+    "included_in_release_tools": true
+  },
+  "focused_rc": {
+    "run": 5,
+    "historical_at_prior_commit": true,
+    "included_in_release_tools": true
+  },
+  "product_source_444": "HISTORICAL_NOT_RERUN; affected UI/bridge/view subset rerun as 92 host tests",
+  "native_build_exit_code": 0,
+  "qcom_compile": "EXCLUDED_NOT_EXECUTED",
+  "device_tests": "NOT_EXECUTED_0_OF_10",
+  "release": "HOLD"
+}

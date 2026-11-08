@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "66194d5b74865295155ef8bec2da6a17f40e8d13",
+  "branch": "codex/mvl-c1-c3-c4-c5-c6-b3-deferred-20261108",
+  "b3_scope": "DEFERRED / OWNER-ACCEPTED SCOPE EXCLUSION; four prior B3 milestones excluded from active denominator, 0/6 genuine outputs",
+  "accounting": {
+    "active_milestones": 16,
+    "completed": 9,
+    "percent": 56.25,
+    "prior_completed": 9,
+    "newly_completed_milestones": 0,
+    "comment": "C1/C3/C5 improvements strengthen previously completed host milestones; no waiver or exclusion counted as completion"
+  },
+  "milestones": [
+    {
+      "evidence": "Only hidden read-only UI guard changed; no steering/braking/Panda/ECU/CAN/SConstruct change",
+      "milestone": "Pinned non-actuating source boundary",
+      "stage": "C1",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "92 C1 native UI/bridge/view host tests pass; native Comma 4 proof pending",
+      "milestone": "Read-only bridge and status host scope",
+      "stage": "C1",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Actual C4 device checks absent",
+      "milestone": "Native comma UI/IPC/Honda behavior",
+      "stage": "C1",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "No approved non-actuating contract in inspected source",
+      "milestone": "StarPort-specific integration",
+      "stage": "C1",
+      "status": "EXCLUDED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Raw image SHA-256 and rootfs VERSION rechecked",
+      "milestone": "AGNOS 19.9 image/rootfs pin",
+      "stage": "C3",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "New AGNOS 19.9 msgq static archive built exit 0, five AArch64 ELF objects; no runtime claim",
+      "milestone": "Bounded AArch64 component",
+      "stage": "C3",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "G10_FULL_PRODUCT_BLOCKED_BY_DEFERRED_B3; 0/6 genuine outputs; NOT_BUILT",
+      "milestone": "Full cold native product",
+      "stage": "C3",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "No complete product",
+      "milestone": "Full ABI/package closure",
+      "stage": "C3",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "174 run, 165 passed, 9 platform skips at 20a1835c2",
+      "milestone": "Current release-tool regression",
+      "stage": "C4",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "4/4 at 20a1835c2",
+      "milestone": "Current recovery regression",
+      "stage": "C4",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Separate read-only assessor PASS_SCOPED at exact 20a1835c2; focused C5 6/6 and recovery 4/4 independently rerun; 174/92 lead logs, reviewer environment limits noted",
+      "milestone": "Independent final code review",
+      "stage": "C4",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "0/10",
+      "milestone": "Applicable C4 physical checks",
+      "stage": "C4",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Existing fail-closed RC plan plus new hash-checked offline backup verifier",
+      "milestone": "Offline installation plan",
+      "stage": "C5",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Preflight, backup, stage, switch and health failure tests",
+      "milestone": "Mock failure response",
+      "stage": "C5",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "No package, current installed identity or device action",
+      "milestone": "Actual package, backup and migration",
+      "stage": "C5",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "No authorization or physical evidence",
+      "milestone": "Installation and post-install health",
+      "stage": "C5",
+      "status": "BLOCKED",
+      "weight_points": 5
+    }
+  ],
+  "formal_scoped_acceptance": "12/25 = 48% HISTORICAL_NOT_REVERIFIED",
+  "physical": "0/10 NOT_TESTED",
+  "release": "HOLD",
+  "residual_offline": "Independent review, final exact-commit suites, documentation/publication; production UI supplier and physical behavior remain qualified-gate tasks"
+}
