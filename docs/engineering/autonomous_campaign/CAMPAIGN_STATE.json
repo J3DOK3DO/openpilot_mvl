@@ -5,7 +5,7 @@
   "release_decision": "HOLD",
   "branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
   "checkout_mode": "branch",
-  "head_commit": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
+  "head_commit": "72c0f78ffaa0f049a4d4696ea47499e8175799f2",
   "last_verified_result": {
     "decision": "PASS_SCOPED_CODE_ONLY_RELEASE_HOLD",
     "scope": "168 release-tool tests, 9 platform skips; 4 recovery; 5 focused RC at exact ed18b9f84; independent exact-code review PASS_SCOPED",
@@ -20,7 +20,7 @@
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
     "branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
-    "head": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
+    "head": "72c0f78ffaa0f049a4d4696ea47499e8175799f2",
     "worktree": "/mnt/commadrive/MVL_COMBINED_B3G10_RC_RECOVERY_20261108",
     "owner": "Dedicated campaignctl lease in this isolated worktree"
   },
@@ -47,7 +47,7 @@
     "scope": "Offline engineering 11/20; formal scoped historical 12/25; QCOM 0/6; physical 0/10; no installable product or approval"
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Reviewed code ed18b9f84 and clean tested evidence commit 7ced835cc; one publication-only successor may be HEAD.",
+  "checkpoint_rule": "Recorded published docs-only checkpoint 72c0f78; one final state-reconciliation documentation successor is permitted. Reviewed tool source ed18b9f84 and tested evidence commit 7ced835c remain separately pinned.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -105,7 +105,8 @@
     "combined_b3g10_rc_tested_code_sha": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
     "combined_b3g10_rc_published_evidence_sha": "7ced835cc1847c488c68ae1b6c5d73f23b066ddd",
     "combined_b3g10_rc_remote_verified": "Windows authenticated non-force push and exact ls-remote match",
-    "combined_b3g10_rc_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-combined-b3g10-rc-recovery-20261108"
+    "combined_b3g10_rc_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-combined-b3g10-rc-recovery-20261108",
+    "combined_b3g10_rc_published_head": "72c0f78ffaa0f049a4d4696ea47499e8175799f2"
   },
   "release_profile": "COMMA4_NON_ACTUATING_MVL",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE",

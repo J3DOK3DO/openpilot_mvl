@@ -17,7 +17,7 @@
   "engineering_branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
   "engineering_completion": "11/20 = 55% after independent exact-code review; formal scoped 12/25 = 48%, release HOLD",
   "frozen_product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
-  "last_verified_checkpoint": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
+  "last_verified_checkpoint": "7ced835cc1847c488c68ae1b6c5d73f23b066ddd",
   "last_verified_tests": "168 run, 159 passed, 9 platform skips; recovery 4/4; RC focused 5/5 at exact ed18b9f84",
   "lease": "Dedicated campaignctl lease active in this isolated worktree; inspect local lease before changes; token intentionally not stored in Git",
   "next_action": "Await separately authorized B2/QCOM evidence; no device or product gate promotion",
@@ -35,5 +35,6 @@
   "schema_version": 1,
   "tinygrad_commit": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4",
   "worktree": "/mnt/commadrive/MVL_COMBINED_B3G10_RC_RECOVERY_20261108",
-  "published_evidence_commit": "7ced835cc1847c488c68ae1b6c5d73f23b066ddd"
+  "published_evidence_commit": "7ced835cc1847c488c68ae1b6c5d73f23b066ddd",
+  "published_head": "72c0f78ffaa0f049a4d4696ea47499e8175799f2"
 }
