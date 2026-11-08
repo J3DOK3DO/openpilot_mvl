@@ -11,15 +11,16 @@
     "Separate installation approval absent"
   ],
   "current_gate": "RC_NOT_INSTALLABLE",
-  "current_stage": "C4_C5_OFFLINE_ADMISSION_IMPLEMENTATION",
+  "current_stage": "C1_TO_C5_OFFLINE_REPORT_FINALIZATION",
   "device_contact_this_campaign": false,
   "device_writes": false,
-  "engineering_branch": "codex/mvl-combined-b3g10-rc-20261108",
+  "engineering_branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
+  "engineering_completion": "11/20 = 55% after independent exact-code review; formal scoped 12/25 = 48%, release HOLD",
   "frozen_product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
-  "last_verified_checkpoint": "2489f58b97c915547ec94c03a073da0dbe45eaa9",
-  "last_verified_tests": "Historical Linux 163 run, 154 passed, 9 platform skips and recovery 4/4 at earlier exact implementation; current code milestone pending exact-commit broad suite",
+  "last_verified_checkpoint": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
+  "last_verified_tests": "168 run, 159 passed, 9 platform skips; recovery 4/4; RC focused 5/5 at exact ed18b9f84",
   "lease": "Dedicated campaignctl lease active in this isolated worktree; inspect local lease before changes; token intentionally not stored in Git",
-  "next_action": "Commit offline admission tool, run exact-commit release and recovery suites, prepare C1\u2013C5 matrix and independent review",
+  "next_action": "Commit reviewed documentation, rerun exact clean-checkout tests, publish non-force engineering branch",
   "on_resume": [
     "Inspect Git status and running processes",
     "Run campaignctl.py recover; compare actual HEAD to baseline and this state",
@@ -27,10 +28,11 @@
     "Rerun uncertain tests on exact code HEAD",
     "Keep QCOM/product/device gates HOLD without actual evidence"
   ],
-  "pending_operation": "New offline admission tool and tests, 5 focused PASS in development worktree; commit and run exact-commit suites",
-  "publication": "PENDING_REVIEW",
+  "pending_operation": "Reviewed docs corrections and final validation pending",
+  "previous_interruption": "/tmp worktree was removed after code commit ed18b9f84; recovered exact commit into persistent /mnt worktree; uncommitted docs were regenerated, not assumed complete",
+  "publication": "PENDING_VERIFIED_COMMIT",
   "release_status": "PRODUCT_BUILD_INCOMPLETE / HOLD",
   "schema_version": 1,
   "tinygrad_commit": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4",
-  "worktree": "/tmp/mvl-combined-b3g10-rc-20261108"
+  "worktree": "/mnt/commadrive/MVL_COMBINED_B3G10_RC_RECOVERY_20261108"
 }

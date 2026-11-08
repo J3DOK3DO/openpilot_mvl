@@ -43,3 +43,7 @@ B2 host safeguards and B3/G10 plans are recorded in `COMBINED_CAMPAIGN_FINAL_REP
 ## Campaign 2 read-only update — 2026-11-07
 
 The actual comma mici/AGNOS 19.9 and installed known-good SHA were observed over strict-host-key authenticated read-only SSH. /data lacks observed ext4 project-quota prerequisites; five-second cereal data lacks carState and controlsState; host guardian crash with a descendant is a reproduced limitation. No device write or QCOM compilation occurred. B2 is `B2_HARDWARE_NOT_QUALIFIED`; B3 0/6 and G10 full product/package NOT_BUILT. Representative AArch64 static ABI evidence is not product qualification. `PRODUCT_BUILD_INCOMPLETE / HOLD` persists; scoped acceptance 12/25 = 48%, physical 0/10, final approval 0%/HOLD.
+
+## Combined B3/G10/RC checkpoint — 2026-11-08
+
+The isolated branch `codex/mvl-combined-b3g10-rc-recovery-20261108` has reviewed offline RC readiness tooling at exact code `ed18b9f8436c8ce462c1430869d435b73c367f6f`. Engineering preparation is 11/20 (55%); formal scoped 12/25 (48%) remains historical, physical 0/10, QCOM 0/6, full product NOT_BUILT. `RC_NOT_INSTALLABLE / PRODUCT_BUILD_INCOMPLETE / HOLD`; no device write or installation. See the seven `COMBINED_CAMPAIGN_*` deliverables.

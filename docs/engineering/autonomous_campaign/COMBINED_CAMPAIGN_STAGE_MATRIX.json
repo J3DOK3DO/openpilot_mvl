@@ -1,0 +1,200 @@
+{
+  "baseline_commit": "2489f58b97c915547ec94c03a073da0dbe45eaa9",
+  "branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
+  "device_write_performed": false,
+  "engineering_completion": {
+    "complete": 11,
+    "percent": 55,
+    "total": 20
+  },
+  "feature_disposition": [
+    {
+      "feature": "Lane centering",
+      "limit": "No new steering or OEM/Panda qualification",
+      "status": "EXISTING_ACTIVE_CONTROL_UNCHANGED"
+    },
+    {
+      "feature": "Read-only status/dashboard",
+      "limit": "Native comma rendering, timing and fallback pending",
+      "status": "HOST_SCOPE_DEVICE_HOLD"
+    },
+    {
+      "feature": "Honda warning priority",
+      "limit": "C4-05 physical display proof pending",
+      "status": "HOST_SCOPE_DEVICE_HOLD"
+    },
+    {
+      "feature": "StarPort",
+      "limit": "No new integration invented",
+      "status": "NO_APPROVED_NON_ACTUATING_CONTRACT"
+    },
+    {
+      "feature": "Galaxy G06",
+      "limit": "Target security review before registration",
+      "status": "OFF_UNREGISTERED_HOST_PROTOTYPE"
+    },
+    {
+      "feature": "G08 model metadata",
+      "limit": "Loaded model/runner identity pending",
+      "status": "HOST_HASH_SCOPE_DEVICE_HOLD"
+    },
+    {
+      "feature": "Startup and recovery",
+      "limit": "Cold boot and fault fallback pending",
+      "status": "HOST_SCOPE_DEVICE_HOLD"
+    }
+  ],
+  "formal_scoped_acceptance": {
+    "accepted": 12,
+    "applicable": 25,
+    "evidence": "historical, not installation approval",
+    "percent": 48
+  },
+  "frozen_product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "milestones": [
+    {
+      "evidence": "Frozen 4b source and no openpilot/panda/SConstruct diff",
+      "milestone": "Pinned non-actuating source boundary",
+      "stage": "C1",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Retained exact-source host evidence, unchanged product source",
+      "milestone": "Read-only bridge and status host scope",
+      "stage": "C1",
+      "status": "COMPLETE_HISTORICAL",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Actual C4 device checks absent",
+      "milestone": "Native comma UI/IPC/Honda behavior",
+      "stage": "C1",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "No approved non-actuating contract in inspected source",
+      "milestone": "StarPort-specific integration",
+      "stage": "C1",
+      "status": "EXCLUDED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Two ONNX, tinygrad and recipe hashes rechecked",
+      "milestone": "Model inputs and compiler pin",
+      "stage": "C2",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "B3C six-target QCOM plan retained",
+      "milestone": "Six stock target plan",
+      "stage": "C2",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "No authenticated QCOM provider or proven B2 safeguards",
+      "milestone": "Qualified native provider",
+      "stage": "C2",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "0/6 authenticated captures",
+      "milestone": "Six native model outputs",
+      "stage": "C2",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Raw image SHA-256 and rootfs VERSION rechecked",
+      "milestone": "AGNOS 19.9 image/rootfs pin",
+      "stage": "C3",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Retained YUV fixture rehashed and ELF inspected",
+      "milestone": "Bounded AArch64 component",
+      "stage": "C3",
+      "status": "COMPLETE_HISTORICAL",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Six QCOM inputs absent; NOT_BUILT",
+      "milestone": "Full cold native product",
+      "stage": "C3",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "No complete product",
+      "milestone": "Full ABI/package closure",
+      "stage": "C3",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "168 run, 159 passed, 9 platform skips at ed18b9f84",
+      "milestone": "Current release-tool regression",
+      "stage": "C4",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "4/4 at ed18b9f84",
+      "milestone": "Current recovery regression",
+      "stage": "C4",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Independent clean detached exact ed18b9f84 review PASS_SCOPED; 168 release-tool, 4 recovery and 5 focused RC tests; no P1 code finding",
+      "milestone": "Independent final code review",
+      "stage": "C4",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "0/10",
+      "milestone": "Applicable C4 physical checks",
+      "stage": "C4",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Fail-closed RC tool and checklist",
+      "milestone": "Offline installation plan",
+      "stage": "C5",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "Preflight, backup, stage, switch and health failure tests",
+      "milestone": "Mock failure response",
+      "stage": "C5",
+      "status": "COMPLETE",
+      "weight_points": 5
+    },
+    {
+      "evidence": "No package, current installed identity or device action",
+      "milestone": "Actual package, backup and migration",
+      "stage": "C5",
+      "status": "BLOCKED",
+      "weight_points": 5
+    },
+    {
+      "evidence": "No authorization or physical evidence",
+      "milestone": "Installation and post-install health",
+      "stage": "C5",
+      "status": "BLOCKED",
+      "weight_points": 5
+    }
+  ],
+  "release_status": "HOLD",
+  "schema_version": 1,
+  "tested_code_commit": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
+  "weighting": "20 equal milestones, 5 percentage points each; only COMPLETE and COMPLETE_HISTORICAL count"
+}

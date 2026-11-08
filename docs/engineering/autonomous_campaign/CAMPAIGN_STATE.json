@@ -1,40 +1,40 @@
 {
   "schema_version": 2,
-  "updated_at_utc": "2026-11-06T10:14:58.236670+00:00",
-  "current_stage": "QCOM_exact_source_build_handoff_prepared_device_unreachable",
+  "updated_at_utc": "2026-11-08",
+  "current_stage": "C1_TO_C5_OFFLINE_REVIEWED",
   "release_decision": "HOLD",
-  "branch": "codex/mvl-qcom-build-continuation-20261106",
+  "branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
   "checkout_mode": "branch",
-  "head_commit": "3f3a5546b745649acb70317c227ccf59f6cbc210",
+  "head_commit": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
   "last_verified_result": {
-    "decision": "PASS_OFFLINE_TOOLS_ONLY_DEVICE_UNREACHABLE",
-    "scope": "Twelve focused preflight/inspector tests at c5c2cb367a451dd8f6476e3bd365649938ba16e4; prior 444 host tests remain accepted only at 4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb; handoff externally anchored and verified",
-    "passed": 12,
+    "decision": "PASS_SCOPED_CODE_ONLY_RELEASE_HOLD",
+    "scope": "168 release-tool tests, 9 platform skips; 4 recovery; 5 focused RC at exact ed18b9f84; independent exact-code review PASS_SCOPED",
+    "passed": 168,
     "failed": 0,
-    "skipped": 0,
-    "record": "TEST_RESULTS.json milestone_runs[-1], COMMA4_READONLY_PREFLIGHT_20261106.json"
+    "skipped": 9,
+    "record": "COMBINED_CAMPAIGN_TEST_RESULTS.json"
   },
-  "next_action": "Retry read-only comma SSH when reachable; device-side copying/compilation require separate authorization.",
-  "source_of_truth": "CAMPAIGN_STATE.json, TEST_RESULTS.json, MASTER_GATE_TRACKER.md, G10_FINAL_BUILD_CLOSURE_20261105.md and persisted G10 source/graph logs; prior campaign reports are historical.",
-  "authoritative_baseline_sha": "362c2fb6fed527e5f7e4737473b856b5ccf5766f",
+  "next_action": "Publish reviewed offline engineering branch after clean exact-commit tests",
+  "source_of_truth": "COMBINED_CAMPAIGN_RECOVERY_STATE.json, COMBINED_CAMPAIGN_TEST_RESULTS.json, COMBINED_CAMPAIGN_STAGE_MATRIX.json and this state; prior reports historical.",
+  "authoritative_baseline_sha": "2489f58b97c915547ec94c03a073da0dbe45eaa9",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
-    "branch": "codex/mvl-qcom-build-continuation-20261106",
-    "head": "3f3a5546b745649acb70317c227ccf59f6cbc210",
-    "worktree": "/tmp/mvl-qcom-build-continuation-20261106",
-    "owner": "QCOM continuation; exclusive lease during run"
+    "branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
+    "head": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
+    "worktree": "/mnt/commadrive/MVL_COMBINED_B3G10_RC_RECOVERY_20261108",
+    "owner": "Dedicated campaignctl lease in this isolated worktree"
   },
-  "current_gate": "PRODUCT_BUILD_INCOMPLETE",
-  "last_successful_milestone": "Source-only handoff retained at 4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb; twelve offline preflight/inspector units PASS at c5c2cb367a451dd8f6476e3bd365649938ba16e4; read-only comma probe NO_ROUTE_TO_HOST. No QCOM/product/device PASS.",
-  "tests_verified_at_commit": "c5c2cb367a451dd8f6476e3bd365649938ba16e4",
-  "tests_record": "TEST_RESULTS.json milestone_runs[-1] (12 offline units); prior accepted 444 host tests at 4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
-  "next_actionable_milestone": "Retry bounded read-only comma preflight when reachable; after separate authorization for device copying/compilation, produce six exact-source QCOM outputs and verify provenance, then attempt isolated full cold ARM64 product build.",
+  "current_gate": "RC_NOT_INSTALLABLE",
+  "last_successful_milestone": "Independent exact-code PASS_SCOPED at ed18b9f84; 11/20 offline milestones, QCOM 0/6, physical 0/10",
+  "tests_verified_at_commit": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
+  "tests_record": "COMBINED_CAMPAIGN_TEST_RESULTS.json",
+  "next_actionable_milestone": "Publish reviewed branch; separately authorized native QCOM provider and B2 safeguards needed before device compilation",
   "current_blockers": [
-    "Read-only comma SSH returned NO_ROUTE_TO_HOST; actual device architecture, AGNOS, GPU, resources and installed known-good branch/SHA unknown.",
-    "Six exact-source Qualcomm outputs absent; device-side source copying and compilation require separate authorization.",
-    "Full cold ARM64 product, binary ABI evidence and installable package NOT_ATTEMPTED/HOLD.",
-    "C4-01\u201307 and C4-09\u201311 require actual authorized device evidence; C4-08 excluded while G06 unregistered; C4-12 WAIVED_BY_OWNER / NOT_EXECUTED.",
-    "All 254 Params keys remain DENY."
+    "B2 safeguards unqualified; owner planning waiver is not safety acceptance",
+    "Six exact-source QCOM outputs absent",
+    "Full AGNOS 19.9 product not built",
+    "Applicable physical C4 tests 0/10",
+    "Separate installation approval absent"
   ],
   "approval_requirements": [
     "Candidate installation or activation on comma 4 requires all applicable software/build prerequisites, and separate user authorization.",
@@ -44,10 +44,10 @@
   "release_qualification": {
     "status": "PRODUCT_BUILD_INCOMPLETE",
     "profile": "COMMA4_NON_ACTUATING_MVL",
-    "scope": "Source-only handoff verified; 12 offline tooling units pass; comma unreachable; six QCOM outputs and full product absent; device NOT_TESTED."
+    "scope": "Offline engineering 11/20; formal scoped historical 12/25; QCOM 0/6; physical 0/10; no installable product or approval"
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded reviewed docs checkpoint 3f3a5546b745649acb70317c227ccf59f6cbc210 may have one following publication-only campaign checkpoint; exact tested tool source c5c2cb367a451dd8f6476e3bd365649938ba16e4 remains separate. Further drift requires reconciliation.",
+  "checkpoint_rule": "Exact code commit ed18b9f84 reviewed and tested; one docs-only descendant may record its evidence and publication.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -99,7 +99,10 @@
     "qcom_continuation_published_head": "3f3a5546b745649acb70317c227ccf59f6cbc210",
     "qcom_continuation_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-qcom-build-continuation-20261106",
     "qcom_continuation_remote_verified_at_utc": "2026-11-06T10:14:58.236670+00:00",
-    "qcom_continuation_method": "SHA-verified bundle via authorized Windows Git helper; non-force push and authenticated ls-remote exact ref; PR #1 unchanged"
+    "qcom_continuation_method": "SHA-verified bundle via authorized Windows Git helper; non-force push and authenticated ls-remote exact ref; PR #1 unchanged",
+    "combined_b3g10_rc_branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
+    "combined_b3g10_rc_status": "PENDING_VERIFIED_PUSH",
+    "combined_b3g10_rc_tested_code_sha": "ed18b9f8436c8ce462c1430869d435b73c367f6f"
   },
   "release_profile": "COMMA4_NON_ACTUATING_MVL",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE",

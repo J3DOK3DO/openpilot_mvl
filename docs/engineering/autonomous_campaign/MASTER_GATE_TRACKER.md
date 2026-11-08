@@ -139,3 +139,15 @@ B2 host safeguard policy and fixtures PASS_OFFLINE; device quota, independent st
 | B3 first warp and six outputs | NOT_EXECUTED / 0 OF 6 | Hardware gate not qualified; no device write or QCOM compilation. |
 | G10 complete product/package | NOT_BUILT / HOLD | Representative AArch64 static ABI passes only direct-library/version inspection; full product, runtime and package absent. |
 | Formal and physical release | 12/25 SCOPED PASS; 0/10 PHYSICAL; HOLD | No S12/S13/S14 or C4 promotion; C4-08 conditional N/A, C4-12 waived/unexecuted; G11/G12 conditional non-actuating N/A; 254 Params DENY. |
+
+## Combined B3/G10/RC offline checkpoint — 2026-11-08
+
+| Gate | Decision | Exact evidence / limit |
+| --- | --- | --- |
+| B2 device safeguards | HOLD | Planning waiver only; quota, continuous vehicle state, independent abort and GPU containment unqualified. |
+| B3 six QCOM outputs | HOLD 0/6 | Exact source and six-target route pinned; no authenticated native compiler output. |
+| G10 full product | NOT_BUILT / HOLD | Bounded historical AArch64 component only; complete product, ABI and package absent. |
+| RC offline readiness | PASS_SCOPED_TOOL / RC_NOT_INSTALLABLE | Fail-closed plan and mock failure rehearsal at reviewed `ed18b9f84`; no device action. |
+| Physical release | NOT_TESTED 0/10 / HOLD | C4-08 conditional N/A with G06 OFF; C4-12 WAIVED_BY_OWNER / NOT_EXECUTED. |
+
+Engineering preparation is 11/20 (55%) after exact-code review; inherited formal scoped acceptance 12/25 (48%) is historical, not reverified. Release remains PRODUCT_BUILD_INCOMPLETE / HOLD. See `COMBINED_CAMPAIGN_MASTER_REPORT.md`.
