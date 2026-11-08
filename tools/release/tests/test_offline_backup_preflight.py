@@ -24,6 +24,17 @@ class OfflineBackupPreflightTest(unittest.TestCase):
                          'files': [{'path': 'known_good/package.txt', 'size': 16,
                                     'sha256': hashlib.sha256(b'known good bytes').hexdigest()}]}
 
+    def run_manifest_cli(self, path, digest):
+        run = subprocess.run([sys.executable, '-B', '-m', 'tools.release.offline_backup_preflight',
+                              '--root', str(self.root), '--manifest', str(path),
+                              '--expected-manifest-sha256', digest],
+                             text=True, capture_output=True, timeout=3)
+        self.assertEqual(run.returncode, 2)
+        report = json.loads(run.stdout)
+        self.assertEqual(report['decision'], 'NOT_INSTALLABLE')
+        self.assertIs(report['install_allowed'], False)
+        return report
+
     def test_exact_host_copy_stays_noninstallable(self):
         result = backup.verify(self.root, self.manifest)
         self.assertEqual(result['backup_inventory'], 'HOST_COPY_BYTES_MATCH')
@@ -87,6 +98,73 @@ class OfflineBackupPreflightTest(unittest.TestCase):
             self.assertEqual(run.returncode, 2)
             self.assertFalse(json.loads(run.stdout)['install_allowed'])
             self.assertIn(expected, run.stdout)
+
+    @unittest.skipUnless(hasattr(os, 'mkfifo') and hasattr(os, 'O_NONBLOCK') and
+                         hasattr(os, 'O_NOFOLLOW') and hasattr(os, 'O_CLOEXEC'),
+                         'safe FIFO opening APIs unavailable')
+    def test_cli_manifest_fifo_without_writer_rejected_with_timeout(self):
+        fifo = self.root / 'manifest.fifo'
+        os.mkfifo(fifo)
+        report = self.run_manifest_cli(fifo, '0' * 64)
+        self.assertIn('not a regular file', report['input_error'])
+
+    @unittest.skipUnless(hasattr(os, 'symlink') and hasattr(os, 'O_NOFOLLOW'),
+                         'symlink or nofollow API unavailable')
+    def test_cli_manifest_symlink_rejected_even_with_matching_digest(self):
+        target = self.root / 'actual.json'
+        raw = json.dumps(self.manifest).encode()
+        target.write_bytes(raw)
+        link = self.root / 'manifest.json'
+        link.symlink_to(target)
+        report = self.run_manifest_cli(link, hashlib.sha256(raw).hexdigest())
+        self.assertIn('not a regular file', report['input_error'])
+
+    def test_cli_manifest_directory_type_mismatch_rejected(self):
+        report = self.run_manifest_cli(self.root / 'known_good', '0' * 64)
+        self.assertIn('not a regular file', report['input_error'])
+
+    def test_cli_manifest_oversize_and_regular_success_stay_on_hold(self):
+        path = self.root / 'manifest.json'
+        raw = b' ' * (backup._MAX_MANIFEST_BYTES + 1)
+        path.write_bytes(raw)
+        report = self.run_manifest_cli(path, hashlib.sha256(raw).hexdigest())
+        self.assertIn('exceeds size limit', report['input_error'])
+        raw = json.dumps(self.manifest).encode()
+        path.write_bytes(raw)
+        report = self.run_manifest_cli(path, hashlib.sha256(raw).hexdigest())
+        self.assertEqual(report['backup_inventory'], 'HOST_COPY_BYTES_MATCH')
+        self.assertEqual(report['manifest_trust'], 'EXTERNAL_HASH_REQUIRED')
+
+    def test_manifest_inode_swap_after_lstat_rejected(self):
+        path = self.root / 'manifest.json'
+        path.write_bytes(b'first')
+        replacement = self.root / 'replacement.json'
+        replacement.write_bytes(b'second')
+        original_open = backup.os.open
+
+        def swap_on_open(name, flags, *args, **kwargs):
+            if name == path:
+                replacement.replace(path)
+            return original_open(name, flags, *args, **kwargs)
+
+        with mock.patch.object(backup.os, 'open', side_effect=swap_on_open):
+            with self.assertRaisesRegex(ValueError, 'changed'):
+                backup._read_manifest(path)
+
+    def test_manifest_changed_bytes_on_held_fd_rejected(self):
+        path = self.root / 'manifest.json'
+        path.write_bytes(b'first')
+        original_read = backup.os.read
+
+        def change_on_read(fd, count):
+            data = original_read(fd, count)
+            if data:
+                path.write_bytes(b'other')
+            return data
+
+        with mock.patch.object(backup.os, 'read', side_effect=change_on_read):
+            with self.assertRaisesRegex(ValueError, 'changed'):
+                backup._read_manifest(path)
 
     def test_external_hardlink_is_not_a_self_contained_backup(self):
         outside = self.root.parent / (self.root.name + '-outside')

@@ -166,6 +166,42 @@ def test_concurrent_read_fails_closed_without_rewinding_timestamp_state():
   assert reasons(reader.read()) == ["out_of_order_timestamp"]
 
 
+def test_concurrent_producer_can_pair_old_metadata_with_new_state_without_snapshot_contract():
+  timestamp_read = threading.Event()
+  producer_done = threading.Event()
+  source = FakeSubMaster({"deviceState": device(free=10.0)},
+                         timestamps={"deviceState": NOW - 100})
+
+  class PausingTimestamps(dict):
+    def __getitem__(self, topic):
+      old_timestamp = super().__getitem__(topic)
+      timestamp_read.set()
+      assert producer_done.wait(2)
+      return old_timestamp
+
+  source.logMonoTime = PausingTimestamps(source.logMonoTime)
+
+  def produce():
+    assert timestamp_read.wait(2)
+    source.states["deviceState"] = device(free=90.0)
+    source.logMonoTime["deviceState"] = NOW - 1
+    producer_done.set()
+
+  producer = threading.Thread(target=produce, name="synthetic-producer")
+  producer.start()
+  try:
+    snapshot = adapter(source, enabled(Feature.DEVICE_STATUS)).read()
+  finally:
+    producer_done.set()
+    producer.join(2)
+  assert not producer.is_alive()
+  # This is a documented source-contract limitation, not an acceptance gate:
+  # the adapter cannot atomically sample a caller-owned producer's mappings.
+  assert snapshot.device is not None
+  assert snapshot.device.timestamp_ns == NOW - 100
+  assert snapshot.device.free_space_percent == 90.0
+
+
 def test_clock_rollback_does_not_read_any_topic():
   source = FakeSubMaster({"deviceState": device()}, timestamps={"deviceState": NOW - 10})
   times = iter((NOW, NOW - 1))

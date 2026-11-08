@@ -62,6 +62,19 @@ def test_native_status_draws_fresh_read_only_device_without_brand_overlap(monkey
   assert "DEVICE: 42°C · 50% free" == labels[0][0][1]
 
 
+def test_optional_badge_label_failure_leaves_partial_background_without_affecting_header(monkeypatch):
+  layout, drawn, _ = _layout(monkeypatch)
+  layout.set_status_snapshot_supplier(_snapshot)
+
+  def fail_label(*args, **kwargs):
+    raise RuntimeError("synthetic label failure")
+
+  monkeypatch.setattr(native_home, "gui_label", fail_label)
+  layout._render_status_badge(800)
+  # Immediate raylib draws cannot be rolled back by this optional seam.
+  assert len(drawn) == 1
+
+
 def test_real_mvl_header_invokes_optional_status_seam(monkeypatch):
   layout, drawn, labels = _layout(monkeypatch)
   layout.params = SimpleNamespace(get=lambda _: None)

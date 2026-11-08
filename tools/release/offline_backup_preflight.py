@@ -153,6 +153,48 @@ def _unique_object(pairs: list[tuple[str, object]]) -> dict[str, object]:
     return result
 
 
+def _manifest_identity(info: os.stat_result) -> tuple[int, int, int, int, int]:
+    return info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns
+
+
+def _read_manifest(path: Path) -> bytes:
+    """Bound a regular manifest read through a non-following held descriptor."""
+    required = ('O_NOFOLLOW', 'O_NONBLOCK', 'O_CLOEXEC')
+    if any(not isinstance(getattr(os, name, None), int) for name in required):
+        raise ValueError('safe manifest opening is unavailable on this platform')
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode):
+        raise ValueError('backup manifest is not a regular file')
+    if before.st_size > _MAX_MANIFEST_BYTES:
+        raise ValueError('backup manifest exceeds size limit')
+    try:
+        fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK | os.O_CLOEXEC)
+    except OSError as exc:
+        raise ValueError('backup manifest changed or is unsafe') from exc
+    try:
+        opened = os.fstat(fd)
+        if not stat.S_ISREG(opened.st_mode) or _manifest_identity(before) != _manifest_identity(opened):
+            raise ValueError('backup manifest changed or is unsafe')
+        raw = bytearray()
+        while len(raw) <= _MAX_MANIFEST_BYTES:
+            block = os.read(fd, min(64 * 1024, _MAX_MANIFEST_BYTES + 1 - len(raw)))
+            if not block:
+                break
+            raw.extend(block)
+        if len(raw) > _MAX_MANIFEST_BYTES:
+            raise ValueError('backup manifest exceeds size limit')
+        after = os.fstat(fd)
+        linked = path.lstat()
+        if (not stat.S_ISREG(linked.st_mode) or
+            _manifest_identity(opened) != _manifest_identity(after) or
+            _manifest_identity(opened) != _manifest_identity(linked) or
+            len(raw) != opened.st_size):
+            raise ValueError('backup manifest changed during verification')
+        return bytes(raw)
+    finally:
+        os.close(fd)
+
+
 def main() -> int:
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
@@ -163,10 +205,7 @@ def main() -> int:
     try:
         if not _SHA.fullmatch(args.expected_manifest_sha256):
             raise ValueError('invalid expected manifest digest')
-        with args.manifest.open('rb') as stream:
-            raw = stream.read(_MAX_MANIFEST_BYTES + 1)
-        if len(raw) > _MAX_MANIFEST_BYTES:
-            raise ValueError('backup manifest exceeds size limit')
+        raw = _read_manifest(args.manifest)
         if hashlib.sha256(raw).hexdigest() != args.expected_manifest_sha256:
             raise ValueError('backup manifest digest mismatch')
         report = verify(args.root, json.loads(raw, object_pairs_hook=_unique_object))
