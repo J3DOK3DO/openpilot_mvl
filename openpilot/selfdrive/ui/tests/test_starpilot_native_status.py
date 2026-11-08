@@ -42,6 +42,15 @@ def test_native_status_is_default_off(monkeypatch):
   assert drawn == labels == []
 
 
+def test_hidden_home_never_reads_optional_status_source(monkeypatch):
+  layout, drawn, labels = _layout(monkeypatch)
+  layout._is_visible = False
+  calls = []
+  layout.set_status_snapshot_supplier(lambda: calls.append(True))
+  layout._render_status_badge(800)
+  assert calls == drawn == labels == []
+
+
 def test_native_status_draws_fresh_read_only_device_without_brand_overlap(monkeypatch):
   layout, drawn, labels = _layout(monkeypatch)
   layout.set_status_snapshot_supplier(_snapshot)

@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "updated_at_utc": "2026-11-08",
-  "current_stage": "C1_TO_C5_OFFLINE_REVIEWED",
+  "current_stage": "CAMPAIGN5_C1_C3_C4_C5_C6_OFFLINE",
   "release_decision": "HOLD",
-  "branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
+  "branch": "codex/mvl-c1-c3-c4-c5-c6-b3-deferred-20261108",
   "checkout_mode": "branch",
-  "head_commit": "72c0f78ffaa0f049a4d4696ea47499e8175799f2",
+  "head_commit": "66194d5b74865295155ef8bec2da6a17f40e8d13",
   "last_verified_result": {
     "decision": "PASS_SCOPED_CODE_ONLY_RELEASE_HOLD",
     "scope": "168 release-tool tests, 9 platform skips; 4 recovery; 5 focused RC at exact ed18b9f84; independent exact-code review PASS_SCOPED",
@@ -14,40 +14,39 @@
     "skipped": 9,
     "record": "COMBINED_CAMPAIGN_TEST_RESULTS.json"
   },
-  "next_action": "Await separate hardware/QCOM authorization and evidence; no further eligible offline milestone identified",
+  "next_action": "Validate C1/C5 implementation and bounded C3 build, then independent review",
   "source_of_truth": "COMBINED_CAMPAIGN_RECOVERY_STATE.json, COMBINED_CAMPAIGN_TEST_RESULTS.json, COMBINED_CAMPAIGN_STAGE_MATRIX.json and this state; prior reports historical.",
-  "authoritative_baseline_sha": "2489f58b97c915547ec94c03a073da0dbe45eaa9",
+  "authoritative_baseline_sha": "66194d5b74865295155ef8bec2da6a17f40e8d13",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
   "active_engineering": {
-    "branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
-    "head": "72c0f78ffaa0f049a4d4696ea47499e8175799f2",
-    "worktree": "/mnt/commadrive/MVL_COMBINED_B3G10_RC_RECOVERY_20261108",
-    "owner": "Dedicated campaignctl lease in this isolated worktree"
+    "branch": "codex/mvl-c1-c3-c4-c5-c6-b3-deferred-20261108",
+    "head": "66194d5b74865295155ef8bec2da6a17f40e8d13",
+    "worktree": "/mnt/commadrive/MVL_C1_C3_C4_C5_C6_B3_DEFERRED_20261108",
+    "owner": "Dedicated Campaign 5 lease"
   },
   "current_gate": "RC_NOT_INSTALLABLE",
   "last_successful_milestone": "Independent exact-code PASS_SCOPED at ed18b9f84; 11/20 offline milestones, QCOM 0/6, physical 0/10",
   "tests_verified_at_commit": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
   "tests_record": "COMBINED_CAMPAIGN_TEST_RESULTS.json",
-  "next_actionable_milestone": "After separate authorization and B2 safeguards, obtain six source-matched native QCOM outputs; then full cold product and physical C4 evidence",
+  "next_actionable_milestone": "Run focused and full host suites, record native build and review",
   "current_blockers": [
-    "B2 safeguards unqualified; owner planning waiver is not safety acceptance",
-    "Six exact-source QCOM outputs absent",
-    "Full AGNOS 19.9 product not built",
-    "Applicable physical C4 tests 0/10",
+    "B3 DEFERRED / OWNER-ACCEPTED SCOPE EXCLUSION; genuine outputs 0/6",
+    "G10 full product BLOCKED_B3_DEPENDENCY",
+    "Physical Comma 4 checks 0/10",
     "Separate installation approval absent"
   ],
   "approval_requirements": [
-    "Candidate installation or activation on comma 4 requires all applicable software/build prerequisites, and separate user authorization.",
-    "G11 external CAN-FD/HIL and G12 Honda dynamic OEM tests are excluded from this non-actuating profile only while no new active control, Panda, ECU or CAN-transmit behavior is included.",
-    "Device-side compilation, source copying, installation and activation each require separate authorization; owner manages possible reset and known-good reinstall."
+    "B3 compilation expressly excluded this campaign; reopen only on new owner instruction",
+    "Device staging, installation, vehicle actuation and Panda/ECU/CAN changes not authorized",
+    "Physical and OEM release gates require genuine target evidence"
   ],
   "release_qualification": {
     "status": "PRODUCT_BUILD_INCOMPLETE",
     "profile": "COMMA4_NON_ACTUATING_MVL",
-    "scope": "Offline engineering 11/20; formal scoped historical 12/25; QCOM 0/6; physical 0/10; no installable product or approval"
+    "scope": "B3 owner-deferred; QCOM 0/6, full product NOT_BUILT, physical 0/10, release HOLD"
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Recorded published docs-only checkpoint 72c0f78; one final state-reconciliation documentation successor is permitted. Reviewed tool source ed18b9f84 and tested evidence commit 7ced835c remain separately pinned.",
+  "checkpoint_rule": "Campaign 5 branch starts at published 66194d5b; record exact tested code commits and allow one docs-only successor after review.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -106,7 +105,9 @@
     "combined_b3g10_rc_published_evidence_sha": "7ced835cc1847c488c68ae1b6c5d73f23b066ddd",
     "combined_b3g10_rc_remote_verified": "Windows authenticated non-force push and exact ls-remote match",
     "combined_b3g10_rc_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-combined-b3g10-rc-recovery-20261108",
-    "combined_b3g10_rc_published_head": "72c0f78ffaa0f049a4d4696ea47499e8175799f2"
+    "combined_b3g10_rc_published_head": "72c0f78ffaa0f049a4d4696ea47499e8175799f2",
+    "campaign5_branch": "codex/mvl-c1-c3-c4-c5-c6-b3-deferred-20261108",
+    "campaign5_status": "LOCAL_IN_PROGRESS"
   },
   "release_profile": "COMMA4_NON_ACTUATING_MVL",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE",

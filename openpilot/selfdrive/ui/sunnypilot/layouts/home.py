@@ -88,7 +88,7 @@ class HomeLayoutSP(HomeLayout):
   def _render_status_badge(self, brand_x: float) -> None:
     """Draw one optional status line only in unused header space."""
     supplier = self._status_snapshot_supplier
-    if (supplier is None or self.current_state != HomeLayoutState.HOME or
+    if (supplier is None or not self.is_visible or self.current_state != HomeLayoutState.HOME or
         self.update_available or self.alert_count > 0 or ui_state.started):
       return
     width = min(520.0, brand_x - self.header_rect.x - 24.0)
