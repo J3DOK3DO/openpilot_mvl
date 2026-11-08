@@ -3,7 +3,7 @@
   "campaign": "C1_C3_C4_C5_C6_B3_DEFERRED_20261108",
   "baseline_commit": "66194d5b74865295155ef8bec2da6a17f40e8d13",
   "branch": "codex/mvl-c1-c3-c4-c5-c6-b3-deferred-20261108",
-  "recorded_head": "c5172b6b0f0f1c6d2f6e7202774f1f3f17d9b315",
+  "recorded_head": "3234d9785830bbd4518191c341daf513bdaac136",
   "lease": "Dedicated active campaignctl lease; token stored locally only",
   "stage": "C1_C3_C4_C5_C6_OFFLINE",
   "b3": "DEFERRED / OWNER-ACCEPTED SCOPE EXCLUSION",
@@ -19,8 +19,10 @@
     "Rerun uncertain tests at exact commit",
     "Keep B3 excluded, device and release HOLD"
   ],
-  "last_verified_tests": "174 release-tool run, 165 pass, 9 platform skips; recovery 4/4; C1 host 92/92 at clean evidence commit c5172b6b0f0f1c6d2f6e7202774f1f3f17d9b315",
-  "next_action": "Publish reviewed branch non-force and verify exact remote SHA",
+  "last_verified_tests": "174 release-tool run, 165 pass, 9 platform skips; recovery 4/4; C1 host 92/92 at clean reviewed published commit 3234d9785830bbd4518191c341daf513bdaac136",
+  "next_action": "No eligible B3-independent offline milestone remains; await new owner instruction and target evidence",
   "engineering_completion": "9/16 = 56.25%; B3 four milestones excluded, 0/6 outputs",
-  "last_verified_checkpoint": "c5172b6b0f0f1c6d2f6e7202774f1f3f17d9b315"
+  "last_verified_checkpoint": "3234d9785830bbd4518191c341daf513bdaac136",
+  "publication": "PUBLISHED_VERIFIED_ENGINEERING_HOLD",
+  "published_sha": "3234d9785830bbd4518191c341daf513bdaac136"
 }

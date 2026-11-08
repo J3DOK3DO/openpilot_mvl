@@ -47,5 +47,12 @@
       "recovery": "fd8df8ac4699e281be78c02510a5d38fea648f803e5a7ae0c11e555fabdcaf79",
       "c1_host": "320fd739ebfc2d6a39de47680588bb8324fe6f895471316f700fefd5d027f359"
     }
+  },
+  "final_reviewed_published_evidence_checkpoint": {
+    "commit": "3234d9785830bbd4518191c341daf513bdaac136",
+    "release_tools": "174 run, 165 passed, nine platform skips, exit 0",
+    "recovery": "4/4 PASS, exit 0",
+    "c1_host": "92/92 PASS, exit 0",
+    "review": "PASS_SCOPED; two P2 evidence findings fixed; P3 mutable builder tag replay check"
   }
 }
