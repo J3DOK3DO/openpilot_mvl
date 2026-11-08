@@ -64,6 +64,16 @@
   "final_elf_has_versioned_runtime_imports": true,
   "final_link_exit": 0,
   "final_linker_no_undefined_option": true,
+  "llvm_symbol_probe": {
+    "observed": "socketmaster unresolved Context/Poller/capnp/kj symbols have definitions in pinned msgq/capnp/kj archives",
+    "raw_log_outside_git": ".c3_stage/llvm_symbol_probe.log",
+    "raw_log_sha256": "ea51ebab8aeac6d1f33fe6a53c9193919ddf990b62e7e026a66d36d3f904f815",
+    "tools": [
+      "llvm-nm",
+      "llvm-ar",
+      "llvm-readelf"
+    ]
+  },
   "provider_paths": {
     "capnp": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/local/venv/lib/python3.12/site-packages/capnproto/install/lib/libcapnp.a",
     "crtbeginS": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/gcc/aarch64-linux-gnu/13/crtbeginS.o",
