@@ -94,6 +94,16 @@ def test_native_onroad_and_snapshot_disagreement_fail_closed(monkeypatch):
   layout.set_status_snapshot_supplier(lambda: _snapshot(started=True))
   layout._render_status_badge(800)
   assert drawn == labels == []
+
+
+@pytest.mark.parametrize("invalid_started", [None, 0, "false"])
+def test_invalid_ui_started_never_reads_status_supplier(monkeypatch, invalid_started):
+  layout, drawn, labels = _layout(monkeypatch)
+  monkeypatch.setattr(native_home.ui_state, "started", invalid_started)
+  calls = []
+  layout.set_status_snapshot_supplier(lambda: calls.append(True))
+  layout._render_status_badge(800)
+  assert calls == drawn == labels == []
   layout.set_status_snapshot_supplier(_snapshot)
   monkeypatch.setattr(native_home.ui_state, "started", True)
   layout._render_status_badge(800)

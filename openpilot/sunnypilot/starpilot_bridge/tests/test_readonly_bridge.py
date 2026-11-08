@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import ast
+import threading
 from dataclasses import FrozenInstanceError
 from pathlib import Path
 from types import SimpleNamespace
@@ -129,6 +130,39 @@ def test_out_of_order_timestamp_is_rejected_without_replacing_snapshot_state():
   reader = adapter(source, enabled(Feature.DEVICE_STATUS))
   assert reader.read().device is not None
   source.logMonoTime["deviceState"] = NOW - 11
+  assert reasons(reader.read()) == ["out_of_order_timestamp"]
+
+
+def test_concurrent_read_fails_closed_without_rewinding_timestamp_state():
+  entered = threading.Event()
+  release = threading.Event()
+
+  class PausedSource(FakeSubMaster):
+    def __init__(self):
+      super().__init__({"deviceState": device()})
+      self.logMonoTime["deviceState"] = NOW - 100
+
+    def __getitem__(self, topic):
+      if threading.current_thread().name == "bridge-first-reader":
+        entered.set()
+        assert release.wait(2)
+      return super().__getitem__(topic)
+
+  source = PausedSource()
+  reader = adapter(source, enabled(Feature.DEVICE_STATUS))
+  first: list = []
+  worker = threading.Thread(target=lambda: first.append(reader.read()), name="bridge-first-reader")
+  worker.start()
+  try:
+    assert entered.wait(2)
+    source.logMonoTime["deviceState"] = NOW - 99
+    assert reasons(reader.read()) == ["concurrent_read"]
+  finally:
+    release.set()
+    worker.join(2)
+  assert not worker.is_alive()
+  assert first[0].device is not None
+  assert reader.read().device is not None
   assert reasons(reader.read()) == ["out_of_order_timestamp"]
 
 

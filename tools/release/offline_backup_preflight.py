@@ -4,12 +4,17 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
+import stat
 from pathlib import Path, PurePosixPath
 
 KNOWN_GOOD = 'a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1'
 DECISION = 'NOT_INSTALLABLE'
 _SHA = re.compile(r'[0-9a-f]{64}\Z')
+_MAX_MANIFEST_BYTES = 1024 * 1024
+_DIR_FLAGS = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC
+_FILE_FLAGS = os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK
 
 
 def _safe_path(name: object) -> PurePosixPath:
@@ -38,9 +43,7 @@ def verify(root: Path, manifest: dict[str, object]) -> dict[str, object]:
     entries = manifest['files']
     if type(entries) is not list or not entries:
         raise ValueError('backup inventory is empty or invalid')
-    if root.is_symlink() or not root.is_dir():
-        raise ValueError('backup root is not a directory')
-    seen: set[str] = set()
+    expected: dict[str, dict[str, object]] = {}
     if not any(type(entry) is dict and isinstance(entry.get('path'), str) and
                entry['path'].startswith('known_good/') for entry in entries):
         raise ValueError('known-good backup entry missing')
@@ -49,33 +52,101 @@ def verify(root: Path, manifest: dict[str, object]) -> dict[str, object]:
             raise ValueError('invalid backup file entry')
         rel = _safe_path(entry['path'])
         name = rel.as_posix()
-        if name in seen:
+        if name in expected:
             raise ValueError('duplicate backup path')
-        seen.add(name)
         if type(entry['size']) is not int or entry['size'] < 0 or not isinstance(entry['sha256'], str) or not _SHA.fullmatch(entry['sha256']):
             raise ValueError('invalid backup size or digest')
-        candidate = root
-        for part in rel.parts:
-            candidate = candidate / part
-            if candidate.is_symlink():
-                raise ValueError('backup symlink rejected')
-        if not candidate.is_file():
-            raise ValueError('backup file missing')
-        digest = hashlib.sha256()
-        size = 0
-        with candidate.open('rb') as stream:
-            for block in iter(lambda: stream.read(1024 * 1024), b''):
-                digest.update(block)
-                size += len(block)
-        if size != entry['size'] or digest.hexdigest() != entry['sha256']:
-            raise ValueError('backup file integrity mismatch')
-    actual = {p.relative_to(root).as_posix() for category in ('known_good', 'owner_data')
-              for p in (root / category).rglob('*') if p.is_file() or p.is_symlink()}
-    if actual != seen:
+        expected[name] = entry
+    actual: set[str] = set()
+    # root's parent is a trusted isolated host directory. All descendants are
+    # opened relative to held directory fds, so path replacement cannot redirect
+    # a read outside this tree. A concurrent in-place writer still requires an
+    # immutable snapshot or external isolation for stronger assurance.
+    try:
+        root_fd = os.open(root, _DIR_FLAGS)
+    except OSError as exc:
+        raise ValueError('backup root is not a trusted directory') from exc
+    try:
+        for category in ('known_good', 'owner_data'):
+            try:
+                category_fd = os.open(category, _DIR_FLAGS, dir_fd=root_fd)
+            except FileNotFoundError:
+                continue
+            except OSError as exc:
+                raise ValueError('backup category is unsafe') from exc
+            try:
+                _scan_directory(category_fd, category, expected, actual)
+            finally:
+                os.close(category_fd)
+    finally:
+        os.close(root_fd)
+    if actual != set(expected):
         raise ValueError('backup inventory incomplete or contains extras')
     return {'decision': DECISION, 'install_allowed': False, 'backup_inventory': 'HOST_COPY_BYTES_MATCH',
-            'known_good_currently_installed_verified': False, 'file_count': len(seen),
+            'known_good_currently_installed_verified': False, 'file_count': len(actual),
             'manifest_trust': 'EXTERNAL_HASH_REQUIRED', 'device_write_performed': False}
+
+
+def _scan_directory(directory_fd: int, prefix: str, expected: dict[str, dict[str, object]],
+                    actual: set[str]) -> None:
+    before = os.fstat(directory_fd)
+    for name in os.listdir(directory_fd):
+        path = f'{prefix}/{name}'
+        try:
+            entry_stat = os.stat(name, dir_fd=directory_fd, follow_symlinks=False)
+            if stat.S_ISDIR(entry_stat.st_mode):
+                child_fd = os.open(name, _DIR_FLAGS, dir_fd=directory_fd)
+                try:
+                    child = os.fstat(child_fd)
+                    if (entry_stat.st_dev, entry_stat.st_ino) != (child.st_dev, child.st_ino):
+                        raise ValueError('backup directory changed during verification')
+                    _scan_directory(child_fd, path, expected, actual)
+                    linked = os.stat(name, dir_fd=directory_fd, follow_symlinks=False)
+                    if (linked.st_dev, linked.st_ino) != (child.st_dev, child.st_ino):
+                        raise ValueError('backup directory changed during verification')
+                finally:
+                    os.close(child_fd)
+                continue
+            # O_NONBLOCK prevents a swapped-in FIFO from hanging the verifier.
+            leaf_fd = os.open(name, _FILE_FLAGS, dir_fd=directory_fd)
+        except OSError as exc:
+            raise ValueError('backup entry changed or is unsafe') from exc
+        try:
+            first = os.fstat(leaf_fd)
+            if (entry_stat.st_dev, entry_stat.st_ino) != (first.st_dev, first.st_ino):
+                raise ValueError('backup file changed during verification')
+            if not stat.S_ISREG(first.st_mode) or first.st_nlink != 1:
+                raise ValueError('backup special file or hardlink rejected')
+            if path not in expected:
+                raise ValueError('backup inventory incomplete or contains extras')
+            digest = hashlib.sha256()
+            size = 0
+            while block := os.read(leaf_fd, 1024 * 1024):
+                digest.update(block)
+                size += len(block)
+            last = os.fstat(leaf_fd)
+            if ((first.st_dev, first.st_ino, first.st_size, first.st_mtime_ns, first.st_ctime_ns) !=
+                (last.st_dev, last.st_ino, last.st_size, last.st_mtime_ns, last.st_ctime_ns)):
+                raise ValueError('backup file changed during verification')
+            target = expected[path]
+            if size != target['size'] or digest.hexdigest() != target['sha256']:
+                raise ValueError('backup file integrity mismatch')
+            actual.add(path)
+        finally:
+            os.close(leaf_fd)
+    after = os.fstat(directory_fd)
+    if (before.st_dev, before.st_ino, before.st_mtime_ns, before.st_ctime_ns) != (
+        after.st_dev, after.st_ino, after.st_mtime_ns, after.st_ctime_ns):
+        raise ValueError('backup directory changed during verification')
+
+
+def _unique_object(pairs: list[tuple[str, object]]) -> dict[str, object]:
+    result: dict[str, object] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError('duplicate backup manifest key')
+        result[key] = value
+    return result
 
 
 def main() -> int:
@@ -88,10 +159,13 @@ def main() -> int:
     try:
         if not _SHA.fullmatch(args.expected_manifest_sha256):
             raise ValueError('invalid expected manifest digest')
-        raw = args.manifest.read_bytes()
+        with args.manifest.open('rb') as stream:
+            raw = stream.read(_MAX_MANIFEST_BYTES + 1)
+        if len(raw) > _MAX_MANIFEST_BYTES:
+            raise ValueError('backup manifest exceeds size limit')
         if hashlib.sha256(raw).hexdigest() != args.expected_manifest_sha256:
             raise ValueError('backup manifest digest mismatch')
-        report = verify(args.root, json.loads(raw))
+        report = verify(args.root, json.loads(raw, object_pairs_hook=_unique_object))
     except (OSError, ValueError) as error:
         report = {'decision': DECISION, 'install_allowed': False, 'input_error': str(error)}
     print(json.dumps(report, sort_keys=True))

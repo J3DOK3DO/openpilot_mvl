@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from math import isfinite
+from threading import Lock
 from typing import Any
 
 from .features import Feature, FeatureRegistry
@@ -43,6 +44,7 @@ class ReadOnlyStatusAdapter:
     self._max_age_ns = max_age_ns
     self._last_now_ns: int | None = None
     self._last_timestamp_ns: dict[str, int] = {}
+    self._read_lock = Lock()
 
   def read(self) -> BridgeSnapshot:
     """Return only valid, fresh, monotonically ordered projections.
@@ -54,6 +56,16 @@ class ReadOnlyStatusAdapter:
     if not active:
       # No source, native subscriber, or injected clock is used while all OFF.
       return BridgeSnapshot(now_ns=0)
+    if not self._read_lock.acquire(blocking=False):
+      # A second reader must not race timestamp state or wait on a stalled
+      # source. It can retry after the first caller completes.
+      return BridgeSnapshot(now_ns=0, rejections=tuple(TopicRejection(topic, "concurrent_read") for topic in active))
+    try:
+      return self._read_locked(active)
+    finally:
+      self._read_lock.release()
+
+  def _read_locked(self, active: tuple[str, ...]) -> BridgeSnapshot:
     try:
       now_ns = _timestamp(self._now_ns())
     except Exception:

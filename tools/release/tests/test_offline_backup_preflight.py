@@ -1,9 +1,11 @@
 import hashlib
+import os
 import tempfile
 import json
 import subprocess
 import sys
 import unittest
+from unittest import mock
 from pathlib import Path
 
 from tools.release import offline_backup_preflight as backup
@@ -54,7 +56,7 @@ class OfflineBackupPreflightTest(unittest.TestCase):
         link.symlink_to(self.file)
         altered = {**self.manifest, 'files': [self.manifest['files'][0],
                                              {**self.manifest['files'][0], 'path': 'known_good/link.txt'}]}
-        with self.assertRaisesRegex(ValueError, 'symlink'):
+        with self.assertRaisesRegex(ValueError, 'unsafe'):
             backup.verify(self.root, altered)
         link.unlink()
         altered = {**self.manifest, 'files': self.manifest['files'] * 2}
@@ -85,3 +87,59 @@ class OfflineBackupPreflightTest(unittest.TestCase):
             self.assertEqual(run.returncode, 2)
             self.assertFalse(json.loads(run.stdout)['install_allowed'])
             self.assertIn(expected, run.stdout)
+
+    def test_external_hardlink_is_not_a_self_contained_backup(self):
+        outside = self.root.parent / (self.root.name + '-outside')
+        outside.write_bytes(b'known good bytes')
+        self.addCleanup(outside.unlink)
+        self.file.unlink()
+        os.link(outside, self.file)
+        with self.assertRaisesRegex(ValueError, 'hardlink'):
+            backup.verify(self.root, self.manifest)
+
+    def test_unlisted_fifo_is_rejected_without_opening_it_blocking(self):
+        os.mkfifo(self.root / 'owner_data' / 'unexpected_fifo')
+        with self.assertRaisesRegex(ValueError, 'special file'):
+            backup.verify(self.root, self.manifest)
+
+    def test_replacement_by_symlink_between_stat_and_open_is_rejected(self):
+        outside = self.root.parent / (self.root.name + '-outside')
+        outside.write_bytes(b'known good bytes')
+        self.addCleanup(outside.unlink)
+        original_open = backup.os.open
+        swapped = False
+
+        def replace_on_open(path, flags, *args, **kwargs):
+            nonlocal swapped
+            if path == 'package.txt' and not swapped:
+                swapped = True
+                self.file.unlink()
+                self.file.symlink_to(outside)
+            return original_open(path, flags, *args, **kwargs)
+
+        with mock.patch.object(backup.os, 'open', side_effect=replace_on_open):
+            with self.assertRaisesRegex(ValueError, 'unsafe'):
+                backup.verify(self.root, self.manifest)
+        self.assertTrue(swapped)
+
+    def test_duplicate_json_keys_fail_closed(self):
+        manifest_path = self.root / 'manifest.json'
+        raw = b'{"schema_version":1,"schema_version":1,"known_good_commit":"' + backup.KNOWN_GOOD.encode() + b'","files":[]}'
+        manifest_path.write_bytes(raw)
+        run = subprocess.run([sys.executable, '-B', '-m', 'tools.release.offline_backup_preflight',
+                              '--root', str(self.root), '--manifest', str(manifest_path),
+                              '--expected-manifest-sha256', hashlib.sha256(raw).hexdigest()],
+                             text=True, capture_output=True, timeout=10)
+        self.assertEqual(run.returncode, 2)
+        self.assertIn('duplicate backup manifest key', run.stdout)
+
+    def test_oversized_manifest_fails_before_parse(self):
+        manifest_path = self.root / 'manifest.json'
+        raw = b' ' * (backup._MAX_MANIFEST_BYTES + 1)
+        manifest_path.write_bytes(raw)
+        run = subprocess.run([sys.executable, '-B', '-m', 'tools.release.offline_backup_preflight',
+                              '--root', str(self.root), '--manifest', str(manifest_path),
+                              '--expected-manifest-sha256', hashlib.sha256(raw).hexdigest()],
+                             text=True, capture_output=True, timeout=10)
+        self.assertEqual(run.returncode, 2)
+        self.assertIn('exceeds size limit', run.stdout)
