@@ -1,0 +1,24 @@
+{
+  "active_campaign_operations": [],
+  "b3": "RESUMED_BY_OWNER_NOT_EXECUTED_0_OF_6",
+  "branch": "codex/mvl-c3-native-dependency-b3-resumed-20261109",
+  "campaign": "C3_NATIVE_DEPENDENCY_CLOSURE_B3_RESUMED_20261109",
+  "coma4_physical_passed": 0,
+  "final_publication_record_status": "DOCS_ONLY_SUCCESSOR",
+  "final_tested_source_commit": "e4e7bd2cf65b592889cfec9b4f0aa093eb9631a1",
+  "g10_full_product": "NOT_BUILT",
+  "independent_qwen_review": {
+    "adjudication": "SCOPED_FAIL_REASON_OUT_OF_REQUESTED_B3_INDEPENDENT_WORK",
+    "raw_sha256": "0fbff3ab848fcd9d60a9d0e032551f31b24901acda038992e6b24008f9daf4cc",
+    "raw_verdict": "FAIL_SOURCE_PROVEN_MATERIAL_DEFECT"
+  },
+  "lease": "RELEASED",
+  "native_link_sha256": "379bfb7e7d3f76a0bddc74dcb6fd3e77b5c5858a0daa4708aa26d6805311711c",
+  "publication_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-c3-native-dependency-b3-resumed-20261109",
+  "published_reviewed_evidence_sha": "f02d18115b6a014d6915c76ba233c1566204c28c",
+  "release": "RC_NOT_INSTALLABLE_HOLD",
+  "remote_verified": true,
+  "schema_version": 1,
+  "source_code_change_boundary": "Documentation and isolated output ignore only, no vehicle-facing code",
+  "working_tree": "CLEAN"
+}
