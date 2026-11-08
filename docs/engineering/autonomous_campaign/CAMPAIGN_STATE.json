@@ -14,7 +14,7 @@
     "skipped": 9,
     "record": "COMBINED_CAMPAIGN_TEST_RESULTS.json"
   },
-  "next_action": "Publish reviewed offline engineering branch after clean exact-commit tests",
+  "next_action": "Await separate hardware/QCOM authorization and evidence; no further eligible offline milestone identified",
   "source_of_truth": "COMBINED_CAMPAIGN_RECOVERY_STATE.json, COMBINED_CAMPAIGN_TEST_RESULTS.json, COMBINED_CAMPAIGN_STAGE_MATRIX.json and this state; prior reports historical.",
   "authoritative_baseline_sha": "2489f58b97c915547ec94c03a073da0dbe45eaa9",
   "source_lineage_base_sha": "f19b4ea0dfd0f3e3ab2537dba2d0bfb863760ed0",
@@ -28,7 +28,7 @@
   "last_successful_milestone": "Independent exact-code PASS_SCOPED at ed18b9f84; 11/20 offline milestones, QCOM 0/6, physical 0/10",
   "tests_verified_at_commit": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
   "tests_record": "COMBINED_CAMPAIGN_TEST_RESULTS.json",
-  "next_actionable_milestone": "Publish reviewed branch; separately authorized native QCOM provider and B2 safeguards needed before device compilation",
+  "next_actionable_milestone": "After separate authorization and B2 safeguards, obtain six source-matched native QCOM outputs; then full cold product and physical C4 evidence",
   "current_blockers": [
     "B2 safeguards unqualified; owner planning waiver is not safety acceptance",
     "Six exact-source QCOM outputs absent",
@@ -47,7 +47,7 @@
     "scope": "Offline engineering 11/20; formal scoped historical 12/25; QCOM 0/6; physical 0/10; no installable product or approval"
   },
   "operation_in_progress": null,
-  "checkpoint_rule": "Exact code commit ed18b9f84 reviewed and tested; one docs-only descendant may record its evidence and publication.",
+  "checkpoint_rule": "Reviewed code ed18b9f84 and clean tested evidence commit 7ced835cc; one publication-only successor may be HEAD.",
   "publication": {
     "decision": "PUBLISHED_VERIFIED",
     "repository": "J3DOK3DO/openpilot_mvl",
@@ -101,8 +101,11 @@
     "qcom_continuation_remote_verified_at_utc": "2026-11-06T10:14:58.236670+00:00",
     "qcom_continuation_method": "SHA-verified bundle via authorized Windows Git helper; non-force push and authenticated ls-remote exact ref; PR #1 unchanged",
     "combined_b3g10_rc_branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
-    "combined_b3g10_rc_status": "PENDING_VERIFIED_PUSH",
-    "combined_b3g10_rc_tested_code_sha": "ed18b9f8436c8ce462c1430869d435b73c367f6f"
+    "combined_b3g10_rc_status": "PUBLISHED_VERIFIED_ENGINEERING_HOLD",
+    "combined_b3g10_rc_tested_code_sha": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
+    "combined_b3g10_rc_published_evidence_sha": "7ced835cc1847c488c68ae1b6c5d73f23b066ddd",
+    "combined_b3g10_rc_remote_verified": "Windows authenticated non-force push and exact ls-remote match",
+    "combined_b3g10_rc_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-combined-b3g10-rc-recovery-20261108"
   },
   "release_profile": "COMMA4_NON_ACTUATING_MVL",
   "release_classification": "PRODUCT_BUILD_INCOMPLETE",

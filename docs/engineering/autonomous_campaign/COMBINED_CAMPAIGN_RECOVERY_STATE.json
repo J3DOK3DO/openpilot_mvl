@@ -20,7 +20,7 @@
   "last_verified_checkpoint": "ed18b9f8436c8ce462c1430869d435b73c367f6f",
   "last_verified_tests": "168 run, 159 passed, 9 platform skips; recovery 4/4; RC focused 5/5 at exact ed18b9f84",
   "lease": "Dedicated campaignctl lease active in this isolated worktree; inspect local lease before changes; token intentionally not stored in Git",
-  "next_action": "Commit reviewed documentation, rerun exact clean-checkout tests, publish non-force engineering branch",
+  "next_action": "Await separately authorized B2/QCOM evidence; no device or product gate promotion",
   "on_resume": [
     "Inspect Git status and running processes",
     "Run campaignctl.py recover; compare actual HEAD to baseline and this state",
@@ -28,11 +28,12 @@
     "Rerun uncertain tests on exact code HEAD",
     "Keep QCOM/product/device gates HOLD without actual evidence"
   ],
-  "pending_operation": "Reviewed docs corrections and final validation pending",
+  "pending_operation": null,
   "previous_interruption": "/tmp worktree was removed after code commit ed18b9f84; recovered exact commit into persistent /mnt worktree; uncommitted docs were regenerated, not assumed complete",
-  "publication": "PENDING_VERIFIED_COMMIT",
+  "publication": "PUBLISHED_VERIFIED_ENGINEERING_HOLD",
   "release_status": "PRODUCT_BUILD_INCOMPLETE / HOLD",
   "schema_version": 1,
   "tinygrad_commit": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4",
-  "worktree": "/mnt/commadrive/MVL_COMBINED_B3G10_RC_RECOVERY_20261108"
+  "worktree": "/mnt/commadrive/MVL_COMBINED_B3G10_RC_RECOVERY_20261108",
+  "published_evidence_commit": "7ced835cc1847c488c68ae1b6c5d73f23b066ddd"
 }
