@@ -1,8 +1,8 @@
 {
   "active_engineering": {
     "branch": "codex/mvl-c6-residual-offline-closure-20261108",
-    "head": "e9f654422f80d9c7f17abdef5ee6f512299137ac",
-    "owner": "Dedicated Campaign 6 lease; token retained only in local lease file",
+    "head": "4a88fb273c9a1f750e42002b388cef9879a772de",
+    "owner": "No active lease: Campaign 6 lease released after verified GitHub publication",
     "worktree": "/mnt/commadrive/MVL_C6_RESIDUAL_OFFLINE_20261108"
   },
   "approval_requirements": [
@@ -16,10 +16,12 @@
     "baseline": "7de85d6573e731a589341b7d1693754cb5ede0e2",
     "branch": "codex/mvl-c6-residual-offline-closure-20261108",
     "implementation_commit": "e9f654422f80d9c7f17abdef5ee6f512299137ac",
-    "publication_status": "PENDING_REMOTE_VERIFICATION"
+    "lease_status": "RELEASED",
+    "publication_status": "PUBLISHED_VERIFIED_ENGINEERING_HOLD",
+    "published_evidence_commit": "4a88fb273c9a1f750e42002b388cef9879a772de"
   },
   "checkout_mode": "branch",
-  "checkpoint_rule": "Recorded reviewed published evidence commit 3234d978; one publication-only documentation successor is permitted.",
+  "checkpoint_rule": "Recorded published Campaign 6 evidence commit; one documentation-only successor may record publication.",
   "current_blockers": [
     "B3 owner-excluded; 0/6 QCOM outputs",
     "G10 full product blocked by deferred B3",
@@ -27,9 +29,9 @@
     "Installation approval absent"
   ],
   "current_gate": "RC_NOT_INSTALLABLE",
-  "current_stage": "CAMPAIGN6_FINAL_REVIEW",
-  "head_commit": "e9f654422f80d9c7f17abdef5ee6f512299137ac",
-  "last_successful_milestone": "Campaign 6 C1/backup patch committed and scoped suites passed at e9f654422f80d9c7f17abdef5ee6f512299137ac",
+  "current_stage": "CAMPAIGN6_PUBLISHED_VERIFIED_OFFLINE_HOLD",
+  "head_commit": "4a88fb273c9a1f750e42002b388cef9879a772de",
+  "last_successful_milestone": "Campaign 6 reviewed evidence commit verified on GitHub at 4a88fb273c9a1f750e42002b388cef9879a772de",
   "last_verified_result": {
     "decision": "PASS_OFFLINE_SCOPED_RELEASE_HOLD",
     "failed": 0,
@@ -38,8 +40,8 @@
     "scope": "180 release-tool tests with 9 skips; 96 C1 host; 4 recovery; AArch64 socketmaster archive exit 0",
     "skipped": 9
   },
-  "next_action": "Publish Campaign 6 branch, verify exact remote SHA and release lease",
-  "next_actionable_milestone": "Complete publication; B3 remains owner-excluded",
+  "next_action": "No pending Campaign 6 action; B3 excluded, full product and physical qualification remain HOLD",
+  "next_actionable_milestone": "Future separately authorized campaign only; B3 remains owner excluded",
   "operation_in_progress": null,
   "profile_exclusions": {
     "G11_external_CAN_FD_HIL": "NOT_APPLICABLE_TO_COMMA4_PROFILE",
@@ -53,6 +55,10 @@
     "campaign5_published_sha": "3234d9785830bbd4518191c341daf513bdaac136",
     "campaign5_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-c1-c3-c4-c5-c6-b3-deferred-20261108",
     "campaign5_status": "PUBLISHED_VERIFIED_ENGINEERING_HOLD",
+    "campaign6_branch": "codex/mvl-c6-residual-offline-closure-20261108",
+    "campaign6_published_evidence_sha": "4a88fb273c9a1f750e42002b388cef9879a772de",
+    "campaign6_remote_url": "https://github.com/J3DOK3DO/openpilot_mvl/tree/codex/mvl-c6-residual-offline-closure-20261108",
+    "campaign6_status": "PUBLISHED_VERIFIED_ENGINEERING_HOLD",
     "combined_b3g10_rc_branch": "codex/mvl-combined-b3g10-rc-recovery-20261108",
     "combined_b3g10_rc_published_evidence_sha": "7ced835cc1847c488c68ae1b6c5d73f23b066ddd",
     "combined_b3g10_rc_published_head": "72c0f78ffaa0f049a4d4696ea47499e8175799f2",

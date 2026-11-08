@@ -8,6 +8,6 @@ New backup verifier holds directory/file descriptors, rejects hardlinks and spec
 
 New AGNOS 19.9 model-independent AArch64 `libsocketmaster.a` compiled from frozen source. This is a direct SCons-recipe-equivalent component compile, not a full SCons/product build. The prior Panda Git diagnostic was traced to unrelated Panda version generation; process-scoped `safe.directory=/src/panda` returned the pinned Gitlink `8a16e089` without global Git changes.
 
-Release-tool suite: 180 run, 171 passed, nine platform skips. C1 host: 96/96. Recovery: 4/4. Native component: exit 0. Independent review PASS_SCOPED at implementation commit; publication pending.
+Release-tool suite: 180 run, 171 passed, nine platform skips. C1 host: 96/96. Recovery: 4/4. Native component: exit 0. Independent review PASS_SCOPED at implementation commit; published reviewed evidence commit `4a88fb273c9a1f750e42002b388cef9879a772de` and GitHub remote SHA verified; the Campaign 6 lease was released.
 
 B3 is owner-excluded, 0/6 QCOM outputs. G10 full product NOT_BUILT. Physical Comma 4 checks 0/10. Release HOLD.

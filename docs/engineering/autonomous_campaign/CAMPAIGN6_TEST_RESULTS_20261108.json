@@ -8,7 +8,7 @@
     "passed": 96,
     "run": 96
   },
-  "final_evidence_commit": "PENDING",
+  "final_evidence_commit": "4a88fb273c9a1f750e42002b388cef9879a772de",
   "hardware_tests": "NOT_EXECUTED_0_OF_10",
   "implementation_commit": "e9f654422f80d9c7f17abdef5ee6f512299137ac",
   "initial_unprivileged_release_test": "31 fixture errors due read-only mount/dirty source; rerun under isolated authorized writable worktree passed 179 with 9 skips",
@@ -17,6 +17,8 @@
     "command": "bash docs/engineering/autonomous_campaign/CAMPAIGN6_SOCKETMASTER_BUILD_20261108.sh",
     "exit_code": 0
   },
+  "publication_verified_evidence_commit": "4a88fb273c9a1f750e42002b388cef9879a772de",
+  "publication_verified_remotely": true,
   "qcom_compile": "OWNER_EXCLUDED_NOT_EXECUTED_0_OF_6",
   "recovery": {
     "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest docs.engineering.autonomous_campaign.test_campaignctl -q",
