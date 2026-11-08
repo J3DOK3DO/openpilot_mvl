@@ -1,0 +1,14 @@
+{
+  "b3_owner_deferred": true,
+  "comma4_physical_checks_passed": 0,
+  "comma4_physical_checks_required": 10,
+  "decision": "RC_NOT_INSTALLABLE",
+  "g10_full_product": "NOT_BUILT",
+  "install_allowed": false,
+  "panda_ecu_can_controller_changes": false,
+  "qcom_genuine_outputs_verified": 0,
+  "qcom_required_outputs": 6,
+  "scoped_acceptance": "HISTORICAL_12_OF_25_NOT_REVERIFIED",
+  "source": "C7_RELEASE_HOLD_0ab98.json",
+  "vehicle_writes": false
+}

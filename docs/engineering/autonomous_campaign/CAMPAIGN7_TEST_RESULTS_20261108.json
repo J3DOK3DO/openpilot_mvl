@@ -1,0 +1,44 @@
+{
+  "command_scope": "Linux Ubuntu host; UI suite uses pinned external host libparams_c.so temporarily staged and removed, source worktree clean",
+  "date": "2026-11-08",
+  "focused_backup": {
+    "failed": 0,
+    "included_in_release_tools": true,
+    "passed": 19,
+    "run": 19
+  },
+  "initial_environment_issues": "Release tests initially ran against uncommitted dirty source and host UI sparse checkout initially omitted modules; final clean committed code reran successfully. Windows Python 3.9 lacks baseline Linux-only os.O_DIRECTORY; not a new patch regression.",
+  "log_sha256": {
+    "backup": "5a711c5cb148db7d132f720a48f0c8e7dd141258d8a5b2a6669406b71880e570",
+    "recovery": "827a8beca9b03133e84962b6cf234253f0f5561fb251f07660b5a5156514b282",
+    "release": "58b2d69751a9a597926b7a99eccb9f35511cc111e0951f3c9259a219f010ba6c",
+    "release_gate": "4f5316a799f8aed53821af9cdc91c8a130c4126c7ca19fcda387636574144249",
+    "ui_bridge": "0ca0f85384a0a5e9a709349985304c21748d2ebb8043d93d3c4d327bd72a820b"
+  },
+  "recovery": {
+    "failed": 0,
+    "passed": 4,
+    "run": 4
+  },
+  "release_tools": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q",
+    "failed": 0,
+    "passed": 178,
+    "run": 187,
+    "skipped": 9
+  },
+  "schema_version": 1,
+  "source_diff_files": [
+    "openpilot/selfdrive/ui/tests/test_starpilot_native_status.py",
+    "openpilot/sunnypilot/starpilot_bridge/tests/test_readonly_bridge.py",
+    "tools/release/offline_backup_preflight.py",
+    "tools/release/tests/test_offline_backup_preflight.py"
+  ],
+  "tested_exact_code_commit": "0ab98cca292353080d1f230ea4d36146160834cb",
+  "ui_bridge": {
+    "command": "source docs/engineering/autonomous_campaign/native_host_env.sh; PYTHONDONTWRITEBYTECODE=1 python3.12 -m pytest -q -p no:cacheprovider openpilot/selfdrive/ui/tests/test_starpilot_native_status.py openpilot/sunnypilot/starpilot_views/tests openpilot/sunnypilot/starpilot_bridge/tests",
+    "failed": 0,
+    "passed": 99,
+    "run": 99
+  }
+}

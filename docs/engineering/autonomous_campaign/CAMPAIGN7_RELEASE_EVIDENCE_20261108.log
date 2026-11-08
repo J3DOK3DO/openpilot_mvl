@@ -1,0 +1,17 @@
+{"verification": "PASS", "files": 1, "source_commit": "0000000000000000000000000000000000000000", "tar_sha256": "2e990c8b64fa685ce48c3719749d79c4ca0dbd1d4c3be4a6b566f852a3db81a9"}
+usage: qcom_b3_admission.py [-h] --plan PLAN [--records RECORDS]
+                            [--artifacts ARTIFACTS]
+qcom_b3_admission.py: error: supplied B3C plan hash mismatch
+usage: qcom_b3_admission.py [-h] --plan PLAN [--records RECORDS]
+                            [--artifacts ARTIFACTS]
+qcom_b3_admission.py: error: B3C plan must be a regular non-symlink file
+usage: qcom_b3_admission.py [-h] --plan PLAN [--records RECORDS]
+                            [--artifacts ARTIFACTS]
+qcom_b3_admission.py: error: supplied B3C plan hash mismatch
+usage: qcom_b3_admission.py [-h] --plan PLAN [--records RECORDS]
+                            [--artifacts ARTIFACTS]
+qcom_b3_admission.py: error: supplied B3C plan exceeds 1 MiB limit
+----------------------------------------------------------------------
+Ran 187 tests in 4.542s
+
+OK (skipped=9)

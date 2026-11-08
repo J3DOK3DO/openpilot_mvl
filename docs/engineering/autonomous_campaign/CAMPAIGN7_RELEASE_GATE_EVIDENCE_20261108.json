@@ -1,0 +1,96 @@
+{
+  "applicable_physical_checks_passed": 0,
+  "applicable_physical_checks_required": 10,
+  "b2_safety": "NOT_PASSED_PLANNING_WAIVER_ONLY",
+  "b3_required_qcom_outputs": 6,
+  "b3_verified_qcom_outputs": 0,
+  "checks": [
+    {
+      "evidence": "Frozen 4b product and its earlier host tests are recorded separately; this evaluator does not recheck them",
+      "next_proof": "Native UI, IPC, startup, fault and Honda display checks on a qualified device",
+      "requirement": "C1 non-actuating source integration",
+      "status": "HISTORICAL_NOT_REVERIFIED"
+    },
+    {
+      "evidence": "0/6 locally present; 0/6 authenticated",
+      "next_proof": "Authenticated source-matched QCOM execution, six hashes and target quality review",
+      "requirement": "C2 six QCOM captures",
+      "status": "BLOCKED"
+    },
+    {
+      "evidence": "Complete cold build NOT_BUILT",
+      "next_proof": "Six verified QCOM inputs, exact cold build, binary/ABI and package closure",
+      "requirement": "C3 full AGNOS 19.9 product",
+      "status": "BLOCKED"
+    },
+    {
+      "evidence": "Prior exact-commit host suites are recorded elsewhere; this evaluator does not execute tests",
+      "next_proof": "Rerun current changed-tool suite at exact committed HEAD",
+      "requirement": "C4 host release regression",
+      "status": "HISTORICAL_NOT_REVERIFIED"
+    },
+    {
+      "evidence": "Historical 254-key DENY crosswalk exists; this evaluator does not inspect its current bytes",
+      "next_proof": "Keep all 254 denied; target runtime proof remains separate",
+      "requirement": "C4 254 restricted Params",
+      "status": "REQUIRED_DENY_NOT_REVERIFIED"
+    },
+    {
+      "evidence": "The restricted profile records production registration OFF; this evaluator does not inspect current source",
+      "next_proof": "Separate target security qualification before any future registration",
+      "requirement": "C4 G06 transport",
+      "status": "HISTORICAL_OFF_NOT_REVERIFIED"
+    },
+    {
+      "evidence": "0/10 applicable target checks accepted",
+      "next_proof": "Complete product, separate authorization and actual bench evidence",
+      "requirement": "C4 physical C4-01\u201307 and C4-09\u201311",
+      "status": "NOT_RUN"
+    },
+    {
+      "evidence": "No installable package, physical qualification or installation approval",
+      "next_proof": "Package integrity, known-good backup, migration, health and owner approval",
+      "requirement": "C5 package and installation",
+      "status": "BLOCKED"
+    },
+    {
+      "evidence": "Conditional exclusion requires current proof that G06 remains unregistered",
+      "next_proof": "Reopen if production transport is registered",
+      "requirement": "C4-08 optional G06 check",
+      "status": "CONDITIONAL_NA_NOT_REVERIFIED"
+    },
+    {
+      "evidence": "Owner waiver applies to this profile; no restoration test was run",
+      "next_proof": "Owner-managed previous-version reinstall if a later approved installation fails",
+      "requirement": "C4-12 restoration exercise",
+      "status": "WAIVED_BY_OWNER_NOT_EXECUTED"
+    }
+  ],
+  "decision": "RC_NOT_INSTALLABLE",
+  "device_contact_performed": false,
+  "device_write_performed": false,
+  "formal_scoped_acceptance": {
+    "accepted": 12,
+    "applicable": 25,
+    "evidence_status": "HISTORICAL_NOT_REVERIFIED",
+    "percent": 48
+  },
+  "g10_product": "NOT_BUILT",
+  "install_allowed": false,
+  "installation_sequence": [
+    "Verify exact approved branch, product package, hashes and AGNOS identity",
+    "Independently verify parked and disengaged target, known-good branch/SHA and backup",
+    "Validate Params migration without changing protected 254-key DENY policy",
+    "Obtain separate owner approval for installation",
+    "Only then execute a separately reviewed device installation procedure",
+    "Run C4 health, UI, IPC, warning and stock-behavior checks",
+    "On failure stop activation and follow owner-managed known-good reinstall"
+  ],
+  "installation_sequence_status": "PLAN_ONLY_NOT_EXECUTED",
+  "known_good_commit_reference": "a969e5e60debe4d7d5f5f6ec2935f5a97f2bd0d1",
+  "known_good_currently_verified": false,
+  "profile": "COMMA4_NON_ACTUATING_MVL",
+  "release_approval": "HOLD",
+  "schema_version": 1,
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb"
+}

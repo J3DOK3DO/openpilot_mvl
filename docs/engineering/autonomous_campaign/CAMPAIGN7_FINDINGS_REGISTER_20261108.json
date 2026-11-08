@@ -1,0 +1,55 @@
+{
+  "findings": [
+    {
+      "baseline": "C6 line 166 used pathlib Path.open before type checks",
+      "evidence": "Held non-following O_NONBLOCK descriptor, regular-file fstat, path/FD identity checks, bounded read, hash, FIFO/symlink/swap negative tests",
+      "finding": "Unbounded or link-following manifest input could block CLI",
+      "id": "C7-R5-P2-001",
+      "resolution": "FIXED_TESTED_OFFLINE",
+      "severity": "P2",
+      "source": "tools/release/offline_backup_preflight.py"
+    },
+    {
+      "evidence": "Deterministic synthetic-producer test creates old metadata with new state; adapter owns no producer lock; production status default OFF",
+      "finding": "Adapter metadata and state may be sampled across producer update",
+      "id": "C7-R3-OPEN-001",
+      "resolution": "DOCUMENTED_OPEN_CONTRACT",
+      "severity": "P3_UNVERIFIED_RUNTIME",
+      "source": "openpilot/sunnypilot/starpilot_bridge/adapter.py"
+    },
+    {
+      "evidence": "Focused host test demonstrates one background draw; no production supplier is registered",
+      "finding": "Optional badge may leave background draw after label failure",
+      "id": "C7-R3-OPEN-002",
+      "resolution": "CHARACTERIZED_NOT_REMEDIATED",
+      "severity": "P3",
+      "source": "openpilot/selfdrive/ui/sunnypilot/layouts/home.py"
+    },
+    {
+      "evidence": "Exact digest verifies byte identity only if anchor is independently trusted; immutable snapshot not demonstrated",
+      "finding": "Manifest digest is caller supplied and host copy can be altered by untrusted producer",
+      "id": "C7-R6-OPEN-001",
+      "resolution": "KNOWN_LIMITATION_GATE_HOLD",
+      "severity": "UNVERIFIED_TRUST",
+      "source": "tools/release/offline_backup_preflight.py"
+    },
+    {
+      "evidence": "Rollback returns before assignment; no device/other accepted status in rejection snapshot; host regression tests clock recovery",
+      "finding": "Qwen claimed clock rollback updates last clock and rejected snapshots are accepted data",
+      "id": "C7-R1-FP-001",
+      "resolution": "DISMISSED_BY_SOURCE",
+      "severity": "FALSE_POSITIVE",
+      "source": "openpilot/sunnypilot/starpilot_bridge/adapter.py"
+    },
+    {
+      "evidence": "Qwen supplied no accepted mutated manifest or trusted-digest bypass; held descriptor, stat identity and SHA checks exist; immutable-snapshot assumption remains open",
+      "finding": "Qwen called unspecified concurrent manifest mutation a high-severity remaining vulnerability",
+      "id": "C7-R6-MODEL-001",
+      "resolution": "NOT_PROMOTED_WITHOUT_REPRODUCTION",
+      "severity": "UNVERIFIED_CLAIM",
+      "source": "tools/release/offline_backup_preflight.py"
+    }
+  ],
+  "reviewed_code_commit": "0ab98cca292353080d1f230ea4d36146160834cb",
+  "starting_commit": "74f35f211668ec2035113c773de43a793eeb6375"
+}

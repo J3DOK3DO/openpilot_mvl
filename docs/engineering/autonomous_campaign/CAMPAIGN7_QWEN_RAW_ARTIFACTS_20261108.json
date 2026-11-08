@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-08",
+  "qwen_patch_review_commit": "8705c12a07fc2e4c6a4c33d7ad441d113ab0cc66",
+  "raw_artifacts": {
+    "R1_QWEN_coder_FINAL.log": {
+      "bytes": 4740,
+      "location": "External immutable evidence: /mnt/commadrive/MVL_C7_CROSS_REVIEW_20261108/R1_QWEN_coder_FINAL.log",
+      "review_scope": "source-only, no independent test execution",
+      "sha256": "ff849d3bcaf5fe6f039ac378a7879bc2ce883504d46d2aaddd6898bd9f3f8466"
+    },
+    "R56_QWEN_coder_FINAL.log": {
+      "bytes": 2204,
+      "location": "External immutable evidence: /mnt/commadrive/MVL_C7_CROSS_REVIEW_20261108/R56_QWEN_coder_FINAL.log",
+      "review_scope": "source-only, no independent test execution",
+      "sha256": "2bc8d2ffd06c20f122707153e58a257a1826cceed31032f89ab0c3f0b2a0478f"
+    }
+  },
+  "reason_not_committed_raw": "Preserve exact original CRLF and trailing spaces without Git whitespace normalization; hashes verify sidecar evidence",
+  "source_commit": "74f35f211668ec2035113c773de43a793eeb6375"
+}
