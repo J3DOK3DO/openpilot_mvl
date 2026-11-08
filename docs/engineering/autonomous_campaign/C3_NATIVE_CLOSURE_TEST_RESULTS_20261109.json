@@ -1,0 +1,63 @@
+{
+  "b3_admission": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/release/qcom_b3_admission.py --plan docs/engineering/autonomous_campaign/B3_SIX_TARGET_DRY_RUN_20261107.json",
+    "completed_6_of_6": false,
+    "decision": "PREPARED_NO_QCOM_DEVICE",
+    "exit": 0,
+    "raw_json_sha256": "07ec0c561abb1805b92f0b66d17ba911f6143491226005e77c6ac77807611c51",
+    "verified_artifact_count": 0
+  },
+  "focused_native_suite": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tools.release.tests.test_inspect_native_product tools.release.tests.test_campaign2_native_abi -q",
+    "exit": 0,
+    "failed": 0,
+    "included_in_full_release_suite": true,
+    "log_sha256": "e4cb7532056467ccada650d875e46d9b6a3b70aac7d0f3a0bdadfd96ae6c1d74",
+    "passed": 10,
+    "run": 10
+  },
+  "initial_dirty_worktree_test_run": {
+    "cause": "untracked .c3_stage before adding ignore rule and committing evidence",
+    "resolved_by_clean_commit": true,
+    "result": "FAILED_2_INSPECTOR_SOURCE_CLEAN_CHECKS"
+  },
+  "native_inspection": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/release/inspect_native_product.py --source-root . --staging-root /tmp/c3_native_inspector_stage_20261109 --qcom-manifest /tmp/c3_missing_qcom_manifest.json --expected-source 1bb6fc6641b1dd49b99db49610548000161034b8 --agnos-version 19.9",
+    "decision": "HOLD_STATIC_ISSUES",
+    "device_qualification": "NOT_TESTED",
+    "elf_count": 1,
+    "expected_exit": 2,
+    "raw_json_sha256": "f6af476cbdc16e1dfeab7760b7b0448e34b81d6c920d2093cad717fe5f3369c7"
+  },
+  "raw_logs": "ignored .c3_stage",
+  "recovery_suite": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest docs.engineering.autonomous_campaign.test_campaignctl -q",
+    "exit": 0,
+    "failed": 0,
+    "log_sha256": "375cea7382e7b6ff8c9dc8af62ce83e5582b114c2fa78d4fdfa626ad22516421",
+    "passed": 4,
+    "run": 4
+  },
+  "release_gate": {
+    "b3_verified_qcom_outputs": 0,
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python3 -m tools.release.combined_rc_readiness",
+    "decision": "RC_NOT_INSTALLABLE",
+    "expected_exit": 2,
+    "g10_product": "NOT_BUILT",
+    "install_allowed": false,
+    "physical_checks_passed": 0,
+    "raw_json_sha256": "4f5316a799f8aed53821af9cdc91c8a130c4126c7ca19fcda387636574144249"
+  },
+  "release_suite": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q",
+    "exit": 0,
+    "failed": 0,
+    "log_sha256": "6b3ae9e7fb7e938703fc277079ec864348f59bba377bde94dddc416037abebe4",
+    "passed": 178,
+    "run": 187,
+    "skipped_platform": 9
+  },
+  "schema_version": 1,
+  "tested_code_commit": "1bb6fc6641b1dd49b99db49610548000161034b8",
+  "ui_host_suite": "NOT_RUN_NO_UI_CODE_CHANGED"
+}
