@@ -1,0 +1,51 @@
+{
+  "agnos": {
+    "raw_image_path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/system-19.9.ext4.img",
+    "raw_image_sha256_verified": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+    "rootfs": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs",
+    "version": "19.9"
+  },
+  "branch_base": "78dbfd7821cbbc0db83e851ab0ce0bdd1986692e",
+  "builder": {
+    "clang": "Ubuntu clang version 18.1.3 (1ubuntu1)",
+    "image_id_verified": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+    "linker": "GNU ld (GNU Binutils for Ubuntu) 2.42"
+  },
+  "frozen_source": {
+    "head": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+    "materialized_gitlinks": {
+      "msgq_repo": "7396e76dadbb49e374d4b664ff6bbb43a39bcb0",
+      "opendbc_repo": "3fec9a418a659de31d7b1f494193161697a35071",
+      "openpilot/sunnypilot/neural_network_data": "03cac2d30e111e0689c0429cb8c1fe6cb5a905af",
+      "panda": "8a16e089b88593914823743df29e1c30b7dd3e00",
+      "rednose_repo": "28d4a7f69e80e1c3e0d24ca0733d7daeaeade3d0",
+      "teleoprtc_repo": "1aa8fc433bef1519a95c0700c96258c3be6dfb34",
+      "tinygrad_repo": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4"
+    },
+    "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/source_4b25263",
+    "status_with_process_local_lfs_storage": ""
+  },
+  "host_free_bytes": {
+    "/mnt/commadrive": 20750897152,
+    "/tmp": 17972527104
+  },
+  "observed_utc": "2026-11-08T23:02:47.022369+00:00",
+  "prior_components": {
+    "msgq_archive": {
+      "bytes": 677508,
+      "path": "/mnt/commadrive/MVL_C5_NATIVE_STAGE_20261108/source/msgq_repo/libmsgq.a",
+      "sha256": "0b6ad7dad40090a86aacc93b971a74ed12403810be1a51f51ad1e4965c00d1a7"
+    },
+    "socketmaster_archive": {
+      "bytes": 972156,
+      "path": "/mnt/commadrive/MVL_C6_NATIVE_STAGE_20261108/libsocketmaster.a",
+      "sha256": "05c251e4214dfd2600f489dfdd7f21f2058e8aee794c0607844caeb7f8655d6a"
+    },
+    "yuv_object": {
+      "bytes": 26648,
+      "path": "/mnt/commadrive/MVL_C5_NATIVE_STAGE_20261108/source/openpilot/common/yuv.o",
+      "sha256": "c966d20ec4504ac49dbcd23766f656925675008a4286f264e2c9d663bb8a0aa5"
+    }
+  },
+  "schema_version": 1
+}

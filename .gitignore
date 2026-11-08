@@ -88,6 +88,7 @@ build/
 .ionide
 .vscode/*
 .history/
+.c3_stage/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

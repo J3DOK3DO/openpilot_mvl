@@ -1,0 +1,412 @@
+{
+  "archive_abi": {
+    "capnp": {
+      "classes": {
+        "ELF64": 15
+      },
+      "data": [
+        "2's complement, little endian"
+      ],
+      "machines": {
+        "AArch64": 15
+      },
+      "members": 15,
+      "types": [
+        "REL (Relocatable file)"
+      ]
+    },
+    "kj": {
+      "classes": {
+        "ELF64": 23
+      },
+      "data": [
+        "2's complement, little endian"
+      ],
+      "machines": {
+        "AArch64": 23
+      },
+      "members": 23,
+      "types": [
+        "REL (Relocatable file)"
+      ]
+    },
+    "msgq": {
+      "classes": {
+        "ELF64": 5
+      },
+      "data": [
+        "2's complement, little endian"
+      ],
+      "machines": {
+        "AArch64": 5
+      },
+      "members": 5,
+      "types": [
+        "REL (Relocatable file)"
+      ]
+    },
+    "socketmaster": {
+      "classes": {
+        "ELF64": 1
+      },
+      "data": [
+        "2's complement, little endian"
+      ],
+      "machines": {
+        "AArch64": 1
+      },
+      "members": 1,
+      "types": [
+        "REL (Relocatable file)"
+      ]
+    }
+  },
+  "final_elf_has_versioned_runtime_imports": true,
+  "final_link_exit": 0,
+  "final_linker_no_undefined_option": true,
+  "provider_paths": {
+    "capnp": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/local/venv/lib/python3.12/site-packages/capnproto/install/lib/libcapnp.a",
+    "crtbeginS": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/gcc/aarch64-linux-gnu/13/crtbeginS.o",
+    "kj": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/local/venv/lib/python3.12/site-packages/capnproto/install/lib/libkj.a",
+    "libc": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libc.so.6",
+    "libgcc_s": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libgcc_s.so.1",
+    "libm": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libm.so.6",
+    "libstdc++": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libstdc++.so.6",
+    "msgq": ".c3_stage/libmsgq.a",
+    "schema_car": ".c3_stage/car.capnp.o",
+    "schema_custom": ".c3_stage/custom.capnp.o",
+    "schema_deprecated": ".c3_stage/deprecated.capnp.o",
+    "schema_log": ".c3_stage/log.capnp.o",
+    "zeromq": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libzmq.so.5"
+  },
+  "resolved_in_named_static_or_zmq_providers": 14,
+  "rows": [
+    {
+      "demangled": "_Unwind_Resume",
+      "providers": [
+        "libgcc_s"
+      ],
+      "symbol": "_Unwind_Resume"
+    },
+    {
+      "demangled": "kj::_::HeapArrayDisposer::allocateImpl(unsigned long, unsigned long, unsigned long, void (*)(void*), void (*)(void*))",
+      "providers": [
+        "kj"
+      ],
+      "symbol": "_ZN2kj1_17HeapArrayDisposer12allocateImplEmmmPFvPvES4_"
+    },
+    {
+      "demangled": "kj::_::HeapArrayDisposer::instance",
+      "providers": [
+        "kj"
+      ],
+      "symbol": "_ZN2kj1_17HeapArrayDisposer8instanceE"
+    },
+    {
+      "demangled": "capnp::MessageReader::getRootInternal()",
+      "providers": [
+        "capnp"
+      ],
+      "symbol": "_ZN5capnp13MessageReader15getRootInternalEv"
+    },
+    {
+      "demangled": "capnp::MessageBuilder::getSegmentsForOutput()",
+      "providers": [
+        "capnp"
+      ],
+      "symbol": "_ZN5capnp14MessageBuilder20getSegmentsForOutputEv"
+    },
+    {
+      "demangled": "capnp::messageToFlatArray(kj::ArrayPtr<kj::ArrayPtr<capnp::word const> const>)",
+      "providers": [
+        "capnp"
+      ],
+      "symbol": "_ZN5capnp18messageToFlatArrayEN2kj8ArrayPtrIKNS1_IKNS_4wordEEEEE"
+    },
+    {
+      "demangled": "capnp::FlatArrayMessageReader::FlatArrayMessageReader(kj::ArrayPtr<capnp::word const>, capnp::ReaderOptions)",
+      "providers": [
+        "capnp"
+      ],
+      "symbol": "_ZN5capnp22FlatArrayMessageReaderC1EN2kj8ArrayPtrIKNS_4wordEEENS_13ReaderOptionsE"
+    },
+    {
+      "demangled": "Poller::create()",
+      "providers": [
+        "msgq"
+      ],
+      "symbol": "_ZN6Poller6createEv"
+    },
+    {
+      "demangled": "Context::create()",
+      "providers": [
+        "msgq"
+      ],
+      "symbol": "_ZN7Context6createEv"
+    },
+    {
+      "demangled": "Message::~Message()",
+      "providers": [
+        "msgq"
+      ],
+      "symbol": "_ZN7MessageD1Ev"
+    },
+    {
+      "demangled": "PubSocket::send(char*, unsigned long)",
+      "providers": [
+        "msgq"
+      ],
+      "symbol": "_ZN9PubSocket4sendEPcm"
+    },
+    {
+      "demangled": "PubSocket::create(Context*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, unsigned long)",
+      "providers": [
+        "msgq"
+      ],
+      "symbol": "_ZN9PubSocket6createEP7ContextNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEbm"
+    },
+    {
+      "demangled": "PubSocket::~PubSocket()",
+      "providers": [
+        "msgq"
+      ],
+      "symbol": "_ZN9PubSocketD1Ev"
+    },
+    {
+      "demangled": "SubSocket::create(Context*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool, bool, unsigned long)",
+      "providers": [
+        "msgq"
+      ],
+      "symbol": "_ZN9SubSocket6createEP7ContextNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_bbm"
+    },
+    {
+      "demangled": "capnp::_::PointerReader::getStruct(capnp::word const*) const",
+      "providers": [
+        "capnp"
+      ],
+      "symbol": "_ZNK5capnp1_13PointerReader9getStructEPKNS_4wordE"
+    },
+    {
+      "demangled": "std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long)",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_createERmm"
+    },
+    {
+      "demangled": "std::__once_call",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZSt11__once_call"
+    },
+    {
+      "demangled": "std::__once_callable",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZSt15__once_callable"
+    },
+    {
+      "demangled": "std::_Rb_tree_decrement(std::_Rb_tree_node_base*)",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base"
+    },
+    {
+      "demangled": "std::_Rb_tree_increment(std::_Rb_tree_node_base*)",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base"
+    },
+    {
+      "demangled": "std::__throw_logic_error(char const*)",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZSt19__throw_logic_errorPKc"
+    },
+    {
+      "demangled": "std::__throw_length_error(char const*)",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZSt20__throw_length_errorPKc"
+    },
+    {
+      "demangled": "std::__throw_out_of_range(char const*)",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZSt20__throw_out_of_rangePKc"
+    },
+    {
+      "demangled": "std::__throw_system_error(int)",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZSt20__throw_system_errori"
+    },
+    {
+      "demangled": "std::_Rb_tree_insert_and_rebalance(bool, std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_"
+    },
+    {
+      "demangled": "std::terminate()",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZSt9terminatev"
+    },
+    {
+      "demangled": "operator delete(void*)",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_ZdlPv"
+    },
+    {
+      "demangled": "operator new(unsigned long)",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "_Znwm"
+    },
+    {
+      "demangled": "__assert_fail",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "__assert_fail"
+    },
+    {
+      "demangled": "__cxa_atexit",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "__cxa_atexit"
+    },
+    {
+      "demangled": "__cxa_begin_catch",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "__cxa_begin_catch"
+    },
+    {
+      "demangled": "__cxa_end_catch",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "__cxa_end_catch"
+    },
+    {
+      "demangled": "__cxa_rethrow",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "__cxa_rethrow"
+    },
+    {
+      "demangled": "__dso_handle",
+      "providers": [
+        "crtbeginS"
+      ],
+      "symbol": "__dso_handle"
+    },
+    {
+      "demangled": "__gxx_personality_v0",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "__gxx_personality_v0"
+    },
+    {
+      "demangled": "__once_proxy",
+      "providers": [
+        "libstdc++"
+      ],
+      "symbol": "__once_proxy"
+    },
+    {
+      "demangled": "clock_gettime",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "clock_gettime"
+    },
+    {
+      "demangled": "free",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "free"
+    },
+    {
+      "demangled": "getenv",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "getenv"
+    },
+    {
+      "demangled": "malloc",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "malloc"
+    },
+    {
+      "demangled": "memcmp",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "memcmp"
+    },
+    {
+      "demangled": "memcpy",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "memcpy"
+    },
+    {
+      "demangled": "memmove",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "memmove"
+    },
+    {
+      "demangled": "pthread_once",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "pthread_once"
+    },
+    {
+      "demangled": "strcmp",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "strcmp"
+    },
+    {
+      "demangled": "strlen",
+      "providers": [
+        "libc"
+      ],
+      "symbol": "strlen"
+    }
+  ],
+  "schema_version": 1,
+  "source": "socketmaster.o undefined globals",
+  "undefined_count": 46,
+  "unresolved_after_provider_scan": [],
+  "unresolved_after_provider_scan_count": 0
+}

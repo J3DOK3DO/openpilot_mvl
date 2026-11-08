@@ -1,0 +1,280 @@
+{
+  "interpreter_rootfs_path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/lib/ld-linux-aarch64.so.1",
+  "issues": [],
+  "link_product_sha256": "379bfb7e7d3f76a0bddc74dcb6fd3e77b5c5858a0daa4708aa26d6805311711c",
+  "missing_needed": [],
+  "nodes": {
+    "closure_smoke.elf": {
+      "class": "ELF64",
+      "interpreter": "/lib/ld-linux-aarch64.so.1",
+      "machine": "AArch64",
+      "needed": [
+        "libzmq.so.5",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6"
+      ],
+      "path": ".c3_stage/closure_smoke.elf",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Position-Independent Executable file)"
+    },
+    "ld-linux-aarch64.so.1": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libbsd.so.0": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libmd.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libbsd.so.0",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libc.so.6": {
+      "class": "ELF64",
+      "interpreter": "/lib/ld-linux-aarch64.so.1",
+      "machine": "AArch64",
+      "needed": [
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libc.so.6",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libcom_err.so.2": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libcom_err.so.2",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libgcc_s.so.1": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libc.so.6"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libgcc_s.so.1",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libgssapi_krb5.so.2": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libkrb5.so.3",
+        "libk5crypto.so.3",
+        "libcom_err.so.2",
+        "libkrb5support.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libgssapi_krb5.so.2",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libk5crypto.so.3": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libkrb5support.so.0",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libk5crypto.so.3",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libkeyutils.so.1": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libkeyutils.so.1",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libkrb5.so.3": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libk5crypto.so.3",
+        "libcom_err.so.2",
+        "libkrb5support.so.0",
+        "libkeyutils.so.1",
+        "libresolv.so.2",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libkrb5.so.3",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libkrb5support.so.0": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libkrb5support.so.0",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libm.so.6": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libm.so.6",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libmd.so.0": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libmd.so.0",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libnorm.so.1": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libnorm.so.1",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libpgm-5.3.so.0": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libm.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libpgm-5.3.so.0",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libresolv.so.2": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libresolv.so.2",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libsodium.so.23": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libc.so.6",
+        "ld-linux-aarch64.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libsodium.so.23",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libstdc++.so.6": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libm.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1",
+        "libgcc_s.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libstdc++.so.6",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    },
+    "libzmq.so.5": {
+      "class": "ELF64",
+      "interpreter": null,
+      "machine": "AArch64",
+      "needed": [
+        "libbsd.so.0",
+        "libsodium.so.23",
+        "libpgm-5.3.so.0",
+        "libnorm.so.1",
+        "libgssapi_krb5.so.2",
+        "libstdc++.so.6",
+        "libc.so.6",
+        "ld-linux-aarch64.so.1",
+        "libgcc_s.so.1"
+      ],
+      "path": "/mnt/commadrive/MVL_AGNOS199_NATIVE_20261106/rootfs/usr/lib/aarch64-linux-gnu/libzmq.so.5",
+      "rpath": [],
+      "runpath": [],
+      "type": "DYN (Shared object file)"
+    }
+  },
+  "note": "Static ELF dependency scan only; no binary execution or device qualification",
+  "rootfs_version": "19.9",
+  "schema_version": 1
+}

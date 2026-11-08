@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "campaign_date": "2026-11-09",
+  "owner_authorization": "B3_RESUMED_FOR_FUTURE_QUALIFIED_EXECUTION",
+  "execution_status": "NOT_EXECUTED_0_OF_6",
+  "verified_genuine_qcom_outputs": 0,
+  "required_stock_outputs": 6,
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "plan": "B3_SIX_TARGET_DRY_RUN_20261107.json",
+  "plan_sha256_verified": "6a493a0d9418f62310ee9a0f33d8e50ade4d5dc768cd54ec9c20ad45eaf3cd6e",
+  "compiler_recipe_sha256_verified": {
+    "openpilot/selfdrive/modeld/SConscript": "07499bf98dafa501025e08f71c1819787b5dac9f681d443cb0557a1a9d0d7097",
+    "tinygrad_repo/examples/openpilot/compile_onnx.py": "512571a84dc7931a07713a81b342e5087c41b173edea2d9a3b209fb83c5ab340",
+    "tinygrad_repo/examples/openpilot/compile_warp.py": "97a6814fde7f16e1ce265c6b6388cd5799c8e2f8969ac78cfc4fd5a929b1921d"
+  },
+  "qcom_flags": "DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1",
+  "onnx_inputs": {
+    "driving_supercombo.onnx": "65a08adc31d5c456219687d99b7bf5e44d61dae2d49ea67850e76105c7248cce",
+    "dmonitoring_model.onnx": "dee5a294e8afaacc9295ac5d100e00733ecac278e79264b96331e40a3ede1b04"
+  },
+  "target_order": [
+    "driving_warp_1344x760_tinygrad.pkl",
+    "dmonitoring_model_tinygrad.pkl",
+    "driving_tinygrad.pkl",
+    "driving_warp_1928x1208_tinygrad.pkl",
+    "dm_warp_1344x760_tinygrad.pkl",
+    "dm_warp_1928x1208_tinygrad.pkl"
+  ],
+  "missing_qualified_resource_evidence": [
+    "authenticated native Qualcomm compiler and target runtime identity",
+    "hard aggregate disk quota and peak scratch/output measurements",
+    "device-tested memory ceiling and abort/recovery",
+    "actual CPU/GPU thermal and GPU error monitoring",
+    "independent authenticated live parked-state monitor if a vehicle is involved"
+  ],
+  "capacity_evidence": "QCOM_B1_RESOURCES_20261106.json and QCOM_CAPACITY_SCENARIOS_20261107.json retain unknown GPU compiler RSS/scratch peaks; illustrative scenarios are not hard bounds",
+  "future_workflow": "On a qualified target, execute the six pinned plan commands in order, verify the first warp pilot before continuing, preserve real exit codes and native artifacts, statically inspect captures without unpickling, authenticate compiler provenance and resource telemetry, then request independent review. Do not infer physical qualification from compiler outputs.",
+  "full_product": "NOT_BUILT",
+  "physical_acceptance": "0_OF_10",
+  "release": "RC_NOT_INSTALLABLE_HOLD"
+}

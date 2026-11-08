@@ -1,0 +1,113 @@
+{
+  "attempts": [
+    {
+      "id": 1,
+      "note": "Generated four schema objects before manual kill; host shell reported libs: unbound variable. No link result from this attempt.",
+      "status": "ABORTED_AFTER_300S_AND_EDITED_RUNNING_SCRIPT"
+    },
+    {
+      "id": 2,
+      "note": "ld.lld not installed; switched to rootfs GNU ld 2.42.",
+      "status": "FAILED_EXIT_127"
+    },
+    {
+      "id": 3,
+      "note": "Git Panda diagnostic required /dev/null absent from no-device chroot; checked with process-scoped safe.directory on host.",
+      "status": "FAILED_EXIT_128"
+    },
+    {
+      "id": 4,
+      "note": "Correct AArch64 msgq archive, compiled harness, linked twice with identical bytes.",
+      "status": "SUCCESS_EXIT_0"
+    },
+    {
+      "id": 5,
+      "note": "Tracked reproduction script rerun on same objects; identical ELF and log hashes.",
+      "status": "SUCCESS_EXIT_0"
+    }
+  ],
+  "build_kind": "MANUAL_RECIPE_NOT_SCONS",
+  "compiler_flags": "-g -fPIC -pipe -O2 -std=c++1z -D__COMMA_HARDWARE__ -mcpu=cortex-a57 -I/build_cache -I/usr/local/venv/lib/python3.12/site-packages/capnproto/install/include -I/src/openpilot -I/src/msgq_repo -I/src/openpilot/cereal/gen/cpp -I/src",
+  "container_constraints": {
+    "chroot_user": "1000:1000",
+    "cpus": 1,
+    "image_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+    "memory_bytes": 1610612736,
+    "network": "none",
+    "no_new_privileges": true,
+    "output_mount": ".c3_stage writable",
+    "pids_limit": 64,
+    "read_only_container": true,
+    "source_rootfs_mounts": "readonly",
+    "timeout_seconds_per_attempt": 300
+  },
+  "files_outside_git": {
+    "car.capnp.o": {
+      "bytes": 142784,
+      "sha256": "ca2704917265fe8ef53ddad4e5c9fa383aa1202d3990311bc1519f833f6000d1"
+    },
+    "closure_link.log": {
+      "bytes": 2663,
+      "sha256": "cb3a9f09738ec829cb684f1ef89ee1804685fd5302d137aa95ba23e2ee05e09f"
+    },
+    "closure_link_attempt1.log": {
+      "bytes": 71,
+      "sha256": "5e6a24ce32f9ffc43bb4e98cf19f08d30c8b051e4f02331172431319c7b91125"
+    },
+    "closure_link_attempt2.log": {
+      "bytes": 82,
+      "sha256": "fd290e6861a7b18234d2c0d70abe3a3ae678b8b49f21121db822b634ecde8712"
+    },
+    "closure_link_attempt3.log": {
+      "bytes": 194,
+      "sha256": "d329bbaae88c3861b5737af737cdc9db911ae5c42ab77196101cfd9784948b32"
+    },
+    "closure_link_success1.log": {
+      "bytes": 2663,
+      "sha256": "cb3a9f09738ec829cb684f1ef89ee1804685fd5302d137aa95ba23e2ee05e09f"
+    },
+    "closure_smoke.elf": {
+      "bytes": 2369944,
+      "sha256": "379bfb7e7d3f76a0bddc74dcb6fd3e77b5c5858a0daa4708aa26d6805311711c"
+    },
+    "closure_smoke.map": {
+      "bytes": 502371,
+      "sha256": "874a2bf1e5b7f82cc2412e755555f9304da6ff409ee82cb583f2671ec4cb4b2c"
+    },
+    "closure_smoke.o": {
+      "bytes": 50312,
+      "sha256": "6e17a9783aa84f731ef02c3c8889b333b4fdbd739070e994e543f9e4381213b0"
+    },
+    "custom.capnp.o": {
+      "bytes": 138192,
+      "sha256": "30d70734431e3e62c260b012c3f321d7536443da804c9f2581535cf90ce06523"
+    },
+    "deprecated.capnp.o": {
+      "bytes": 185352,
+      "sha256": "1959d37f91c817183a7c04499c924c341ad0d02249e57a2acd10ef4b109e8001"
+    },
+    "libmsgq.a": {
+      "bytes": 677508,
+      "sha256": "0b6ad7dad40090a86aacc93b971a74ed12403810be1a51f51ad1e4965c00d1a7"
+    },
+    "libsocketmaster.a": {
+      "bytes": 972156,
+      "sha256": "05c251e4214dfd2600f489dfdd7f21f2058e8aee794c0607844caeb7f8655d6a"
+    },
+    "log.capnp.o": {
+      "bytes": 586664,
+      "sha256": "549617f52a3d5171de35cba4acde43e37002e5187907e745cd7007b066c9196c"
+    }
+  },
+  "final_exit": 0,
+  "harness": "C3_NATIVE_CLOSURE_SMOKE_20261109.cc",
+  "link_flags": "-Wl,--no-undefined -Wl,-Map,/build_cache/closure_smoke.map -Wl,--whole-archive libsocketmaster.a libmsgq.a -Wl,--no-whole-archive log/deprecated/custom/car.capnp.o libcapnp.a libkj.a -lzmq -pthread",
+  "link_hash_first": "379bfb7e7d3f76a0bddc74dcb6fd3e77b5c5858a0daa4708aa26d6805311711c",
+  "link_hash_second": "379bfb7e7d3f76a0bddc74dcb6fd3e77b5c5858a0daa4708aa26d6805311711c",
+  "model_compile": false,
+  "not_executed_binary": true,
+  "recipe": "C3_NATIVE_CLOSURE_LINK_20261109.sh",
+  "repeated_same_objects_identical": true,
+  "schema_version": 1,
+  "scons_invoked": false
+}

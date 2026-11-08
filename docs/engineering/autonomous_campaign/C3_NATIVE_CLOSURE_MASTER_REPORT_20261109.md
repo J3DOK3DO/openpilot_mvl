@@ -1,0 +1,35 @@
+# C3 model-independent native dependency closure — 2026-11-09
+
+## Disposition
+
+The new AArch64 **link-only messaging smoke ELF** succeeded. This is component ABI/link evidence, not a complete product build, runtime IPC test, model result, or physical qualification. Historic C3 remains **2/4 milestones**. B3 is **owner-resumed, NOT_EXECUTED_0_OF_6**; it is no longer deferred by owner, but no Qualcomm target was run. G10 full product is **NOT_BUILT**; Comma4 physical acceptance is **0/10**; release is **RC_NOT_INSTALLABLE / HOLD**.
+
+## Pinned inputs and architecture
+
+The read-only frozen source is `4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb`, clean with process-local `lfs.storage=/tmp/c3_lfs`, with seven materialized pinned gitlinks. The AGNOS 19.9 rootfs `/VERSION` is `19.9`; its raw 4,718,592,000-byte image was rehashed to `80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7`. The local Docker tag was checked to equal image ID `sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95` before runs. In-rootfs compiler: clang 18.1.3; linker: GNU ld 2.42. Provenance, exact prior component paths, hashes, and gitlinks are in `C3_NATIVE_CLOSURE_PROVENANCE_20261109.json`.
+
+The frozen `SConstruct` sets `messaging = [socketmaster, msgq, 'capnp', 'kj']`; `openpilot/cereal/SConscript` generates four schemas, builds `libsocketmaster.a`, and links the bridge with msgq. `msgq_repo/SConscript` archives five msgq objects. The accepted previous SCons `libmsgq.a` is in `MVL_C5_NATIVE_STAGE_20261108/source/msgq_repo`, SHA-256 `0b6ad7dad40090a86aacc93b971a74ed12403810be1a51f51ad1e4965c00d1a7`. Previous manual `libsocketmaster.a` SHA-256 is `05c251e4214dfd2600f489dfdd7f21f2058e8aee794c0607844caeb7f8655d6a`; previous YUV object SHA-256 is `c966d20ec4504ac49dbcd23766f656925675008a4286f264e2c9d663bb8a0aa5`. All these accepted objects are ELF64 little-endian AArch64. The similarly named `MVL_NATIVE_LATEST_20261103/msgq_repo/libmsgq.a` is **x86-64** and was rejected before link use.
+
+Panda's earlier SCons dubious-ownership diagnostic was checked without touching Panda or global Git configuration: process-scoped `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=safe.directory GIT_CONFIG_VALUE_0=<frozen-source>/panda git -C <frozen-source>/panda rev-parse --short HEAD` returned `8a16e08`, matching its gitlink. A Git invocation inside the no-device chroot could not open `/dev/null`; it was removed from the build recipe. No new SCons traversal or Panda build was claimed.
+
+## Actual link and dependency result
+
+The new manual recipe `C3_NATIVE_CLOSURE_LINK_20261109.sh` compiles the frozen generated `log`, `deprecated`, `custom`, and `car` Cap’n Proto C++ schemas and `C3_NATIVE_CLOSURE_SMOKE_20261109.cc`, then uses `--whole-archive` on both native component archives. Thus archive members cannot be silently skipped. It links the pinned rootfs `libcapnp.a`, `libkj.a`, and `libzmq.so` with `--no-undefined` and `-pthread`. The binary was **never executed**; no IPC traffic or CAN message was sent.
+
+The resulting `closure_smoke.elf` is ELF64 little-endian AArch64 PIE, 2,369,944 bytes, SHA-256 **`379bfb7e7d3f76a0bddc74dcb6fd3e77b5c5858a0daa4708aa26d6805311711c`**. Its interpreter is `/lib/ld-linux-aarch64.so.1`. Direct `DT_NEEDED`: `libzmq.so.5`, `libstdc++.so.6`, `libm.so.6`, `libgcc_s.so.1`, and `libc.so.6`. A recursive static scan found all 19 ELF nodes and the interpreter inside the pinned rootfs, all ELF64 AArch64, with no missing `DT_NEEDED` or RPATH/RUNPATH. This does not establish that runtime loading or IPC works on a target. `C3_NATIVE_CLOSURE_ABI_MATRIX_20261109.json` maps all 46 undefined globals of `socketmaster.o` to msgq, capnp, kj, rootfs runtime libraries, or linker startup; none lack a named provider. `C3_NATIVE_CLOSURE_DEPENDENCIES_20261109.json` records the transitive ELF graph.
+
+## Reproducibility and bounded execution
+
+The command script records the exact manual compile/link flags (`-O2 -std=c++1z -D__COMMA_HARDWARE__ -mcpu=cortex-a57`) and Docker invocation: `--network none`, `--read-only`, source/rootfs read-only bind mounts, `.c3_stage` writable output, `--memory 1536m`, `--cpus 1`, `--pids-limit 64`, `--security-opt no-new-privileges`, nonroot chroot user `1000:1000`, and `timeout 300s` per invocation. No download, device mount, or runtime execution occurred. Both volumes remained above 8 GiB free (last observed about 20 GiB and 17 GiB). Re-linking the same objects twice and then rerunning the tracked script produced the identical ELF SHA-256. This was a **manual recipe**, not a new SCons product build. The successful invocation reused schema objects generated in the first bounded attempt; a completely fresh all-in-one invocation is not evidenced. The four generated object hashes, link map, exact logs, failed attempts, exit status, and raw artifact digests are recorded in `C3_NATIVE_CLOSURE_REPRODUCIBILITY_20261109.json`; raw files remain only in ignored `.c3_stage`.
+
+The first attempt was invalidated when its script was edited while running; it exceeded the command's 300-second window during cleanup and only this campaign's container was manually stopped. No link result came from it. A later attempt found `ld.lld` absent (exit 127); another found `/dev/null` absent for Git inside the chroot (exit 128). The final GNU ld link exited 0. These diagnostics remain in the external raw logs. The earlier x86-64 msgq path never produced a valid AArch64 link claim.
+
+## B3 and release gates
+
+`C3_NATIVE_CLOSURE_B3_RESUME_20261109.json` retains the six exact ordered stock targets and verified ONNX/compiler recipe hashes. The 60,918,562-byte driving ONNX and 7,844,499-byte monitoring ONNX match their pinned hashes. Existing quota evidence leaves GPU compiler peak RSS/scratch and full product staging peak unknown; illustrative capacity scenarios cannot qualify a target. No authenticated native Qualcomm compiler/runtime, hard aggregate quota, measured thermal/GPU error telemetry, or device-tested abort bound is available in this campaign. Future B3 work follows the pinned first-warp pilot and only proceeds after those resources and an independently reviewable real compiler receipt exist. Reauthorization is not an artifact.
+
+Existing offline tools and their negative tests are reused: ELF architecture and source identity inspector, B3 fabricated-record and malformed-plan rejection, capacity hold, and combined RC admission. No test-only production code change was warranted. A clean final-commit run and raw log digests are recorded in `C3_NATIVE_CLOSURE_TEST_RESULTS_20261109.json`. The release evaluator must remain `RC_NOT_INSTALLABLE`, `install_allowed=false`, B3 0/6, G10 `NOT_BUILT`, and physical 0/10.
+
+## Handoff
+
+This branch changes only `.gitignore` for the isolated raw-artifact directory and C3 evidence/recipe files under this campaign's documentation path. There are no protected-path edits, no vehicle/device action, no installation, and no branch push. The linker result narrows model-independent dependency uncertainty; full product, B3, target runtime, and physical gates remain open.
