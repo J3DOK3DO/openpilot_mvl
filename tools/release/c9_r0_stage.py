@@ -15,6 +15,7 @@ from tools.release import combined_b3g10_gate, combined_rc_readiness
 SOURCE = '4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb'
 DENY_BLOB = '40869f7450189f80dd9478b1fec674a83c80a1e2'
 FILES = (
+    'tools/release/c9_device_kit.py',
     'tools/release/c9_b3_pilot.py',
     'tools/release/c9_b3_receipt.py',
     'tools/release/c9_b3_windows_pilot.ps1',

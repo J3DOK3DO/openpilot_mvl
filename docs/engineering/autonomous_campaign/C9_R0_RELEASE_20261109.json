@@ -24,7 +24,7 @@
   "starport": "EXCLUDED_PENDING_CONTRACT",
   "physical_checks": {"passed": 0, "required": 10},
   "backup_and_rollback": "PLAN_ONLY_NOT_QUALIFIED",
-  "independent_qwen_review": "PENDING_COORDINATOR",
+  "independent_qwen_review": "PASS_SCOPED_WITH_PHYSICAL_HOLD_AT_e99c9888a7e742a1009ef1767067c5e01cc430a0; POST_e99c_CHANGES_PENDING_REVIEW",
   "release_package": "ENGINEERING_HOLD_ONLY",
   "built_payload": ["g10_cdm/cdm.o", "g10_cdm/libmvl_cdm_proof.so"],
   "unbuilt_payload": ["six QCOM models", "full native product", "Panda firmware", "installer"],
