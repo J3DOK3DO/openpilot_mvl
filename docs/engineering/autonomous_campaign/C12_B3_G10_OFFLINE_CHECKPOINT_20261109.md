@@ -1,0 +1,9 @@
+# Campaign 12 B3/G10 offline engineering checkpoint
+
+Starting engineering commit: `5adb018540e28f60a54cfff4be8dd12fac4ec68b` on the dedicated C12 branch. The frozen product source is `4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb`; Tinygrad is `92b742f711c7d216fd3ed7a46a30a959e3c43bd4`; the AGNOS 19.9 image SHA-256 is `80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7`.
+
+C12 artifacts and raw logs are in `/mnt/commadrive/MVL_C12_B3_G10_ARTIFACTS_20261109`. Source preflight passed for the frozen checkout with seven pinned submodules and 286 hydrated LFS files. A new local static inventory found five unique structurally plausible QCOM capture hashes, but no complete authenticated six-model package. The two directories that contain all six filenames fail static QCOM structure checks. Existing five-file Track A/B package still lacks `driving_tinygrad.pkl`, has a mismatched source graph, and has insufficient independent producer/runtime evidence. B3 remains **0/6 authenticated**.
+
+The exact pinned ARM64 builder and AGNOS rootfs produced bounded, model-independent camera CDM and YUV compile/link proofs in the C12 artifact directory. A separate IPC link proof was attempted. These outputs are partial host engineering evidence, not a full G10 product build. The full cold SCons product build remains blocked by six authenticated Qualcomm outputs and reviewed assembly prerequisites; no placeholder models were introduced. The C12 device-side handoff is marked HOLD and is not installable.
+
+No Comma hardware, active installation, vehicle-facing control logic, Panda firmware, CAN, or protected runtime parameters were touched. Physical C4 acceptance is absent. R0 remains HOLD. Any model compilation needs the separately established physical isolation, power, monitoring, abort and review prerequisites in the C12 hardware prerequisite record. No release or installation is authorized by this checkpoint.
