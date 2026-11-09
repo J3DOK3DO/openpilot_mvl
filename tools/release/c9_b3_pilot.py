@@ -15,6 +15,7 @@ import os
 from pathlib import Path
 import shutil
 import signal
+import stat
 import subprocess
 import time
 
@@ -122,7 +123,8 @@ def execute(source: Path, scratch: Path, gate_path: Path, monitor: Path, log_pat
         raise ValueError('physical gate must be an object')
     required = ('coordinator_approved', 'independent_physical_monitor_qualified',
                 'sustained_external_power_qualified', 'thermal_gpu_monitor_qualified',
-                'cgroup_abort_rehearsed', 'stock_safety_qualified', 'rollback_ready')
+                'cgroup_abort_rehearsed', 'stock_safety_qualified', 'rollback_ready',
+                'aggregate_hard_quota_qualified')
     if any(gate.get(k) is not True for k in required):
         raise ValueError('physical gate incomplete')
     if gate.get('source_commit') != SOURCE or gate.get('target') != FIRST_TARGET or gate.get('max_seconds') != 300:
@@ -136,6 +138,15 @@ def execute(source: Path, scratch: Path, gate_path: Path, monitor: Path, log_pat
     parent = scratch.parent
     if not isinstance(gate.get('peak_scratch_bytes'), int) or gate['peak_scratch_bytes'] <= 0:
         raise ValueError('measured peak scratch required')
+    if (type(gate.get('hard_quota_bytes')) is not int or
+            gate['hard_quota_bytes'] < gate['peak_scratch_bytes'] or
+            type(gate.get('io_read_bps')) is not int or not 0 < gate['io_read_bps'] <= 20_000_000 or
+            type(gate.get('io_write_bps')) is not int or not 0 < gate['io_write_bps'] <= 10_000_000):
+        raise ValueError('hard quota or bounded IO rates missing')
+    io_device = gate.get('io_device')
+    if (type(io_device) is not str or not io_device.startswith('/dev/') or
+            '..' in Path(io_device).parts or not stat.S_ISBLK(os.stat(io_device).st_mode)):
+        raise ValueError('qualified backing block device required for IO limit')
     if shutil.disk_usage(parent).free < MIN_RESERVE + gate['peak_scratch_bytes']:
         raise ValueError('8 GiB reserve plus measured peak scratch unavailable')
     observation(monitor)
@@ -147,7 +158,10 @@ def execute(source: Path, scratch: Path, gate_path: Path, monitor: Path, log_pat
     env.update(dict(part.split('=', 1) for part in FLAGS.split()))
     command = ['systemd-run', '--user', '--scope', '--wait', '--collect', '--pipe',
                '--unit=c9-b3-first-warp', '-p', 'MemoryMax=2000M', '-p', 'CPUQuota=100%',
-               '-p', 'TasksMax=64', '-p', 'IOWeight=100', '-p', 'RuntimeMaxSec=300',
+               '-p', 'TasksMax=64', '-p', 'IOWeight=100',
+               '-p', f"IOReadBandwidthMax={io_device} {gate['io_read_bps']}",
+               '-p', f"IOWriteBandwidthMax={io_device} {gate['io_write_bps']}",
+               '-p', 'RuntimeMaxSec=300',
                '/usr/local/venv/bin/python3', '-m', 'SCons', '-j1', '--minimal',
                'cache_dir='+str(scratch/'cache'), FIRST_TARGET]
     started = time.monotonic()

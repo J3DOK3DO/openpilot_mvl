@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import hashlib
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -48,6 +49,29 @@ class C9CampaignTest(unittest.TestCase):
             self.assertEqual(report['b3_verified_artifact_count'], 0)
             self.assertFalse(report['g10_promotion'])
             self.assertTrue(report['issues'])
+
+    def test_execute_rejects_missing_hard_quota_and_io_cap(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            monitor = root/'monitor'
+            monitor.write_text('#!/bin/sh\nexit 0\n')
+            monitor.chmod(0o700)
+            gate = {'source_commit': pilot.SOURCE, 'target': pilot.FIRST_TARGET,
+                    'max_seconds': 300, 'monitor_sha256': hashlib.sha256(monitor.read_bytes()).hexdigest(),
+                    'peak_scratch_bytes': 1}
+            for key in ('coordinator_approved', 'independent_physical_monitor_qualified',
+                        'sustained_external_power_qualified', 'thermal_gpu_monitor_qualified',
+                        'cgroup_abort_rehearsed', 'stock_safety_qualified', 'rollback_ready'):
+                gate[key] = True
+            gate_file = root/'gate.json'
+            gate_file.write_text(json.dumps(gate))
+            with patch.object(pilot, 'preflight'):
+                with self.assertRaisesRegex(ValueError, 'physical gate incomplete'):
+                    pilot.execute(root/'source', root/'scratch', gate_file, monitor, root/'log')
+                gate['aggregate_hard_quota_qualified'] = True
+                gate_file.write_text(json.dumps(gate))
+                with self.assertRaisesRegex(ValueError, 'hard quota or bounded IO'):
+                    pilot.execute(root/'source', root/'scratch', gate_file, monitor, root/'log')
 
     def test_r0_stage_rejects_destination_outside_artifacts(self):
         with self.assertRaisesRegex(ValueError, 'C9 artifacts'):
