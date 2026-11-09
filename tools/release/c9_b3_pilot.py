@@ -105,10 +105,10 @@ def observation(command: Path) -> dict:
         val = item.get(key)
         if type(val) not in (int, float) or not math.isfinite(val) or not 0 <= val < 70:
             raise ValueError('CPU/GPU thermal unsafe or unknown')
+    duration = item.get('external_power_duration_seconds')
     if (type(item.get('gpu_errors')) is not int or item['gpu_errors'] != 0 or
             type(item.get('memory_oom_events')) is not int or item['memory_oom_events'] != 0 or
-            type(item.get('external_power_duration_seconds')) not in (int, float) or
-            item['external_power_duration_seconds'] < 300):
+            type(duration) not in (int, float) or not math.isfinite(duration) or duration < 300):
         raise ValueError('GPU, memory or sustained power evidence missing')
     stamp = datetime.fromisoformat(item['observed_at_utc'].replace('Z', '+00:00'))
     if stamp.tzinfo is None or abs((datetime.now(timezone.utc)-stamp).total_seconds()) > 5:
@@ -136,7 +136,7 @@ def execute(source: Path, scratch: Path, gate_path: Path, monitor: Path, log_pat
     if scratch.exists() and (scratch.is_symlink() or any(scratch.iterdir())):
         raise ValueError('scratch must be empty, non-symlink directory')
     parent = scratch.parent
-    if not isinstance(gate.get('peak_scratch_bytes'), int) or gate['peak_scratch_bytes'] <= 0:
+    if type(gate.get('peak_scratch_bytes')) is not int or gate['peak_scratch_bytes'] <= 0:
         raise ValueError('measured peak scratch required')
     if (type(gate.get('hard_quota_bytes')) is not int or
             gate['hard_quota_bytes'] < gate['peak_scratch_bytes'] or

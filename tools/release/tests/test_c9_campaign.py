@@ -72,6 +72,10 @@ class C9CampaignTest(unittest.TestCase):
                 gate_file.write_text(json.dumps(gate))
                 with self.assertRaisesRegex(ValueError, 'hard quota or bounded IO'):
                     pilot.execute(root/'source', root/'scratch', gate_file, monitor, root/'log')
+                gate['peak_scratch_bytes'] = True
+                gate_file.write_text(json.dumps(gate))
+                with self.assertRaisesRegex(ValueError, 'measured peak scratch'):
+                    pilot.execute(root/'source', root/'scratch', gate_file, monitor, root/'log')
 
     def test_r0_stage_rejects_destination_outside_artifacts(self):
         with self.assertRaisesRegex(ValueError, 'C9 artifacts'):
