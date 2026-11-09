@@ -1,13 +1,18 @@
 # Campaign 8 independent Qwen source review handoff
 
-**Status: PENDING independent Qwen review.** This file is a handoff, not a review verdict. Coordinator owns the separate reviewer and publication; no Qwen call, device access, GitHub push or campaign-lease action occurred in this run.
+**Status: preliminary Qwen source review of `1211f68` completed; follow-up changes not reviewed.** The review returned `PASS_SCOPED_CODE_REVIEW_WITH_LIMITATIONS` for static source only. It does not authenticate QCOM output, approve G10, or authorize installation. The coordinator owns any further independent review and publication.
+
+The review text is `C8_FINAL_QWEN_REVIEW_1211.txt` in the external artifact directory. Its claimed unbounded pickle loop and descriptor swap are unsupported by the reviewed source: `pickletools.genops` is capped at two million operations, and before/after `fstat` use the same held stream descriptor. Its cross-platform `O_NOFOLLOW` concern does not apply to the Linux source environment. A non-array records JSON root was a reproducible clean-error gap and is handled in follow-up commit `de886b936e73022acb97a4a86de26337c098dab1`. No Qwen verdict covers that commit.
 
 ## Review snapshot
 
 - Isolated branch: `codex/mvl-b3-g10-r0-cleanrelease-20261109`.
+- Follow-up branch: `codex/mvl-b3-admission-failclosed-20261109`.
 - Implementation and clean-HEAD test commit: `00d83d6d1fdfcca93a237564c0efd29bd0fc2276`.
+- Final pre-follow-up snapshot: `1211f68b624c4fc6ecd09b3612ff59d5d4ab2efe`.
+- Fail-closed B3 CLI follow-up code commit: `de886b936e73022acb97a4a86de26337c098dab1`; standalone B3 now exits 2 for `PREPARED_NO_QCOM_DEVICE` / 0 verified outputs. The previous exit 0 remains historical evidence.
 - Frozen product: `4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb`; tinygrad gitlink `92b742f711c7d216fd3ed7a46a30a959e3c43bd4`; AGNOS image `80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7`.
-- Inspect the final documentation successor commit separately and compare its source diff with this code commit. Release classification must stay `ENGINEERING-HOLD / NOT-INSTALLABLE`.
+- Inspect the final follow-up commit separately and compare its source diff with `1211f68`. Release classification stays `ENGINEERING-HOLD / NOT-INSTALLABLE`.
 
 ## Files and questions for the reviewer
 
@@ -19,4 +24,4 @@
 
 ## Reproduction and acceptance boundary
 
-The frozen-source preflight raw JSON SHA-256 is `58cb1fa76444d7eafebdf87275e817cdb887df8328ed817ae8f2559822667327`. At clean implementation commit, release suite: 200 run, 191 passed, nine skipped; focused native: 10/10; recovery: 4/4. Logs and hashes are in `C8_TEST_RESULTS_20261109.json`. RC JSON SHA-256 is `4f5316a799f8aed53821af9cdc91c8a130c4126c7ca19fcda387636574144249`; it reports `RC_NOT_INSTALLABLE`, `install_allowed=false`, B3 0/6, G10 `NOT_BUILT`, physical 0/10. Re-run the same commands at final clean HEAD, record the final SHA and raw log hashes externally, then return an independent source verdict with actionable findings. Any review approval remains scoped to offline engineering and cannot authorize device compilation or installation.
+The frozen-source preflight raw JSON SHA-256 is `58cb1fa76444d7eafebdf87275e817cdb887df8328ed817ae8f2559822667327`. At clean implementation commit, release suite: 200 run, 191 passed, nine skipped; focused native: 10/10; recovery: 4/4. At the follow-up code commit, focused B3 tests passed 12/12, release suite: 202 run, 193 passed, nine skipped; focused native: 10/10; recovery: 4/4. Logs and hashes are in `C8_TEST_RESULTS_20261109.json`. Standalone B3 JSON SHA-256 is `07ec0c561abb1805b92f0b66d17ba911f6143491226005e77c6ac77807611c51`, with corrected CLI exit 2. RC JSON SHA-256 is `4f5316a799f8aed53821af9cdc91c8a130c4126c7ca19fcda387636574144249`; it reports `RC_NOT_INSTALLABLE`, `install_allowed=false`, B3 0/6, G10 `NOT_BUILT`, physical 0/10, exit 2. Any later source verdict must cover the follow-up commit explicitly. Review approval remains scoped to offline engineering and cannot authorize device compilation or installation.

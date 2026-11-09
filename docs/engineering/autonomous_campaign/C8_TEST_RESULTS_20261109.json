@@ -6,13 +6,28 @@
   },
   "b3_admission": {
     "decision": "PREPARED_NO_QCOM_DEVICE",
-    "exit_code": 0,
+    "exit_code": 2,
+    "prior_cli_exit_code_at_1211f68": 0,
     "raw_sha256": "07ec0c561abb1805b92f0b66d17ba911f6143491226005e77c6ac77807611c51",
     "verified_outputs": 0
   },
   "campaign": "C8_20261109",
   "classification": "ENGINEERING_HOLD_NOT_INSTALLABLE",
   "engineering_code_commit": "00d83d6d1fdfcca93a237564c0efd29bd0fc2276",
+  "fail_closed_followup": {
+    "code_commit": "de886b936e73022acb97a4a86de26337c098dab1",
+    "b3_cli_exit_code": 2,
+    "b3_cli_raw_sha256": "07ec0c561abb1805b92f0b66d17ba911f6143491226005e77c6ac77807611c51",
+    "focused_admission": "12 passed",
+    "release": "202 run; 193 passed; 9 platform skipped; 0 failed",
+    "release_log_sha256": "37f1696359307a26d640673fa076d4d5da98bb257737877a86b96fcd67909f3b",
+    "native": "10 passed",
+    "native_log_sha256": "d9c94c46952259b1d5f69fa5bfc18594eae75ee6d6cb80f370205311db04714c",
+    "recovery": "4 passed",
+    "recovery_log_sha256": "61160f63cf7ad2df6b4921ddd25ceaa95781e079d9f71d7aa22c19bb97029435",
+    "rc_cli_exit_code": 2,
+    "rc_cli_raw_sha256": "4f5316a799f8aed53821af9cdc91c8a130c4126c7ca19fcda387636574144249"
+  },
   "focused_native": {
     "exit_code": 0,
     "failed": 0,

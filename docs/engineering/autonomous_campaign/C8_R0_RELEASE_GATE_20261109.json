@@ -5,6 +5,7 @@
     "version": "19.9"
   },
   "b3_authentic_outputs": 0,
+  "b3_admission_cli_exit_code": 2,
   "backup_and_rollback": "PLAN_ONLY_NOT_EXECUTED",
   "campaign": "C8_20261109",
   "classification": "ENGINEERING_HOLD_NOT_INSTALLABLE",

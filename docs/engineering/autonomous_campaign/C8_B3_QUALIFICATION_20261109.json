@@ -14,6 +14,7 @@
   },
   "device_action_performed": false,
   "engineering_code_commit": "00d83d6d1fdfcca93a237564c0efd29bd0fc2276",
+  "fail_closed_admission_followup_commit": "de886b936e73022acb97a4a86de26337c098dab1",
   "first_pilot": "driving_warp_1344x760_tinygrad.pkl",
   "genuine_outputs": 0,
   "onnx": {
@@ -52,6 +53,7 @@
     "b3_static_candidate_count": 0,
     "b3_verified_artifact_count": 0,
     "decision": "PREPARED_NO_QCOM_DEVICE",
+    "cli_exit_code": 2,
     "device_write_performed": false,
     "g10_promotion": false,
     "issues": [],
