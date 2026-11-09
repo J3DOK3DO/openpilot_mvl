@@ -55,6 +55,27 @@ class CombinedRCReadinessTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'unexpected artifact'):
             rc.evaluate(altered)
 
+    def test_forged_release_qualifications_cannot_promote(self):
+        altered = copy.deepcopy(self.base)
+        altered.update({
+            'panda_firmware_sha256': '0' * 64,
+            'panda_firmware_compatible': True,
+            'protected_params_254': 'ALLOW',
+            'galaxy_registered': True,
+            'starport_enabled': True,
+            'backup_verified': True,
+            'rollback_test_passed': True,
+            'physical_checks_authenticated': True,
+        })
+        report = rc.evaluate(altered)
+        self.assertEqual(report['decision'], 'RC_NOT_INSTALLABLE')
+        self.assertFalse(report['install_allowed'])
+        self.assertEqual(report['g10_product'], 'NOT_BUILT')
+        self.assertEqual(report['applicable_physical_checks_passed'], 0)
+        self.assertEqual(next(row['status'] for row in report['checks']
+                         if row['requirement'] == 'C4 254 restricted Params'),
+                         'REQUIRED_DENY_NOT_REVERIFIED')
+
     def test_rehearsal_failure_paths_are_mock_only(self):
         for failure in ('preflight_failed', 'backup_failed', 'stage_failed', 'switch_failed', 'health_failed'):
             prefix = {'preflight_failed': [], 'backup_failed': ['preflight_ok'],
