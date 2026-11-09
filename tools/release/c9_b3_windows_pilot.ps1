@@ -22,5 +22,5 @@ if ($Execute) {
   }
   $argv += @('--execute', '--gate', $Gate, '--monitor', $Monitor, '--log', $Log)
 }
-& ssh -o BatchMode=yes -o ConnectTimeout=10 -- $SshTarget ($argv -join ' ')
+& ssh -o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -o ConnectTimeout=10 -- $SshTarget ($argv -join ' ')
 exit $LASTEXITCODE

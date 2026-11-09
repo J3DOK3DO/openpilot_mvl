@@ -77,6 +77,24 @@ class C9CampaignTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'measured peak scratch'):
                     pilot.execute(root/'source', root/'scratch', gate_file, monitor, root/'log')
 
+    def test_device_pilot_cli_never_signals_release_admission(self):
+        source = Path('/data/mvl-builds')/pilot.SOURCE/'engineering-20261109/source'
+        scratch = Path('/data/mvl-builds')/pilot.SOURCE/'c9-first-warp'
+        fake = {'decision': 'NATIVE_PILOT_EXECUTED_REQUIRES_INDEPENDENT_AUTHENTICATION',
+                'compiler_exit_code': 0}
+        with (patch('tools.release.c9_b3_pilot.execute', return_value=fake),
+              patch('sys.argv', ['pilot', '--source', str(source), '--scratch', str(scratch),
+                                 '--execute', '--gate', '/tmp/gate', '--monitor', '/tmp/monitor',
+                                 '--log', '/tmp/log'])):
+            self.assertEqual(pilot.main(), 2)
+
+    def test_windows_launcher_requires_strict_ssh(self):
+        wrapper = Path(__file__).parents[1]/'c9_b3_windows_pilot.ps1'
+        content = wrapper.read_text()
+        self.assertIn('StrictHostKeyChecking=yes', content)
+        self.assertIn('IdentitiesOnly=yes', content)
+        self.assertIn('BatchMode=yes', content)
+
     def test_r0_stage_rejects_destination_outside_artifacts(self):
         with self.assertRaisesRegex(ValueError, 'C9 artifacts'):
             stage.stage(Path('/tmp'), Path('/tmp/c9-package-should-not-exist'))

@@ -212,7 +212,7 @@ def main() -> int:
             if not all((args.gate, args.monitor, args.log)):
                 raise ValueError('--execute requires --gate, --monitor and --log')
             result = execute(args.source, args.scratch, args.gate, args.monitor, args.log)
-            code = 0 if result['compiler_exit_code'] == 0 else 2
+            code = 2  # Native compiler success is not independently authenticated B3 admission
         else:
             result, code = preflight(args.source, args.scratch), 2
     except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError, TimeoutError) as exc:
