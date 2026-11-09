@@ -66,6 +66,14 @@ def regular_input(repo: Path, rel: str) -> bytes:
 
 def check_dependencies(blobs: dict[str, bytes]) -> None:
     """Fail if a packaged Python module gains an unlisted release-local import."""
+    required = {
+        'tools/release/preflight_readonly.py',
+        'tools/release/agnos_image.py',
+        'docs/engineering/autonomous_campaign/B3_SIX_TARGET_DRY_RUN_20261107.json',
+    }
+    missing = sorted(required - blobs.keys())
+    if missing:
+        raise ValueError('missing mandatory trusted kit inputs: ' + ', '.join(missing))
     for rel, data in blobs.items():
         if not rel.endswith('.py'):
             continue

@@ -71,6 +71,14 @@ class DeviceKitTest(unittest.TestCase):
             from tools.release import c9_b3_pilot
             self.assertEqual(c9_b3_pilot.main(), 2)
 
+    def test_both_mandatory_helpers_and_pinned_plan_cannot_be_excluded(self):
+        blobs = {rel: (ROOT/rel).read_bytes() for rel in kit.FILES}
+        for removed in ('tools/release/agnos_image.py',
+                        'tools/release/preflight_readonly.py',
+                        'docs/engineering/autonomous_campaign/B3_SIX_TARGET_DRY_RUN_20261107.json'):
+            with self.subTest(removed=removed), self.assertRaisesRegex(ValueError, 'missing mandatory'):
+                kit.check_dependencies({name: data for name, data in blobs.items() if name != removed})
+
     def test_missing_trusted_preflight_rejected(self):
         (self.repo/'tools/release/preflight_readonly.py').unlink()
         with self.assertRaises((OSError, ValueError)):
