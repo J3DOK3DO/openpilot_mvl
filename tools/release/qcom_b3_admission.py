@@ -121,10 +121,22 @@ def main() -> int:
         parser.error('supplied B3C plan exceeds 1 MiB limit')
     if hashlib.sha256(plan_bytes).hexdigest() != PLAN_SHA256:
         parser.error('supplied B3C plan hash mismatch')
+    records = load_json(args.records) if args.records else []
+    if not isinstance(records, list) or any(not isinstance(record, dict) for record in records):
+        parser.error('records must be an array of objects')
     report = audit(json.loads(plan_bytes, object_pairs_hook=model.no_duplicate_keys),
-                   load_json(args.records) if args.records else [], args.artifacts)
+                   records, args.artifacts)
     print(json.dumps(report, indent=2, sort_keys=True))
-    return 0 if not report['issues'] else 2
+    admitted = (not report['issues']
+                and report['b3_verified_artifact_count'] == report['b3_required_artifact_count'] == 6
+                and report['b3_completed_6_of_6'] is True
+                and report['receipt_authentication_status'] == 'INDEPENDENTLY_AUTHENTICATED'
+                and set(report['receipt_field_authentication']) ==
+                    set((*REQUIRED_EVIDENCE, 'quality_result'))
+                and all(status == 'INDEPENDENTLY_AUTHENTICATED'
+                        for status in report['receipt_field_authentication'].values())
+                and report['g10_promotion'] is True)
+    return 0 if admitted else 2
 
 
 if __name__ == '__main__':

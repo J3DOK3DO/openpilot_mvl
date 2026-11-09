@@ -43,6 +43,16 @@ class AdmissionTest(unittest.TestCase):
         self.assertEqual(result['b2_safety_status'], 'NOT_SAFETY_ACCEPTED_NOT_PASSED')
         self.assertFalse(result['g10_promotion'])
 
+    def test_cli_pinned_plan_without_records_exits_hold_with_json(self):
+        with patch.object(sys, 'argv', ['qcom_b3_admission.py', '--plan', str(admission.PLAN_PATH)]), \
+                redirect_stdout(io.StringIO()) as output:
+            self.assertEqual(admission.main(), 2)
+        report = json.loads(output.getvalue())
+        self.assertEqual(report['decision'], 'PREPARED_NO_QCOM_DEVICE')
+        self.assertEqual(report['b3_verified_artifact_count'], 0)
+        self.assertEqual(report['issues'], [])
+        self.assertFalse(report['g10_promotion'])
+
     def test_every_plan_field_is_pinned(self):
         changes = [
             ('source_commit', '0' * 40), ('tinygrad_commit', '0' * 40),
@@ -81,14 +91,33 @@ class AdmissionTest(unittest.TestCase):
 
     def test_cli_fabricated_records_exit_nonzero(self):
         with tempfile.TemporaryDirectory() as temp:
-            records = Path(temp) / 'records.json'
+            root = Path(temp)
+            records = root / 'records.json'
             records.write_text(json.dumps(fabricated_records()))
+            before = set(root.iterdir())
             with patch('sys.argv', ['qcom_b3_admission.py', '--plan', str(admission.PLAN_PATH),
                                     '--records', str(records), '--artifacts', temp]), \
                     patch.object(prep, 'verify_artifact_set', return_value=[]), \
                     redirect_stdout(io.StringIO()) as output:
-                self.assertNotEqual(admission.main(), 0)
-            self.assertIn(admission.UNVERIFIED, output.getvalue())
+                self.assertEqual(admission.main(), 2)
+            report = json.loads(output.getvalue())
+            self.assertEqual(report['decision'], admission.UNVERIFIED)
+            self.assertEqual(report['b3_verified_artifact_count'], 0)
+            self.assertFalse(report['g10_promotion'])
+            self.assertEqual(report['receipt_authentication_status'], 'SELF_REPORTED_NOT_AUTHENTICATED')
+            self.assertEqual(set(root.iterdir()), before)
+
+    def test_cli_rejects_nonarray_records_root_cleanly(self):
+        with tempfile.TemporaryDirectory() as temp:
+            records = Path(temp) / 'records.json'
+            records.write_text('{}')
+            with patch.object(sys, 'argv', ['qcom_b3_admission.py', '--plan',
+                                            str(admission.PLAN_PATH), '--records', str(records)]), \
+                    patch('sys.stderr', new_callable=io.StringIO) as error:
+                with self.assertRaises(SystemExit) as result:
+                    admission.main()
+            self.assertEqual(result.exception.code, 2)
+            self.assertIn('records must be an array of objects', error.getvalue())
 
     def test_cli_rejects_altered_plan_bytes_before_decode(self):
         with tempfile.TemporaryDirectory() as temp:
