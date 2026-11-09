@@ -9,4 +9,6 @@ Review this branch as offline engineering evidence only. Starting published C3 S
 5. Re-run the recorded clean-HEAD test commands and release admission in `B3_G10_C4_C5_TESTS_20261109.json`. Expected release exit is 2 with `RC_NOT_INSTALLABLE`.
 6. Preserve the independent Qwen raw verdict `FAIL_SOURCE_PROVEN_MATERIAL_DEFECT` and coordinator adjudication in `C3_NATIVE_CLOSURE_INDEPENDENT_REVIEW_20261109.md`; neither is overwritten by this handoff.
 
+7. Review `B3_G10_C4_C5_QWEN_REMEDIATION_20261109.md` and implementation commit `00326a0f0329f6eb8905db51ee20df2e5c608d40`. The Python snapshot gate and Windows offline kit must consume one bounded, pinned byte buffer. The Python blocked JSON CLI must exit 2. Nine focused negative tests are included in the 196-test release suite. Windows PowerShell parser and behavior checks remain for the coordinator's Windows host; no Ubuntu-to-device connection is authorized here.
+
 **Missing for promotion:** authenticated genuine Qualcomm 6/6 and resource/parked/power prerequisites; exact target GPU/driver ABI; full SCons cold product and packaging; device native runtime; recovery proof; ten physical checks. Protected 254 Params DENY, Galaxy OFF, StarPort excluded and stock ACC safeguards remain unchanged. Coordinator retains the campaign lease and controls publication.

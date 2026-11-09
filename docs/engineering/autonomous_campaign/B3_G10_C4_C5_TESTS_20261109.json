@@ -8,7 +8,7 @@
     "verified_genuine": 0
   },
   "device_actions": 0,
-  "note": "Release suite includes the three new combined_device_gate tests; nine platform skips are not passes. A final docs-only test artifact commit will be followed by a second clean HEAD run.",
+  "note": "Qwen snapshot-trust remediation: 196 release tests include nine platform skips and the focused nine gate tests. Counts and hashes were captured on clean committed implementation HEAD; final documentation successor is rerun separately.",
   "raw_artifacts_location": "ignored .g10_stage; not committed",
   "rc_gate": {
     "command": "PYTHONPATH=. python3 -m tools.release.combined_rc_readiness",
@@ -27,7 +27,7 @@
       "failed": 0,
       "included_in_release_suite": true,
       "passed": 10,
-      "raw_log_sha256": "34eb9cf86319ce74eb59594bce55e41993537e3631f8d143e413667804a3755f",
+      "raw_log_sha256": "baadaac060a617ef9abc4e487344ff9c33db7d8e86d5b5c6df93b8888a0a02fe",
       "run": 10
     },
     "recovery": {
@@ -35,25 +35,40 @@
       "exit": 0,
       "failed": 0,
       "passed": 4,
-      "raw_log_sha256": "887dc55ac75514f91c41bff2fd23026225f7813802bc1d14ecbdfd0339cf79fb",
+      "raw_log_sha256": "96719d6dc693d47aa327370177e852eb9736e48ad71810006c249529340ed1d3",
       "run": 4
     },
     "release": {
       "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/release/tests -p 'test_*.py' -q",
       "exit": 0,
       "failed": 0,
-      "passed": 181,
-      "raw_log_sha256": "c02dd3cc084f3ba187d63d4d21f196646b23889eeccec1dc4902bc48a4961c5a",
-      "run": 190,
+      "passed": 187,
+      "raw_log_sha256": "31e509d5ddf5c469c20e5188ac942bd2ea51a6a47e7e8afb2889e4445f779c4c",
+      "run": 196,
       "skipped_platform": 9
     }
   },
   "test_context": "CLEAN_COMMITTED_HEAD",
-  "tested_code_commit": "7bc2c2fbbe15b95280d5d3598359caa425123d30",
+  "tested_code_commit": "00326a0f0329f6eb8905db51ee20df2e5c608d40",
   "visionipc_build": {
     "archive_sha256": "25912c975eacb0164ea88fe0440b641776185be5a2e44978a5bd11caa8c652f4",
     "exit": 0,
     "never_executed": true,
     "raw_log_sha256": "8af204087ca76aa3d067a44ee161503f3d0aac17c1ebdb15184a42c724a8d927"
+  },
+  "remediation_focused": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tools.release.tests.test_combined_device_gate -q",
+    "run": 9,
+    "passed": 9,
+    "failed": 0,
+    "raw_log_sha256": "8abe6ea45b8678cf08ff74e15fd22bd04109abca59a04ba113267db6e3d3c11f"
+  },
+  "device_gate_cli": {
+    "input_sha256": "21f732825d9d61580e44e7c33e67cd9f8f4904884e84e96f284641529f13740d",
+    "exit": 2,
+    "decision": "DEVICE_COMPILE_BLOCKED_UNVERIFIED_PARKED_OR_POWER_OR_RESOURCE",
+    "device_compile_allowed": false,
+    "install_allowed": false,
+    "raw_json_sha256": "da795faaef367214ae8b26cd05107445a88c68ce2a2a8c720f3781bdf58b91d1"
   }
 }
