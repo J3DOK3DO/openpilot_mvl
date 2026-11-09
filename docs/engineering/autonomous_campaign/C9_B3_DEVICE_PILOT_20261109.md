@@ -1,0 +1,30 @@
+# C9 first warp device pilot kit
+
+**Current state: HOLD; no device execution by Codex.** The coordinator operates Windows SSH and any device transfer. The kit is `c9_b3_pilot.py`, `c9_b3_receipt.py`, `c9_b3_windows_pilot.ps1`, their named Python dependencies, and the pinned six-target JSON. The engineering HOLD tar produced by `c9_r0_stage.py` contains these bytes. The Python tool defaults to read-only preflight and exits 2 even when preflight passes; the PowerShell wrapper also defaults to that mode.
+
+## Exact compilation contract
+
+Frozen source is `4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb`, Tinygrad is `92b742f711c7d216fd3ed7a46a30a959e3c43bd4`, AGNOS is 19.9 with raw image SHA-256 `80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7`. `B3_SIX_TARGET_DRY_RUN_20261107.json` is pinned by SHA-256 `6a493a0d9418f62310ee9a0f33d8e50ade4d5dc768cd54ec9c20ad45eaf3cd6e`. Its six source-backed targets, in order, are:
+
+1. `driving_warp_1344x760_tinygrad.pkl`
+2. `dmonitoring_model_tinygrad.pkl`
+3. `driving_tinygrad.pkl`
+4. `driving_warp_1928x1208_tinygrad.pkl`
+5. `dm_warp_1344x760_tinygrad.pkl`
+6. `dm_warp_1928x1208_tinygrad.pkl`
+
+This pilot runs **only target 1** with `/usr/local/venv/bin/python3 -m SCons -j1 --minimal cache_dir=<isolated-cache> openpilot/selfdrive/modeld/models/driving_warp_1344x760_tinygrad.pkl`. Its process environment sets `DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1` and does not set `SKIP_TINYGRAD_COMPILE`. The source, recipe, compiler and ONNX hashes are checked before execution; no pre-existing first-warp output is accepted. A successful exit remains a self-reported candidate until independent native compiler execution, log, output and quality evidence are authenticated.
+
+## Required live interlock before `--execute`
+
+The coordinator must independently qualify and continuously observe physical isolation, stationary/zero speed, both Panda ignition signals false, disengagement, offroad state, stock manager health, stable direct external power for at least five minutes, CPU/GPU temperature below 70°C, zero GPU errors and OOM events, and a working abort path. The existing 66% battery observation, `Discharging` sysfs field and one `IsOffroad=1` reading do not establish sustained safe operation. Verify the Qualcomm GPU/driver/runtime identity and the monitor's independent authentication before use. The supplied monitor executable must emit one fresh UTC JSON observation per call with `authenticated`, `stationary`, `physically_disconnected`, `offroad`, `external_power_stable`, `thermal_within_limit`, `gpu_error_free`, `abort_ready`, `stock_manager_healthy` all true; `panda_ignition_can`, `panda_ignition_line`, `engaged` false; `speed_mps=0`; numeric `cpu_temp_c`, `gpu_temp_c` below 70; `gpu_errors=0`, `memory_oom_events=0`, `external_power_duration_seconds>=300`; and `observed_at_utc` within five seconds. The runner polls it every two seconds and stops the scope if any check or storage reserve fails.
+
+The coordinator-supplied gate JSON must bind `source_commit`, exact first `target`, `max_seconds=300`, the SHA-256 of the independently supplied monitor program, a measured positive `peak_scratch_bytes`, and true `coordinator_approved`, `independent_physical_monitor_qualified`, `sustained_external_power_qualified`, `thermal_gpu_monitor_qualified`, `cgroup_abort_rehearsed`, `stock_safety_qualified`, `rollback_ready`. This gate is an operational interlock; it is not a trust root for B3 admission. The isolated scratch must be empty, outside the source and inside `/data/mvl-builds/<source SHA>/`; free space must exceed 8 GiB plus measured peak scratch. The command runs in a systemd scope with `MemoryMax=2000M`, `CPUQuota=100%`, `TasksMax=64`, `IOWeight=100`, `RuntimeMaxSec=300` and a Python timeout of 300 seconds. The coordinator must confirm this exact scope configuration and abort/rollback behavior on the target before execution. No active `/data/openpilot`, manager, firmware or vehicle control path is targeted.
+
+After staging the kit in a separate isolated directory, a read-only Windows check is:
+
+```powershell
+.\c9_b3_windows_pilot.ps1 -SshTarget <authenticated-target> -Source /data/mvl-builds/4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb/engineering-20261109/source -Scratch /data/mvl-builds/4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb/c9-first-warp -Kit /data/mvl-builds/4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb/c9-kit
+```
+
+Only after every physical interlock is independently qualified may the coordinator add `-Execute -Gate <isolated gate JSON> -Monitor <qualified monitor executable> -Log <new isolated log path>`. Do not infer approval from this document. The executable is intentionally absent from this campaign because no independently qualified monitor or physical/abort evidence was supplied. The coordinator should retain the raw log, cgroup resource counters, monitor history, exact output bytes and an external evidence anchor. `c9_b3_receipt.py` checks the first output bytes and log without unpickling, then still exits 2 with `b3_verified_artifact_count=0` because a receipt alone cannot authenticate native execution. Subsequent five targets require separate one-at-a-time gates and a reviewed runner extension; this kit does not run them.

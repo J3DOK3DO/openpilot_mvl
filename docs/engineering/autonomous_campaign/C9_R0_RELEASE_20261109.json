@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "campaign": "C9_20261109",
+  "decision": "RC_NOT_INSTALLABLE",
+  "classification": "NOT_INSTALLABLE_ENGINEERING_HOLD",
+  "install_allowed": false,
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "active_installed_commit_reported": "376c44b5731b2655e5c2f301b73c9729eb499e91",
+  "active_installed_commit_independently_reverified": false,
+  "agnos_version": "19.9",
+  "agnos_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+  "qcom_authentic_outputs": 0,
+  "g10_full_cold_product": "NOT_BUILT",
+  "panda_firmware_version": "NOT_CAPTURED",
+  "protected_params": {
+    "source_evidence_git_blob": "40869f7450189f80dd9478b1fec674a83c80a1e2",
+    "entries": 254,
+    "denied": 254,
+    "approved": 0,
+    "read_write_enabled": 0,
+    "target_runtime": "NOT_VERIFIED"
+  },
+  "galaxy": "OFF_UNREGISTERED_HISTORICAL_NOT_REVERIFIED",
+  "starport": "EXCLUDED_PENDING_CONTRACT",
+  "physical_checks": {"passed": 0, "required": 10},
+  "backup_and_rollback": "PLAN_ONLY_NOT_QUALIFIED",
+  "independent_qwen_review": "PENDING_COORDINATOR",
+  "release_package": "ENGINEERING_HOLD_ONLY",
+  "built_payload": ["g10_cdm/cdm.o", "g10_cdm/libmvl_cdm_proof.so"],
+  "unbuilt_payload": ["six QCOM models", "full native product", "Panda firmware", "installer"],
+  "clean_install_admission_required": [
+    "six independently authenticated exact source QCOM receipts and hashes",
+    "full AGNOS19.9 AArch64 cold linked product with ELF, symbol and provider closure",
+    "Panda firmware version, signing and target compatibility proof",
+    "254 Params DENY reverified on device; Galaxy OFF and StarPort excluded",
+    "all ten applicable physical C4 checks with sustained stable power and rollback proof",
+    "independent review, current installed identity, trusted backup and separate installation approval"
+  ],
+  "device_write_performed": false
+}

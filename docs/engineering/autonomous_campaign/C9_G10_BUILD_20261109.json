@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "campaign": "C9_20261109",
+  "classification": "ENGINEERING_HOLD_NOT_INSTALLABLE",
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "agnos_version": "19.9",
+  "agnos_image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+  "builder_image_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+  "source_preflight": {
+    "result": "PASS",
+    "submodules_pinned": 7,
+    "lfs_hydrated": 286,
+    "raw_path": "/mnt/commadrive/MVL_C9_B3_G10_R0_ARTIFACTS_20261109/C9_SOURCE_PREFLIGHT.json",
+    "raw_sha256": "58cb1fa76444d7eafebdf87275e817cdb887df8328ed817ae8f2559822667327"
+  },
+  "frozen_sconstruct_dag": [
+    "openpilot/common",
+    "msgq_repo",
+    "openpilot/cereal",
+    "panda firmware",
+    "rednose_repo/rednose",
+    "openpilot/system/loggerd",
+    "openpilot/system/camerad on comma_arm64",
+    "openpilot/selfdrive/pandad",
+    "openpilot/selfdrive/controls/lib/longitudinal_mpc_lib",
+    "openpilot/selfdrive/locationd",
+    "openpilot/selfdrive/modeld",
+    "openpilot/selfdrive/ui",
+    "openpilot/sunnypilot"
+  ],
+  "panda_graph_side_effects": [
+    "panda/SConscript writes board/obj/gitversion.h",
+    "panda/SConscript writes board/obj/version",
+    "panda/SConscript writes board/obj/cert.h"
+  ],
+  "cold_build_preconditions": [
+    "six independently authenticated stock QCOM model outputs, exact names and bytes",
+    "fresh isolated writable copy of source plus seven pinned submodules and hydrated LFS",
+    "stage preflight against frozen commit, ONNX, recipe and AGNOS image",
+    "dry SCons graph review showing no host QCOM recompile and no frozen-source write",
+    "Panda firmware/version and signing inputs verified",
+    "host free space at least 8 GiB plus measured build peak"
+  ],
+  "conditional_command": "timeout 300s docker run --rm --platform linux/arm64 --network none --read-only --memory 1536m --cpus 1 --pids-limit 64 --security-opt no-new-privileges --tmpfs /agnos/tmp:rw,size=128m --mount type=bind,src=<PINNED_ROOTFS>,dst=/agnos,readonly --mount type=bind,src=<VERIFIED_ISOLATED_WRITABLE_SOURCE>,dst=/agnos/src --mount type=bind,src=<ISOLATED_CACHE>,dst=/agnos/build_cache sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95 chroot --userspec=1000:1000 /agnos /bin/sh -c 'cd /src && exec /usr/local/venv/bin/python3 -m SCons -j1 --minimal cache_dir=/build_cache <REVIEWED_TARGET>'",
+  "full_cold_product": "NOT_BUILT",
+  "full_product_elf_inventory": "ABSENT",
+  "six_qcom_inputs": "ABSENT_0_OF_6",
+  "panda_firmware_version": "NOT_CAPTURED",
+  "new_native_proof": {
+    "source": "openpilot/system/camerad/cameras/cdm.cc",
+    "kind": "AArch64 Qualcomm camera CDM helper compile and shared link only",
+    "actual_exit_code": 0,
+    "target_execution": false,
+    "object_sha256": "24068659074239c00e17732c04f2bd5a99e9ec21920edae6dbb5527e82eeea87",
+    "shared_library_sha256": "097a657c99e62b0c4797beba03f64d3e59fe72991050780bfe939b525ba6332b",
+    "raw_log_sha256": "d942cd8c2465435a7a6b1ab8da366cf4a81228cd983aabada178b4214b922277",
+    "elf_class": "ELF64",
+    "elf_machine": "AArch64",
+    "elf_type": "DYN",
+    "defined_symbols": ["write_cont", "write_random", "write_dmi"],
+    "dt_needed": ["libstdc++.so.6", "libm.so.6", "libgcc_s.so.1", "libc.so.6"],
+    "rpath": [],
+    "runpath": [],
+    "not_a_product_component": true
+  },
+  "exact_blockers": [
+    "no independently authenticated six QCOM outputs",
+    "no isolated writable full source copy admitted for cold graph traversal",
+    "no complete linked product or package dependency closure",
+    "Panda firmware version and target compatibility not captured",
+    "no qualified target runtime or physical C4 evidence"
+  ]
+}
