@@ -7,6 +7,7 @@ is not a device execution or install qualification.
 from __future__ import annotations
 
 import argparse
+from collections import deque
 import hashlib
 import json
 import os
@@ -37,6 +38,7 @@ AGNOS_SHA256 = '98e15de07c39a19b5fa17c96a67e66d4362f9ebaf7827b640f4127e3b6417da8
 AGNOS199_IMAGE_SHA256 = '80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7'
 AGNOS199_MANIFEST_SHA256 = 'c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693'
 MAX_PICKLE_OPCODES = 100_000_000
+MAX_PICKLE_OPERATIONS = 2_000_000
 MAX_CAPTURE_BYTES = 1024 ** 3
 
 
@@ -129,21 +131,33 @@ def qcom_capture(path: Path, *, dir_fd: int | None = None) -> dict:
                 raise ValueError(f'truncated pickle opcodes: {path}')
         if len(opcodes) > MAX_PICKLE_OPCODES:
             raise ValueError(f'pickle opcode bound exceeded: {path}')
-        try:
-            ops = list(pickletools.genops(opcodes))
-        except (ValueError, EOFError) as exc:
-            raise ValueError(f'malformed pickle opcodes: {path}') from exc
-        tokens = {arg for _, arg, _ in ops if isinstance(arg, str)}
-        if not ops or ops[-1][0].name != 'STOP' or not {'QCOM', 'metadata', 'run', 'input_specs'} <= tokens:
-            raise ValueError(f'missing QCOM capture structure: {path}')
-        if any(x in ('METAL', 'AMD') or x.startswith(('METAL:', 'AMD:', 'USB+AMD')) for x in tokens):
-            raise ValueError(f'foreign GPU backend in capture: {path}')
+        wanted = {'QCOM', 'metadata', 'run', 'input_specs', 'output_specs',
+                  'output_slices', 'input_shapes'}
+        tokens: set[str] = set()
+        recent = deque(maxlen=4)
         tinyjit_global = captured_global = False
-        for i, (op, _, _) in enumerate(ops):
-            if op.name == 'STACK_GLOBAL':
-                names = [arg for _, arg, _ in ops[max(0, i-4):i] if isinstance(arg, str)]
-                tinyjit_global |= len(names) >= 2 and names[-2:] == ['tinygrad.engine.jit', '_TinyJit']
-                captured_global |= bool(names) and names[-1] == 'CapturedJit'
+        last_opcode = None
+        count = 0
+        try:
+            for op, arg, _ in pickletools.genops(opcodes):
+                count += 1
+                if count > MAX_PICKLE_OPERATIONS:
+                    raise ValueError('pickle operation bound exceeded')
+                last_opcode = op.name
+                if isinstance(arg, str):
+                    if arg in wanted:
+                        tokens.add(arg)
+                    if arg in ('METAL', 'AMD') or arg.startswith(('METAL:', 'AMD:', 'USB+AMD')):
+                        raise ValueError('foreign GPU backend')
+                if op.name == 'STACK_GLOBAL':
+                    names = [value for value in recent if isinstance(value, str)]
+                    tinyjit_global |= len(names) >= 2 and names[-2:] == ['tinygrad.engine.jit', '_TinyJit']
+                    captured_global |= bool(names) and names[-1] == 'CapturedJit'
+                recent.append(arg if isinstance(arg, str) else None)
+        except (ValueError, EOFError) as exc:
+            raise ValueError(f'malformed pickle opcodes: {path}: {exc}') from exc
+        if last_opcode != 'STOP' or not {'QCOM', 'metadata', 'run', 'input_specs'} <= tokens:
+            raise ValueError(f'missing QCOM capture structure: {path}')
         if not tinyjit_global or not captured_global:
             raise ValueError(f'missing TinyJit capture globals: {path}')
         if path.name.startswith(('dmonitoring_model_', 'driving_tinygrad')):

@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 from tools.release import qcom_b3_prepare as b
 from tools.release import mvl_model_artifacts as model
 
@@ -86,6 +87,13 @@ class B3PrepareTest(unittest.TestCase):
             self.assertTrue(any('invalid captured bytes' in x for x in b.verify_artifact_set(path,records)))
             original.write_bytes(payload[:10])
             self.assertTrue(any('invalid captured bytes' in x for x in b.verify_artifact_set(path,records)))
+
+    def test_pickle_operation_bound_rejected_without_unpickling(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp); self.records(path)
+            with patch.object(model, 'MAX_PICKLE_OPERATIONS', 5):
+                with self.assertRaisesRegex(ValueError, 'operation bound exceeded'):
+                    model.qcom_capture(path/model.ARTIFACTS[0])
 
     def test_boolean_and_nonfinite_resource_evidence_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:
