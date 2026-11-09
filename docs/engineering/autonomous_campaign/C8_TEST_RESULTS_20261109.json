@@ -12,13 +12,13 @@
   },
   "campaign": "C8_20261109",
   "classification": "ENGINEERING_HOLD_NOT_INSTALLABLE",
-  "engineering_code_commit": "92ec7fc25f4a11e9d87997a255aaf5984784ecd7",
+  "engineering_code_commit": "00d83d6d1fdfcca93a237564c0efd29bd0fc2276",
   "focused_native": {
     "exit_code": 0,
     "failed": 0,
     "included_in_release": true,
     "passed": 10,
-    "raw_log_sha256": "e4cb7532056467ccada650d875e46d9b6a3b70aac7d0f3a0bdadfd96ae6c1d74",
+    "raw_log_sha256": "ac7c1f451c36933b8ba8f8134e8388a34aeb14e1b98a4101aae51ac195faa458",
     "run": 10
   },
   "frozen_source_preflight": {
@@ -57,16 +57,16 @@
     "exit_code": 0,
     "failed": 0,
     "passed": 4,
-    "raw_log_sha256": "d50f14751df1b47c1974c8f30ecacb3156072ba53c9fadbd79182e6959405a00",
+    "raw_log_sha256": "84b2257a1bd97827b4c2f4dcc6e32a2c5a213c1a773eafbff0606b84aaae35fe",
     "run": 4
   },
   "release": {
     "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/release/tests -p test_*.py -q",
     "exit_code": 0,
     "failed": 0,
-    "passed": 190,
-    "raw_log_sha256": "b1d8ae68533e759a9a2032d781ed23fc8883b75f99f9cf71da57cec69b1857be",
-    "run": 199,
+    "passed": 191,
+    "raw_log_sha256": "20b87a22e99138d265805ff96dcc8a785cfe1b09554861fa634d5cf7afba4339",
+    "run": 200,
     "skipped_platform": 9
   },
   "schema_version": 1,

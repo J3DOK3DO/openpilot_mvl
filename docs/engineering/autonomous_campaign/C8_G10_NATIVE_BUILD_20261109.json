@@ -68,7 +68,7 @@
     "staging_source_mount": "WRITABLE_ONLY_IN_ISOLATED_COPY_BECAUSE_PANDA_GRAPH_WRITES_GENERATED_HEADERS",
     "status": "NOT_EXECUTED_REQUIRES_AUTHENTIC_SIX_MODELS_AND_VERIFIED_STAGING_COPY"
   },
-  "engineering_code_commit": "92ec7fc25f4a11e9d87997a255aaf5984784ecd7",
+  "engineering_code_commit": "00d83d6d1fdfcca93a237564c0efd29bd0fc2276",
   "full_cold_requirements": {
     "exact_scons_graph": [
       "openpilot/common",

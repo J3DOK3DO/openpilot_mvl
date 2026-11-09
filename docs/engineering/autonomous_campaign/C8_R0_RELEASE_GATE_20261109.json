@@ -9,7 +9,7 @@
   "campaign": "C8_20261109",
   "classification": "ENGINEERING_HOLD_NOT_INSTALLABLE",
   "decision": "RC_NOT_INSTALLABLE",
-  "engineering_code_commit": "92ec7fc25f4a11e9d87997a255aaf5984784ecd7",
+  "engineering_code_commit": "00d83d6d1fdfcca93a237564c0efd29bd0fc2276",
   "g10_full_product": "NOT_BUILT",
   "galaxy": "OFF_UNREGISTERED_HISTORICAL_NOT_REVERIFIED",
   "gate_conditions": [
@@ -23,7 +23,7 @@
   ],
   "input_output_sha256sums": {
     "path": "/mnt/commadrive/MVL_B3_G10_R0_RELEASE_ARTIFACTS_20261109/C8_INPUT_OUTPUT_SHA256SUMS",
-    "sha256": "7fcd9d7cd8e10ee3e479ec82cbed998c6661106abf8794a4828282efc6107ad9"
+    "sha256": "2004455688c98f9627395f863033d8f01886b9b07273b99db6517303281d4825"
   },
   "install_allowed": false,
   "package_inventory": {
