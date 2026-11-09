@@ -1,5 +1,6 @@
 import hashlib
 import math
+import os
 from pathlib import Path
 import tempfile
 import unittest
@@ -68,6 +69,23 @@ class B3PrepareTest(unittest.TestCase):
             reasons=b.validate_capture_records(records)
             self.assertTrue(any('resource evidence' in x for x in reasons))
             self.assertTrue(any('provenance mismatch' in x for x in reasons))
+
+    def test_symlink_fifo_oversize_and_truncation_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp); records=self.records(path); name=model.ARTIFACTS[0]
+            original=path/name; payload=original.read_bytes(); original.unlink()
+            original.symlink_to(path/model.ARTIFACTS[1])
+            self.assertTrue(any('invalid captured bytes' in x for x in b.verify_artifact_set(path,records)))
+            original.unlink()
+            if hasattr(os, 'mkfifo'):
+                os.mkfifo(original)
+                self.assertTrue(any('invalid captured bytes' in x for x in b.verify_artifact_set(path,records)))
+                original.unlink()
+            with original.open('wb') as stream:
+                stream.truncate(model.MAX_CAPTURE_BYTES + 1)
+            self.assertTrue(any('invalid captured bytes' in x for x in b.verify_artifact_set(path,records)))
+            original.write_bytes(payload[:10])
+            self.assertTrue(any('invalid captured bytes' in x for x in b.verify_artifact_set(path,records)))
 
     def test_boolean_and_nonfinite_resource_evidence_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:

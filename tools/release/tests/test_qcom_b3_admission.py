@@ -1,6 +1,7 @@
 import copy
 import io
 import json
+import os
 import tempfile
 import unittest
 import tempfile
@@ -139,6 +140,19 @@ class AdmissionTest(unittest.TestCase):
             self.assertEqual(result['decision'], admission.UNVERIFIED)
             self.assertEqual(result['b3_verified_artifact_count'], 0)
             self.assertIn(admission.UNVERIFIED, result['issues'])
+
+    def test_evidence_json_rejects_symlink_fifo_oversize_and_duplicate_keys(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp); record=root/'record.json'; record.write_text('{}')
+            link=root/'link.json'; link.symlink_to(record)
+            with self.assertRaises(OSError): admission.load_json(link)
+            if hasattr(os, 'mkfifo'):
+                fifo=root/'fifo.json'; os.mkfifo(fifo)
+                with self.assertRaises(ValueError): admission.load_json(fifo)
+            record.write_bytes(b'x' * (1024*1024+1))
+            with self.assertRaises(ValueError): admission.load_json(record)
+            record.write_text('{"x":1,"x":2}')
+            with self.assertRaises(ValueError): admission.load_json(record)
 
 
 if __name__ == '__main__':

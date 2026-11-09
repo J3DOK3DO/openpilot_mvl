@@ -6,6 +6,7 @@ import argparse
 import math
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -116,19 +117,24 @@ def verify_artifact_set(directory: Path, records: list[dict]) -> list[str]:
     """Static byte inspection only; compiler exit and inference need independent proof."""
     issues = validate_capture_records(records)
     by_name = {r.get('artifact'): r for r in records}
-    if not directory.is_dir() or directory.is_symlink():
+    try:
+        fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+    except OSError:
         return issues + ['artifact directory missing or symlink']
-    if {p.name for p in directory.iterdir()} != set(model.ARTIFACTS):
-        issues.append('artifact directory contains missing or extra files')
-    for name in model.ARTIFACTS:
-        try:
-            identity = model.qcom_capture(directory / name)
-        except (OSError, ValueError) as exc:
-            issues.append(f'{name}: invalid captured bytes: {exc}')
-            continue
-        record = by_name.get(name)
-        if not record or record.get('sha256') != identity['sha256'] or record.get('bytes') != identity['size']:
-            issues.append(f'{name}: record differs from actual bytes')
+    try:
+        if set(os.listdir(fd)) != set(model.ARTIFACTS):
+            issues.append('artifact directory contains missing or extra files')
+        for name in model.ARTIFACTS:
+            try:
+                identity = model.qcom_capture(directory / name, dir_fd=fd)
+            except (OSError, ValueError) as exc:
+                issues.append(f'{name}: invalid captured bytes: {exc}')
+                continue
+            record = by_name.get(name)
+            if not record or record.get('sha256') != identity['sha256'] or record.get('bytes') != identity['size']:
+                issues.append(f'{name}: record differs from actual bytes')
+    finally:
+        os.close(fd)
     return issues
 
 

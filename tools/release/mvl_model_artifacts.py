@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import pickletools
 import re
+import stat
 import struct
 import subprocess
 
@@ -36,6 +37,7 @@ AGNOS_SHA256 = '98e15de07c39a19b5fa17c96a67e66d4362f9ebaf7827b640f4127e3b6417da8
 AGNOS199_IMAGE_SHA256 = '80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7'
 AGNOS199_MANIFEST_SHA256 = 'c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693'
 MAX_PICKLE_OPCODES = 100_000_000
+MAX_CAPTURE_BYTES = 1024 ** 3
 
 
 def sha256(path: Path) -> str:
@@ -96,9 +98,22 @@ def lfs_identity(pointer: Path, blob: Path) -> dict:
     return {'sha256': digest, 'size': size}
 
 
-def qcom_capture(path: Path) -> dict:
-    regular(path)
-    with path.open('rb') as stream:
+def qcom_capture(path: Path, *, dir_fd: int | None = None) -> dict:
+    """Inspect and hash one held regular inode without executing its pickle.
+
+    dir_fd lets a caller pin the artifact directory as well. Every structural
+    read and the final digest comes from this same no-follow descriptor.
+    """
+    flags = os.O_RDONLY | os.O_NONBLOCK | getattr(os, 'O_NOFOLLOW', 0)
+    try:
+        fd = os.open(path.name if dir_fd is not None else path, flags,
+                     **({'dir_fd': dir_fd} if dir_fd is not None else {}))
+    except OSError as exc:
+        raise ValueError(f'missing or non-regular capture: {path}') from exc
+    with os.fdopen(fd, 'rb') as stream:
+        before = os.fstat(stream.fileno())
+        if not stat.S_ISREG(before.st_mode) or not 0 < before.st_size <= MAX_CAPTURE_BYTES:
+            raise ValueError(f'nonregular, empty or oversized capture: {path}')
         header = stream.read(8)
         if len(header) != 8 or header.startswith(LFS_HEADER.encode()[:8]):
             raise ValueError(f'not a captured model artifact: {path}')
@@ -112,31 +127,40 @@ def qcom_capture(path: Path) -> dict:
             opcodes = stream.read(length)
             if len(opcodes) != length:
                 raise ValueError(f'truncated pickle opcodes: {path}')
-    if len(opcodes) > MAX_PICKLE_OPCODES:
-        raise ValueError(f'pickle opcode bound exceeded: {path}')
-    try:
-        ops = list(pickletools.genops(opcodes))
-    except (ValueError, EOFError) as exc:
-        raise ValueError(f'malformed pickle opcodes: {path}') from exc
-    tokens = {arg for _, arg, _ in ops if isinstance(arg, str)}
-    if not ops or ops[-1][0].name != 'STOP' or not {'QCOM', 'metadata', 'run', 'input_specs'} <= tokens:
-        raise ValueError(f'missing QCOM capture structure: {path}')
-    if any(x in ('METAL', 'AMD') or x.startswith(('METAL:', 'AMD:', 'USB+AMD')) for x in tokens):
-        raise ValueError(f'foreign GPU backend in capture: {path}')
-    tinyjit_global = captured_global = False
-    for i, (op, _, _) in enumerate(ops):
-        if op.name == 'STACK_GLOBAL':
-            names = [arg for _, arg, _ in ops[max(0, i-4):i] if isinstance(arg, str)]
-            tinyjit_global |= len(names) >= 2 and names[-2:] == ['tinygrad.engine.jit', '_TinyJit']
-            captured_global |= bool(names) and names[-1] == 'CapturedJit'
-    if not tinyjit_global or not captured_global:
-        raise ValueError(f'missing TinyJit capture globals: {path}')
-    if path.name.startswith(('dmonitoring_model_', 'driving_tinygrad')):
-        if not {'output_specs', 'output_slices', 'input_shapes'} <= tokens:
-            raise ValueError(f'missing model output specification: {path}')
-        if path.stat().st_size <= 8 + len(opcodes):
-            raise ValueError(f'missing out-of-band model buffers: {path}')
-    return {'sha256': sha256(path), 'size': path.stat().st_size}
+        if len(opcodes) > MAX_PICKLE_OPCODES:
+            raise ValueError(f'pickle opcode bound exceeded: {path}')
+        try:
+            ops = list(pickletools.genops(opcodes))
+        except (ValueError, EOFError) as exc:
+            raise ValueError(f'malformed pickle opcodes: {path}') from exc
+        tokens = {arg for _, arg, _ in ops if isinstance(arg, str)}
+        if not ops or ops[-1][0].name != 'STOP' or not {'QCOM', 'metadata', 'run', 'input_specs'} <= tokens:
+            raise ValueError(f'missing QCOM capture structure: {path}')
+        if any(x in ('METAL', 'AMD') or x.startswith(('METAL:', 'AMD:', 'USB+AMD')) for x in tokens):
+            raise ValueError(f'foreign GPU backend in capture: {path}')
+        tinyjit_global = captured_global = False
+        for i, (op, _, _) in enumerate(ops):
+            if op.name == 'STACK_GLOBAL':
+                names = [arg for _, arg, _ in ops[max(0, i-4):i] if isinstance(arg, str)]
+                tinyjit_global |= len(names) >= 2 and names[-2:] == ['tinygrad.engine.jit', '_TinyJit']
+                captured_global |= bool(names) and names[-1] == 'CapturedJit'
+        if not tinyjit_global or not captured_global:
+            raise ValueError(f'missing TinyJit capture globals: {path}')
+        if path.name.startswith(('dmonitoring_model_', 'driving_tinygrad')):
+            if not {'output_specs', 'output_slices', 'input_shapes'} <= tokens:
+                raise ValueError(f'missing model output specification: {path}')
+            if before.st_size <= 8 + len(opcodes):
+                raise ValueError(f'missing out-of-band model buffers: {path}')
+        stream.seek(0)
+        digest = hashlib.sha256()
+        for block in iter(lambda: stream.read(1024 * 1024), b''):
+            digest.update(block)
+        after = os.fstat(stream.fileno())
+        if (before.st_dev, before.st_ino, before.st_size, before.st_mtime_ns,
+                before.st_ctime_ns) != (after.st_dev, after.st_ino, after.st_size,
+                                       after.st_mtime_ns, after.st_ctime_ns):
+            raise ValueError(f'capture changed during inspection: {path}')
+        return {'sha256': digest.hexdigest(), 'size': before.st_size}
 
 
 def source_hashes(root: Path) -> dict[str, str]:

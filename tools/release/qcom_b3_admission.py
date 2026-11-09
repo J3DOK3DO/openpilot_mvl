@@ -80,10 +80,19 @@ def audit(plan: dict, records: list[dict], artifacts: Path | None = None) -> dic
 
 
 def load_json(path: Path):
-    model.regular(path)
-    if path.stat().st_size > 1024 * 1024:
-        raise ValueError('oversized evidence JSON')
-    return json.loads(path.read_text(), object_pairs_hook=model.no_duplicate_keys)
+    fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK)
+    with os.fdopen(fd, 'rb') as stream:
+        before = os.fstat(stream.fileno())
+        if not stat.S_ISREG(before.st_mode) or before.st_size > 1024 * 1024:
+            raise ValueError('nonregular or oversized evidence JSON')
+        data = stream.read(1024 * 1024 + 1)
+        after = os.fstat(stream.fileno())
+        if len(data) > 1024 * 1024 or (before.st_dev, before.st_ino,
+                before.st_size, before.st_mtime_ns, before.st_ctime_ns) != (
+                after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns,
+                after.st_ctime_ns):
+            raise ValueError('oversized or changed evidence JSON')
+    return json.loads(data, object_pairs_hook=model.no_duplicate_keys)
 
 
 def main() -> int:
