@@ -1,0 +1,181 @@
+{
+  "actually_built": [
+    "g10_yuv/yuv.o",
+    "g10_yuv/libmvl_yuv_proof.so"
+  ],
+  "agnos": {
+    "component_manifest_sha256": "c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693",
+    "image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+    "version": "19.9"
+  },
+  "builder_image_id": "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+  "campaign": "C8_20261109",
+  "classification": "ENGINEERING_HOLD_NOT_INSTALLABLE",
+  "cold_scons": "NOT_EXECUTED",
+  "compiler_linker_abi": {
+    "clang": "Ubuntu clang 18.1.3 (1ubuntu1)",
+    "container_rootfs": "AGNOS19.9",
+    "glibc": "2.39",
+    "gnu_ld": "2.42",
+    "raw_toolchain_log_sha256": "05acf899eb570958c5e6bced2145b7ac3fbc7a613f895f2388f249852f322fb5",
+    "target": "aarch64-unknown-linux-gnu"
+  },
+  "conditional_cold_build": {
+    "argv_template": [
+      "timeout",
+      "300s",
+      "docker",
+      "run",
+      "--rm",
+      "--platform",
+      "linux/arm64",
+      "--network",
+      "none",
+      "--read-only",
+      "--memory",
+      "1536m",
+      "--cpus",
+      "1",
+      "--pids-limit",
+      "64",
+      "--security-opt",
+      "no-new-privileges",
+      "--tmpfs",
+      "/agnos/tmp:rw,size=128m",
+      "--mount",
+      "type=bind,src=<AGNOS19.9_ROOTFS>,dst=/agnos,readonly",
+      "--mount",
+      "type=bind,src=<ISOLATED_VERIFIED_STAGE_SOURCE>,dst=/agnos/src",
+      "--mount",
+      "type=bind,src=<ISOLATED_CACHE>,dst=/agnos/cache",
+      "sha256:3cc10a4b24fcb74e0f73a9768897e044d28e4e699794ee41c4ca7dda475bbd95",
+      "chroot",
+      "--userspec=1000:1000",
+      "/agnos",
+      "/bin/sh",
+      "-c",
+      "cd /src && exec /usr/local/venv/bin/python3 -m SCons -j1 --minimal cache_dir=/cache <REVIEWED_NATIVE_TARGET>"
+    ],
+    "device_interaction": false,
+    "frozen_source_mount": "READ_ONLY_OR_ABSENT",
+    "preconditions": [
+      "fresh source preflight on isolated staging copy at exact 4b25263 commit",
+      "six authentic QCOM outputs copied from trusted receipt-bound native compilation with hashes verified",
+      "SCons -n schedules no QCOM host compile and writes no frozen path",
+      "Panda firmware/version and signing inputs reviewed",
+      "at least 8 GiB host free after measured peak"
+    ],
+    "staging_source_mount": "WRITABLE_ONLY_IN_ISOLATED_COPY_BECAUSE_PANDA_GRAPH_WRITES_GENERATED_HEADERS",
+    "status": "NOT_EXECUTED_REQUIRES_AUTHENTIC_SIX_MODELS_AND_VERIFIED_STAGING_COPY"
+  },
+  "engineering_code_commit": "92ec7fc25f4a11e9d87997a255aaf5984784ecd7",
+  "full_cold_requirements": {
+    "exact_scons_graph": [
+      "openpilot/common",
+      "msgq_repo",
+      "openpilot/cereal",
+      "panda firmware graph",
+      "rednose_repo/rednose",
+      "openpilot/system/loggerd",
+      "openpilot/system/camerad for comma_arm64",
+      "openpilot/selfdrive/pandad",
+      "openpilot/selfdrive/controls/lib/longitudinal_mpc_lib",
+      "openpilot/selfdrive/locationd",
+      "openpilot/selfdrive/modeld",
+      "openpilot/selfdrive/ui",
+      "openpilot/sunnypilot"
+    ],
+    "native_libraries": [
+      "libcommon",
+      "libmsgq",
+      "libsocketmaster",
+      "libcereal",
+      "libvisionipc",
+      "liblogger",
+      "Capn Proto",
+      "KJ",
+      "ZeroMQ",
+      "FFmpeg",
+      "Zstd",
+      "AGNOS system libraries"
+    ],
+    "package_requirements": [
+      "release_files.py selected closure",
+      "ELF64 AArch64 and DT_NEEDED provider closure",
+      "no host RPATH/RUNPATH",
+      "source, AGNOS, model and firmware hash manifest"
+    ],
+    "panda_required": [
+      "panda_h7 bootstub/main signed binary",
+      "body_h7 bootstub/main signed binary",
+      "version string and packet ABI hashes",
+      "target compatible firmware identity"
+    ],
+    "qcom_outputs": [
+      "driving_warp_1344x760_tinygrad.pkl",
+      "dmonitoring_model_tinygrad.pkl",
+      "driving_tinygrad.pkl",
+      "driving_warp_1928x1208_tinygrad.pkl",
+      "dm_warp_1344x760_tinygrad.pkl",
+      "dm_warp_1928x1208_tinygrad.pkl"
+    ]
+  },
+  "full_product": "NOT_BUILT",
+  "new_native_proof": {
+    "container_limits": {
+      "cpus": 1,
+      "memory_bytes": 1610612736,
+      "network": "none",
+      "pids": 64,
+      "rootfs_and_frozen_source": "read-only",
+      "timeout_seconds": 300
+    },
+    "dt_needed": [
+      "libc.so.6"
+    ],
+    "elf_class": "ELF64",
+    "elf_machine": "AArch64",
+    "elf_type": "DYN",
+    "executed_on_target": false,
+    "exit_code": 0,
+    "object_sha256": "5e2491e97d6fd07b0d760388f01292290a578965d2cf5de55d2f9aacc6e16c94",
+    "output": "g10_yuv/libmvl_yuv_proof.so",
+    "raw_log_sha256": "25e7703b2cf188aee1a87ff98ab72b44a4875468206935498ebdf49ef0920b82",
+    "rpath": [],
+    "runpath": [],
+    "shared_library_sha256": "8c2df07ab6b6e9840b4f09e3177172559ad2cfe1caf69dc8ec35fe56dd4b2472",
+    "source": "openpilot/common/yuv.cc"
+  },
+  "not_built": [
+    "six stock QCOM pkl outputs",
+    "full SCons cold product",
+    "loggerd",
+    "camerad",
+    "modeld complete runtime",
+    "pandad product binary",
+    "Panda bootstub/main/body firmware",
+    "release package"
+  ],
+  "panda": {
+    "build": "NOT_BUILT",
+    "firmware_sha256": null,
+    "firmware_version": "NOT_CAPTURED",
+    "sconscript_side_effect": "writes board/obj/gitversion.h, version, cert.h during graph evaluation; use isolated writable source copy",
+    "source_gitlink": "8a16e089b88593914823743df29e1c30b7dd3e00"
+  },
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "schema_version": 1,
+  "source_preflight": {
+    "gitlinks_pinned": 7,
+    "lfs_assets_hydrated": 286,
+    "raw_sha256": "58cb1fa76444d7eafebdf87275e817cdb887df8328ed817ae8f2559822667327",
+    "result": "PASS"
+  },
+  "unverified_dependencies": [
+    "six authentic native QCOM outputs",
+    "full SCons product graph traversal and link closure",
+    "Panda firmware build/version and target compatibility",
+    "Qualcomm camera/GPU ABI and target runtime",
+    "physical C4 checks"
+  ]
+}

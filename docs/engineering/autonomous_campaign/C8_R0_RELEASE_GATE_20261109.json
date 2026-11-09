@@ -1,0 +1,59 @@
+{
+  "agnos": {
+    "component_manifest_sha256": "c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693",
+    "image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+    "version": "19.9"
+  },
+  "b3_authentic_outputs": 0,
+  "backup_and_rollback": "PLAN_ONLY_NOT_EXECUTED",
+  "campaign": "C8_20261109",
+  "classification": "ENGINEERING_HOLD_NOT_INSTALLABLE",
+  "decision": "RC_NOT_INSTALLABLE",
+  "engineering_code_commit": "92ec7fc25f4a11e9d87997a255aaf5984784ecd7",
+  "g10_full_product": "NOT_BUILT",
+  "galaxy": "OFF_UNREGISTERED_HISTORICAL_NOT_REVERIFIED",
+  "gate_conditions": [
+    "independently authenticated six exact QCOM outputs and native receipts",
+    "complete source-matched AGNOS19.9 AArch64 cold product and dependency closure",
+    "Panda firmware/version/compatibility capture",
+    "254 Params DENY and Galaxy OFF/StarPort exclusion reverified",
+    "recovery and trusted backup gates complete",
+    "ten applicable physical C4 checks passed",
+    "independent Qwen review and separate installation approval"
+  ],
+  "input_output_sha256sums": {
+    "path": "/mnt/commadrive/MVL_B3_G10_R0_RELEASE_ARTIFACTS_20261109/C8_INPUT_OUTPUT_SHA256SUMS",
+    "sha256": "7fcd9d7cd8e10ee3e479ec82cbed998c6661106abf8794a4828282efc6107ad9"
+  },
+  "install_allowed": false,
+  "package_inventory": {
+    "ACTUALLY_BUILT": [
+      "g10_yuv/yuv.o",
+      "g10_yuv/libmvl_yuv_proof.so"
+    ],
+    "NOT_BUILT": [
+      "full native product",
+      "six QCOM outputs",
+      "Panda firmware",
+      "installer"
+    ]
+  },
+  "panda_firmware_version": "NOT_CAPTURED",
+  "physical_checks_passed": 0,
+  "physical_checks_required": 10,
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "protected_params": {
+    "approved": 0,
+    "checked_from": "committed G03 crosswalk blob at engineering HEAD",
+    "denied": 254,
+    "entries": 254,
+    "git_blob_oid": "40869f7450189f80dd9478b1fec674a83c80a1e2",
+    "read_write_enabled": 0,
+    "target_runtime": "NOT_VERIFIED"
+  },
+  "rc_exit_code": 2,
+  "rc_raw_sha256": "4f5316a799f8aed53821af9cdc91c8a130c4126c7ca19fcda387636574144249",
+  "release_package": "NONE",
+  "schema_version": 1,
+  "starport": "EXCLUDED_PENDING_CONTRACT"
+}

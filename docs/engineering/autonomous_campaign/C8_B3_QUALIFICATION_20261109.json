@@ -1,0 +1,166 @@
+{
+  "agnos": {
+    "component_manifest_sha256": "c581f89ea1fa16814c4f1965cb2113d2e8c628dfa88d5f210bf2f0917cad6693",
+    "image_sha256": "80d9373348ddff2a5d1f534fab3420383939c96f3eba60baab6b15339fc602c7",
+    "version": "19.9"
+  },
+  "cache_dir": "/data/mvl-builds/4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb/pilot-1234567890abcdef/cache",
+  "campaign": "C8_20261109",
+  "classification": "ENGINEERING_HOLD_NOT_INSTALLABLE",
+  "compiler_recipe_and_compiler_sha256": {
+    "openpilot/selfdrive/modeld/SConscript": "07499bf98dafa501025e08f71c1819787b5dac9f681d443cb0557a1a9d0d7097",
+    "tinygrad_repo/examples/openpilot/compile_onnx.py": "512571a84dc7931a07713a81b342e5087c41b173edea2d9a3b209fb83c5ab340",
+    "tinygrad_repo/examples/openpilot/compile_warp.py": "97a6814fde7f16e1ce265c6b6388cd5799c8e2f8969ac78cfc4fd5a929b1921d"
+  },
+  "device_action_performed": false,
+  "engineering_code_commit": "92ec7fc25f4a11e9d87997a255aaf5984784ecd7",
+  "first_pilot": "driving_warp_1344x760_tinygrad.pkl",
+  "genuine_outputs": 0,
+  "onnx": {
+    "dmonitoring_model.onnx": {
+      "bytes": 7844499,
+      "sha256": "dee5a294e8afaacc9295ac5d100e00733ecac278e79264b96331e40a3ede1b04"
+    },
+    "driving_supercombo.onnx": {
+      "bytes": 60918562,
+      "sha256": "65a08adc31d5c456219687d99b7bf5e44d61dae2d49ea67850e76105c7248cce"
+    }
+  },
+  "panda_gitlink": "8a16e089b88593914823743df29e1c30b7dd3e00",
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "python_module": "SCons",
+  "qcom_flags": "DEV=QCOM IMAGE=1 FLOAT16=1 NOLOCALS=1 JIT_BATCH_SIZE=0 OPENPILOT_HACKS=1",
+  "readiness_sha256": "bd6955c3fdc0d7e96ee5ea56670b9ca368951059b2e263e488dbb53b5d90bd2b",
+  "receipt_verifier": "tools/release/qcom_b3_admission.py; self-reported fields never authenticate execution",
+  "required_before_pilot": [
+    "independent continuously monitored parked, ignition-off, disengaged and no vehicle activity proof",
+    "verified sustained external power despite Discharging sysfs state",
+    "GPU/driver/ABI and CPU/GPU thermal/error monitor with measured trends",
+    "hard cgroup MemoryMax <= 2 GiB and tested abort; measured CPU/GPU peak plus reserve",
+    "8 GiB /data reserve plus measured scratch/cache/output peak and enforced aggregate quota",
+    "stable stock manager and independently tested abort/rollback",
+    "coordinator-authorized device procedure and independent review"
+  ],
+  "required_outputs": 6,
+  "schema_version": 1,
+  "state": "HOLD_0_OF_6_AUTHENTIC",
+  "static_admission": {
+    "b2_safety_status": "NOT_SAFETY_ACCEPTED_NOT_PASSED",
+    "b2_waiver": "OWNER_WAIVED_B2_OUTSTANDING_REQUIREMENTS_FOR_PLANNING_ONLY",
+    "b3_completed_6_of_6": false,
+    "b3_required_artifact_count": 6,
+    "b3_static_candidate_count": 0,
+    "b3_verified_artifact_count": 0,
+    "decision": "PREPARED_NO_QCOM_DEVICE",
+    "device_write_performed": false,
+    "g10_promotion": false,
+    "issues": [],
+    "receipt_authentication_status": "SELF_REPORTED_NOT_AUTHENTICATED",
+    "receipt_field_authentication": {
+      "compiler_log_sha256": "SELF_REPORTED_NOT_AUTHENTICATED",
+      "gpu_thermal_evidence_sha256": "SELF_REPORTED_NOT_AUTHENTICATED",
+      "hard_quota_evidence_sha256": "SELF_REPORTED_NOT_AUTHENTICATED",
+      "memory_abort_evidence_sha256": "SELF_REPORTED_NOT_AUTHENTICATED",
+      "parked_monitor_evidence_sha256": "SELF_REPORTED_NOT_AUTHENTICATED",
+      "provider_attestation_sha256": "SELF_REPORTED_NOT_AUTHENTICATED",
+      "quality_result": "SELF_REPORTED_NOT_AUTHENTICATED",
+      "quality_review_evidence_sha256": "SELF_REPORTED_NOT_AUTHENTICATED"
+    },
+    "schema_version": 1,
+    "static_candidates": 0
+  },
+  "targets": [
+    {
+      "argv": [
+        "/usr/local/venv/bin/python3",
+        "-m",
+        "SCons",
+        "-j1",
+        "--minimal",
+        "cache_dir=/data/mvl-builds/4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb/pilot-1234567890abcdef/cache",
+        "openpilot/selfdrive/modeld/models/driving_warp_1344x760_tinygrad.pkl"
+      ],
+      "authenticated_output_sha256": null,
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 1,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/driving_warp_1344x760_tinygrad.pkl"
+    },
+    {
+      "argv": [
+        "/usr/local/venv/bin/python3",
+        "-m",
+        "SCons",
+        "-j1",
+        "--minimal",
+        "cache_dir=/data/mvl-builds/4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb/pilot-1234567890abcdef/cache",
+        "openpilot/selfdrive/modeld/models/dmonitoring_model_tinygrad.pkl"
+      ],
+      "authenticated_output_sha256": null,
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 2,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/dmonitoring_model_tinygrad.pkl"
+    },
+    {
+      "argv": [
+        "/usr/local/venv/bin/python3",
+        "-m",
+        "SCons",
+        "-j1",
+        "--minimal",
+        "cache_dir=/data/mvl-builds/4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb/pilot-1234567890abcdef/cache",
+        "openpilot/selfdrive/modeld/models/driving_tinygrad.pkl"
+      ],
+      "authenticated_output_sha256": null,
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 3,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/driving_tinygrad.pkl"
+    },
+    {
+      "argv": [
+        "/usr/local/venv/bin/python3",
+        "-m",
+        "SCons",
+        "-j1",
+        "--minimal",
+        "cache_dir=/data/mvl-builds/4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb/pilot-1234567890abcdef/cache",
+        "openpilot/selfdrive/modeld/models/driving_warp_1928x1208_tinygrad.pkl"
+      ],
+      "authenticated_output_sha256": null,
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 4,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/driving_warp_1928x1208_tinygrad.pkl"
+    },
+    {
+      "argv": [
+        "/usr/local/venv/bin/python3",
+        "-m",
+        "SCons",
+        "-j1",
+        "--minimal",
+        "cache_dir=/data/mvl-builds/4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb/pilot-1234567890abcdef/cache",
+        "openpilot/selfdrive/modeld/models/dm_warp_1344x760_tinygrad.pkl"
+      ],
+      "authenticated_output_sha256": null,
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 5,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/dm_warp_1344x760_tinygrad.pkl"
+    },
+    {
+      "argv": [
+        "/usr/local/venv/bin/python3",
+        "-m",
+        "SCons",
+        "-j1",
+        "--minimal",
+        "cache_dir=/data/mvl-builds/4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb/pilot-1234567890abcdef/cache",
+        "openpilot/selfdrive/modeld/models/dm_warp_1928x1208_tinygrad.pkl"
+      ],
+      "authenticated_output_sha256": null,
+      "compiler_exit": "NOT_EXECUTED",
+      "order": 6,
+      "stock_scons_target": "openpilot/selfdrive/modeld/models/dm_warp_1928x1208_tinygrad.pkl"
+    }
+  ],
+  "tinygrad_gitlink": "92b742f711c7d216fd3ed7a46a30a959e3c43bd4",
+  "trusted_plan_sha256": "6a493a0d9418f62310ee9a0f33d8e50ade4d5dc768cd54ec9c20ad45eaf3cd6e"
+}
