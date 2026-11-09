@@ -71,7 +71,7 @@ def preflight(source: Path, scratch: Path) -> dict:
         raise ValueError('regular isolated source directory required')
     if model.git(source, 'rev-parse', 'HEAD') != SOURCE or model.git(source/'tinygrad_repo', 'rev-parse', 'HEAD') != TINYGRAD:
         raise ValueError('source or compiler commit mismatch')
-    check = subprocess.run(['python3', str(TRUSTED_PREFLIGHT), '--repo', str(source),
+    check = subprocess.run(['python3', '-B', str(TRUSTED_PREFLIGHT), '--repo', str(source),
                             '--commit', SOURCE], capture_output=True, text=True, timeout=120)
     if check.returncode or json.loads(check.stdout).get('result') != 'PASS':
         raise ValueError('full frozen source preflight failed')
@@ -116,8 +116,24 @@ def observation(command: Path) -> dict:
     return item
 
 
+def check_execution_log_path(source: Path, scratch: Path, log_path: Path) -> None:
+    """Reject logs outside the isolated scratch or reusing an existing target.
+
+    This is intentionally checked before any scratch creation or SCons launch.
+    The frozen source and the active device installation are never log targets.
+    """
+    if (not log_path.is_absolute() or '..' in log_path.parts or
+            log_path.exists() or log_path.is_symlink() or
+            log_path.parent != scratch or
+            log_path.parent.resolve() != scratch.resolve() or
+            scratch.resolve().is_relative_to(source.resolve()) or
+            scratch.resolve().is_relative_to(Path('/data/openpilot'))):
+        raise ValueError('execution log must be a fresh file directly under isolated scratch')
+
+
 def execute(source: Path, scratch: Path, gate_path: Path, monitor: Path, log_path: Path) -> dict:
     preflight(source, scratch)
+    check_execution_log_path(source, scratch, log_path)
     gate = json.loads(model.regular(gate_path).read_bytes(), object_pairs_hook=model.no_duplicate_keys)
     if type(gate) is not dict:
         raise ValueError('physical gate must be an object')
@@ -216,7 +232,12 @@ def main() -> int:
         else:
             result, code = preflight(args.source, args.scratch), 2
     except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError, TimeoutError) as exc:
-        result, code = {'decision': 'HOLD', 'reason': str(exc), 'device_write_performed': False}, 2
+        # An execution-mode failure may occur after scratch files or compiler outputs
+        # have been written. Never report 'no device write' without reinspection.
+        result, code = {'decision': 'HOLD', 'reason': str(exc),
+                        'device_write_performed': None if args.execute else False,
+                        'write_state': 'UNKNOWN_REQUIRES_DEVICE_REVIEW' if args.execute else 'NOT_ATTEMPTED',
+                        'install_allowed': False}, 2
     print(json.dumps(result, sort_keys=True, indent=2))
     return code
 

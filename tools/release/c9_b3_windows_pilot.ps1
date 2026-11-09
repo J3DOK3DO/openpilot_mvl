@@ -14,12 +14,13 @@ if (-not $Source.StartsWith("/data/mvl-builds/$sourceCommit/") -or -not $Scratch
 foreach ($value in @($Source, $Scratch, $Kit)) {
   if ($value -match '(^|/)\.\.(/|$)') { throw 'Path traversal is forbidden' }
 }
-$argv = @('env', "PYTHONPATH=$Kit", 'python3', '-m', 'tools.release.c9_b3_pilot', '--source', $Source, '--scratch', $Scratch)
+$argv = @('env', 'PYTHONDONTWRITEBYTECODE=1', "PYTHONPATH=$Kit", 'python3', '-B', '-m', 'tools.release.c9_b3_pilot', '--source', $Source, '--scratch', $Scratch)
 if ($Execute) {
   foreach ($value in @($Gate, $Monitor, $Log)) {
     if ($value -notmatch '^/data/mvl-builds/[0-9a-f]{40}/[A-Za-z0-9_./-]+$' -or -not $value.StartsWith("/data/mvl-builds/$sourceCommit/")) { throw 'Execution paths must be isolated' }
     if ($value -match '(^|/)\.\.(/|$)') { throw 'Path traversal is forbidden' }
   }
+  if ($Log.Substring(0, $Log.LastIndexOf('/')) -ne $Scratch) { throw 'Log must be a direct child of isolated scratch' }
   $argv += @('--execute', '--gate', $Gate, '--monitor', $Monitor, '--log', $Log)
 }
 & ssh -o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -o ConnectTimeout=10 -- $SshTarget ($argv -join ' ')
