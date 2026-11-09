@@ -89,6 +89,8 @@ def preflight(source: Path, scratch: Path) -> dict:
 def observation(command: Path) -> dict:
     result = subprocess.run([str(command)], capture_output=True, text=True, timeout=5, check=True)
     item = json.loads(result.stdout, object_pairs_hook=model.no_duplicate_keys)
+    if type(item) is not dict:
+        raise ValueError('monitor observation must be an object')
     required = ('stationary', 'physically_disconnected', 'offroad', 'external_power_stable',
                 'thermal_within_limit', 'gpu_error_free', 'abort_ready', 'stock_manager_healthy',
                 'authenticated')
@@ -116,6 +118,8 @@ def observation(command: Path) -> dict:
 def execute(source: Path, scratch: Path, gate_path: Path, monitor: Path, log_path: Path) -> dict:
     preflight(source, scratch)
     gate = json.loads(model.regular(gate_path).read_bytes(), object_pairs_hook=model.no_duplicate_keys)
+    if type(gate) is not dict:
+        raise ValueError('physical gate must be an object')
     required = ('coordinator_approved', 'independent_physical_monitor_qualified',
                 'sustained_external_power_qualified', 'thermal_gpu_monitor_qualified',
                 'cgroup_abort_rehearsed', 'stock_safety_qualified', 'rollback_ready')
@@ -197,7 +201,7 @@ def main() -> int:
             code = 0 if result['compiler_exit_code'] == 0 else 2
         else:
             result, code = preflight(args.source, args.scratch), 2
-    except (OSError, ValueError, subprocess.SubprocessError, TimeoutError) as exc:
+    except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError, TimeoutError) as exc:
         result, code = {'decision': 'HOLD', 'reason': str(exc), 'device_write_performed': False}, 2
     print(json.dumps(result, sort_keys=True, indent=2))
     return code

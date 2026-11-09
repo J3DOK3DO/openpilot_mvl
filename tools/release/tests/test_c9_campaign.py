@@ -33,6 +33,9 @@ class C9CampaignTest(unittest.TestCase):
             run.return_value.stdout = json.dumps({'stationary': True})
             with self.assertRaisesRegex(ValueError, 'unsafe or incomplete'):
                 pilot.observation(Path('/tmp/monitor'))
+            run.return_value.stdout = '[]'
+            with self.assertRaisesRegex(ValueError, 'must be an object'):
+                pilot.observation(Path('/tmp/monitor'))
 
     def test_receipt_never_promotes_first_target(self):
         with tempfile.TemporaryDirectory() as temp:
