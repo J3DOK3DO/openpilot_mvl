@@ -89,6 +89,7 @@ build/
 .vscode/*
 .history/
 .c3_stage/
+.g10_stage/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

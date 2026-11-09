@@ -1,0 +1,74 @@
+{
+  "b3_outputs": "B3_0_OF_6_AUTHENTIC",
+  "decision": "DEVICE_COMPILE_BLOCKED_UNVERIFIED_PARKED_OR_POWER_OR_RESOURCE",
+  "device_compile_allowed": false,
+  "device_write_performed": false,
+  "evidence_sha256": "21f732825d9d61580e44e7c33e67cd9f8f4904884e84e96f284641529f13740d",
+  "gates": {
+    "abort_and_rollback": {
+      "reason": "isolated cleanup, abort and verified rollback not demonstrated",
+      "status": "UNKNOWN"
+    },
+    "active_source_identity": {
+      "reason": "installed source differs or is not authenticated as frozen G10",
+      "status": "FAIL"
+    },
+    "agnos_and_arch": {
+      "reason": "snapshot reports AGNOS 19.9 and aarch64",
+      "status": "PASS"
+    },
+    "data_free_8gib_reserve": {
+      "reason": "snapshot free bytes cover static 8 GiB reserve",
+      "status": "PASS"
+    },
+    "external_sustained_power": {
+      "reason": "all observed external supply paths offline",
+      "status": "FAIL"
+    },
+    "gpu_chip_driver_abi": {
+      "reason": "node presence does not identify GPU chip, driver, firmware or tinygrad ABI",
+      "status": "UNKNOWN"
+    },
+    "gpu_device_node": {
+      "reason": "KGSL character node observed",
+      "status": "PASS"
+    },
+    "hard_quota_and_scratch_peak": {
+      "reason": "no enforced isolated hard quota or measured scratch peak including model cache",
+      "status": "UNKNOWN"
+    },
+    "independent_live_parked": {
+      "reason": "flags disagree or are incomplete; independent live parked monitor absent",
+      "status": "UNKNOWN"
+    },
+    "memory_headroom_and_peak": {
+      "reason": "single MemAvailable observation; compiler CPU/GPU peak RSS and abort ceiling unmeasured",
+      "status": "UNKNOWN"
+    },
+    "non_driving_constraints": {
+      "reason": "physical parked state and exclusion of driving not independently confirmed",
+      "status": "UNKNOWN"
+    },
+    "staged_source_identity": {
+      "reason": "no isolated staged checkout hash in passive transcript",
+      "status": "UNKNOWN"
+    },
+    "thermal_and_gpu_error_monitor": {
+      "reason": "untyped point temperatures; no continuous CPU/GPU thermal or GPU error monitor",
+      "status": "UNKNOWN"
+    }
+  },
+  "install_allowed": false,
+  "network_readiness": "DEVICE_CONNECTED_READONLY",
+  "observations": {
+    "data_free_bytes": 9570889728,
+    "external_supply_online_values": [
+      "0",
+      "0",
+      "0"
+    ],
+    "mem_available_kb": 2524272
+  },
+  "owner_state": "B3_RESUMED_OWNER",
+  "schema_version": 1
+}

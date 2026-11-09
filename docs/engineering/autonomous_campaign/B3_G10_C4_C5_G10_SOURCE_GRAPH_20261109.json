@@ -1,0 +1,195 @@
+{
+  "abi_reference": {
+    "c3_link_elf_machine": "AArch64",
+    "c3_link_elf_needed": [
+      "libzmq.so.5",
+      "libstdc++.so.6",
+      "libm.so.6",
+      "libgcc_s.so.1",
+      "libc.so.6"
+    ],
+    "c3_link_elf_rpath": null,
+    "c3_link_elf_sha256": "379bfb7e7d3f76a0bddc74dcb6fd3e77b5c5858a0daa4708aa26d6805311711c",
+    "c3_rootfs_nodes_checked": 19
+  },
+  "agnos": "19.9",
+  "arch_selection": "aarch64 plus /AGNOS => comma_arm64",
+  "component_edges": {
+    "camera": [
+      "camera_qcom2.cc",
+      "camera_common.cc",
+      "spectra.cc",
+      "cdm.cc",
+      "ox03c10.cc",
+      "os04c10.cc",
+      "visionipc",
+      "messaging",
+      "common",
+      "Qualcomm camera kernel and userspace ABI"
+    ],
+    "cereal": [
+      "four capnp schemas incl opendbc car",
+      "capnpc generated C++",
+      "libcereal.a",
+      "libsocketmaster.a",
+      "libmsgq.a",
+      "libcapnp",
+      "libkj",
+      "libzmq"
+    ],
+    "logger": [
+      "loggerd",
+      "encoderd",
+      "liblogger.a",
+      "visionipc",
+      "messaging",
+      "ffmpeg",
+      "zstd"
+    ],
+    "models": [
+      "modeld SConscript",
+      "two pinned ONNX",
+      "four warp recipes",
+      "tinygrad QCOM backend",
+      "six exact output pkls",
+      "Python modeld and dmonitoringmodeld loaders"
+    ],
+    "pandad": [
+      "panda gitlink 8a16e089b88593914823743df29e1c30b7dd3e00",
+      "Panda firmware SConscript graph side effects and version source",
+      "pandad/libpanda.a",
+      "messaging"
+    ],
+    "ui": [
+      "minimal comma_arm64 SConscript has no UI binary builder",
+      "installer only with extras enabled",
+      "raylib, GLESv2, EGL, gbm, drm for installer"
+    ],
+    "visionipc": [
+      "msgq_repo/msgq/visionipc/{visionipc,visionipc_server,visionipc_client,visionbuf}.cc",
+      "libvisionipc.a",
+      "libmsgq.a",
+      "libcommon.a"
+    ]
+  },
+  "evidence_type": "FROZEN_SCONS_SOURCE_GRAPH_WITHOUT_FULL_SCONS_TRAVERSAL",
+  "full_product": "NOT_BUILT",
+  "full_product_blockers": [
+    "six authentic QCOM model outputs absent",
+    "full cold SCons traversal and build not completed",
+    "Panda firmware/version and release packaging not verified",
+    "native target runtime, Qualcomm camera/GPU ABI and physical acceptance absent"
+  ],
+  "model_independent_buildable": [
+    "common",
+    "msgq",
+    "cereal",
+    "visionipc",
+    "loggerd",
+    "camerad",
+    "pandad host binary",
+    "locationd components; target-specific link dependencies remain unverified"
+  ],
+  "model_output_count": 6,
+  "new_visionipc_build": {
+    "archive_bytes": 635910,
+    "archive_sha256": "25912c975eacb0164ea88fe0440b641776185be5a2e44978a5bd11caa8c652f4",
+    "dynamic_section": "absent in relocatable objects; no DT_NEEDED/RPATH claims for this archive",
+    "execution": "NEVER_EXECUTED",
+    "exit_code": 0,
+    "object_arch": "ELF64 little-endian AArch64 relocatable",
+    "object_sha256": {
+      "visionbuf.o": "6851abb1ad6296a0ab7aba09a13b0e174c64f84175208d7f0380d40248eadb6b",
+      "visionipc.o": "4c6d39f7b7df36a8abdb6d5811f27ada0a1ab0b6345c334ef88545242efb012d",
+      "visionipc_client.o": "a01b17f774c99cb12d64c854827b66d792f840c8e6918048c142ef9117daace9",
+      "visionipc_server.o": "f857dd9d5a8590b57d3551b668e8569ad8cb4dd40662214aa6d5cc6d35143bea"
+    },
+    "raw_log_sha256": "8af204087ca76aa3d067a44ee161503f3d0aac17c1ebdb15184a42c724a8d927",
+    "scope": "four frozen source objects archived; never executed or linked to a product"
+  },
+  "package_inventory_dist_info": {
+    "acados": [
+      "comma_deps_acados-0.2.2.post98.dist-info"
+    ],
+    "capnproto": [
+      "comma_deps_capnproto-1.0.1.post98.dist-info"
+    ],
+    "eigen": [
+      "comma_deps_eigen-3.4.0.post98.dist-info"
+    ],
+    "ffmpeg": [
+      "comma_deps_ffmpeg-7.1.0.post98.dist-info"
+    ],
+    "json11": [
+      "comma_deps_json11-20170411.0.post98.dist-info"
+    ],
+    "ncurses": [
+      "comma_deps_ncurses-6.5.post98.dist-info"
+    ],
+    "raylib": [
+      "comma_deps_raylib-6.0.0.1.post98.dist-info"
+    ],
+    "zeromq": [
+      "comma_deps_zeromq-4.3.5.post98.dist-info"
+    ],
+    "zstd": [
+      "comma_deps_zstd-1.5.6.post98.dist-info"
+    ]
+  },
+  "schema_version": 1,
+  "sconstruct_edges": [
+    {
+      "from": "SConstruct",
+      "to": "openpilot/common/SConscript"
+    },
+    {
+      "from": "SConstruct",
+      "to": "msgq_repo/SConscript"
+    },
+    {
+      "from": "SConstruct",
+      "to": "openpilot/cereal/SConscript"
+    },
+    {
+      "from": "SConstruct",
+      "to": "panda/SConscript"
+    },
+    {
+      "from": "SConstruct",
+      "to": "rednose_repo/rednose/SConscript"
+    },
+    {
+      "from": "SConstruct",
+      "to": "openpilot/system/loggerd/SConscript"
+    },
+    {
+      "from": "SConstruct",
+      "to": "openpilot/system/camerad/SConscript (comma_arm64)"
+    },
+    {
+      "from": "SConstruct",
+      "to": "openpilot/selfdrive/pandad/SConscript"
+    },
+    {
+      "from": "SConstruct",
+      "to": "openpilot/selfdrive/controls/lib/longitudinal_mpc_lib/SConscript"
+    },
+    {
+      "from": "SConstruct",
+      "to": "openpilot/selfdrive/locationd/SConscript"
+    },
+    {
+      "from": "SConstruct",
+      "to": "openpilot/selfdrive/modeld/SConscript"
+    },
+    {
+      "from": "SConstruct",
+      "to": "openpilot/selfdrive/ui/SConscript"
+    },
+    {
+      "from": "SConstruct",
+      "to": "openpilot/sunnypilot/SConscript"
+    }
+  ],
+  "source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb"
+}
