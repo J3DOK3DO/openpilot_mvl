@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "campaign": "C9_20261109",
+  "classification": "ENGINEERING_HOLD_NOT_INSTALLABLE",
+  "tested_clean_code_commit": "62075928904a1e6ea1d6997d51d093d0e84854f6",
+  "product_source_commit": "4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb",
+  "raw_artifacts_root": "/mnt/commadrive/MVL_C9_B3_G10_R0_ARTIFACTS_20261109",
+  "release": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/release/tests -p test_*.py -q",
+    "exit_code": 0,
+    "run": 210,
+    "passed": 201,
+    "skipped_platform": 9,
+    "failed": 0,
+    "raw_log_sha256": "3613f989dc371298a3461a2844bb1e83b7ca2eb223c824de49f4022481866a2c"
+  },
+  "focused_native": {
+    "exit_code": 0,
+    "run": 10,
+    "passed": 10,
+    "failed": 0,
+    "raw_log_sha256": "d77da22b249062e221cc9a67d4320f43f011162c3f593bb7ed080dbbfea05419"
+  },
+  "recovery": {
+    "exit_code": 0,
+    "run": 4,
+    "passed": 4,
+    "failed": 0,
+    "raw_log_sha256": "8cef04573a00ed53118613327b411d1833de22ef993e291b6c693927a79a8a17"
+  },
+  "b3_admission": {
+    "exit_code": 2,
+    "decision": "PREPARED_NO_QCOM_DEVICE",
+    "verified_outputs": 0,
+    "raw_sha256": "07ec0c561abb1805b92f0b66d17ba911f6143491226005e77c6ac77807611c51"
+  },
+  "rc_admission": {
+    "exit_code": 2,
+    "decision": "RC_NOT_INSTALLABLE",
+    "install_allowed": false,
+    "b3_verified_outputs": 0,
+    "g10_product": "NOT_BUILT",
+    "physical_checks_passed": 0,
+    "raw_sha256": "4f5316a799f8aed53821af9cdc91c8a130c4126c7ca19fcda387636574144249"
+  },
+  "new_native_cdm_proof": {
+    "exit_code": 0,
+    "object_sha256": "24068659074239c00e17732c04f2bd5a99e9ec21920edae6dbb5527e82eeea87",
+    "shared_library_sha256": "097a657c99e62b0c4797beba03f64d3e59fe72991050780bfe939b525ba6332b",
+    "raw_log_sha256": "d942cd8c2465435a7a6b1ab8da366cf4a81228cd983aabada178b4214b922277"
+  },
+  "hold_package": {
+    "stage_exit_code": 2,
+    "classification": "NOT_INSTALLABLE_ENGINEERING_HOLD",
+    "install_allowed": false,
+    "manifest_sha256": "5799208bed726ea4e565b414f71a284d70a3a0833b657709aae4c8d8f6ecae9a",
+    "tar_sha256": "75a3e28915b75cc38c56839d44378c72ff45091d0d5b21e51a173fb5f0a1b09c"
+  },
+  "source_preflight_sha256": "58cb1fa76444d7eafebdf87275e817cdb887df8328ed817ae8f2559822667327",
+  "independent_qwen_review": "PENDING_COORDINATOR"
+}
