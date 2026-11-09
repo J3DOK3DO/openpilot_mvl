@@ -9,12 +9,46 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
+import stat
 
 EXPECTED_SNAPSHOT_SHA256 = '21f732825d9d61580e44e7c33e67cd9f8f4904884e84e96f284641529f13740d'
 FROZEN_SOURCE = '4b25263e8c1ccc7a72dc5fa5c08b7eacc70257fb'
 _SHA = re.compile(r'[0-9a-f]{40}\Z')
+MAX_SNAPSHOT_BYTES = 1024 * 1024
+
+
+def read_snapshot(path: Path) -> bytes:
+    """Read one bounded regular inode; never read-open a special file."""
+    before = os.lstat(path)
+    if not stat.S_ISREG(before.st_mode) or before.st_size > MAX_SNAPSHOT_BYTES:
+        raise ValueError('snapshot must be a bounded regular non-symlink file')
+    flags = os.O_RDONLY
+    for option in ('O_NOFOLLOW', 'O_NONBLOCK', 'O_CLOEXEC'):
+        flags |= getattr(os, option, 0)
+    fd = os.open(path, flags)
+    try:
+        opened = os.fstat(fd)
+        if (not stat.S_ISREG(opened.st_mode) or
+                (opened.st_dev, opened.st_ino) != (before.st_dev, before.st_ino) or
+                opened.st_size > MAX_SNAPSHOT_BYTES):
+            raise ValueError('snapshot inode changed or is unsafe')
+        chunks = []
+        remaining = MAX_SNAPSHOT_BYTES + 1
+        while remaining:
+            chunk = os.read(fd, min(65536, remaining))
+            if not chunk:
+                break
+            chunks.append(chunk)
+            remaining -= len(chunk)
+        raw = b''.join(chunks)
+        if len(raw) > MAX_SNAPSHOT_BYTES:
+            raise ValueError('snapshot grew beyond 1 MiB')
+        return raw
+    finally:
+        os.close(fd)
 
 
 def _single(raw: str, key: str) -> str | None:
@@ -80,15 +114,17 @@ def main() -> int:
     args = parser.parse_args()
     if not re.fullmatch(r'[0-9a-f]{64}', args.expected_sha256):
         parser.error('invalid expected hash')
-    if not args.snapshot.is_file() or args.snapshot.is_symlink() or args.snapshot.stat().st_size > 1024 * 1024:
-        parser.error('snapshot must be a bounded regular file')
-    raw = args.snapshot.read_bytes()
+    try:
+        raw = read_snapshot(args.snapshot)
+        decoded = raw.decode('utf-8-sig')
+    except (OSError, ValueError, UnicodeError) as exc:
+        parser.error(f'unsafe or unreadable snapshot: {exc}')
     if hashlib.sha256(raw).hexdigest() != args.expected_sha256:
         parser.error('passive snapshot hash mismatch')
-    report = evaluate(raw.decode('utf-8-sig'))
+    report = evaluate(decoded)
     report['evidence_sha256'] = args.expected_sha256
     print(json.dumps(report, indent=2, sort_keys=True))
-    return 0
+    return 2
 
 
 if __name__ == '__main__':
