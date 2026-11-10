@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+# C19 clean-install custom-software installer. Downloaded and executed by AGNOS setup.
+set -euo pipefail
+
+PAYLOAD_URL="https://raw.githubusercontent.com/J3DOK3DO/openpilot_mvl/mvl-c19-displayonly-cleaninstall-20261110/displayonly/C19_CLEAN_INSTALL_PAYLOAD.tar.gz"
+PAYLOAD_SHA256="92080458b8c1ece6a35ae613ae75fc5b0987bfcbbb50e387c380cd74e7cfaad0"
+INSTALL_ROOT=/data
+
+if [[ ${C19_OFFLINE_INSTALL_TEST:-0} == 1 && ! -e /AGNOS ]]; then
+  [[ ${C19_INSTALL_ROOT:-} == /* && -d ${C19_INSTALL_ROOT:-} && ! -L ${C19_INSTALL_ROOT:-} ]] || exit 64
+  INSTALL_ROOT=$C19_INSTALL_ROOT
+  PAYLOAD_URL=${C19_PAYLOAD_URL:-$PAYLOAD_URL}
+else
+  [[ -f /AGNOS && -r /VERSION && $(cat /VERSION) == 19.9 ]] || {
+    echo "This installer requires AGNOS 19.9" >&2
+    exit 69
+  }
+  model=$(tr -d '\000' </sys/firmware/devicetree/base/model)
+  [[ ${model,,} == *mici* ]] || { echo "Comma 4 MICI identity required" >&2; exit 69; }
+fi
+
+DEST=$INSTALL_ROOT/openpilot
+CONTINUE=$INSTALL_ROOT/continue.sh
+STAGE=$INSTALL_ROOT/.c19-openpilot.stage.$$
+ARCHIVE=$INSTALL_ROOT/.c19-payload.$$.tar.gz
+[[ ! -e $DEST && ! -L $DEST && ! -e $CONTINUE && ! -L $CONTINUE ]] || {
+  echo "clean install requires absent openpilot and continue.sh" >&2
+  exit 73
+}
+
+COMMITTED=0
+DEST_STAGED=0
+cleanup() {
+  trap - EXIT INT TERM HUP
+  if ((DEST_STAGED == 1 && COMMITTED == 0)) && [[ -d $DEST && ! -L $DEST && ! -e $CONTINUE ]]; then
+    rm -rf -- "$DEST"
+  fi
+  rm -rf -- "$STAGE"
+  rm -f -- "$ARCHIVE" "$CONTINUE.tmp.$$"
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+trap 'exit 129' HUP
+mkdir -m 700 "$STAGE"
+
+/usr/bin/python3 - "$PAYLOAD_URL" "$ARCHIVE" <<'PY'
+import pathlib, sys, urllib.request
+url, destination = sys.argv[1:]
+request = urllib.request.Request(url, headers={"User-Agent": "c19-displayonly-installer/1"})
+with urllib.request.urlopen(request, timeout=60) as response, open(destination, "xb") as output:
+  received = 0
+  maximum = 2 * 1024 * 1024
+  while chunk := response.read(256 * 1024):
+    received += len(chunk)
+    if received > maximum:
+      raise SystemExit("payload exceeds the 2 MiB bounded installer limit")
+    output.write(chunk)
+PY
+
+actual=$(sha256sum "$ARCHIVE" | awk '{print $1}')
+[[ $actual == "$PAYLOAD_SHA256" ]] || { echo "payload SHA-256 mismatch" >&2; exit 65; }
+
+/usr/bin/python3 - "$ARCHIVE" "$STAGE" <<'PY'
+import pathlib, sys, tarfile
+archive, stage = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2]).resolve()
+with tarfile.open(archive, "r:gz") as bundle:
+  members = bundle.getmembers()
+  if not members:
+    raise SystemExit("empty payload")
+  for member in members:
+    pure = pathlib.PurePosixPath(member.name)
+    target = (stage / pure).resolve()
+    if pure.is_absolute() or ".." in pure.parts or not target.is_relative_to(stage):
+      raise SystemExit(f"unsafe payload path: {member.name}")
+    if member.issym() or member.islnk() or not (member.isfile() or member.isdir()):
+      raise SystemExit(f"unsafe payload member: {member.name}")
+  bundle.extractall(stage, filter="data")
+PY
+
+[[ -x $STAGE/openpilot/launch_openpilot.sh && -x $STAGE/openpilot/displayonly/launch.sh ]] || {
+  echo "payload entry points missing" >&2
+  exit 65
+}
+printf '%s\n' '#!/usr/bin/env bash' "exec $DEST/launch_openpilot.sh" >"$CONTINUE.tmp.$$"
+chmod 755 "$CONTINUE.tmp.$$"
+mv "$STAGE/openpilot" "$DEST"
+DEST_STAGED=1
+rmdir "$STAGE"
+if [[ ${C19_OFFLINE_INSTALL_TEST:-0} == 1 && ! -e /AGNOS && ${C19_TEST_FAIL_POST_MOVE:-0} == 1 ]]; then
+  echo "offline injected failure after staging" >&2
+  exit 86
+fi
+mv "$CONTINUE.tmp.$$" "$CONTINUE"
+COMMITTED=1
+sync
+trap - EXIT INT TERM HUP
+rm -f -- "$ARCHIVE"
+echo "C19 display-only clean installation staged"
