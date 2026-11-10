@@ -111,6 +111,21 @@ class TestC18NativeUI(unittest.TestCase):
                       if Path(name).name.lower() in {"id_rsa", "id_dsa"}
                       or Path(name).suffix.lower() in {".pem", ".key", ".p12", ".pfx"}])
 
+  def test_source_closure_follows_relative_imports(self):
+    files = BUILD.source_closure()
+    self.assertIn("openpilot/sunnypilot/starpilot_bridge/adapter.py", files)
+    self.assertIn("openpilot/sunnypilot/starpilot_bridge/models.py", files)
+
+  def test_relative_import_resolution_from_package_and_module(self):
+    package_node = ast.parse("from .adapter import ReadOnlyStatusAdapter").body[0]
+    module_node = ast.parse("from ..models import BridgeSnapshot").body[0]
+    self.assertIn("openpilot.sunnypilot.starpilot_bridge.adapter",
+                  BUILD.imported_modules(package_node,
+                    "openpilot/sunnypilot/starpilot_bridge/__init__.py"))
+    self.assertIn("openpilot.sunnypilot.starpilot_bridge.models",
+                  BUILD.imported_modules(module_node,
+                    "openpilot/sunnypilot/starpilot_bridge/sub/module.py"))
+
   def test_authentic_arm64_dependency_audit(self):
     _entries, audit = BUILD.collect_entries()
     self.assertEqual(len(audit["native_binaries"]), 3)

@@ -57,6 +57,49 @@ def resolve_module(module: str) -> str | None:
   return None
 
 
+def module_for_path(path: str) -> tuple[str, bool] | None:
+  value = Path(path)
+  roots = ((Path("openpilot"), "openpilot"), (Path("msgq_repo/msgq"), "msgq"),
+           (Path("opendbc_repo/opendbc"), "opendbc"))
+  for root, module_root in roots:
+    try:
+      relative = value.relative_to(root)
+    except ValueError:
+      continue
+    parts = list(relative.parts)
+    is_package = parts[-1] == "__init__.py"
+    if is_package:
+      parts.pop()
+    else:
+      parts[-1] = Path(parts[-1]).stem
+    return ".".join((module_root, *parts)), is_package
+  return None
+
+
+def imported_modules(node: ast.ImportFrom, current_path: str) -> list[str]:
+  if node.level == 0:
+    if not node.module:
+      return []
+    base = node.module
+  else:
+    current = module_for_path(current_path)
+    if current is None:
+      return []
+    module, is_package = current
+    package = module.split(".") if is_package else module.split(".")[:-1]
+    ascend = node.level - 1
+    if ascend > len(package):
+      return []
+    base_parts = package[:len(package) - ascend]
+    if node.module:
+      base_parts.extend(node.module.split("."))
+    base = ".".join(base_parts)
+  modules = [base] if base else []
+  modules.extend(f"{base}.{alias.name}" if base else alias.name
+                 for alias in node.names if alias.name != "*")
+  return modules
+
+
 def source_closure() -> set[str]:
   files = tracked(SEED_PREFIXES)
   # cereal loads these schemas dynamically through importlib.resources; AST
@@ -76,10 +119,8 @@ def source_closure() -> set[str]:
     for node in ast.walk(tree):
       if isinstance(node, ast.Import):
         modules.extend(alias.name for alias in node.names)
-      elif isinstance(node, ast.ImportFrom) and node.module and node.level == 0:
-        modules.append(node.module)
-        modules.extend(f"{node.module}.{alias.name}" for alias in node.names
-                       if alias.name != "*")
+      elif isinstance(node, ast.ImportFrom):
+        modules.extend(imported_modules(node, name))
     for module in modules:
       target = resolve_module(module)
       if target and target not in files:
@@ -90,8 +131,11 @@ def source_closure() -> set[str]:
         parent = Path(target).parent
         while str(parent) not in (".", ""):
           init = str(parent / "__init__.py")
-          if (SOURCE / init).is_file():
+          if (SOURCE / init).is_file() and init not in files:
             files.add(init)
+            if init not in seen:
+              queue.append(init)
+              seen.add(init)
           parent = parent.parent
   # Include declarative/runtime resources colocated with imported modules.
   # These are commonly opened by path rather than imported (for example the
