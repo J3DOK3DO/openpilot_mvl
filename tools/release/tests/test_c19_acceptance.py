@@ -26,6 +26,8 @@ class TestC19Acceptance(unittest.TestCase):
     self.assertIn('"classification": "NATIVE_UI_OFFLINE_CANDIDATE"', source)
     self.assertIn('"install_allowed": False, "actuation_allowed": False', source)
     self.assertIn("relative-import closure remediation is absent", source)
+    self.assertIn("28ac276b04977cad336b74785e7cf0bccd0efb098c7495e974c0cad9382b4173", source)
+    self.assertIn("TERM-to-KILL watchdog escalation", source)
 
   def test_hold_records_never_claim_physical_evidence(self):
     with tempfile.TemporaryDirectory() as temporary:

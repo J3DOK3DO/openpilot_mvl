@@ -63,6 +63,10 @@ class TestC18NativeUI(unittest.TestCase):
     self.assertIn('"$PYTHON" -P', text)
     self.assertNotIn('exec "$PYTHON"', text)
     self.assertIn("c18_supervise", text)
+    self.assertIn("C18_SUPERVISOR_TIMEOUT_SECONDS", text)
+    self.assertIn("C18_SUPERVISOR_KILL_GRACE_SECONDS", text)
+    self.assertIn("--max-seconds", text)
+    self.assertIn("kill -KILL", SUPERVISOR.read_text())
     self.assertIn("LD_PRELOAD", text)
     self.assertNotIn("c17_ipc_redirect", text)
 
@@ -98,6 +102,46 @@ class TestC18NativeUI(unittest.TestCase):
                             text=True, capture_output=True)
     self.assertEqual(proc.returncode, 69)
     self.assertIn("requires physical AGNOS 19.9 AArch64", proc.stderr)
+
+  def test_supervisor_watchdog_reaps_startup_hang_and_removes_runtime(self):
+    with tempfile.TemporaryDirectory(dir="/tmp", prefix="c18-watchdog-test.") as outer:
+      outer_path = Path(outer)
+      runtime = Path(tempfile.mkdtemp(dir="/tmp", prefix="c18-display."))
+      pidfile = outer_path / "child.pid"
+      child = f'trap "" TERM; echo $$ > {pidfile}; while :; do sleep 1; done'
+      command = ["bash", "-c", f'source "{SUPERVISOR}"; c18_supervise "{runtime}" bash -c "$1"',
+                 "supervisor-watchdog-test", child]
+      environment = dict(os.environ, C18_SUPERVISOR_TIMEOUT_SECONDS="1",
+                         C18_SUPERVISOR_KILL_GRACE_SECONDS="1")
+      proc = subprocess.run(command, env=environment, timeout=5)
+      self.assertEqual(proc.returncode, 124)
+      self.assertTrue(pidfile.exists())
+      child_pid = int(pidfile.read_text())
+      self.assertFalse(runtime.exists())
+      with self.assertRaises(ProcessLookupError):
+        os.kill(child_pid, 0)
+
+  def test_supervisor_external_term_escalates_for_ignoring_child(self):
+    with tempfile.TemporaryDirectory(dir="/tmp", prefix="c18-term-escalation-test.") as outer:
+      outer_path = Path(outer)
+      runtime = Path(tempfile.mkdtemp(dir="/tmp", prefix="c18-display."))
+      pidfile = outer_path / "child.pid"
+      child = f'trap "" TERM; echo $$ > {pidfile}; while :; do sleep 1; done'
+      command = ["bash", "-c", f'source "{SUPERVISOR}"; c18_supervise "{runtime}" bash -c "$1"',
+                 "supervisor-term-escalation-test", child]
+      environment = dict(os.environ, C18_SUPERVISOR_KILL_GRACE_SECONDS="1")
+      proc = subprocess.Popen(command, env=environment)
+      for _ in range(100):
+        if pidfile.exists():
+          break
+        time.sleep(0.01)
+      self.assertTrue(pidfile.exists())
+      child_pid = int(pidfile.read_text())
+      proc.send_signal(signal.SIGTERM)
+      self.assertEqual(proc.wait(timeout=5), 143)
+      self.assertFalse(runtime.exists())
+      with self.assertRaises(ProcessLookupError):
+        os.kill(child_pid, 0)
 
   def test_source_closure_is_pinned_and_no_controller_binaries(self):
     files = BUILD.source_closure()

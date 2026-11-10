@@ -21,6 +21,7 @@ WORKTREE = Path(__file__).resolve().parents[2]
 ROOT_NAME = "C19_NATIVE_UI_OFFLINE_CANDIDATE"
 ARCHIVE_NAME = ROOT_NAME + ".tar.gz"
 C18_ARCHIVE_SHA256 = "449624da60c90fdc667740c08153622d6d0ec721f0adaef1e7508ba181b57634"
+C19_PRE_WATCHDOG_ARCHIVE_SHA256 = "28ac276b04977cad336b74785e7cf0bccd0efb098c7495e974c0cad9382b4173"
 
 
 def build(output: Path, release_commit: str) -> tuple[dict, dict]:
@@ -35,8 +36,12 @@ def build(output: Path, release_commit: str) -> tuple[dict, dict]:
     "source_commit": c18.SOURCE_SHA, "release_engineering_commit": release_commit,
     "target": "Comma 4 / AGNOS 19.9 / AArch64", "files": file_manifest,
     "audit": audit, "install_allowed": False, "actuation_allowed": False,
-    "remediates_candidate_sha256": C18_ARCHIVE_SHA256,
-    "remediation": "complete recursive absolute and relative Python import closure",
+    "supersedes_candidate_sha256": C19_PRE_WATCHDOG_ARCHIVE_SHA256,
+    "historical_base_candidate_sha256": C18_ARCHIVE_SHA256,
+    "remediations": [
+      "complete recursive absolute and relative Python import closure",
+      "bounded native UI startup and cleanup with TERM-to-KILL watchdog escalation",
+    ],
   }
   entries["MANIFEST.json"] = (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode()
   with output.open("xb") as raw:
