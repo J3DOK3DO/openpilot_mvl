@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build and verify the deterministic minimal clean-install payload."""
+"""Build and verify the deterministic R3 rich read-only clean-install payload."""
 from __future__ import annotations
 
 import argparse
@@ -16,7 +16,8 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[2]
 PAYLOAD_FILES = (
   "LICENSE", "LICENSE.md", "launch_openpilot.sh", "launch_chffrplus.sh",
-  "displayonly/c19_display.py", "displayonly/launch.sh",
+  "displayonly/c19_display.py", "displayonly/layout.py", "displayonly/README.md",
+  "displayonly/launch.sh",
 )
 FORBIDDEN = ("manager.py", "sendcan", "PubMaster", "Params(", "agnos.py", "abctl",
              "sudo", "/dev/panda", "openpilot.system.manager", "panda.python")
@@ -46,8 +47,8 @@ def collect() -> tuple[dict[str, bytes], dict]:
   if found:
     raise ValueError(f"forbidden runtime mechanisms: {found}")
   manifest = {
-    "schema": "c19-clean-install-payload-v1",
-    "classification": "CLEAN_INSTALL_OFFLINE_CANDIDATE",
+    "schema": "r3-clean-install-payload-v1",
+    "classification": "R3_OFFLINE_CLEAN_INSTALL_CANDIDATE",
     "target": "Comma 4 MICI / AGNOS 19.9 / AArch64",
     "files": {name: {"sha256": digest_bytes(data), "bytes": len(data)}
               for name, data in sorted(entries.items())},
@@ -55,12 +56,15 @@ def collect() -> tuple[dict[str, bytes], dict]:
                              "/tmp/drmfd.sock", "/dev/dri/card0"],
     "runtime_imports_cereal": False,
     "runtime_uses_params": False,
+    "layouts": {"compact": [536, 240], "large": [2160, 1080]},
+    "production_layout": "compact",
+    "demo_mode": "OFF_BY_DEFAULT_AND_FORBIDDEN_ON_AGNOS",
     "runtime_publishers": [],
     "manager_or_vehicle_processes": [],
     "actuation_allowed": False,
     "physical_graphics_qualified": False,
   }
-  entries["C19_RUNTIME_MANIFEST.json"] = (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode()
+  entries["R3_RUNTIME_MANIFEST.json"] = (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode()
   return entries, manifest
 
 
@@ -103,7 +107,7 @@ def build(output: Path) -> dict:
     subprocess.run(["python3", "-m", "py_compile", str(unpacked / "displayonly/c19_display.py")],
                    check=True, env={"PYTHONPYCACHEPREFIX": str(stage / "pycache")})
   return {
-    "schema": "c19-clean-install-build-v1", "result": "PASS",
+    "schema": "r3-clean-install-build-v1", "result": "PASS",
     "archive_sha256": digest(output), "archive_bytes": output.stat().st_size,
     "deterministic_metadata": True, "safe_extraction": True,
     "payload_files": len(entries), "manifest": manifest,

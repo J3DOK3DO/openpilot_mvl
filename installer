@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
-# C19 clean-install custom-software installer. Downloaded and executed by AGNOS setup.
+# R3 clean-install custom-software installer. Downloaded and executed by AGNOS setup.
 set -euo pipefail
 
-PAYLOAD_URL="https://raw.githubusercontent.com/J3DOK3DO/openpilot_mvl/mvl-c19-displayonly-cleaninstall-20261110/displayonly/C19_CLEAN_INSTALL_PAYLOAD.tar.gz"
-PAYLOAD_SHA256="92080458b8c1ece6a35ae613ae75fc5b0987bfcbbb50e387c380cd74e7cfaad0"
+PAYLOAD_URL="https://raw.githubusercontent.com/J3DOK3DO/openpilot_mvl/mvl-c19-r3-full-displayonly-release-20261111/displayonly/R3_DISPLAYONLY_PAYLOAD.tar.gz"
+PAYLOAD_SHA256="754d732fc586ee3f67cf8d539962bbf1e96a181248fd19168f0713dee641def0"
+MAX_PAYLOAD_BYTES=2097152
 INSTALL_ROOT=/data
 
-if [[ ${C19_OFFLINE_INSTALL_TEST:-0} == 1 && ! -e /AGNOS ]]; then
-  [[ ${C19_INSTALL_ROOT:-} == /* && -d ${C19_INSTALL_ROOT:-} && ! -L ${C19_INSTALL_ROOT:-} ]] || exit 64
-  INSTALL_ROOT=$C19_INSTALL_ROOT
-  PAYLOAD_URL=${C19_PAYLOAD_URL:-$PAYLOAD_URL}
+OFFLINE_TEST=${R3_OFFLINE_INSTALL_TEST:-${C19_OFFLINE_INSTALL_TEST:-0}}
+if [[ $OFFLINE_TEST == 1 && ! -e /AGNOS ]]; then
+  TEST_ROOT=${R3_INSTALL_ROOT:-${C19_INSTALL_ROOT:-}}
+  [[ $TEST_ROOT == /* && -d $TEST_ROOT && ! -L $TEST_ROOT ]] || exit 64
+  INSTALL_ROOT=$TEST_ROOT
+  PAYLOAD_URL=${R3_PAYLOAD_URL:-${C19_PAYLOAD_URL:-$PAYLOAD_URL}}
 else
   [[ -f /AGNOS && -r /VERSION && $(cat /VERSION) == 19.9 ]] || {
     echo "This installer requires AGNOS 19.9" >&2
@@ -21,8 +24,8 @@ fi
 
 DEST=$INSTALL_ROOT/openpilot
 CONTINUE=$INSTALL_ROOT/continue.sh
-STAGE=$INSTALL_ROOT/.c19-openpilot.stage.$$
-ARCHIVE=$INSTALL_ROOT/.c19-payload.$$.tar.gz
+STAGE=$INSTALL_ROOT/.r3-openpilot.stage.$$
+ARCHIVE=$INSTALL_ROOT/.r3-payload.$$.tar.gz
 [[ ! -e $DEST && ! -L $DEST && ! -e $CONTINUE && ! -L $CONTINUE ]] || {
   echo "clean install requires absent openpilot and continue.sh" >&2
   exit 73
@@ -30,8 +33,12 @@ ARCHIVE=$INSTALL_ROOT/.c19-payload.$$.tar.gz
 
 COMMITTED=0
 DEST_STAGED=0
+CONTINUE_STAGED=0
 cleanup() {
   trap - EXIT INT TERM HUP
+  if ((CONTINUE_STAGED == 1 && COMMITTED == 0)) && [[ -f $CONTINUE && ! -L $CONTINUE ]]; then
+    rm -f -- "$CONTINUE"
+  fi
   if ((DEST_STAGED == 1 && COMMITTED == 0)) && [[ -d $DEST && ! -L $DEST && ! -e $CONTINUE ]]; then
     rm -rf -- "$DEST"
   fi
@@ -44,17 +51,17 @@ trap 'exit 143' TERM
 trap 'exit 129' HUP
 mkdir -m 700 "$STAGE"
 
-/usr/bin/python3 - "$PAYLOAD_URL" "$ARCHIVE" <<'PY'
-import pathlib, sys, urllib.request
-url, destination = sys.argv[1:]
-request = urllib.request.Request(url, headers={"User-Agent": "c19-displayonly-installer/1"})
+/usr/bin/python3 - "$PAYLOAD_URL" "$ARCHIVE" "$MAX_PAYLOAD_BYTES" <<'PY'
+import sys, urllib.request
+url, destination, maximum_text = sys.argv[1:]
+maximum = int(maximum_text)
+request = urllib.request.Request(url, headers={"User-Agent": "mvl-r3-displayonly-installer/1"})
 with urllib.request.urlopen(request, timeout=60) as response, open(destination, "xb") as output:
   received = 0
-  maximum = 2 * 1024 * 1024
   while chunk := response.read(256 * 1024):
     received += len(chunk)
     if received > maximum:
-      raise SystemExit("payload exceeds the 2 MiB bounded installer limit")
+      raise SystemExit(f"payload exceeds the 2 MiB bounded installer limit ({maximum} bytes)")
     output.write(chunk)
 PY
 
@@ -68,9 +75,13 @@ with tarfile.open(archive, "r:gz") as bundle:
   members = bundle.getmembers()
   if not members:
     raise SystemExit("empty payload")
+  names = set()
   for member in members:
     pure = pathlib.PurePosixPath(member.name)
     target = (stage / pure).resolve()
+    if member.name in names:
+      raise SystemExit(f"duplicate payload member: {member.name}")
+    names.add(member.name)
     if pure.is_absolute() or ".." in pure.parts or not target.is_relative_to(stage):
       raise SystemExit(f"unsafe payload path: {member.name}")
     if member.issym() or member.islnk() or not (member.isfile() or member.isdir()):
@@ -84,16 +95,18 @@ PY
 }
 printf '%s\n' '#!/usr/bin/env bash' "exec $DEST/launch_openpilot.sh" >"$CONTINUE.tmp.$$"
 chmod 755 "$CONTINUE.tmp.$$"
+if [[ ${R3_TEST_FAIL_STAGE:-} == before_move ]]; then exit 85; fi
 mv "$STAGE/openpilot" "$DEST"
 DEST_STAGED=1
 rmdir "$STAGE"
-if [[ ${C19_OFFLINE_INSTALL_TEST:-0} == 1 && ! -e /AGNOS && ${C19_TEST_FAIL_POST_MOVE:-0} == 1 ]]; then
-  echo "offline injected failure after staging" >&2
-  exit 86
-fi
+if [[ ${R3_TEST_FAIL_STAGE:-} == after_move || ${C19_TEST_FAIL_POST_MOVE:-0} == 1 ]]; then exit 86; fi
 mv "$CONTINUE.tmp.$$" "$CONTINUE"
+CONTINUE_STAGED=1
+if [[ ${R3_TEST_FAIL_STAGE:-} == after_continue ]]; then
+  exit 87
+fi
 COMMITTED=1
 sync
 trap - EXIT INT TERM HUP
 rm -f -- "$ARCHIVE"
-echo "C19 display-only clean installation staged"
+echo "R3 display-only clean installation staged"
